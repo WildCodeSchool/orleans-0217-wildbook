@@ -12,7 +12,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('BookBundle:Front:index.html.twig');
+        return $this->render('BookBundle:Front:accueil.html.twig');
     }
 
     /**
