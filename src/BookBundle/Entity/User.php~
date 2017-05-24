@@ -60,28 +60,4 @@ class User extends BaseUser
     {
         return $this->campusManager;
     }
-
-    /**
-     * Set wilder
-     *
-     * @param \BookBundle\Entity\wilder $wilder
-     *
-     * @return User
-     */
-    public function setWilder(\BookBundle\Entity\wilder $wilder = null)
-    {
-        $this->wilder = $wilder;
-
-        return $this;
-    }
-
-    /**
-     * Get wilder
-     *
-     * @return \BookBundle\Entity\wilder
-     */
-    public function getWilder()
-    {
-        return $this->wilder;
-    }
 }
