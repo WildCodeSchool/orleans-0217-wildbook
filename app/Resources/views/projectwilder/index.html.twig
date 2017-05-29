@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Projectwilders list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Visibility</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for projectWilder in projectWilders %}
+            <tr>
+                <td><a href="{{ path('projectwilder_show', { 'id': projectWilder.id }) }}">{{ projectWilder.id }}</a></td>
+                <td>{% if projectWilder.visibility %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('projectwilder_show', { 'id': projectWilder.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('projectwilder_edit', { 'id': projectWilder.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('projectwilder_new') }}">Create a new projectWilder</a>
+        </li>
+    </ul>
+{% endblock %}

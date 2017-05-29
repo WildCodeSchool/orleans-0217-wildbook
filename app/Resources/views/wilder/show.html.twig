@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Wilder</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ wilder.id }}</td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td>{% if wilder.birthDate %}{{ wilder.birthDate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ wilder.address }}</td>
+            </tr>
+            <tr>
+                <th>Postalcode</th>
+                <td>{{ wilder.postalCode }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ wilder.city }}</td>
+            </tr>
+            <tr>
+                <th>Skill</th>
+                <td>{{ wilder.skill }}</td>
+            </tr>
+            <tr>
+                <th>Freelanceavailability</th>
+                <td>{% if wilder.freelanceAvailability %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modjo</th>
+                <td>{{ wilder.modjo }}</td>
+            </tr>
+            <tr>
+                <th>Biography</th>
+                <td>{{ wilder.biography }}</td>
+            </tr>
+            <tr>
+                <th>Contactemail</th>
+                <td>{{ wilder.contactEmail }}</td>
+            </tr>
+            <tr>
+                <th>Profilpicture</th>
+                <td>{{ wilder.profilPicture }}</td>
+            </tr>
+            <tr>
+                <th>Cv</th>
+                <td>{{ wilder.cv }}</td>
+            </tr>
+            <tr>
+                <th>Website</th>
+                <td>{{ wilder.website }}</td>
+            </tr>
+            <tr>
+                <th>Github</th>
+                <td>{{ wilder.github }}</td>
+            </tr>
+            <tr>
+                <th>Linkedin</th>
+                <td>{{ wilder.linkedin }}</td>
+            </tr>
+            <tr>
+                <th>Facebook</th>
+                <td>{{ wilder.facebook }}</td>
+            </tr>
+            <tr>
+                <th>Twitter</th>
+                <td>{{ wilder.twitter }}</td>
+            </tr>
+            <tr>
+                <th>Useractivation</th>
+                <td>{% if wilder.userActivation %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Manageractivation</th>
+                <td>{% if wilder.managerActivation %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Codewarsusername</th>
+                <td>{{ wilder.codewarsUsername }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('wilder_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('wilder_edit', { 'id': wilder.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

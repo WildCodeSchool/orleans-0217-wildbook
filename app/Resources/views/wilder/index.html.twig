@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Wilders list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Birthdate</th>
+                <th>Address</th>
+                <th>Postalcode</th>
+                <th>City</th>
+                <th>Skill</th>
+                <th>Freelanceavailability</th>
+                <th>Modjo</th>
+                <th>Biography</th>
+                <th>Contactemail</th>
+                <th>Profilpicture</th>
+                <th>Cv</th>
+                <th>Website</th>
+                <th>Github</th>
+                <th>Linkedin</th>
+                <th>Facebook</th>
+                <th>Twitter</th>
+                <th>Useractivation</th>
+                <th>Manageractivation</th>
+                <th>Codewarsusername</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for wilder in wilders %}
+            <tr>
+                <td><a href="{{ path('wilder_show', { 'id': wilder.id }) }}">{{ wilder.id }}</a></td>
+                <td>{% if wilder.birthDate %}{{ wilder.birthDate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ wilder.address }}</td>
+                <td>{{ wilder.postalCode }}</td>
+                <td>{{ wilder.city }}</td>
+                <td>{{ wilder.skill }}</td>
+                <td>{% if wilder.freelanceAvailability %}Yes{% else %}No{% endif %}</td>
+                <td>{{ wilder.modjo }}</td>
+                <td>{{ wilder.biography }}</td>
+                <td>{{ wilder.contactEmail }}</td>
+                <td>{{ wilder.profilPicture }}</td>
+                <td>{{ wilder.cv }}</td>
+                <td>{{ wilder.website }}</td>
+                <td>{{ wilder.github }}</td>
+                <td>{{ wilder.linkedin }}</td>
+                <td>{{ wilder.facebook }}</td>
+                <td>{{ wilder.twitter }}</td>
+                <td>{% if wilder.userActivation %}Yes{% else %}No{% endif %}</td>
+                <td>{% if wilder.managerActivation %}Yes{% else %}No{% endif %}</td>
+                <td>{{ wilder.codewarsUsername }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('wilder_show', { 'id': wilder.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('wilder_edit', { 'id': wilder.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('wilder_new') }}">Create a new wilder</a>
+        </li>
+    </ul>
+{% endblock %}
