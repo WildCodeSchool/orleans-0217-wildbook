@@ -19,9 +19,69 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @var
+     * @ORM\OneToOne (targetEntity="CampusManager", inversedBy="user")
+     */
+    private $campusManager;
+
+    /**
+     * @var
+     * @ORM\OneToOne (targetEntity="wilder", inversedBy="user")
+     */
+    private $wilder;
+
     public function __construct()
     {
         parent::__construct();
         // your own logic
+    }
+
+    /**
+     * Set campusManager
+     *
+     * @param \BookBundle\Entity\CampusManager $campusManager
+     *
+     * @return User
+     */
+    public function setCampusManager(\BookBundle\Entity\CampusManager $campusManager = null)
+    {
+        $this->campusManager = $campusManager;
+
+        return $this;
+    }
+
+    /**
+     * Get campusManager
+     *
+     * @return \BookBundle\Entity\CampusManager
+     */
+    public function getCampusManager()
+    {
+        return $this->campusManager;
+    }
+
+    /**
+     * Set wilder
+     *
+     * @param \BookBundle\Entity\wilder $wilder
+     *
+     * @return User
+     */
+    public function setWilder(\BookBundle\Entity\wilder $wilder = null)
+    {
+        $this->wilder = $wilder;
+
+        return $this;
+    }
+
+    /**
+     * Get wilder
+     *
+     * @return \BookBundle\Entity\wilder
+     */
+    public function getWilder()
+    {
+        return $this->wilder;
     }
 }
