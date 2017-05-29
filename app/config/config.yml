@@ -77,3 +77,13 @@ fos_user:
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
+
+
+easy_admin :
+    entities :
+        Wilder :
+            class : BookBundle\Entity\Wilder
+        Language :
+            class : BookBundle\Entity\Language
+        Project :
+            class : BookBundle\Entity\Project
