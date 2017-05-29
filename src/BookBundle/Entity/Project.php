@@ -105,7 +105,7 @@ class Project
      * @var
      * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="project")
      */
-    private $prjectWilders;
+    private $projectWilders;
 
     /**
      * @return mixed
@@ -460,36 +460,36 @@ class Project
     }
 
     /**
-     * Add prjectWilder
+     * Add projectWilder
      *
-     * @param \BookBundle\Entity\ProjectWilder $prjectWilder
+     * @param \BookBundle\Entity\ProjectWilder $projectWilder
      *
      * @return Project
      */
-    public function addPrjectWilder(\BookBundle\Entity\ProjectWilder $prjectWilder)
+    public function addProjectWilder(\BookBundle\Entity\ProjectWilder $projectWilder)
     {
-        $this->prjectWilders[] = $prjectWilder;
+        $this->projectWilders[] = $projectWilder;
 
         return $this;
     }
 
     /**
-     * Remove prjectWilder
+     * Remove projectWilder
      *
-     * @param \BookBundle\Entity\ProjectWilder $prjectWilder
+     * @param \BookBundle\Entity\ProjectWilder $projectWilder
      */
-    public function removePrjectWilder(\BookBundle\Entity\ProjectWilder $prjectWilder)
+    public function removeProjectWilder(\BookBundle\Entity\ProjectWilder $projectWilder)
     {
-        $this->prjectWilders->removeElement($prjectWilder);
+        $this->projectWilders->removeElement($projectWilder);
     }
 
     /**
-     * Get prjectWilders
+     * Get projectWilders
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPrjectWilders()
+    public function getProjectWilders()
     {
-        return $this->prjectWilders;
+        return $this->projectWilders;
     }
 }
