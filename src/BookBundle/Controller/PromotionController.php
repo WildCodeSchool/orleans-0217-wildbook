@@ -3,6 +3,7 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\Promotion;
+use BookBundle\Form\PromotionType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -40,7 +41,7 @@ class PromotionController extends Controller
     public function newAction(Request $request)
     {
         $promotion = new Promotion();
-        $form = $this->createForm('BookBundle\Form\PromotionType', $promotion);
+        $form = $this->createForm(PromotionType::class, $promotion);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -8,12 +8,13 @@
 
 namespace BookBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface ;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager ;
 use BookBundle\Entity\User ;
 
 
-class LoadUserData  implements FixtureInterface
+class LoadUserData  extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load ( ObjectManager $manager )
     {
@@ -39,5 +40,11 @@ class LoadUserData  implements FixtureInterface
         $manager -> persist ( $userAdmin );
 
         $manager -> flush ();
+    }
+
+    public function getOrder ()
+    {
+
+        return 7 ;
     }
 }

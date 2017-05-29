@@ -2,6 +2,10 @@
 
 namespace BookBundle\Form;
 
+use BookBundle\BookBundle;
+use BookBundle\Entity\Language;
+use BookBundle\Entity\School;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +17,12 @@ class PromotionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('promotion')->add('languages')->add('school');
+        $builder->add('promotion')
+
+                ->add('school', EntityType::class, [
+                    'class'=>'BookBundle:School',
+                    'choice_label'=>'school'
+                ]);
     }
     
     /**

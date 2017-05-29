@@ -186,7 +186,7 @@ class Wilder
 
     /**
      * @var
-     * @ORM\OneToOne (targetEntity="User", inversedBy="wilder")
+     * @ORM\OneToOne (targetEntity="User", mappedBy="wilder")
      */
     private $user;
 

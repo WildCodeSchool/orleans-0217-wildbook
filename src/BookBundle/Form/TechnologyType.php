@@ -13,7 +13,7 @@ class TechnologyType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('technology')->add('projects')->add('technologies');
+        $builder->add('technology');
     }
     
     /**

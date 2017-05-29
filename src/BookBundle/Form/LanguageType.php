@@ -13,7 +13,7 @@ class LanguageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('language')->add('projects')->add('wilders')->add('promotions');
+        $builder->add('language');
     }
     
     /**
