@@ -31,6 +31,7 @@ class User extends BaseUser
      */
     private $wilder;
 
+
     public function __construct()
     {
         parent::__construct();

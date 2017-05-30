@@ -52,6 +52,22 @@ class Technology
     }
 
     /**
+     * @return mixed
+     */
+    public function getWilders()
+    {
+        return $this->wilders;
+    }
+
+    /**
+     * @param mixed $wilders
+     */
+    public function setWilders($wilders)
+    {
+        $this->wilders = $wilders;
+    }
+
+    /**
      * Set technology
      *
      * @param string $technology
@@ -140,15 +156,5 @@ class Technology
     public function removeWilder(\BookBundle\Entity\Wilder $wilder)
     {
         $this->wilders->removeElement($wilder);
-    }
-
-    /**
-     * Get wilders
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getWilders()
-    {
-        return $this->wilders;
     }
 }
