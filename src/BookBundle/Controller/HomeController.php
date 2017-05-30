@@ -9,14 +9,14 @@ use Symfony\Component\Form\Extension\Core\Type\SearchType;
 class HomeController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/ratata")
      */
     public function indexAction()
     {
         $form = $this->$this->createFormBuilder()
             ->add('inpute', SearchType::class, [
                 'require' => false,
-            ]);->getForm();
+            ])->getForm();
 
         if ($form->isValide() )
         return $this->render('BookBundle:Front:accueil.html.twig');
