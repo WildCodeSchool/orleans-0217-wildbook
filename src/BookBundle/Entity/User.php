@@ -27,7 +27,7 @@ class User extends BaseUser
 
     /**
      * @var
-     * @ORM\OneToOne (targetEntity="wilder", inversedBy="user")
+     * @ORM\OneToOne (targetEntity="Wilder", inversedBy="user")
      */
     private $wilder;
 

@@ -36,9 +36,9 @@ class Technology
 
     /**
      * @var
-     * @ORM\ManyToMany (targetEntity="Wilder", mappedBy="wilders")
+     * @ORM\ManyToMany (targetEntity="Wilder", mappedBy="technologies")
      */
-    private $technologies;
+    private $wilders;
 
 
     /**
@@ -116,37 +116,39 @@ class Technology
         return $this->projects;
     }
 
+
+
     /**
-     * Add technology
+     * Add wilder
      *
-     * @param \BookBundle\Entity\Wilder $technology
+     * @param \BookBundle\Entity\Wilder $wilder
      *
      * @return Technology
      */
-    public function addTechnology(\BookBundle\Entity\Wilder $technology)
+    public function addWilder(\BookBundle\Entity\Wilder $wilder)
     {
-        $this->technologies[] = $technology;
+        $this->wilders[] = $wilder;
 
         return $this;
     }
 
     /**
-     * Remove technology
+     * Remove wilder
      *
-     * @param \BookBundle\Entity\Wilder $technology
+     * @param \BookBundle\Entity\Wilder $wilder
      */
-    public function removeTechnology(\BookBundle\Entity\Wilder $technology)
+    public function removeWilder(\BookBundle\Entity\Wilder $wilder)
     {
-        $this->technologies->removeElement($technology);
+        $this->wilders->removeElement($wilder);
     }
 
     /**
-     * Get technologies
+     * Get wilders
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getTechnologies()
+    public function getWilders()
     {
-        return $this->technologies;
+        return $this->wilders;
     }
 }

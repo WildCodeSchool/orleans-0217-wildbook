@@ -16,7 +16,7 @@ class HomeController extends Controller
         $form = $this->$this->createFormBuilder()
             ->add('inpute', SearchType::class, [
                 'require' => false,
-            ]);->getForm();
+            ])->getForm();
 
         if ($form->isValide() )
         return $this->render('BookBundle:Front:accueil.html.twig');

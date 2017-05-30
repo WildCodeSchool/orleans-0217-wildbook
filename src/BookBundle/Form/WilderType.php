@@ -5,6 +5,7 @@ namespace BookBundle\Form;
 use BookBundle\Entity\Availability;
 use BookBundle\Entity\Language;
 use BookBundle\Entity\Promotion;
+use BookBundle\Entity\Technology;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -41,7 +42,7 @@ class WilderType extends AbstractType
                     'choice_label'=>'language'
                 ])
                 ->add('technologies', EntityType::class, [
-                    'class'=>TechnologyType::class,
+                    'class'=>Technology::class,
                     'choice_label'=>'technology'
                 ])
                 ->add('availability', EntityType::class, [
