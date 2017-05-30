@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Campusmanagers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for campusManager in campusManagers %}
+            <tr>
+                <td><a href="{{ path('campusmanager_show', { 'id': campusManager.id }) }}">{{ campusManager.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('campusmanager_show', { 'id': campusManager.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('campusmanager_edit', { 'id': campusManager.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('campusmanager_new') }}">Create a new campusManager</a>
+        </li>
+    </ul>
+{% endblock %}
