@@ -38,21 +38,21 @@ class Wilder
     /**
      * @var int
      *
-     * @ORM\Column(name="postalCode", type="integer")
+     * @ORM\Column(name="postalCode", type="integer", nullable=true)
      */
     private $postalCode;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=60)
+     * @ORM\Column(name="city", type="string", length=60, nullable=true)
      */
     private $city;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="skill", type="text")
+     * @ORM\Column(name="skill", type="text", nullable=true)
      */
     private $skill;
 
@@ -66,14 +66,14 @@ class Wilder
     /**
      * @var string
      *
-     * @ORM\Column(name="modjo", type="string", length=45)
+     * @ORM\Column(name="modjo", type="string", length=45, nullable=true)
      */
     private $modjo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="biography", type="text")
+     * @ORM\Column(name="biography", type="text", nullable=true)
      */
     private $biography;
 
@@ -87,7 +87,7 @@ class Wilder
     /**
      * @var string
      *
-     * @ORM\Column(name="profilPicture", type="string", length=255)
+     * @ORM\Column(name="profilPicture", type="string", length=255, nullable=true)
      */
     private $profilPicture;
 
