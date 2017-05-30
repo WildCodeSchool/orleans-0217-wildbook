@@ -18,18 +18,18 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * @var
-     * @ORM\OneToOne (targetEntity="CampusManager", inversedBy="user")
-     */
-    private $campusManager;
-
-    /**
-     * @var
-     * @ORM\OneToOne (targetEntity="wilder", inversedBy="user")
-     */
-    private $wilder;
+//
+//    /**
+//     * @var
+//     * @ORM\OneToOne (targetEntity="CampusManager", inversedBy="user")
+//     */
+//    private $campusManager;
+//
+//    /**
+//     * @var
+//     * @ORM\OneToOne (targetEntity="wilder", inversedBy="user")
+//     */
+//    private $wilder;
 
     public function __construct()
     {

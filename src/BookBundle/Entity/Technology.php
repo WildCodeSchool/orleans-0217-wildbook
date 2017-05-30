@@ -36,9 +36,9 @@ class Technology
 
     /**
      * @var
-     * @ORM\ManyToMany (targetEntity="Wilder", mappedBy="wilders")
+     * @ORM\ManyToMany (targetEntity="Wilder", mappedBy="technologies")
      */
-    private $technologies;
+    private $wilders;
 
 
     /**
@@ -49,6 +49,22 @@ class Technology
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWilders()
+    {
+        return $this->wilders;
+    }
+
+    /**
+     * @param mixed $wilders
+     */
+    public function setWilders($wilders)
+    {
+        $this->wilders = $wilders;
     }
 
     /**
@@ -140,13 +156,28 @@ class Technology
         $this->technologies->removeElement($technology);
     }
 
+
     /**
-     * Get technologies
+     * Add wilder
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param \BookBundle\Entity\Wilder $wilder
+     *
+     * @return Technology
      */
-    public function getTechnologies()
+    public function addWilder(\BookBundle\Entity\Wilder $wilder)
     {
-        return $this->technologies;
+        $this->wilders[] = $wilder;
+
+        return $this;
+    }
+
+    /**
+     * Remove wilder
+     *
+     * @param \BookBundle\Entity\Wilder $wilder
+     */
+    public function removeWilder(\BookBundle\Entity\Wilder $wilder)
+    {
+        $this->wilders->removeElement($wilder);
     }
 }
