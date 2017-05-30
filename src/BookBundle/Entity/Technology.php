@@ -132,29 +132,6 @@ class Technology
         return $this->projects;
     }
 
-    /**
-     * Add technology
-     *
-     * @param \BookBundle\Entity\Wilder $technology
-     *
-     * @return Technology
-     */
-    public function addTechnology(\BookBundle\Entity\Wilder $technology)
-    {
-        $this->technologies[] = $technology;
-
-        return $this;
-    }
-
-    /**
-     * Remove technology
-     *
-     * @param \BookBundle\Entity\Wilder $technology
-     */
-    public function removeTechnology(\BookBundle\Entity\Wilder $technology)
-    {
-        $this->technologies->removeElement($technology);
-    }
 
 
     /**
