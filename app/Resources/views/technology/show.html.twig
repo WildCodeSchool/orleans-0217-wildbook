@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Technology</h1>
 
-    <table>
+<div class="container-fluid">
+
+    <div class="row col-md-3">
+
+        <h3>Technology</h3>
+        <table class="table table-condensed">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -16,17 +20,18 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('technology_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('technology_edit', { 'id': technology.id }) }}">Edit</a>
-        </li>
-        <li>
+        <div class="form-group">
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" class="btn btn-danger" value="Delete">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+
+        <div class="form-group">
+            <a href="{{ path('technology_edit', { 'id': technology.id }) }}" class="btn btn-primary">Edit</a>
+        </div>
+
+        <div class="form-group">
+            <a href="{{ path('technology_index') }}" class="btn btn-primary">Retour à la liste</a>
+        </div>
+
 {% endblock %}
