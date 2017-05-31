@@ -1,13 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Technologies list</h1>
 
-    <table>
+{% block body %}
+
+    <div class="container-fluid">
+
+        <div class="row col-md-4">
+
+    <h1>Liste des technologies</h1>
+
+    <table class="table table-condensed">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Technology</th>
+                <th>Technologie</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -17,23 +23,20 @@
                 <td><a href="{{ path('technology_show', { 'id': technology.id }) }}">{{ technology.id }}</a></td>
                 <td>{{ technology.technology }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('technology_show', { 'id': technology.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('technology_edit', { 'id': technology.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('technology_edit', { 'id': technology.id }) }}" class="btn btn-success">
+                        <span class="glyphicon glyphicon-pencil"></span> edit
+                    </a>
+                    <a href="{{ path('technology_delete', { 'id': technology.id }) }}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-trash"></span> delete
+                    </a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('technology_new') }}">Create a new technology</a>
-        </li>
-    </ul>
+        <a class="btn btn-default" href="{{ path('technology_new') }}" role="button">Create a new technology</a>
+
+        </div>
+    </div>
 {% endblock %}

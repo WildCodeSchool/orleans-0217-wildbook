@@ -48,7 +48,7 @@ class TechnologyController extends Controller
             $em->persist($technology);
             $em->flush();
 
-            return $this->redirectToRoute('technology_show', array('id' => $technology->getId()));
+            return $this->redirectToRoute('technology_index');
         }
 
         return $this->render('technology/new.html.twig', array(

@@ -3,6 +3,7 @@
 namespace BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Project
@@ -73,7 +74,6 @@ class Project
     /**
      * @var
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="projects")
-     *
      */
     private $tags;
 
@@ -306,7 +306,9 @@ class Project
      */
     public function __construct()
     {
-        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tags = new ArrayCollection();
+        $this->languages = new ArrayCollection();
+        $this->technologies = new ArrayCollection();
     }
 
     /**
@@ -426,6 +428,14 @@ class Project
     }
 
     /**
+     * @param mixed $languages
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+    }
+
+    /**
      * Add technology
      *
      * @param \BookBundle\Entity\Technology $technology
@@ -457,6 +467,14 @@ class Project
     public function getTechnologies()
     {
         return $this->technologies;
+    }
+
+    /**
+     * @param mixed $technologies
+     */
+    public function setTechnologies($technologies)
+    {
+        $this->technologies = $technologies;
     }
 
     /**

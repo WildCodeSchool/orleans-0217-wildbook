@@ -1,16 +1,25 @@
 {% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block body %}
-    <h1>Technology creation</h1>
+    <div class="container-fluid">
+        <div class="row col-md-3">
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+            <h3>Créer une nouvelle Technologie</h3>
+            <div class="form-group">
+                {{ form_start(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('technology_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                {{ form_label(form.technology) }}
+                {{ form_widget(form.technology) }}
+                {{ form_errors(form.technology) }}
+            </div>
+            <div class="form-group">
+             <input type="submit" class="btn btn-success" value="Create" />
+            </div>
+            {{ form_end(form) }}
+
+            <a href="{{ path('technology_index') }}" class="btn btn-primary">Retour à la liste</a>
+
+        </div>
+    </div>
 {% endblock %}
