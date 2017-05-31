@@ -3,6 +3,8 @@
 namespace BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Technology
@@ -80,6 +82,7 @@ class Technology
     public function __construct()
     {
         $this->projects = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->wilders = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

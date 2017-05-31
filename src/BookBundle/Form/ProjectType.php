@@ -22,7 +22,7 @@ class ProjectType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')
+        $builder->add('title', TextType::class)
                 ->add('customer')
                 ->add('date')
                 ->add('status')
@@ -34,7 +34,8 @@ class ProjectType extends AbstractType
 //                ])
                 ->add('tags', EntityType::class, [
                     'class'=>Tag::class,
-                    'choice_label'=>'tag'
+                    'choice_label'=>'tag',
+                    'multiple'=>true
                 ])
                 ->add('category', EntityType::class, [
                     'class'=>Category::class,
@@ -42,11 +43,13 @@ class ProjectType extends AbstractType
                 ])
                 ->add('technologies', EntityType::class, [
                     'class'=>Technology::class,
-                    'choice_label'=>'technology'
+                    'choice_label'=>'technology',
+                    'multiple'=>true
                 ])
                 ->add('languages', EntityType::class, [
                     'class'=>Language::class,
-                    'choice_label'=>'language'
+                    'choice_label'=>'language',
+                    'multiple'=>true
                 ]);
     }
     
