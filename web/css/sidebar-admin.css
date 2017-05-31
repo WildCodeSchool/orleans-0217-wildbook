@@ -73,7 +73,7 @@
     position: absolute;
     z-index: -1;
     background: #f9a02e;
-    width: 22em;
+    width: 21em;
     padding-top: 40px;
     padding-right: 20px;
     padding-left: 10px;
@@ -81,7 +81,6 @@
     display: block;
     left: 0;
     height: calc(100vh - 80px);
-
 }
 
 .wrap .content {
@@ -107,7 +106,7 @@
     padding-left: 20px;
     display: block;
     position: absolute;
-    height: calc(100vh - 120px);
+    height: calc(100vh- 120px);
     width: 100%;
 }
 
@@ -169,7 +168,6 @@
 .wrap ul.accordion ul.submenu {
     display: none;
     background: transparent;
-
     -size: 14px;
     padding: 0;
 }
