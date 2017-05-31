@@ -5,80 +5,67 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>WCS | ADMIN</title>
 
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('css/sidebar-admin.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/styleAdmin.css') }}">
+        <link rel="stylesheet" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     {% endblock %}
+
+    <link rel="icon" type="image/png" href="{{ asset('images/LOGO_COLO.png') }}"/>
 
 </head>
 
 <body>
 <div class="wrap">
     <nav class="nav-bar navbar-inverse" role="navigation">
-        <div id ="top-menu" class="container-fluid active">
-            <a class="navbar-brand" href="#">Brand</a>
-            <ul class="nav navbar-nav">
-                <form id="qform" class="navbar-form pull-left" role="search">
-                    <input type="text" class="form-control" placeholder="Search" />
-                </form>
-                <li class="dropdown movable">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span><span class="fa fa-4x fa-child"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#"><span class="fa fa-user"></span>My Profile</a></li>
-                        <li><a href="#"><span class="fa fa-gear"></span>Settings</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#"><span class="fa fa-power-off"></span>Logout</a></li>
-                    </ul>
-                </li>
-
-            </ul>
+        <div id="top-menu" class="container-fluid active">
+            <a href="https://wildcodeschool.fr/" target="_blank">
+                <img class="navbar-brand" src="{{ asset('images/LOGO_COLO.svg') }}" alt="aller à wildcodechool.fr">
+            </a>
         </div>
     </nav>
     <aside id="side-menu" class="aside" role="navigation">
         <ul class="nav nav-list accordion">
             <li class="nav-header">
-                <div class="link"><i class="fa fa-lg fa-globe"></i>Portal<i class="fa fa-chevron-down"></i></div>
+                <div class="link"></i>Mon profil<i class="fa fa-chevron-down"></i></div>
                 <ul class="submenu">
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">Administration</a></li>
+                    <li><a href="#">Paramètres</a></li>
+                    <li><a href="#">Déconnection</a></li>
                 </ul>
             </li>
 
             <li class="nav-header">
-                <div class="link"><i class="fa fa-lg fa-users"></i>Users<i class="fa fa-chevron-down"></i></div>
+                <div class="link"></i>Écoles<i class="fa fa-chevron-down"></i></div>
                 <ul class="submenu">
-                    <li><a href="#">Users</a></li>
-                    <li><a href="#">New User</a></li>
+                    <li><a href="#">Villes</a></li>
+                    <li><a href="#">Campus Managers</a></li>
+                    <li><a href="#">Promotions</a></li>
+                    <li><a href="#">Langages</a></li>
+                    <li><a href="#">Technologies</a></li>
+                    <li><a href="#">Projets</a></li>
                 </ul>
             </li>
 
             <li class="nav-header">
-                <div class="link"><i class="fa fa-cloud"></i>Sites<i class="fa fa-chevron-down"></i></div>
+                <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
                 <ul class="submenu">
-                    <li><a href="#">Search Sites</a></li>
-                    <li><a href="#">New Site</a></li>
-                    <li><a href="#">Jobs</a></li>
+                    <li><a href="#">Profils</a></li>
+                    <li><a href="#">Langages</a></li>
+                    <li><a href="#">Technologies</a></li>
+                    <li><a href="#">Disponibilités</a></li>
                 </ul>
             </li>
 
             <li class="nav-header">
-                <div class="link"><i class="fa fa-lg fa-map-marker"></i>Zones<i class="fa fa-chevron-down"></i></div>
+                <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
                 <ul class="submenu">
-                    <li><a href="#">Search Zones</a></li>
-                    <li><a href="#">New Zone</a></li>
-                </ul>
-            </li>
-
-            <li class="nav-header">
-                <div class="link"><i class="fa fa-lg fa-file-image-o"></i>Reports<i class="fa fa-chevron-down"></i></div>
-                <ul class="submenu">
-                    <li><a href="#">Entries</a></li>
-                    <li><a href="#">Redirects</a></li>
-                    <li><a href="#">Pingbacks</a></li>
+                    <li><a href="#">Langages</a></li>
                     <li><a href="#">Tags</a></li>
+                    <li><a href="#">Technologies</a></li>
                 </ul>
             </li>
 
@@ -94,9 +81,11 @@
                 <span class='burger_inside' id='bgrThree'></span>
             </a>
         </div>
-        <section class="content-inner">
-            {% block body %}
-            {% endblock %}
+        <section class="content-inner row">
+            <div class="col-md-offset-1 col-md-10 crud">
+                {% block body %}
+                {% endblock %}
+            </div>
         </section>
     </div>
 
