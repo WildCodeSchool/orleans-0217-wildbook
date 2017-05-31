@@ -31,6 +31,7 @@ class User extends BaseUser
      */
     private $wilder;
 
+
     public function __construct()
     {
         parent::__construct();
@@ -68,7 +69,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function setWilder(\BookBundle\Entity\wilder $wilder = null)
+    public function setWilder(\BookBundle\Entity\Wilder $wilder = null)
     {
         $this->wilder = $wilder;
 

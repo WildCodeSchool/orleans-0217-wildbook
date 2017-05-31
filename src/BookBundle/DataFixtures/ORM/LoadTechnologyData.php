@@ -18,26 +18,25 @@ class LoadTechnologyData  extends AbstractFixture implements OrderedFixtureInter
 {
     public function load ( ObjectManager $manager )
     {
-        $technology = new Technology ();
-        $technology -> setTechnology('Symfony');
+        $symfo = new Technology ();
+        $symfo -> setTechnology('Symfony');
+        $manager -> persist ( $symfo );
+        $this->addReference('Symfo', $symfo );
 
-        $manager -> persist ( $technology );
+        $storm = new Technology ();
+        $storm -> setTechnology('PHP Storm');
+        $manager -> persist ( $storm );
+        $this->addReference('Storm', $storm );
 
-        $technology = new Technology ();
-        $technology -> setTechnology('PHP Storm');
+        $boot = new Technology ();
+        $boot -> setTechnology('Bootstrap');
+        $manager -> persist ( $boot );
+        $this->addReference('Boot', $boot );
 
-        $manager -> persist ( $technology );
-
-
-        $technology = new Technology ();
-        $technology -> setTechnology('Bootstrap');
-
-        $manager -> persist ( $technology );
-
-        $technology = new Technology ();
-        $technology -> setTechnology('WorkBench');
-
-        $manager -> persist ( $technology );
+        $workb = new Technology ();
+        $workb -> setTechnology('WorkBench');
+        $manager -> persist ( $workb );
+        $this->addReference('Workb', $workb );
 
         $manager -> flush ();
     }

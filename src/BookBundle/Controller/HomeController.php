@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\SearchType;
 class HomeController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/ratata")
      */
     public function indexAction()
     {
