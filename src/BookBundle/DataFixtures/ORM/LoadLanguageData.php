@@ -18,26 +18,26 @@ class LoadLanguageData  extends AbstractFixture implements OrderedFixtureInterfa
 {
     public function load ( ObjectManager $manager )
     {
-        $language = new Language ();
-        $language -> setLanguage('PHP');
-
-        $manager -> persist ( $language );
-
-        $language = new Language ();
-        $language -> setLanguage('Java Script');
-
-        $manager -> persist ( $language );
+        $php = new Language ();
+        $php -> setLanguage('PHP');
+        $manager -> persist ( $php );
+        $this->addReference('Php', $php );
 
 
-        $language = new Language ();
-        $language -> setLanguage('Java');
+        $js = new Language ();
+        $js -> setLanguage('Java Script');
+        $manager -> persist ( $js );
+        $this->addReference('Js', $js );
 
-        $manager -> persist ( $language );
+        $java = new Language ();
+        $java -> setLanguage('Java');
+        $manager -> persist ( $java );
+        $this->addReference('Java', $java );
 
-        $language = new Language ();
-        $language -> setLanguage('Ruby');
-
-        $manager -> persist ( $language );
+        $ruby = new Language ();
+        $ruby -> setLanguage('Ruby');
+        $manager -> persist ( $ruby );
+        $this->addReference('Ruby', $ruby );
 
         $manager -> flush ();
     }

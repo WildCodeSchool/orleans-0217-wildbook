@@ -39,11 +39,14 @@ class WilderType extends AbstractType
                 ->add('codewarsUsername')
                 ->add('languages', EntityType::class, [
                     'class'=>Language::class,
-                    'choice_label'=>'language'
+                    'choice_label'=>'language',
+                    'multiple' => 'true',
+
                 ])
                 ->add('technologies', EntityType::class, [
                     'class'=>Technology::class,
-                    'choice_label'=>'technology'
+                    'choice_label'=>'technology',
+                    'multiple' => 'true'
                 ])
                 ->add('availability', EntityType::class, [
                     'class'=>Availability::class,

@@ -24,10 +24,10 @@ class LoadSchoolData extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Orleans', $orleans);
 
 
-        $lion = new School ();
-        $lion -> setSchool('Lion');
-        $manager -> persist ( $lion );
-        $this->addReference('Lion', $lion);
+        $lyon = new School ();
+        $lyon -> setSchool('Lyon');
+        $manager -> persist ( $lyon );
+        $this->addReference('Lyon', $lyon);
 
 
 

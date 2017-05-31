@@ -18,26 +18,25 @@ class LoadAvailabilityData  extends AbstractFixture implements OrderedFixtureInt
 {
     public function load ( ObjectManager $manager )
     {
-        $availability = new Availability ();
-        $availability -> setlabel('En recherche de stage');
+        $reStage = new Availability ();
+        $reStage -> setlabel('En recherche de stage');
+        $manager -> persist ( $reStage );
+        $this->addReference('ReStage', $reStage );
 
-        $manager -> persist ( $availability );
+        $poste = new Availability ();
+        $poste -> setlabel('En Poste');
+        $manager -> persist ( $poste );
+        $this->addReference('Poste', $poste );
 
-        $availability = new Availability ();
-        $availability -> setlabel('En Poste');
+        $stage = new Availability ();
+        $stage -> setlabel('En Stage');
+        $manager -> persist ( $stage );
+        $this->addReference('Stage', $stage );
 
-        $manager -> persist ( $availability );
-
-
-        $availability = new Availability ();
-        $availability -> setlabel('En Stage');
-
-        $manager -> persist ( $availability );
-
-        $availability = new Availability ();
-        $availability -> setlabel('En vacance');
-
-        $manager -> persist ( $availability );
+        $vac = new Availability ();
+        $vac -> setlabel('En vacance');
+        $manager -> persist ( $vac );
+        $this->addReference('Vac', $vac );
 
         $manager -> flush ();
     }

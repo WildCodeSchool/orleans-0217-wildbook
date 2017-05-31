@@ -41,6 +41,7 @@ class Technology
     private $wilders;
 
 
+
     /**
      * Get id
      *

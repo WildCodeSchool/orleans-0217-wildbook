@@ -3,6 +3,7 @@
 namespace BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Wilder
@@ -661,7 +662,8 @@ class Wilder
      */
     public function __construct()
     {
-        $this->languages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->languages = new ArrayCollection();
+        $this->technologies = new ArrayCollection();
     }
 
     /**
@@ -836,5 +838,21 @@ class Wilder
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @param mixed $languages
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+    }
+
+    /**
+     * @param mixed $technologies
+     */
+    public function setTechnologies($technologies)
+    {
+        $this->technologies = $technologies;
     }
 }

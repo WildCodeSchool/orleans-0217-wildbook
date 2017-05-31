@@ -18,30 +18,30 @@ class LoadPromotionData extends AbstractFixture implements OrderedFixtureInterfa
 {
     public function load ( ObjectManager $manager )
     {
-        $promotion = new Promotion ();
-        $promotion -> setPromotion('Sept 2017');
-        $promotion -> setSchool($this->getReference('Orleans'));
+        $sept2017 = new Promotion ();
+        $sept2017 -> setPromotion('Sept 2017');
+        $sept2017 -> setSchool($this->getReference('Orleans'));
+        $manager -> persist ( $sept2017 );
+        $this->addReference('Sept2017', $sept2017 );
 
-        $manager -> persist ( $promotion );
-
-        $promotion = new Promotion ();
-        $promotion -> setPromotion('Sept 2016');
-        $promotion -> setSchool($this->getReference('Lion'));
-
-        $manager -> persist ( $promotion );
+        $sept2016 = new Promotion ();
+        $sept2016 -> setPromotion('Sept 2016');
+        $sept2016 -> setSchool($this->getReference('Lyon'));
+        $manager -> persist ( $sept2016 );
+        $this->addReference('Sept2016', $sept2016 );
 
 
-        $promotion = new Promotion ();
-        $promotion -> setPromotion('Fev 2017');
-        $promotion -> setSchool($this->getReference('Orleans'));
+        $fev2017 = new Promotion ();
+        $fev2017 -> setPromotion('Fev 2017');
+        $fev2017 -> setSchool($this->getReference('Orleans'));
+        $manager -> persist ( $fev2017 );
+        $this->addReference('Fev2017', $fev2017 );
 
-        $manager -> persist ( $promotion );
-
-        $promotion = new Promotion ();
-        $promotion -> setPromotion('Fev 2016');
-        $promotion -> setSchool($this->getReference('Loupe'));
-
-        $manager -> persist ( $promotion );
+        $fev2016 = new Promotion ();
+        $fev2016 -> setPromotion('Fev 2016');
+        $fev2016 -> setSchool($this->getReference('Loupe'));
+        $manager -> persist ( $fev2016 );
+        $this->addReference('Fev2016', $fev2016 );
 
         $manager -> flush ();
     }
