@@ -1,8 +1,14 @@
 {% extends 'base_admin.html.twig' %}
+{#{% form_theme form 'bootstrap_3_layout.html.twig' %}#}
+{#{% form_theme form 'form_div_layout.html.twig' %}#}
+{% form_theme edit_form 'form_table_layout.html.twig' %}
+{#{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}#}
+{#{% form_theme form 'foundation_5_layout.html.twig' %}#}
+
 
 {% block body %}
     <div class="container-fluid">
-        <div class="row col-md-3">
+        <div class="row col-md-10">
 
             <h3>Technologie: id:{{ technology.id }} - {{ technology.technology }}</h3>
             <div class="form-group">
@@ -27,21 +33,4 @@
         </div>
     </div>
 
-    {#<h1>Technology edit</h1>#}
-
-    {#{{ form_start(edit_form) }}#}
-        {#{{ form_widget(edit_form) }}#}
-        {#<input type="submit" value="Edit" />#}
-    {#{{ form_end(edit_form) }}#}
-
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('technology_index') }}">Back to the list</a>#}
-        {#</li>#}
-        {#<li>#}
-            {#{{ form_start(delete_form) }}#}
-                {#<input type="submit" value="Delete">#}
-            {#{{ form_end(delete_form) }}#}
-        {#</li>#}
-    {#</ul>#}
 {% endblock %}

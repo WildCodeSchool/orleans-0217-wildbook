@@ -1,56 +1,84 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block body %}
+
+<div class="container-fluid">
+
     <h1>Project</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ project.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ project.title }}</td>
-            </tr>
-            <tr>
-                <th>Path</th>
-                <td>{{ project.path }}</td>
-            </tr>
-            <tr>
-                <th>Customer</th>
-                <td>{{ project.customer }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{% if project.date %}{{ project.date|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ project.status }}</td>
-            </tr>
-            <tr>
-                <th>Summary</th>
-                <td>{{ project.summary }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ project.description }}</td>
-            </tr>
-        </tbody>
+        <table class="table table-condensed">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ project.id }}</td>
+                </tr>
+                <tr>
+                    <th>Title</th>
+                    <td>{{ project.title }}</td>
+                </tr>
+                <tr>
+                    <th>Path</th>
+                    <td>{{ project.path }}</td>
+                </tr>
+                <tr>
+                    <th>Customer</th>
+                    <td>{{ project.customer }}</td>
+                </tr>
+                <tr>
+                    <th>Date</th>
+                    <td>{% if project.date %}{{ project.date|date('Y-m-d') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>{{ project.status }}</td>
+                </tr>
+                <tr>
+                    <th>Summary</th>
+                    <td>{{ project.summary }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ project.description }}</td>
+                </tr>
+                <tr>
+                    <th>Tags</th>
+                    <td>{% for tags in project.tags %}
+                            {{ tags.tag }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Langages</th>
+                    <td>{% for languages in project.languages %}
+                            {{ languages.language }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Technologies</th>
+                    <td>{% for technologies in project.technologies %}
+                            {{ technologies.technology }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('project_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('project_edit', { 'id': project.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="form-group">
+        {{ form_start(delete_form) }}
+        <input type="submit" class="btn btn-danger" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
+
+    <div class="form-group">
+        <a href="{{ path('project_edit', { 'id': project.id }) }}" class="btn btn-primary">Edit</a>
+    </div>
+
+    <div class="form-group">
+        <a href="{{ path('project_index') }}" class="btn btn-primary">Retour à la liste</a>
+    </div>
+
+
+</div>
+
 {% endblock %}

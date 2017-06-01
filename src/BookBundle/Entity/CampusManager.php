@@ -29,9 +29,22 @@ class CampusManager
 
     /**
      * @var
-     * @ORM\OneToOne (targetEntity="User", mappedBy="campusManager")
+     * @ORM\OneToOne (targetEntity="User", mappedBy="campusManager", cascade={"persist", "merge"})
      */
     private $user;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="firsname", type="string", length=50)
+     */
+    private $firstname;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", length=50)
+     */
+    private $lastname;
 
     /**
      * Get id
@@ -89,5 +102,53 @@ class CampusManager
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set firstname
+     *
+     * @param string $firstname
+     *
+     * @return CampusManager
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Get firstname
+     *
+     * @return string
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     *
+     * @return CampusManager
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * Get lastname
+     *
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
     }
 }

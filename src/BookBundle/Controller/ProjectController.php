@@ -67,6 +67,8 @@ class ProjectController extends Controller
     {
         $deleteForm = $this->createDeleteForm($project);
 
+
+
         return $this->render('project/show.html.twig', array(
             'project' => $project,
             'delete_form' => $deleteForm->createView(),

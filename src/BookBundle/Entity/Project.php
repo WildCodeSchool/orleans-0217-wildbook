@@ -73,7 +73,7 @@ class Project
 
     /**
      * @var
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="projects")
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="projects", cascade={"persist", "merge"})
      */
     private $tags;
 
@@ -115,13 +115,13 @@ class Project
         return $this->tags;
     }
 
-    /**
-     * @param mixed $tags
-     */
-    public function setTags($tags)
-    {
-        $this->tags = $tags;
-    }
+//    /**
+//     * @param mixed $tags
+//     */
+//    public function setTags($tags)
+//    {
+//        $this->tags = $tags;
+//    }
 
 
     /**
@@ -309,6 +309,7 @@ class Project
         $this->tags = new ArrayCollection();
         $this->languages = new ArrayCollection();
         $this->technologies = new ArrayCollection();
+        $this->projectWilders = new ArrayCollection();
     }
 
     /**
@@ -427,13 +428,13 @@ class Project
         return $this->languages;
     }
 
-    /**
-     * @param mixed $languages
-     */
-    public function setLanguages($languages)
-    {
-        $this->languages = $languages;
-    }
+//    /**
+//     * @param mixed $languages
+//     */
+//    public function setLanguages($languages)
+//    {
+//        $this->languages = $languages;
+//    }
 
     /**
      * Add technology
@@ -469,13 +470,13 @@ class Project
         return $this->technologies;
     }
 
-    /**
-     * @param mixed $technologies
-     */
-    public function setTechnologies($technologies)
-    {
-        $this->technologies = $technologies;
-    }
+//    /**
+//     * @param mixed $technologies
+//     */
+//    public function setTechnologies($technologies)
+//    {
+//        $this->technologies = $technologies;
+//    }
 
     /**
      * Add projectWilder
