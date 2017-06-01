@@ -2,6 +2,9 @@
 
 namespace BookBundle\Form;
 
+use BookBundle\Entity\School;
+use BookBundle\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +16,17 @@ class CampusManagerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('school')->add('user');
+        $builder->add('firstname')
+                ->add('lastname')
+                ->add('school', EntityType::class, [
+                    'class' => School::class,
+                    'choice_label' => 'school'
+                ])
+                ->add('user',EntityType::class, [
+                    'class'=>User::class,
+                    'choice_label'=>'username'
+                    ]);
+
     }
     
     /**

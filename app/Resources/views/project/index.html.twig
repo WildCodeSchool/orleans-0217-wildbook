@@ -1,51 +1,68 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block body %}
+
+<div class="container-fluid">
+
+    <div class="row col-md-12">
+
     <h1>Projects list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Path</th>
-                <th>Customer</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Summary</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for project in projects %}
-            <tr>
-                <td><a href="{{ path('project_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
-                <td>{{ project.title }}</td>
-                <td>{{ project.path }}</td>
-                <td>{{ project.customer }}</td>
-                <td>{% if project.date %}{{ project.date|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ project.status }}</td>
-                <td>{{ project.summary }}</td>
-                <td>{{ project.description }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('project_show', { 'id': project.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('project_edit', { 'id': project.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Customer</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Summary</th>
+                    <th>Description</th>
+                    <th>Tags</th>
+                    <th>Languages</th>
+                    <th>Technologies</th>
+                    <th>Path</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for project in projects %}
+                <tr>
+                    <td><a href="{{ path('project_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
+                    <td>{{ project.title }}</td>
+                    <td>{{ project.customer }}</td>
+                    <td>{% if project.date %}{{ project.date|date('Y-m-d') }}{% endif %}</td>
+                    <td>{{ project.status }}</td>
+                    <td>{{ project.summary }}</td>
+                    <td>{{ project.description }}</td>
+                    <td>{% for tags in project.tags %}
+                            {{ tags.tag }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}</td>
+                    <td>
+                    <td>{% for languages in project.languages %}
+                            {{ languages.language }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}</td>
+                    <td>
+                    <td>{% for technologies in project.technologies %}
+                            {{ technologies.technology }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}</td>
+                    <td>{{ project.path }}</td>
+                    <td>
+                        <a href="{{ path('project_edit', { 'id': project.id }) }}" class="btn btn-success">
+                            <span class="glyphicon glyphicon-pencil"></span> edit
+                        </a>
+                        <a href="{{ path('project_delete', { 'id': project.id }) }}" class="btn btn-default">
+                            <span class="glyphicon glyphicon-trash"></span> delete
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('project_new') }}">Create a new project</a>
-        </li>
-    </ul>
+    <a class="btn btn-default" href="{{ path('project_new') }}" role="button">Create a new project</a>
+
+    </div>
+</div>
+
 {% endblock %}

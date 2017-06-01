@@ -1,21 +1,30 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+{#{% form_theme edit_form 'form_div_layout.html.twig' %}#}
+{#{% form_theme edit_form 'form_table_layout.html.twig' %}#}
+{#{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}#}
+{#{% form_theme edit_form 'foundation_5_layout.html.twig' %}#}
 
 {% block body %}
-    <h1>Projectwilder edit</h1>
+
+<div class="container-fluid">
+
+    <h1>Edition de l'affectation projet</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    <input type="submit" class="btn btn-success" value="Edit" />
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('projectwilder_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="form-group">
+        {{ form_start(delete_form) }}
+        <input type="submit" class="btn btn-danger" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
+
+    <div class="form-group">
+        <a href="{{ path('projectwilder_index') }}" class="btn btn-primary">Retour à la liste</a>
+    </div>
+
+</div>
 {% endblock %}

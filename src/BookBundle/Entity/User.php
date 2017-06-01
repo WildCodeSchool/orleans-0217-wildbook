@@ -21,7 +21,7 @@ class User extends BaseUser
 
     /**
      * @var
-     * @ORM\OneToOne (targetEntity="CampusManager", inversedBy="user")
+     * @ORM\OneToOne (targetEntity="CampusManager", inversedBy="user" , cascade={"persist", "merge"})
      */
     private $campusManager;
 

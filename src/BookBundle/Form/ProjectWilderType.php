@@ -21,12 +21,12 @@ class ProjectWilderType extends AbstractType
             ->add('project', EntityType::class, [
                 'class'=>Project::class,
                 'choice_label'=>'id',
-                'multiple'=>true
+                'multiple'=>false
             ])
             ->add('wilder', EntityType::class, [
                 'class'=> Wilder::class,
                 'choice_label'=>'id',
-                'multiple'=>true
+                'multiple'=>false
             ]);
     }
     
