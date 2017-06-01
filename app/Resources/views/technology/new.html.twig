@@ -1,25 +1,22 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block body %}
     <div class="container-fluid">
-        <div class="row col-md-3">
 
-            <h3>Créer une nouvelle Technologie</h3>
-            <div class="form-group">
-                {{ form_start(form) }}
+        <h3>Créer une nouvelle Technologie</h3>
+        <div class="form-group">
+            {{ form_start(form) }}
 
-                {{ form_label(form.technology) }}
-                {{ form_widget(form.technology) }}
-                {{ form_errors(form.technology) }}
-            </div>
-            <div class="form-group">
-             <input type="submit" class="btn btn-success" value="Create" />
-            </div>
-            {{ form_end(form) }}
-
-            <a href="{{ path('technology_index') }}" class="btn btn-primary">Retour à la liste</a>
-
+            {{ form_label(form.technology) }}
+            {{ form_widget(form.technology) }}
+            {{ form_errors(form.technology) }}
         </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Créer"/>
+        </div>
+        {{ form_end(form) }}
+
+        <a href="{{ path('technology_index') }}" class="btn btn-primary">Retour à la liste</a>
     </div>
 {% endblock %}

@@ -1,42 +1,36 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'base_admin.html.twig' %}
 
 {% block body %}
 
     <div class="container-fluid">
 
-        <div class="row col-md-4">
+        <h1>Liste des technologies</h1>
 
-    <h1>Liste des technologies</h1>
-
-    <table class="table table-condensed">
-        <thead>
+        <table class="table table-condensed">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Technologie</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for technology in technologies %}
-            <tr>
-                <td><a href="{{ path('technology_show', { 'id': technology.id }) }}">{{ technology.id }}</a></td>
-                <td>{{ technology.technology }}</td>
-                <td>
-                    <a href="{{ path('technology_edit', { 'id': technology.id }) }}" class="btn btn-success">
-                        <span class="glyphicon glyphicon-pencil"></span> edit
-                    </a>
-                    <a href="{{ path('technology_delete', { 'id': technology.id }) }}" class="btn btn-default">
-                        <span class="glyphicon glyphicon-trash"></span> delete
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
+            </thead>
+            <tbody>
+            {% for technology in technologies %}
+                <tr>
+                    <td><a href="{{ path('technology_show', { 'id': technology.id }) }}">{{ technology.id }}</a></td>
+                    <td>{{ technology.technology }}</td>
+                    <td>
+                        <a href="{{ path('technology_edit', { 'id': technology.id }) }}" class="btn btn-success">
+                            <span class="glyphicon glyphicon-pencil"></span> edit
+                        </a>
+                        <a href="{{ path('technology_delete', { 'id': technology.id }) }}" class="btn btn-default">
+                            <span class="glyphicon glyphicon-trash"></span> delete
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
         <a class="btn btn-default" href="{{ path('technology_new') }}" role="button">Create a new technology</a>
-
-        </div>
     </div>
 {% endblock %}

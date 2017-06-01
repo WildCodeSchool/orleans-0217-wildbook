@@ -1,37 +1,34 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block body %}
 
-<div class="container-fluid">
+    <div class="container-fluid">
 
-    <div class="row col-md-3">
-
-        <h3>Technology</h3>
-        <table class="table table-condensed">
+    <h3>Technology</h3>
+    <table class="table table-condensed">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ technology.id }}</td>
-            </tr>
-            <tr>
-                <th>Technology</th>
-                <td>{{ technology.technology }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ technology.id }}</td>
+        </tr>
+        <tr>
+            <th>Technology</th>
+            <td>{{ technology.technology }}</td>
+        </tr>
         </tbody>
     </table>
 
-        <div class="form-group">
-            {{ form_start(delete_form) }}
-                <input type="submit" class="btn btn-danger" value="Delete">
-            {{ form_end(delete_form) }}
-        </div>
+    <div class="form-group">
+        {{ form_start(delete_form) }}
+        <input type="submit" class="btn btn-danger" value="Delete">
+        {{ form_end(delete_form) }}
+    </div>
 
-        <div class="form-group">
-            <a href="{{ path('technology_edit', { 'id': technology.id }) }}" class="btn btn-primary">Edit</a>
-        </div>
+    <div class="form-group">
+        <a href="{{ path('technology_edit', { 'id': technology.id }) }}" class="btn btn-primary">Edit</a>
+    </div>
 
-        <div class="form-group">
-            <a href="{{ path('technology_index') }}" class="btn btn-primary">Retour à la liste</a>
-        </div>
+    <div class="form-group">
+    <a href="{{ path('technology_index') }}" class="btn btn-primary">Retour à la liste</a>
 
 {% endblock %}

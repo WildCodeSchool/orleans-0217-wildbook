@@ -1,47 +1,27 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
 
 {% block body %}
     <div class="container-fluid">
-        <div class="row col-md-3">
 
-            <h3>Technologie: id:{{ technology.id }} - {{ technology.technology }}</h3>
-            <div class="form-group">
-                {{ form_start(edit_form) }}
-                {{ form_widget(edit_form) }}
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-success" value="Edit" />
-            </div>
-            {{ form_end(edit_form) }}
+        <h3>Technologie: id:{{ technology.id }} - {{ technology.technology }}</h3>
+        <div class="form-group">
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="Edit"/>
+        </div>
+        {{ form_end(edit_form) }}
 
-            <div class="form-group">
+        <div class="form-group">
             {{ form_start(delete_form) }}
             <input type="submit" class="btn btn-danger" value="Delete">
             {{ form_end(delete_form) }}
-            </div>
+        </div>
 
-            <div class="form-group">
-                <a href="{{ path('technology_index') }}" class="btn btn-primary">Retour à la liste</a>
-            </div>
-
+        <div class="form-group">
+            <a href="{{ path('technology_index') }}" class="btn btn-primary">Retour à la liste</a>
         </div>
     </div>
-
-    {#<h1>Technology edit</h1>#}
-
-    {#{{ form_start(edit_form) }}#}
-        {#{{ form_widget(edit_form) }}#}
-        {#<input type="submit" value="Edit" />#}
-    {#{{ form_end(edit_form) }}#}
-
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('technology_index') }}">Back to the list</a>#}
-        {#</li>#}
-        {#<li>#}
-            {#{{ form_start(delete_form) }}#}
-                {#<input type="submit" value="Delete">#}
-            {#{{ form_end(delete_form) }}#}
-        {#</li>#}
-    {#</ul>#}
 {% endblock %}

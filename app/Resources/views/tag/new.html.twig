@@ -1,16 +1,43 @@
+{#{% extends 'base_admin.html.twig' %}#}
+{#{% form_theme form 'bootstrap_3_layout.html.twig' %}#}
+
+{#{% block body %}#}
+{#<div class="container-fluid">#}
+    {#<h3>Créer un nouveau tag</h3>#}
+
+    {#{{ form_start(form) }}#}
+        {#{{ form_widget(form) }}#}
+        {#<input type="submit" value="Create" />#}
+    {#{{ form_end(form) }}#}
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('tag_index') }}">Back to the list</a>#}
+        {#</li>#}
+    {#</ul>#}
+{#</div>#}
+{#{% endblock %}#}
+
 {% extends 'base_admin.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block body %}
-    <h1>Tag creation</h1>
+    <div class="container-fluid">
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        <h3>Créer un nouveau tag</h3>
+        <div class="form-group">
+            {{ form_start(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('tag_index') }}">Back to the list</a>
-        </li>
-    </ul>
+            {{ form_label(form.tag) }}
+            {{ form_widget(form.tag) }}
+            {{ form_errors(form.tag) }}
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-default" value="Créer"/>
+            <a href="{{ path('tag_index') }}" class="btn btn-default">Retour à la liste</a>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
 {% endblock %}
+
