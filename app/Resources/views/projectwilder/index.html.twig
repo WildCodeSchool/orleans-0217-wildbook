@@ -1,39 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block body %}
+
+<div class="container-fluid">
+
+    <div class="row col-md-12">
+
     <h1>Projectwilders list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Visibility</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for projectWilder in projectWilders %}
-            <tr>
-                <td><a href="{{ path('projectwilder_show', { 'id': projectWilder.id }) }}">{{ projectWilder.id }}</a></td>
-                <td>{% if projectWilder.visibility %}Yes{% else %}No{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('projectwilder_show', { 'id': projectWilder.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('projectwilder_edit', { 'id': projectWilder.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Visibility</th>
+                    <th>Project Id</th>
+                    <th>Project Title</th>
+                    <th>Wilder</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for projectWilder in projectWilders %}
+                <tr>
+                    <td><a href="{{ path('projectwilder_show', { 'id': projectWilder.id }) }}">{{ projectWilder.id }}</a></td>
+                    <td>{% if projectWilder.visibility %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ projectWilder.project.id }}</td>
+                    <td>{{ projectWilder.project.title }}</td>
+                    <td>{{ projectWilder.wilder }}</td>
+                    <td>
+                        <a href="{{ path('projectwilder_edit', { 'id': projectWilder.id }) }}" class="btn btn-success">
+                            <span class="glyphicon glyphicon-pencil"></span> edit
+                        </a>
+                        <a href="{{ path('projectwilder_delete', { 'id': projectWilder.id }) }}" class="btn btn-default">
+                            <span class="glyphicon glyphicon-trash"></span> delete
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('projectwilder_new') }}">Create a new projectWilder</a>
-        </li>
-    </ul>
+        <a class="btn btn-default" href="{{ path('projectwilder_new') }}" role="button">Create a new projectWilder</a>
+
+
+    </div>
+</div>
 {% endblock %}

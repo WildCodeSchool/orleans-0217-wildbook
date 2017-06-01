@@ -1,12 +1,19 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block body %}
-    <h1>Campusmanagers list</h1>
 
-    <table>
+<div class="container-fluid">
+
+    <h1>Liste des Campus Manager</h1>
+
+    <table class="table table-condensed">
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Username</th>
+                <th>Ecole</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -14,24 +21,26 @@
         {% for campusManager in campusManagers %}
             <tr>
                 <td><a href="{{ path('campusmanager_show', { 'id': campusManager.id }) }}">{{ campusManager.id }}</a></td>
+                <td>{{ campusManager.firstname }}</td>
+                <td>{{ campusManager.lastname }}</td>
+                <td>{{ campusManager.user}}</td>
+                <td>{{ campusManager.school.school}}</td>
+                {#{{ dump(campusManager.user) }}#}
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('campusmanager_show', { 'id': campusManager.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('campusmanager_edit', { 'id': campusManager.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('campusmanager_edit', { 'id': campusManager.id }) }}" class="btn btn-success">
+                        <span class="glyphicon glyphicon-pencil"></span> edit
+                    </a>
+                    <a href="{{ path('campusmanager_delete', { 'id': campusManager.id }) }}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-trash"></span> delete
+                    </a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('campusmanager_new') }}">Create a new campusManager</a>
-        </li>
-    </ul>
+    <a class="btn btn-default" href="{{ path('campusmanager_new') }}" role="button">Créer un nouveau Campus Manager</a>
+
+
+</div>
 {% endblock %}

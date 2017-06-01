@@ -26,6 +26,7 @@
             <a href="https://wildcodeschool.fr/" target="_blank">
                 <img class="navbar-brand" src="{{ asset('images/LOGO_COLO.svg') }}" alt="aller à wildcodechool.fr">
             </a>
+            <p class="navbar-text"><a href="">Login</a></p>
         </div>
     </nav>
     <aside id="side-menu" class="aside" role="navigation">
@@ -42,7 +43,7 @@
                 <div class="link"></i>Écoles<i class="fa fa-chevron-down"></i></div>
                 <ul class="submenu">
                     <li><a href="/school">Villes</a></li>
-                    <li><a href="/campusmanager">Campus Managers</a></li>
+                    <li><a href="{{ path('campusmanager_index') }}">Campus Managers</a></li>
                     <li><a href="/promotion">Promotions</a></li>
                     <li><a href="/language">Langages</a></li>
                     <li><a href="/technology">Technologies</a></li>
@@ -63,9 +64,11 @@
             <li class="nav-header">
                 <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
                 <ul class="submenu">
-                    <li><a href="/language">Langages</a></li>
-                    <li><a href="/tag">Tags</a></li>
-                    <li><a href="/technology">Technologies</a></li>
+                    <li><a href="{{ path('project_index') }}">Projets</a></li>
+                    <li><a href="{{ path('projectwilder_index') }}">Association Projet-Wilders</a></li>
+                    <li><a href="{{ path('language_index') }}">Langages</a></li>
+                    <li><a href="{{ path('tag_index') }}">Tags</a></li>
+                    <li><a href="{{ path('technology_index') }}">Technologies</a></li>
                 </ul>
             </li>
 
