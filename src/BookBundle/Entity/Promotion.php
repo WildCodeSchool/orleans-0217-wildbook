@@ -113,6 +113,16 @@ class Promotion
     }
 
     /**
+     * @param mixed $languages
+     * @return Promotion
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+        return $this;
+    }
+
+    /**
      * Get languages
      *
      * @return \Doctrine\Common\Collections\Collection
