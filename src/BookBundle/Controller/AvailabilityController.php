@@ -23,7 +23,6 @@ class AvailabilityController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $availabilities = $em->getRepository('BookBundle:Availability')->findAll();
 
         return $this->render('availability/index.html.twig', array(
@@ -48,7 +47,7 @@ class AvailabilityController extends Controller
             $em->persist($availability);
             $em->flush();
 
-            return $this->redirectToRoute('availability_show', array('id' => $availability->getId()));
+            return $this->redirectToRoute('availability_index', array('id' => $availability->getId()));
         }
 
         return $this->render('availability/new.html.twig', array(
@@ -88,12 +87,27 @@ class AvailabilityController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('availability_edit', array('id' => $availability->getId()));
+            return $this->redirectToRoute('availability_index', array('id' => $availability->getId()));
         }
 
         return $this->render('availability/edit.html.twig', array(
             'availability' => $availability,
             'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Displays a form to edit an existing availability entity.
+     *
+     * @Route("/{id}/delete", name="availability_indexdelete")
+     * @Method({"GET", "POST"})
+     */
+    public function indexDeleteAction( Availability $availability)
+    {
+        $deleteForm = $this->createDeleteForm($availability);
+
+        return $this->render('delete.html.twig', array(
             'delete_form' => $deleteForm->createView(),
         ));
     }

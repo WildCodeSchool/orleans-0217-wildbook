@@ -1,39 +1,41 @@
 {% extends 'base_admin.html.twig' %}
 
 {% block body %}
-    <h1>Availabilities list</h1>
 
-    <table>
-        <thead>
+<div class="container-fluid">
+
+    <div class="row col-md-4">
+
+        <h1>Liste des Status Wilder</h1>
+
+        <table class="table table-condensed">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Label</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for availability in availabilities %}
-            <tr>
-                <td><a href="{{ path('availability_show', { 'id': availability.id }) }}">{{ availability.id }}</a></td>
-                <td>{{ availability.label }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('availability_show', { 'id': availability.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('availability_edit', { 'id': availability.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for availability in availabilities %}
+                <tr>
+                    <td><a href="{{ path('availability_show', { 'id': availability.id }) }}">{{ availability.id }}</a></td>
+                    <td>{{ availability.label }}</td>
+                    <td>
+                        <a href="{{ path('availability_edit', { 'id': availability.id }) }}" class="btn btn-success">
+                            <span class="glyphicon glyphicon-pencil"></span> edit
+                        </a>
+                            {{ render(controller('BookBundle:Availability:indexDelete', {'id': availability.id})) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('availability_new') }}">Create a new availability</a>
-        </li>
-    </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-default" href="{{ path('availability_new') }}" role="button">Create a new availability</a>
+
+    </div>
+</div>
+
 {% endblock %}

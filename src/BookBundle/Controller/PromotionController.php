@@ -49,12 +49,27 @@ class PromotionController extends Controller
             $em->persist($promotion);
             $em->flush();
 
-            return $this->redirectToRoute('promotion_show', array('id' => $promotion->getId()));
+            return $this->redirectToRoute('promotion_index', array('id' => $promotion->getId()));
         }
 
         return $this->render('promotion/new.html.twig', array(
             'promotion' => $promotion,
             'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Displays a form to edit an existing promotion entity.
+     *
+     * @Route("/{id}/delete", name="promotion_indexdelete")
+     * @Method({"GET", "POST"})
+     */
+    public function indexDeleteAction( Promotion $promotion)
+    {
+        $deleteForm = $this->createDeleteForm($promotion);
+
+        return $this->render('delete.html.twig', array(
+            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -89,7 +104,7 @@ class PromotionController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('promotion_edit', array('id' => $promotion->getId()));
+            return $this->redirectToRoute('promotion_index', array('id' => $promotion->getId()));
         }
 
         return $this->render('promotion/edit.html.twig', array(

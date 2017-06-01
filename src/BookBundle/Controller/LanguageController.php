@@ -48,7 +48,7 @@ class LanguageController extends Controller
             $em->persist($language);
             $em->flush();
 
-            return $this->redirectToRoute('language_show', array('id' => $language->getId()));
+            return $this->redirectToRoute('language_index', array('id' => $language->getId()));
         }
 
         return $this->render('language/new.html.twig', array(
@@ -88,7 +88,7 @@ class LanguageController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('language_edit', array('id' => $language->getId()));
+            return $this->redirectToRoute('language_index', array('id' => $language->getId()));
         }
 
         return $this->render('language/edit.html.twig', array(
@@ -116,6 +116,21 @@ class LanguageController extends Controller
         }
 
         return $this->redirectToRoute('language_index');
+    }
+
+    /**
+     * Displays a form to edit an existing language entity.
+     *
+     * @Route("/{id}/delete", name="language_indexdelete")
+     * @Method({"GET", "POST"})
+     */
+    public function indexDeleteAction( Language $language)
+    {
+        $deleteForm = $this->createDeleteForm($language);
+
+        return $this->render('delete.html.twig', array(
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 
     /**

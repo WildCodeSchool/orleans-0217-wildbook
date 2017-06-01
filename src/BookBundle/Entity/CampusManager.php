@@ -39,6 +39,7 @@ class CampusManager
      * @ORM\Column(name="firsname", type="string", length=50)
      */
     private $firstname;
+
     /**
      * @var string
      *

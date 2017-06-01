@@ -1,21 +1,29 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block body %}
-    <h1>Language edit</h1>
+    <div class="container-fluid">
+        <div class="row col-md-3">
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+            <h3>Language: id:{{ language.id }} - {{ language.language }}</h3>
+            <div class="form-group">
+                {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="Edit" />
+            </div>
+            {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('language_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <div class="form-group">
+                {{ form_start(delete_form) }}
+                <input type="submit" class="btn btn-danger" value="Delete">
+                {{ form_end(delete_form) }}
+            </div>
+
+            <div class="form-group">
+                <a href="{{ path('language_index') }}" class="btn btn-primary">Retour à la liste</a>
+            </div>
+
+        </div>
+    </div>
 {% endblock %}
