@@ -191,6 +191,19 @@ class Wilder
      */
     private $user;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="firsname", type="string", length=50)
+     */
+    private $firstname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", length=50)
+     */
+    private $lastname;
 
     /**
      * Get id
@@ -843,7 +856,7 @@ class Wilder
     /**
      * @param mixed $languages
      */
-    public function setLanguages($languages)
+    public function setLanguages( $languages)
     {
         $this->languages = $languages;
     }
@@ -854,5 +867,53 @@ class Wilder
     public function setTechnologies($technologies)
     {
         $this->technologies = $technologies;
+    }
+
+    /**
+     * Set firstname
+     *
+     * @param string $firstname
+     *
+     * @return Wilder
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Get firstname
+     *
+     * @return string
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     *
+     * @return Wilder
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * Get lastname
+     *
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
     }
 }

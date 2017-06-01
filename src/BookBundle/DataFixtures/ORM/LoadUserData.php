@@ -18,26 +18,64 @@ class LoadUserData  extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load ( ObjectManager $manager )
     {
-        $userAdmin = new User ();
-        $userAdmin -> setUsername ( 'superadmin' );
-        $userAdmin -> setPassword ( 'superadmin' );
-        $userAdmin -> setEmail ( 'superadmin.test@gmail.com' );
+        $superadmin = new User ();
+        $superadmin -> setUsername('superadmin');
+        $superadmin -> setUsernameCanonical('superadmin');
+        $superadmin -> setEmail ('superadmin.test@gmail.com');
+        $superadmin -> setEmailCanonical('superadmin.test@gmail.com');
+        $superadmin -> setEnabled(true);
+        $superadmin -> setPassword ('5GYblLjLYwZOnjp5gS3KxA3RZEiof3FDjzkOJVH');
+        $superadmin -> setLastLogin(new \DateTime('2017-06-01 12:32:52'));
+        $superadmin -> setRoles([0 =>'ROLE_ADMIN', 1 =>'ROLE_SUPER_ADMIN']);
+        $manager -> persist ( $superadmin );
 
-        $manager -> persist ( $userAdmin );
+        $admin = new User ();
+        $admin -> setUsername('admin');
+        $admin -> setUsernameCanonical('admin');
+        $admin -> setEmail ('admin.test@gmail.com');
+        $admin -> setEmailCanonical('admin.test@gmail.com');
+        $admin -> setEnabled(true);
+        $admin -> setPassword ('$2y$13$jlRKwEk8Ud5aUCaiqUZ4IePGFzWfqwaFDg.G8X2hZmmwexBNoX/Su');
+        $admin -> setLastLogin(new \DateTime('2017-06-01 12:32:52'));
+        $admin -> setRoles([0 =>'ROLE_ADMIN']);
+        $admin -> setCampusManager($this->getReference('Camp2'));
+        $manager -> persist ( $admin );
 
-        $userAdmin = new User ();
-        $userAdmin -> setUsername ( 'admin' );
-        $userAdmin -> setPassword ( 'admin' );
-        $userAdmin -> setEmail ( 'admin.test@gmail.com' );
+        $user = new User ();
+        $user -> setUsername('user1');
+        $user -> setUsernameCanonical('user1');
+        $user -> setEmail ('user1.test@gmail.com');
+        $user -> setEmailCanonical('user2.test@gmail.com');
+        $user -> setEnabled(true);
+        $user -> setPassword ('7VEX5zLPQofmXaI7pJ9FsekkvPCEMpix81tJFUEIocOQMZqxqFtsu');
+        $user -> setLastLogin(new \DateTime('2017-06-01 12:32:52'));
+        $user -> setRoles([]);
+        $user -> setWilder($this->getReference('Wilder1'));
+        $manager -> persist ( $user );
 
-        $manager -> persist ( $userAdmin );
+        $user = new User ();
+        $user -> setUsername('user2');
+        $user -> setUsernameCanonical('user2');
+        $user -> setEmail ('user2.test@gmail.com');
+        $user -> setEmailCanonical('user2.test@gmail.com');
+        $user -> setEnabled(true);
+        $user -> setPassword ('7VEX5zLPQofmXaI7pJ9FsekkvPCEMpix81tJFUEIocOQMZqxqFtsu');
+        $user -> setLastLogin(new \DateTime('2017-06-01 12:32:52'));
+        $user -> setRoles([]);
+        $user -> setWilder($this->getReference('Wilder4'));
+        $manager -> persist ( $user );
 
-        $userAdmin = new User ();
-        $userAdmin -> setUsername ( 'user' );
-        $userAdmin -> setPassword ( 'user' );
-        $userAdmin -> setEmail ( 'user.test@gmail.com' );
-
-        $manager -> persist ( $userAdmin );
+        $user = new User ();
+        $user -> setUsername('user3');
+        $user -> setUsernameCanonical('user3');
+        $user -> setEmail ('user3.test@gmail.com');
+        $user -> setEmailCanonical('user3.test@gmail.com');
+        $user -> setEnabled(true);
+        $user -> setPassword ('7VEX5zLPQofmXaI7pJ9FsekkvPCEMpix81tJFUEIocOQMZqxqFtsu');
+        $user -> setLastLogin(new \DateTime('2017-06-01 12:32:52'));
+        $user -> setRoles([]);
+        $user -> setWilder($this->getReference('Wilder5'));
+        $manager -> persist ( $user );
 
         $manager -> flush ();
     }
@@ -45,6 +83,6 @@ class LoadUserData  extends AbstractFixture implements OrderedFixtureInterface
     public function getOrder ()
     {
 
-        return 7 ;
+        return 13 ;
     }
 }
