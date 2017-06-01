@@ -18,26 +18,25 @@ class LoadCategoryData  extends AbstractFixture implements OrderedFixtureInterfa
 {
     public function load ( ObjectManager $manager )
     {
-        $category = new Category ();
-        $category -> setlabel('Application web');
+        $appWeb = new Category ();
+        $appWeb -> setlabel('Application web');
+        $manager -> persist ( $appWeb );
+        $this->addReference('AppWeb', $appWeb );
 
-        $manager -> persist ( $category );
+        $siteV = new Category ();
+        $siteV -> setlabel('Site vitrine');
+        $manager -> persist ( $siteV );
+        $this->addReference('SiteV', $siteV );
 
-        $category = new Category ();
-        $category -> setlabel('Site vitrine');
+        $appMob = new Category ();
+        $appMob -> setlabel('Application Mobile');
+        $manager -> persist ( $appMob );
+        $this->addReference('AppMob', $appMob );
 
-        $manager -> persist ( $category );
-
-
-        $category = new Category ();
-        $category -> setlabel('Application Mobile');
-
-        $manager -> persist ( $category );
-
-        $category = new Category ();
-        $category -> setlabel('Hackathon');
-
-        $manager -> persist ( $category );
+        $hacka = new Category ();
+        $hacka -> setlabel('Hackathon');
+        $manager -> persist ( $hacka );
+        $this->addReference('Hacka', $hacka );
 
         $manager -> flush ();
     }

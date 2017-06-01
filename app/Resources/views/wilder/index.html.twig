@@ -14,10 +14,10 @@
                 <th>Skill</th>
                 <th>Freelanceavailability</th>
                 <th>Modjo</th>
-                <th>Biography</th>
                 <th>Contactemail</th>
                 <th>Profilpicture</th>
                 <th>Cv</th>
+                <th>Language</th>
                 <th>Website</th>
                 <th>Github</th>
                 <th>Linkedin</th>
@@ -40,9 +40,16 @@
                 <td>{{ wilder.skill }}</td>
                 <td>{% if wilder.freelanceAvailability %}Yes{% else %}No{% endif %}</td>
                 <td>{{ wilder.modjo }}</td>
-                <td>{{ wilder.biography }}</td>
                 <td>{{ wilder.contactEmail }}</td>
                 <td>{{ wilder.profilPicture }}</td>
+                <td>{{ wilder.cv }}</td>
+                <td>
+                    <ul>
+                    {% for language in wilder.languages %}
+                        <li>  {{ language.language }}</li>
+                    {% endfor %}
+                    </ul>
+                </td>
                 <td>{{ wilder.cv }}</td>
                 <td>{{ wilder.website }}</td>
                 <td>{{ wilder.github }}</td>
