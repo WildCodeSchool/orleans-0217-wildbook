@@ -5,12 +5,11 @@
 
         <div class="row col-md-4">
 
-            <h1>Liste des Status Wilder</h1>
+            <h1>Liste des languages :</h1>
 
             <table class="table table-condensed">
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Language</th>
                     <th>Actions</th>
                 </tr>
@@ -18,12 +17,13 @@
                 <tbody>
                 {% for language in languages %}
                     <tr>
-                        <td><a href="{{ path('language_show', { 'id': language.id }) }}">{{ language.id }}</a></td>
                         <td>{{ language.language }}</td>
                         <td>
                             <a href="{{ path('language_edit', { 'id': language.id }) }}" class="btn btn-success">
-                                <span class="glyphicon glyphicon-pencil"></span> edit
+                                <span class="glyphicon glyphicon-pencil"></span> Modifier
                             </a>
+                        </td>
+                        <td>
                             {{ render(controller('BookBundle:Language:indexDelete', {'id': language.id})) }}
 
                         </td>
@@ -32,7 +32,7 @@
                 </tbody>
             </table>
 
-            <a class="btn btn-default" href="{{ path('language_new') }}" role="button">Create a new language</a>
+            <a class="btn btn-default" href="{{ path('language_new') }}" role="button">Ajout d'un language</a>
 
         </div>
     </div>
