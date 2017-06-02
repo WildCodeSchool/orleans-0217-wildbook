@@ -1,10 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block body %}
-    <h1>Wilder</h1>
 
-    <table>
-        <tbody>
+    <div class="container-fluid">
+
+        <h1>Wilder</h1>
+
+        <table class="table table-condensed">
+
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ wilder.id }}</td>
@@ -85,20 +89,23 @@
                 <th>Codewarsusername</th>
                 <td>{{ wilder.codewarsUsername }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('wilder_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('wilder_edit', { 'id': wilder.id }) }}">Edit</a>
-        </li>
-        <li>
+
+        <div class="form-group">
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" class="btn btn-danger" value="Delete">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+
+        <div class="form-group">
+            <a href="{{ path('wilder_edit', { 'id': wilder.id }) }}" class="btn btn-primary">Edit</a>
+        </div>
+
+        <div class="form-group">
+            <a href="{{ path('wilder_index') }}" class="btn btn-primary">Retour à la liste</a>
+        </div>
+
+    </div>
 {% endblock %}
