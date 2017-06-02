@@ -48,7 +48,7 @@ class TagController extends Controller
             $em->persist($tag);
             $em->flush();
 
-            return $this->redirectToRoute('tag_show', array('id' => $tag->getId()));
+            return $this->redirectToRoute('tag_index', array('id' => $tag->getId()));
         }
 
         return $this->render('tag/new.html.twig', array(
@@ -88,7 +88,7 @@ class TagController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('tag_edit', array('id' => $tag->getId()));
+            return $this->redirectToRoute('tag_index');
         }
 
         return $this->render('tag/edit.html.twig', array(
@@ -132,5 +132,20 @@ class TagController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Displays a form to edit an existing tag entity.
+     *
+     * @Route("/{id}/delete", name="tag_indexdelete")
+     * @Method({"GET", "POST"})
+     */
+    public function indexDeleteAction( Tag $tag)
+    {
+        $deleteForm = $this->createDeleteForm($tag);
+
+        return $this->render('delete.html.twig', array(
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 }

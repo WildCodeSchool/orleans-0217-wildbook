@@ -48,7 +48,7 @@ class SchoolController extends Controller
             $em->persist($school);
             $em->flush();
 
-            return $this->redirectToRoute('school_show', array('id' => $school->getId()));
+            return $this->redirectToRoute('school_index', array('id' => $school->getId()));
         }
 
         return $this->render('school/new.html.twig', array(
@@ -88,7 +88,7 @@ class SchoolController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('school_edit', array('id' => $school->getId()));
+            return $this->redirectToRoute('school_index');
         }
 
         return $this->render('school/edit.html.twig', array(
@@ -132,5 +132,20 @@ class SchoolController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Displays a form to edit an existing school entity.
+     *
+     * @Route("/{id}/delete", name="school_indexdelete")
+     * @Method({"GET", "POST"})
+     */
+    public function indexDeleteAction(School $school)
+    {
+        $deleteForm = $this->createDeleteForm($school);
+
+        return $this->render('delete.html.twig', array(
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 }

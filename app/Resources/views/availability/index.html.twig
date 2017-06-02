@@ -6,12 +6,11 @@
 
     <div class="row col-md-4">
 
-        <h1>Liste des Status Wilder</h1>
+        <h1>Liste des Statuts Wilder</h1>
 
         <table class="table table-condensed">
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Label</th>
                 <th>Actions</th>
             </tr>
@@ -19,21 +18,21 @@
             <tbody>
             {% for availability in availabilities %}
                 <tr>
-                    <td><a href="{{ path('availability_show', { 'id': availability.id }) }}">{{ availability.id }}</a></td>
                     <td>{{ availability.label }}</td>
                     <td>
                         <a href="{{ path('availability_edit', { 'id': availability.id }) }}" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil"></span> edit
                         </a>
-                            {{ render(controller('BookBundle:Availability:indexDelete', {'id': availability.id})) }}
-
+                    </td>
+                    <td>
+                        {{ render(controller('BookBundle:Availability:indexDelete', {'id': availability.id})) }}
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
 
-        <a class="btn btn-default" href="{{ path('availability_new') }}" role="button">Create a new availability</a>
+        <a class="btn btn-default" href="{{ path('availability_new') }}" role="button">Crée un nouveau statut</a>
 
     </div>
 </div>

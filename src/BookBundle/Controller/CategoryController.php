@@ -48,7 +48,7 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('category_show', array('id' => $category->getId()));
+            return $this->redirectToRoute('category_index', array('id' => $category->getId()));
         }
 
         return $this->render('category/new.html.twig', array(
@@ -88,7 +88,7 @@ class CategoryController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('category_edit', array('id' => $category->getId()));
+            return $this->redirectToRoute('category_index');
         }
 
         return $this->render('category/edit.html.twig', array(
@@ -132,5 +132,20 @@ class CategoryController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Displays a form to edit an existing category entity.
+     *
+     * @Route("/{id}/delete", name="category_indexdelete")
+     * @Method({"GET", "POST"})
+     */
+    public function indexDeleteAction( Category $category)
+    {
+        $deleteForm = $this->createDeleteForm($category);
+
+        return $this->render('delete.html.twig', array(
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 }

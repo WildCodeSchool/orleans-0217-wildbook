@@ -10,7 +10,6 @@
             <table class="table table-condensed">
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Promotion</th>
                     <th>Actions</th>
                 </tr>
@@ -18,14 +17,15 @@
                 <tbody>
                 {% for promotion in promotions %}
                     <tr>
-                        <td><a href="{{ path('promotion_show', { 'id': promotion.id }) }}">{{ promotion.id }}</a></td>
+
                         <td>{{ promotion.promotion }}</td>
                         <td>
                             <a href="{{ path('promotion_edit', { 'id': promotion.id }) }}" class="btn btn-success">
                                 <span class="glyphicon glyphicon-pencil"></span> edit
                             </a>
+                        </td>
+                        <td>
                             {{ render(controller('BookBundle:Promotion:indexDelete', {'id': promotion.id})) }}
-
                         </td>
                     </tr>
                 {% endfor %}
