@@ -1,16 +1,27 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
-{% block body %}
-    <h1>Availability creation</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
-    <ul>
-        <li>
-            <a href="{{ path('availability_index') }}">Back to the list</a>
-        </li>
-    </ul>
-{% endblock %}
+    {% block body %}
+        <div class="container-fluid">
+            <div class="row col-md-3">
+
+                <h3>Créer un nouveau Statu :</h3>
+                <div class="form-group">
+                    {{ form_start(form) }}
+
+                    {{ form_label(form.label) }}
+                    {{ form_widget(form.label) }}
+                    {{ form_errors(form.label) }}
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Create" />
+                </div>
+                {{ form_end(form) }}
+
+                <a href="{{ path('availability_index') }}" class="btn btn-primary">Retour à la liste</a>
+
+            </div>
+        </div>
+    {% endblock %}

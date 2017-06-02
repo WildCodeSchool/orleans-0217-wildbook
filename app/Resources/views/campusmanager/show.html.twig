@@ -1,28 +1,54 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block body %}
-    <h1>Campusmanager</h1>
 
-    <table>
+<div class="container-fluid">
+
+
+    <h1>Campus Manager</h1>
+
+    <table class="table table-condensed">
+
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ campusManager.id }}</td>
             </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ campusManager.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ campusManager.lastname }}</td>
+            </tr>
+            <tr>
+                <th>User</th>
+                <td>{{ campusManager.user }}</td>
+            </tr>
+            <tr>
+                <th>Ecole</th>
+                <td>{{ campusManager.school.school }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('campusmanager_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('campusmanager_edit', { 'id': campusManager.id }) }}">Edit</a>
-        </li>
-        <li>
+        <div class="form-group">
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" class="btn btn-danger" value="Delete">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+
+        <div class="form-group">
+            <a href="{{ path('campusmanager_edit', { 'id': campusManager.id }) }}" class="btn btn-primary">Edit</a>
+        </div>
+
+        <div class="form-group">
+            <a href="{{ path('campusmanager_index') }}" class="btn btn-primary">Retour à la liste</a>
+        </div>
+
+    {{ dump(campusManager) }}
+
+
+</div>
 {% endblock %}

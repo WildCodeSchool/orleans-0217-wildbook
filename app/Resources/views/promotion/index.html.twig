@@ -1,39 +1,40 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block body %}
-    <h1>Promotions list</h1>
+    <div class="container-fluid">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Promotion</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for promotion in promotions %}
-            <tr>
-                <td><a href="{{ path('promotion_show', { 'id': promotion.id }) }}">{{ promotion.id }}</a></td>
-                <td>{{ promotion.promotion }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('promotion_show', { 'id': promotion.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('promotion_edit', { 'id': promotion.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="row col-md-4">
 
-    <ul>
-        <li>
-            <a href="{{ path('promotion_new') }}">Create a new promotion</a>
-        </li>
-    </ul>
+            <h1>Liste des promotions</h1>
+
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Promotion</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for promotion in promotions %}
+                    <tr>
+                        <td><a href="{{ path('promotion_show', { 'id': promotion.id }) }}">{{ promotion.id }}</a></td>
+                        <td>{{ promotion.promotion }}</td>
+                        <td>
+                            <a href="{{ path('promotion_edit', { 'id': promotion.id }) }}" class="btn btn-success">
+                                <span class="glyphicon glyphicon-pencil"></span> edit
+                            </a>
+                            {{ render(controller('BookBundle:Promotion:indexDelete', {'id': promotion.id})) }}
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a class="btn btn-default" href="{{ path('promotion_new') }}" role="button">Create a new promotion</a>
+
+        </div>
+    </div>
+
 {% endblock %}

@@ -28,13 +28,14 @@ class ProjectType extends AbstractType
                 ->add('status')
                 ->add('summary', TextType::class)
                 ->add('description', TextareaType::class)
-//                ->add('path', EntityType::class, [
-//                    'class'=>Picture::class,
-//                    'choice_label'=>'path'
-//                ])
+                ->add('path', EntityType::class, [
+                    'class'=>Picture::class,
+                    'choice_label'=>'path'
+                ])
                 ->add('tags', EntityType::class, [
                     'class'=>Tag::class,
                     'choice_label'=>'tag',
+                    'expanded'=>true,
                     'multiple'=>true
                 ])
                 ->add('category', EntityType::class, [
@@ -44,11 +45,13 @@ class ProjectType extends AbstractType
                 ->add('technologies', EntityType::class, [
                     'class'=>Technology::class,
                     'choice_label'=>'technology',
+                    'expanded'=>true,
                     'multiple'=>true
                 ])
                 ->add('languages', EntityType::class, [
                     'class'=>Language::class,
                     'choice_label'=>'language',
+                    'expanded'=>true,
                     'multiple'=>true
                 ]);
     }

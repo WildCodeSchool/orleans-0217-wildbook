@@ -1,39 +1,40 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_admin.html.twig' %}
 
 {% block body %}
-    <h1>Languages list</h1>
+    <div class="container-fluid">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Language</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for language in languages %}
-            <tr>
-                <td><a href="{{ path('language_show', { 'id': language.id }) }}">{{ language.id }}</a></td>
-                <td>{{ language.language }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('language_show', { 'id': language.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('language_edit', { 'id': language.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="row col-md-4">
 
-    <ul>
-        <li>
-            <a href="{{ path('language_new') }}">Create a new language</a>
-        </li>
-    </ul>
+            <h1>Liste des languages :</h1>
+
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Language</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for language in languages %}
+                    <tr>
+                        <td>{{ language.language }}</td>
+                        <td>
+                            <a href="{{ path('language_edit', { 'id': language.id }) }}" class="btn btn-success">
+                                <span class="glyphicon glyphicon-pencil"></span> Modifier
+                            </a>
+                        </td>
+                        <td>
+                            {{ render(controller('BookBundle:Language:indexDelete', {'id': language.id})) }}
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <a class="btn btn-default" href="{{ path('language_new') }}" role="button">Ajout d'un language</a>
+
+        </div>
+    </div>
+
 {% endblock %}
