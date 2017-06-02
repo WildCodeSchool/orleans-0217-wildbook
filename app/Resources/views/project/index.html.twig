@@ -16,8 +16,6 @@
                     <th>Customer</th>
                     <th>Date</th>
                     <th>Status</th>
-                    <th>Summary</th>
-                    <th>Description</th>
                     <th>Tags</th>
                     <th>Languages</th>
                     <th>Technologies</th>
@@ -33,8 +31,6 @@
                     <td>{{ project.customer }}</td>
                     <td>{% if project.date %}{{ project.date|date('Y-m-d') }}{% endif %}</td>
                     <td>{{ project.status }}</td>
-                    <td>{{ project.summary }}</td>
-                    <td>{{ project.description }}</td>
                     <td>{% for tags in project.tags %}
                             {{ tags.tag }}{% if not loop.last %}, {% endif %}
                         {% endfor %}</td>
