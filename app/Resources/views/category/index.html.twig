@@ -1,39 +1,37 @@
 {% extends 'base_admin.html.twig' %}
 
 {% block body %}
-    <h1>Categories list</h1>
 
-    <table>
-        <thead>
+    <div class="container-fluid">
+        <h1>Lite des catégories</h1>
+
+        <table class="table table-condensed">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Label</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                <td><a href="{{ path('category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
-                <td>{{ category.label }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('category_show', { 'id': category.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('category_edit', { 'id': category.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.label }}</td>
 
-    <ul>
-        <li>
-            <a href="{{ path('category_new') }}">Create a new category</a>
-        </li>
-    </ul>
+                    <td>
+                        <a href="{{ path('category_edit', { 'id': category.id }) }}" class="btn btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span> Modifier
+                        </a>
+                    </td>
+
+                    <td>{{ render(controller('BookBundle:Category:indexDelete', {'id': category.id})) }}</td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-default" href="{{ path('category_new') }}" role="button">Créer une catégorie</a>
+    </div>
 {% endblock %}

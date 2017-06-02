@@ -1,39 +1,37 @@
 {% extends 'base_admin.html.twig' %}
 
 {% block body %}
-    <h1>Schools list</h1>
 
-    <table>
-        <thead>
+    <div class="container-fluid">
+        <h1>Lite des écoles</h1>
+
+        <table class="table table-condensed">
+            <thead>
             <tr>
                 <th>Id</th>
-                <th>School</th>
+                <th>Label</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for school in schools %}
-            <tr>
-                <td><a href="{{ path('school_show', { 'id': school.id }) }}">{{ school.id }}</a></td>
-                <td>{{ school.school }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('school_show', { 'id': school.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('school_edit', { 'id': school.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for school in schools %}
+                <tr>
+                    <td>{{ school.id }}</td>
+                    <td>{{ school.school }}</td>
 
-    <ul>
-        <li>
-            <a href="{{ path('school_new') }}">Create a new school</a>
-        </li>
-    </ul>
+                    <td>
+                        <a href="{{ path('school_edit', { 'id': school.id }) }}" class="btn btn-default">
+                            <span class="glyphicon glyphicon-pencil"></span> Modifier
+                        </a>
+                    </td>
+
+                    <td>{{ render(controller('BookBundle:School:indexDelete', {'id': school.id})) }}</td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-default" href="{{ path('school_new') }}" role="button">Créer une école</a>
+    </div>
 {% endblock %}
