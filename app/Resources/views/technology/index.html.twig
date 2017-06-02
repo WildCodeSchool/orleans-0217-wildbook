@@ -23,9 +23,9 @@
                         <a href="{{ path('technology_edit', { 'id': technology.id }) }}" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil"></span> edit
                         </a>
-                        <a href="{{ path('technology_delete', { 'id': technology.id }) }}" class="btn btn-default">
-                            <span class="glyphicon glyphicon-trash"></span> delete
-                        </a>
+                    </td>
+                    <td>
+                        {{ render(controller('BookBundle:Technology:indexDelete', {'id': technology.id})) }}
                     </td>
                 </tr>
             {% endfor %}
