@@ -44,7 +44,9 @@ class CampusManagerController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
+            $campusManager->setUser($this->getUser());
             $em->persist($campusManager);
             $em->flush();
 

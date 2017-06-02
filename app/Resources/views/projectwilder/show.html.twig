@@ -16,12 +16,20 @@
                 <td>{% if projectWilder.visibility %}Yes{% else %}No{% endif %}</td>
             </tr>
             <tr>
-                <th>Projet</th>
+                <th>Projet Id</th>
                 <td>{{ projectWilder.project.id }}</td>
             </tr>
             <tr>
-                <th>Wilder</th>
-                <td>{{ projectWilder.wilder }}</td>
+                <th>Nom Projet</th>
+                <td>{{ projectWilder.project.title }}</td>
+            </tr>
+            <tr>
+                <th>Wilder Id</th>
+                <td>{{ projectWilder.wilder.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom Wilder</th>
+                <td>{{ projectWilder.wilder.lastname }}</td>
             </tr>
         </tbody>
     </table>

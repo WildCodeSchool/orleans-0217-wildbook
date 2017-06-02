@@ -29,7 +29,7 @@ class CampusManager
 
     /**
      * @var
-     * @ORM\OneToOne (targetEntity="User", mappedBy="campusManager", cascade={"persist", "merge"})
+     * @ORM\OneToOne (targetEntity="User", inversedBy="campusManager", cascade={"persist", "merge"})
      */
     private $user;
 

@@ -21,13 +21,13 @@ class User extends BaseUser
 
     /**
      * @var
-     * @ORM\OneToOne (targetEntity="CampusManager", inversedBy="user" , cascade={"persist", "merge"})
+     * @ORM\OneToOne (targetEntity="CampusManager", mappedBy="user" , cascade={"persist", "merge"})
      */
     private $campusManager;
 
     /**
      * @var
-     * @ORM\OneToOne (targetEntity="Wilder", inversedBy="user")
+     * @ORM\OneToOne (targetEntity="Wilder", mappedBy="user")
      */
     private $wilder;
 

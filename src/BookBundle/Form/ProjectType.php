@@ -12,6 +12,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -28,10 +29,7 @@ class ProjectType extends AbstractType
                 ->add('status')
                 ->add('summary', TextType::class)
                 ->add('description', TextareaType::class)
-                ->add('path', EntityType::class, [
-                    'class'=>Picture::class,
-                    'choice_label'=>'path'
-                ])
+                ->add('path', UrlType::class )
                 ->add('tags', EntityType::class, [
                     'class'=>Tag::class,
                     'choice_label'=>'tag',

@@ -21,11 +21,8 @@ class CampusManagerType extends AbstractType
                 ->add('school', EntityType::class, [
                     'class' => School::class,
                     'choice_label' => 'school'
-                ])
-                ->add('user',EntityType::class, [
-                    'class'=>User::class,
-                    'choice_label'=>'username'
-                    ]);
+                ]);
+
 
     }
     

@@ -26,7 +26,8 @@
                     <td>{% if projectWilder.visibility %}Yes{% else %}No{% endif %}</td>
                     <td>{{ projectWilder.project.id }}</td>
                     <td>{{ projectWilder.project.title }}</td>
-                    <td>{{ projectWilder.wilder }}</td>
+                    <td>{{ projectWilder.wilder.id }}</td>
+                    <td>{{ projectWilder.wilder.lastname }}</td>
                     <td>
                         <a href="{{ path('projectwilder_edit', { 'id': projectWilder.id }) }}" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil"></span> edit
