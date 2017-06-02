@@ -1,12 +1,12 @@
 {% extends 'base_admin.html.twig' %}
 
 {% block body %}
-    <h1>Edition des status wilder:</h1>
+    <h1>Edition</h1>
 
     <div class="container-fluid">
         <div class="row col-md-3">
 
-            <h3>id:{{ availability.id }} - {{ availability.label }}</h3>
+            <h3>{{ availability.label }}</h3>
             <div class="form-group">
                 {{ form_start(edit_form) }}
                 {{ form_widget(edit_form) }}
