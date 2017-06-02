@@ -8,6 +8,7 @@ use BookBundle\Entity\Promotion;
 use BookBundle\Entity\Technology;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,7 +19,7 @@ class WilderType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('birthDate')
+        $builder->add('birthDate', BirthdayType::class)
                 ->add('address')
                 ->add('postalCode')
                 ->add('city')
@@ -40,13 +41,15 @@ class WilderType extends AbstractType
                 ->add('languages', EntityType::class, [
                     'class'=>Language::class,
                     'choice_label'=>'language',
-                    'multiple' => 'true',
+                    'multiple' => true,
+                    'expanded'=>true
 
                 ])
                 ->add('technologies', EntityType::class, [
                     'class'=>Technology::class,
                     'choice_label'=>'technology',
-                    'multiple' => 'true'
+                    'multiple' => true,
+                    'expanded'=>true
                 ])
                 ->add('availability', EntityType::class, [
                     'class'=>Availability::class,
