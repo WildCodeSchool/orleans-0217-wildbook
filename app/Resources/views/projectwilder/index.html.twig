@@ -32,9 +32,9 @@
                         <a href="{{ path('projectwilder_edit', { 'id': projectWilder.id }) }}" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil"></span> edit
                         </a>
-                        <a href="{{ path('projectwilder_delete', { 'id': projectWilder.id }) }}" class="btn btn-default">
-                            <span class="glyphicon glyphicon-trash"></span> delete
-                        </a>
+                    </td>
+                    <td>
+                        {{ render(controller('BookBundle:ProjectWilder:indexDelete', {'id': projectWilder.id})) }}
                     </td>
                 </tr>
             {% endfor %}

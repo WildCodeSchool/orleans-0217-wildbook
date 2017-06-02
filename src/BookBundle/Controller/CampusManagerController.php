@@ -50,7 +50,7 @@ class CampusManagerController extends Controller
             $em->persist($campusManager);
             $em->flush();
 
-            return $this->redirectToRoute('campusmanager_show', array('id' => $campusManager->getId()));
+            return $this->redirectToRoute('campusmanager_index');
         }
 
         return $this->render('campusmanager/new.html.twig', array(
@@ -90,7 +90,7 @@ class CampusManagerController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('campusmanager_edit', array('id' => $campusManager->getId()));
+            return $this->redirectToRoute('campusmanager_index');
         }
 
         return $this->render('campusmanager/edit.html.twig', array(
@@ -134,5 +134,20 @@ class CampusManagerController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Displays a form to edit an existing language entity.
+     *
+     * @Route("/{id}/delete", name="language_indexdelete")
+     * @Method({"GET", "POST"})
+     */
+    public function indexDeleteAction( CampusManager $campusManager)
+    {
+        $deleteForm = $this->createDeleteForm($campusManager);
+
+        return $this->render('delete.html.twig', array(
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 }

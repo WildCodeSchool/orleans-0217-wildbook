@@ -48,7 +48,7 @@ class ProjectWilderController extends Controller
             $em->persist($projectWilder);
             $em->flush();
 
-            return $this->redirectToRoute('projectwilder_show', array('id' => $projectWilder->getId()));
+            return $this->redirectToRoute('projectwilder_index');
         }
 
         return $this->render('projectwilder/new.html.twig', array(
@@ -88,7 +88,7 @@ class ProjectWilderController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('projectwilder_edit', array('id' => $projectWilder->getId()));
+            return $this->redirectToRoute('projectwilder_index');
         }
 
         return $this->render('projectwilder/edit.html.twig', array(
@@ -132,5 +132,20 @@ class ProjectWilderController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Displays a form to edit an existing language entity.
+     *
+     * @Route("/{id}/delete", name="language_indexdelete")
+     * @Method({"GET", "POST"})
+     */
+    public function indexDeleteAction( ProjectWilder $projectWilder)
+    {
+        $deleteForm = $this->createDeleteForm($projectWilder);
+
+        return $this->render('delete.html.twig', array(
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 }

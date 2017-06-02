@@ -37,11 +37,9 @@
                     <td>{% for tags in project.tags %}
                             {{ tags.tag }}{% if not loop.last %}, {% endif %}
                         {% endfor %}</td>
-                    <td>
                     <td>{% for languages in project.languages %}
                             {{ languages.language }}{% if not loop.last %}, {% endif %}
                         {% endfor %}</td>
-                    <td>
                     <td>{% for technologies in project.technologies %}
                             {{ technologies.technology }}{% if not loop.last %}, {% endif %}
                         {% endfor %}</td>

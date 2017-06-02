@@ -29,9 +29,9 @@
                     <a href="{{ path('campusmanager_edit', { 'id': campusManager.id }) }}" class="btn btn-success">
                         <span class="glyphicon glyphicon-pencil"></span> edit
                     </a>
-                    <a href="{{ path('campusmanager_delete', { 'id': campusManager.id }) }}" class="btn btn-default">
-                        <span class="glyphicon glyphicon-trash"></span> delete
-                    </a>
+                </td>
+                <td>
+                    {{ render(controller('BookBundle:CampusManager:indexDelete', {'id': campusManager.id})) }}
                 </td>
             </tr>
         {% endfor %}

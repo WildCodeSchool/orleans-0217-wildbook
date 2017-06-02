@@ -48,7 +48,7 @@ class ProjectController extends Controller
             $em->persist($project);
             $em->flush();
 
-            return $this->redirectToRoute('project_show', array('id' => $project->getId()));
+            return $this->redirectToRoute('project_index');
         }
 
         return $this->render('project/new.html.twig', array(
@@ -90,7 +90,7 @@ class ProjectController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('project_edit', array('id' => $project->getId()));
+            return $this->redirectToRoute('project_index');
         }
 
         return $this->render('project/edit.html.twig', array(
@@ -134,5 +134,20 @@ class ProjectController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Displays a form to edit an existing language entity.
+     *
+     * @Route("/{id}/delete", name="language_indexdelete")
+     * @Method({"GET", "POST"})
+     */
+    public function indexDeleteAction( Project $project)
+    {
+        $deleteForm = $this->createDeleteForm($project);
+
+        return $this->render('delete.html.twig', array(
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 }
