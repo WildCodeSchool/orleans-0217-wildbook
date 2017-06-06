@@ -6,11 +6,35 @@ footer {
     font-size: 16px;
 }
 
+h4 {
+    font-size: 24px;
+    letter-spacing: 0px;
+    line-height: 1.4;
+    font-weight: 400;
+}
+
 .logowcs {
+    margin-top: -40px;
+    padding: 0 40px 40px 40px;
     text-align: center;
 }
 
+.newsletter {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.formnewsletter {
+    text-align: center;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
 .socialbloc {
+    padding-bottom: 40px;
+}
+
+.socialfollow {
     text-align: center;
     margin-top: 40px;
     margin-bottom: 30px;
@@ -18,5 +42,90 @@ footer {
 
 .social {
     display:flex;
-    justify-content: space-around;
+    justify-content: center;
 }
+
+.iconsocial i {
+    width: 50px;
+    height: 50px;
+    color: #FFF;
+    background-color: #424242;
+    font-size: 20px;
+    text-align:center;
+    margin-right: 10px;
+    padding-top: 12px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -webkit-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+}
+
+.iconsocial i:hover {
+    color: #FFF;
+    text-decoration: none;
+    transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -webkit-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+}
+
+.iconsocial .fa-facebook:hover {
+    background: #4060A5;
+}
+
+.iconsocial .fa-twitter:hover {
+    background: #00ABE3;
+}
+
+.iconsocial .fa-linkedin:hover {
+    background: #0094BC;
+}
+
+.iconsocial .fa-instagram:hover {
+    background: radial-gradient(circle farthest-corner at 35% 100%,
+    #fec564,transparent 50%),radial-gradient(circle farthest-corner at 10% 140%,#feda7e,transparent 50%),
+    radial-gradient(ellipse farthest-corner at 0 -25%,#5258cf,transparent 50%),
+    radial-gradient(ellipse farthest-corner at 20% -50%,#5258cf,transparent 50%),
+    radial-gradient(ellipse farthest-corner at 100% 0,#893dc2,transparent 50%),
+    radial-gradient(ellipse farthest-corner at 60% -20%,#893dc2,transparent 50%),
+    radial-gradient(ellipse farthest-corner at 100% 100%,#d9317a,transparent),
+    linear-gradient(#6559ca,#bc318f 30%,#e42e66 50%,#fa5332 70%,#ffdc80 100%);
+}
+
+.iconsocial .fa-youtube:hover {
+    background: #FF1F25;
+}
+
+.iconsocial .fa-github:hover {
+    background: #343434;
+}
+
+.links a {
+    color: #ffffff;
+}
+
+.links h4 {
+   text-align: left;
+    margin-bottom: 24px;
+}
+
+.links ul {
+    list-style-type: none;
+    padding: 0px;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+
+}
+
+.links li {
+    text-align: left;
+    margin-bottom: 8px;
+}
+
