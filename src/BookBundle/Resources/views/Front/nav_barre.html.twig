@@ -1,0 +1,464 @@
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block nav %}#}
+
+<!DOCTYPE HTML>
+
+<html class="" lang="fr-FR" prefix="og: http://ogp.me/ns#">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Wild-Book - Wild Code School</title>
+
+
+    <link rel='stylesheet' id='cff-font-awesome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css?ver=4.5.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='material-icons-css'  href='https://fonts.googleapis.com/icon?family=Material+Icons&#038;ver=4.7.5' type='text/css' media='all' />
+    <link rel='stylesheet' id='us-base-css'  href='//wildcodeschool.fr/wp-content/themes/Zephyr/framework/css/us-base.min.css?ver=4.0.2' type='text/css' media='all' />
+    <link rel='stylesheet' id='us-style-css'  href='//wildcodeschool.fr/wp-content/themes/Zephyr/css/style.min.css?ver=4.0.2' type='text/css' media='all' />
+    <link rel='stylesheet' id='us-responsive-css'  href='//wildcodeschool.fr/wp-content/themes/Zephyr/css/responsive.min.css?ver=4.0.2' type='text/css' media='all' />
+
+    <link rel='stylesheet' id='us-theme-options-css' href="{{ asset('css/vc_shortcodes-custom_nav.min.css') }}"
+          type="text/css"/>
+
+
+    <script type='text/javascript' src='https://wildcodeschool.fr/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+    <script type="text/javascript">
+        if ( ! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            var root = document.getElementsByTagName( 'html' )[0]
+            root.className += " no-touch";
+        }
+    </script>
+</head>
+
+
+
+<body class="page-template-default page page-id-23 l-body Zephyr_4.0.2 Header_Builder header_hor header_inpos_top state_default wpb-js-composer js-comp-ver-5.0.1 vc_responsive" itemscope="itemscope" itemtype="https://schema.org/WebPage">
+
+<div class='l-preloader'>
+    <div class='l-preloader-spinner'>
+        <div class='g-preloader  type_1'>
+            <div class='g-preloader-h'></div>
+        </div>
+    </div>
+</div>
+
+<div class="l-canvas sidebar_none type_wide titlebar_none">
+
+    <header class="l-header pos_fixed bg_transparent shadow_thin" itemscope="itemscope" itemtype="https://schema.org/WPHeader">
+        <div class="l-subheader at_top width_full">
+            <div class="l-subheader-h">
+                <div class="l-subheader-cell at_left">
+                    <div class="w-socials color_text hover_default ush_socials_2">
+                        <div class="w-socials-list">
+                            <div class="w-socials-item custom">
+                                <a class="w-socials-item-link" target="_blank" href="mailto:contact@wildcodeschool.fr">
+                                    <span class="w-socials-item-link-hover"></span><i class="fa fa-envelope-o"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="l-subheader-cell at_center"></div>
+                <div class="l-subheader-cell at_right">
+                    <div class="w-socials color_text hover_default ush_socials_1">
+                        <div class="w-socials-list">
+
+                            <div class="w-socials-item facebook">
+                                <a class="w-socials-item-link" target="_blank" href="https://www.facebook.com/wildcodeschool/">
+                                    <span class="w-socials-item-link-hover"></span>
+                                </a>
+                                <div class="w-socials-item-popup">
+                                    <span>Facebook</span>
+                                </div>
+                            </div>
+
+                            <div class="w-socials-item twitter">
+                                <a class="w-socials-item-link" target="_blank" href="https://twitter.com/wildcodeschool">
+                                    <span class="w-socials-item-link-hover"></span>
+                                </a>
+                                <div class="w-socials-item-popup">
+                                    <span>Twitter</span>
+                                </div>
+                            </div>
+
+                            <div class="w-socials-item linkedin">
+                                <a class="w-socials-item-link" target="_blank" href="https://www.linkedin.com/school/10387519?pathWildcard=10387519">
+                                    <span class="w-socials-item-link-hover"></span>
+                                </a>
+                                <div class="w-socials-item-popup">
+                                    <span>LinkedIn</span>
+                                </div>
+                            </div>
+
+                            <div class="w-socials-item youtube">
+                                <a class="w-socials-item-link" target="_blank" href="https://www.youtube.com/channel/UCi99G_0QPx5sYsK8zdvQzfw">
+                                    <span class="w-socials-item-link-hover"></span>
+                                </a>
+                                <div class="w-socials-item-popup">
+                                    <span>YouTube</span>
+                                </div>
+                            </div>
+
+                            <div class="w-socials-item instagram">
+                                <a class="w-socials-item-link" target="_blank" href="https://www.instagram.com/wildcodeschool/">
+                                    <span class="w-socials-item-link-hover"></span>
+                                </a>
+                                <div class="w-socials-item-popup">
+                                    <span>Instagram</span>
+                                </div>
+                            </div>
+
+                            <div class="w-socials-item github">
+                                <a class="w-socials-item-link" target="_blank" href="https://github.com/WildCodeSchool">
+                                    <span class="w-socials-item-link-hover"></span>
+                                </a>
+                                <div class="w-socials-item-popup">
+                                    <span>GitHub</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="l-subheader at_middle width_full">
+            <div class="l-subheader-h">
+                <div class="l-subheader-cell at_left">
+                    <div class="w-img ush_image_1">
+                        <a class="w-img-h" href="https://wildcodeschool.fr">
+                            <img class="for_default" src="https://wildcodeschool.fr/wp-content/uploads/2017/01/logo_orange_pastille.png"
+                                 width="1000" height="997" alt="" />
+                        </a>
+                    </div>
+                </div>
+                <div class="l-subheader-cell at_center"></div>
+                <div class="l-subheader-cell at_right">
+                    <nav class="w-nav type_desktop animation_height height_full ush_menu_1" itemscope="itemscope"
+                         itemtype="https://schema.org/SiteNavigationElement">
+                        <a class="w-nav-control" href="javascript:void(0);"></a>
+                        <ul class="w-nav-list level_1 hover_simple hidden">
+                            <li id="menu-item-4222" class="menu-item menu-item-type-custom menu-item-object-custom
+                            menu-item-has-children w-nav-item level_1 menu-item-4222">
+                                <a class="w-nav-anchor level_1" >
+                                    <span class="w-nav-title">Nos campus</span>
+                                    <span class="w-nav-arrow"></span>
+                                </a>
+                                <ul class="w-nav-list level_2">
+                                    <li id="menu-item-4221" class="menu-item menu-item-type-post_type
+                                    menu-item-object-page w-nav-item level_2 menu-item-4221">
+                                        <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/bordeaux/">
+                                            <span class="w-nav-title">BORDEAUX</span>
+                                            <span class="w-nav-arrow"></span>
+                                        </a>
+                                    </li>
+                                    <li id="menu-item-4223" class="menu-item menu-item-type-post_type
+                                    menu-item-object-page w-nav-item level_2 menu-item-4223">
+                                        <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/fontainebleau/">
+                                            <span class="w-nav-title">FONTAINEBLEAU</span>
+                                            <span class="w-nav-arrow"></span>
+                                        </a>
+                                    </li>
+                                    <li id="menu-item-4224" class="menu-item menu-item-type-post_type
+                                    menu-item-object-page w-nav-item level_2 menu-item-4224">
+                                        <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/la-loupe/">
+                                            <span class="w-nav-title">LA LOUPE</span>
+                                            <span class="w-nav-arrow"></span>
+                                        </a>
+                                    </li>
+                                    <li id="menu-item-4225" class="menu-item menu-item-type-post_type
+                                    menu-item-object-page w-nav-item level_2 menu-item-4225">
+                                        <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/lille/">
+                                            <span class="w-nav-title">LILLE</span>
+                                            <span class="w-nav-arrow"></span>
+                                        </a>
+                                    </li>
+                                    <li id="menu-item-4226" class="menu-item menu-item-type-post_type
+                                    menu-item-object-page w-nav-item level_2 menu-item-4226">
+                                        <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/lyon/">
+                                            <span class="w-nav-title">LYON</span>
+                                            <span class="w-nav-arrow"></span>
+                                        </a>
+                                    </li>
+                                    <li id="menu-item-4227" class="menu-item menu-item-type-post_type
+                                    menu-item-object-page w-nav-item level_2 menu-item-4227">
+                                        <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/orleans/">
+                                            <span class="w-nav-title">ORLÉANS</span>
+                                            <span class="w-nav-arrow"></span>
+                                        </a>
+                                    </li>
+                                    <li id="menu-item-4228" class="menu-item menu-item-type-post_type
+                                    menu-item-object-page w-nav-item level_2 menu-item-4228">
+                                        <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/paris/">
+                                            <span class="w-nav-title">PARIS</span>
+                                            <span class="w-nav-arrow"></span>
+                                        </a>
+                                    </li>
+                                    <li id="menu-item-4229" class="menu-item menu-item-type-post_type
+                                    menu-item-object-page w-nav-item level_2 menu-item-4229">
+                                        <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/strasbourg/">
+                                            <span class="w-nav-title">STRASBOURG</span>
+                                            <span class="w-nav-arrow"></span>
+                                        </a>
+                                    </li>
+                                    <li id="menu-item-4230" class="menu-item menu-item-type-post_type
+                                    menu-item-object-page w-nav-item level_2 menu-item-4230">
+                                        <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/toulouse/">
+                                            <span class="w-nav-title">TOULOUSE</span>
+                                            <span class="w-nav-arrow"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="menu-item-4376" class="menu-item menu-item-type-custom
+                            menu-item-object-custom w-nav-item level_1 menu-item-4376">
+                                <a class="w-nav-anchor level_1"  href="https://wildcodeschool.fr/formation-developpeur-en-5-mois/">
+                                    <span class="w-nav-title">Notre formation</span>
+                                    <span class="w-nav-arrow"></span>
+                                </a>
+                            </li>
+                            <li id="menu-item-50" class="menu-item menu-item-type-post_type
+                            menu-item-object-page w-nav-item level_1 menu-item-50">
+                                <a class="w-nav-anchor level_1"  href="https://wildcodeschool.fr/faq/">
+                                    <span class="w-nav-title">FAQ</span>
+                                    <span class="w-nav-arrow"></span>
+                                </a>
+                            </li>
+                            <li id="menu-item-35" class="menu-item menu-item-type-post_type
+                            menu-item-object-page w-nav-item level_1 menu-item-35">
+                                <a class="w-nav-anchor level_1"  href="https://wildcodeschool.fr/equipe/">
+                                    <span class="w-nav-title">Notre équipe</span>
+                                    <span class="w-nav-arrow"></span>
+                                </a>
+                            </li>
+                            <li id="menu-item-59" class="menu-item menu-item-type-custom menu-item-object-custom
+                            menu-item-has-children w-nav-item level_1 menu-item-59">
+                                <a class="w-nav-anchor level_1"  href="https://wildcodeschool.fr/recruter-un-developpeur/">
+                                    <span class="w-nav-title">Entreprises</span>
+                                    <span class="w-nav-arrow"></span>
+                                </a>
+                                <ul class="w-nav-list level_2">
+                                    <li id="menu-item-34" class="menu-item menu-item-type-post_type menu-item-object-page
+                                    w-nav-item level_2 menu-item-34">
+                                        <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/recruter-un-developpeur/">
+                                            <span class="w-nav-title">Recruter un développeur</span>
+                                            <span class="w-nav-arrow"></span>
+                                        </a>
+                                    </li>
+                                    <li id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-page
+                                    w-nav-item level_2 menu-item-33">
+                                        <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/developper-un-projet/">
+                                            <span class="w-nav-title">Développer un projet</span>
+                                            <span class="w-nav-arrow"></span>
+                                        </a>
+                                    </li>
+                                    <li id="menu-item-32" class="menu-item menu-item-type-post_type menu-item-object-page
+                                    w-nav-item level_2 menu-item-32">
+                                        <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/nous-soutenir/">
+                                            <span class="w-nav-title">Nous soutenir</span>
+                                            <span class="w-nav-arrow"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="menu-item-320" class="menu-item menu-item-type-post_type menu-item-object-page
+                                current-menu-item page_item page-item-15 current_page_item w-nav-item level_1 menu-item-320">
+                                <a class="w-nav-anchor level_1"  href="https://wildcodeschool.fr/wild-book/">
+                                    <span class="w-nav-title">Le Wild-Book</span>
+                                    <span class="w-nav-arrow"></span>
+                                </a>
+                            </li>
+                            <li id="menu-item-31" class="menu-item menu-item-type-post_type menu-item-object-page
+                            w-nav-item level_1 menu-item-31">
+                                <a class="w-nav-anchor level_1"  href="https://wildcodeschool.fr/contact/">
+                                    <span class="w-nav-title">Contact</span><span class="w-nav-arrow">
+                                    </span>
+                                </a>
+                            </li>
+                            <li id="menu-item-61" class="menu-item menu-item-type-custom menu-item-object-custom
+                            w-nav-item level_1 menu-item-61">
+                                <a class="w-nav-anchor level_1"  href="https://wildcodeschool.fr/blog/">
+                                    <span class="w-nav-title">/ Blog</span>
+                                    <span class="w-nav-arrow"></span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="w-nav-options hidden"
+                             onclick='return {&quot;mobileWidth&quot;:1000,&quot;mobileBehavior&quot;:1}'>
+                        </div>
+                    </nav><div class="w-btn-wrapper ush_btn_1">
+                        <a class="w-btn style_solid color_custom icon_none" href="https://odyssey.wildcodeschool.fr">
+                            <span class="w-btn-label">JE CANDIDATE</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="l-subheader at_bottom">
+            <div class="l-subheader-h">
+                <div class="l-subheader-cell at_left"></div>
+                <div class="l-subheader-cell at_center"></div>
+                <div class="l-subheader-cell at_right"></div>
+            </div>
+        </div>
+        <div class="l-subheader for_hidden hidden"></div>
+    </header>
+
+
+
+
+    <div class="l-main">
+        <div class="l-main-h i-cf">
+
+            <main class="l-content" itemprop="mainContentOfPage">
+
+                <section class="l-section wpb_row height_auto color_primary with_img parallax_ver"
+                         style="padding-top: 230px !important;padding-bottom: 200px !important;">
+                    <div class="l-section-img" style="background-image: url(https://i.ytimg.com/vi/3mdYg3ruVBU/maxresdefault.jpg)"
+                         data-img-width="1920" data-img-height="1280">
+                    </div>
+                    <div class="l-section-h i-cf">
+                        <div class="g-cols type_default valign_middle">
+                            <div class="vc_col-sm-12 vc_col-lg-12 vc_col-md-12 wpb_column vc_column_container">
+                                <div class="vc_column-inner">
+                                    <div class="wpb_wrapper">
+                                        <h1 style="text-align: center" class="vc_custom_heading">Le Wild-Book</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="l-section wpb_row height_auto">
+                    <div class="l-section-h i-cf">
+                        <div class="g-cols type_boxes valign_middle">
+                            <div class="vc_col-sm-12 wpb_column vc_column_container has-fill animate_afb wild-shadow">
+                                <div class="vc_column-inner  vc_custom_1485528384312"><div class="wpb_wrapper">
+                                        <div class="wpb_text_column  font-size-twenty">
+                                            <p>En se réveillant un matin après des rêves agités, Gregor Samsa se retrouva, dans son lit, métamorphosé en un monstrueux insecte. Il était sur le dos, un dos aussi dur qu’une carapace, et, en relevant un peu la tête, il vit, bombé, brun, cloisonné par des arceaux plus rigides, son abdomen sur le haut duquel la couverture, prête à glisser tout à fait, ne tenait plus qu’à peine. Ses nombreuses pattes, lamentablement grêles par comparaison avec la corpulence qu’il avait par ailleurs, grouillaient désespérément sous ses yeux. « Qu’est-ce qui m’est arrivé ? » pensa-t-il. Ce n’était pas un rêve. Sa chambre, une vraie chambre humaine, juste un peu trop petite, était là tranquille entre les quatre murs qu’il connaissait bien. Au-dessus de la table où était déballée une collection d’échantillons de tissus - Samsa était représentant de commerce - on voyait accrochée l’image qu’il avait récemment découpée dans un magazine et mise dans un joli cadre doré. Elle représentait une dame munie d’une toque et d’un boa tous les deux en fourrure et qui, assise bien droite, tendait vers le spectateur un lourd manchon de fourrure où tout son avant-bras avait disparu. Le regard de Gregor se tourna ensuite vers la fenêtre, et le temps maussade - on entendait les gouttes de pluie frapper le rebord en zinc - le rendit tout mélancolique. « Et si je redormais un peu et oubliais toutes ces sottises ? » se dit-il ; mais c’était absolument irréalisable, car il avait l’habitude de dormir sur le côté droit et, dans l’état où il était à présent, il était incapable de se mettre dans cette position. En se réveillant un matin après des rêves agités, Gregor Samsa se retrouva, dans son lit, métamorphosé en un monstrueux insecte.</p>
+
+                                            <p>Il était sur le dos, un dos aussi dur qu’une carapace, et, en relevant un peu la tête, il vit, bombé, brun, cloisonné par des arceaux plus rigides, son abdomen sur le haut duquel la couverture, prête à glisser tout à fait, ne tenait plus qu’à peine. Ses nombreuses pattes, lamentablement grêles par comparaison avec la corpulence qu’il avait par ailleurs, grouillaient désespérément sous ses yeux. « Qu’est-ce qui m’est arrivé ? » pensa-t-il. Ce n’était pas un rêve. Sa chambre, une vraie chambre humaine, juste un peu trop petite, était là tranquille entre les quatre murs qu’il connaissait bien. Au-dessus de la table où était déballée une collection d’échantillons de tissus - Samsa était représentant de commerce - on voyait accrochée l’image qu’il avait récemment découpée dans un magazine et mise dans un joli cadre doré. Elle représentait une dame munie d’une toque et d’un boa tous les deux en fourrure et qui, assise bien droite, tendait vers le spectateur un lourd manchon de fourrure où tout son avant-bras avait disparu. Le regard de Gregor se tourna ensuite vers la fenêtre, et le temps maussade - on entendait les gouttes de pluie frapper le rebord en zinc - le rendit tout mélancolique. « Et si je redormais un peu et oubliais toutes ces sottises ? » se dit-il ; mais c’était absolument irréalisable, car il avait l’habitude de dormir sur le côté droit et, dans l’état où il était à présent, il était incapable de se mettre dans cette position. En se réveillant un matin après des rêves agités, Gregor Samsa se retrouva, dans son lit, métamorphosé en un monstrueux insecte. Il était sur le dos, un dos aussi dur qu’une carapace, et, en relevant un peu la tête, il vit, bombé, brun, cloisonné par des arceaux plus rigides, son abdomen sur le haut duquel la couverture, prête à glisser tout à fait, ne tenait plus qu’à peine.</p>
+
+                                            <p>Ses nombreuses pattes, lamentablement grêles par comparaison avec la corpulence qu’il avait par ailleurs, grouillaient désespérément sous ses yeux. « Qu’est-ce qui m’est arrivé ? » pensa-t-il. Ce n’était pas un rêve. Sa chambre, une vraie chambre humaine, juste un peu trop petite, était là tranquille entre les quatre murs qu’il connaissait bien. Au-dessus de la table où était déballée une collection d’échantillons de tissus - Samsa était représentant de commerce - on voyait accrochée l’image qu’il avait récemment découpée dans un magazine et mise dans un joli cadre doré. Elle représentait une dame munie d’une toque et d’un boa tous les deux en fourrure et qui, assise bien droite, tendait vers le spectateur un lourd manchon de fourrure où tout son avant-bras avait disparu. Le regard de Gregor se tourna ensuite vers la fenêtre, et le temps maussade - on entendait les gouttes de pluie frapper le rebord en zinc - le rendit tout mélancolique. « Et si je redormais un peu et oubliais toutes ces sottises ? » se dit-il ; mais c’était absolument irréalisable, car il avait l’habitude de dormir sur le côté droit et, dans l’état où il était à présent, il était incapable de se mettre dans cette position. En se réveillant un matin après des rêves agités, Gregor Samsa se retrouva, dans son lit, métamorphosé en un monstrueux insecte. Il était sur le dos, un dos aussi dur qu’une carapace, et, en relevant un peu la tête, il vit, bombé, brun, cloisonné par des arceaux plus rigides, son abdomen sur le haut duquel la couverture, prête à glisser tout à fait, ne tenait plus qu’à peine. Ses nombreuses pattes, lamentablement grêles par comparaison avec la corpulence qu’il avait par ailleurs, grouillaient désespérément sous ses yeux. « Qu’est-ce qui m’est arrivé ? » pensa-t-il. Ce n’était pas un rêve. Sa chambre, une vraie chambre humaine, juste un peu trop petite, était là tranquille entre les quatre murs qu’il connaissait bien. Au-dessus de la table où était déballée une collection d’échantillons de tissus - Samsa était représentant de commerce - on voyait accrochée l’image qu’il avait récemment découpée dans un magazine et mise dans un joli cadre doré. Elle représentait une dame munie d’une toque et d’un boa tous les deux en fourrure et qui, assise bien droite, tendait vers le spectateur un lourd manchon de fourrure où tout son avant-bras avait disparu. Le regard de Gregor se tourna ensuite vers la fenêtre, et le temps maussade - on entendait les gouttes de pluie frapper le rebord en zinc - le rendit tout mélancolique. « Et si je redormais un peu et oubliais toutes ces sottises ? » se dit-il ; mais c’était absolument irréalisable, car il avait l’habitude de dormir sur le côté droit et, dans l’état où il était à présent, il était incapable de se mettre dans cette position. En se réveillant un matin après des rêves agités, Gregor Samsa se retrouva, dans son lit, métamorphosé en un monstrueux insecte. Il était sur le dos, un dos aussi dur qu’une carapace, et, en relevant un peu la tête, il vit, bombé, brun, cloisonné par des arceaux plus rigides, son abdomen sur le haut duquel la couverture, prête à glisser tout à fait, ne tenait plus qu’à peine. Ses nombreuses pattes, lamentablement grêles par comparaison avec la corpulence qu’il avait par ailleurs, grouillaient désespérément sous ses yeux. « Qu’est-ce qui m’est arrivé ? » pensa-t-il. Ce n’était pas un rêve. Sa chambre, une vraie chambre humaine, juste un peu trop petite, était là tranquille entre les quatre</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+
+
+
+
+    <a class="w-header-show" href="javascript:void(0);"></a>
+    <a class="w-toplink" href="#" title="Retour vers le haut"></a>
+    <script type="text/javascript">
+        if (window.$us === undefined) window.$us = {};
+        $us.canvasOptions = ($us.canvasOptions || {});
+        $us.canvasOptions.disableEffectsWidth = 900;
+        $us.canvasOptions.responsive = true;
+
+        $us.langOptions = ($us.langOptions || {});
+        $us.langOptions.magnificPopup = ($us.langOptions.magnificPopup || {});
+        $us.langOptions.magnificPopup.tPrev = 'Précédent (clavier, flèche vers la gauche)'; // Alt text on left arrow
+        $us.langOptions.magnificPopup.tNext = 'Suivant (clavier, touche flèche vers la droite)'; // Alt text on right arrow
+        $us.langOptions.magnificPopup.tCounter = '%curr% de %total%'; // Markup for "1 of 7" counter
+
+        $us.navOptions = ($us.navOptions || {});
+        $us.navOptions.mobileWidth = 900;
+        $us.navOptions.togglable = true;
+        $us.ajaxLoadJs = true;
+        $us.templateDirectoryUri = '//wildcodeschool.fr/wp-content/themes/Zephyr';
+    </script>
+    <!-- Custom Facebook Feed JS -->
+    <script type="text/javascript">
+        var cfflinkhashtags = "true";
+    </script>
+
+
+    <script type="text/javascript">$us.headerSettings = {"default":{"options":{"orientation":"hor","sticky":"1","scroll_breakpoint":100,"transparent":1,"width":300,"elm_align":"center","top_show":"1","top_height":36,"top_sticky_height":"0","top_fullwidth":"1","middle_height":"100","middle_sticky_height":"80","middle_fullwidth":"1","bg_img":"","bg_img_wrapper_start":"","bg_img_size":"cover","bg_img_repeat":"repeat","bg_img_attachment":"scroll","bg_img_position":"top center","bgimage_wrapper_end":"","bottom_show":0,"bottom_height":50,"bottom_sticky_height":50,"bottom_fullwidth":0},"layout":{"top_left":["socials:2"],"top_center":[],"top_right":["socials:1"],"middle_left":["image:1"],"middle_center":[],"middle_right":["menu:1","btn:1"],"bottom_left":[],"bottom_center":[],"bottom_right":[],"hidden":[]}},"tablets":{"options":{"orientation":"hor","sticky":1,"scroll_breakpoint":100,"transparent":1,"width":300,"elm_align":"center","top_show":0,"top_height":36,"top_sticky_height":36,"top_fullwidth":0,"middle_height":80,"middle_sticky_height":50,"middle_fullwidth":0,"bg_img":"","bg_img_wrapper_start":"","bg_img_size":"cover","bg_img_repeat":"repeat","bg_img_attachment":"scroll","bg_img_position":"top center","bgimage_wrapper_end":"","bottom_show":0,"bottom_height":50,"bottom_sticky_height":50,"bottom_fullwidth":0},"layout":{"top_left":["socials:2"],"top_center":[],"top_right":["socials:1"],"middle_left":["image:1"],"middle_center":[],"middle_right":["menu:1","btn:1"],"bottom_left":[],"bottom_center":[],"bottom_right":[],"hidden":[]}},"mobiles":{"options":{"orientation":"hor","sticky":1,"scroll_breakpoint":50,"transparent":1,"width":300,"elm_align":"center","top_show":0,"top_height":36,"top_sticky_height":36,"top_fullwidth":0,"middle_height":50,"middle_sticky_height":50,"middle_fullwidth":0,"bg_img":"","bg_img_wrapper_start":"","bg_img_size":"cover","bg_img_repeat":"repeat","bg_img_attachment":"scroll","bg_img_position":"top center","bgimage_wrapper_end":"","bottom_show":0,"bottom_height":50,"bottom_sticky_height":50,"bottom_fullwidth":0},"layout":{"top_left":["socials:2"],"top_center":[],"top_right":["socials:1"],"middle_left":["image:1"],"middle_center":[],"middle_right":["menu:1","btn:1"],"bottom_left":[],"bottom_center":[],"bottom_right":[],"hidden":[]}}};</script>
+    <script type="text/javascript">(function() {function addEventListener(element,event,handler) {
+            if(element.addEventListener) {
+                element.addEventListener(event,handler, false);
+            } else if(element.attachEvent){
+                element.attachEvent('on'+event,handler);
+            }
+        }function maybePrefixUrlField() {
+            if(this.value.trim() !== '' && this.value.indexOf('http') !== 0) {
+                this.value = "http://" + this.value;
+            }
+        }
+
+            var urlFields = document.querySelectorAll('.mc4wp-form input[type="url"]');
+            if( urlFields && urlFields.length > 0 ) {
+                for( var j=0; j < urlFields.length; j++ ) {
+                    addEventListener(urlFields[j],'blur',maybePrefixUrlField);
+                }
+            }/* test if browser supports date fields */
+            var testInput = document.createElement('input');
+            testInput.setAttribute('type', 'date');
+            if( testInput.type !== 'date') {
+
+                /* add placeholder & pattern to all date fields */
+                var dateFields = document.querySelectorAll('.mc4wp-form input[type="date"]');
+                for(var i=0; i<dateFields.length; i++) {
+                    if(!dateFields[i].placeholder) {
+                        dateFields[i].placeholder = 'YYYY-MM-DD';
+                    }
+                    if(!dateFields[i].pattern) {
+                        dateFields[i].pattern = '[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])';
+                    }
+                }
+            }
+
+        })();</script><script type="text/javascript" id="sns_global_scripts">// Start of Tawk.to Script
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/579a1560bcbba63963f99e6d/default';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();</script><script type='text/javascript' src='https://wildcodeschool.fr/wp-content/plugins/animated-typing-effect/assets/js/typed.js?ver=1'></script>
+    <script type='text/javascript' src='https://wildcodeschool.fr/wp-content/plugins/animated-typing-effect/assets/js/typed.fe.js?ver=1'></script>
+    <script type='text/javascript' src='https://wildcodeschool.fr/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.51.0-2014.06.20'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var _wpcf7 = {"recaptcha":{"messages":{"empty":"Merci de confirmer que vous n\u2019\u00eates pas un robot."}},"cached":"1"};
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='https://wildcodeschool.fr/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=4.7'></script>
+    <script type='text/javascript' src='https://wildcodeschool.fr/wp-content/plugins/custom-facebook-feed/js/cff-scripts.js?ver=2.4.5'></script>
+    <script type='text/javascript' src='//wildcodeschool.fr/wp-content/themes/Zephyr/framework/js/us.core.min.js?ver=4.0.2'></script>
+    <script type='text/javascript' src='https://checkout.stripe.com/checkout.js'></script>
+    <script type='text/javascript' src='https://wildcodeschool.fr/wp-content/plugins/wp-simple-pay-pro-for-stripe/assets/js/vendor/accounting.min.js?ver=2.5.4'></script>
+    <script type='text/javascript' src='https://wildcodeschool.fr/wp-content/plugins/wp-simple-pay-pro-for-stripe/assets/js/vendor/parsley.min.js?ver=2.5.4'></script>
+    <script type='text/javascript' src='https://wildcodeschool.fr/wp-content/plugins/wp-simple-pay-pro-for-stripe/assets/js/vendor/moment.min.js?ver=2.5.4'></script>
+    <script type='text/javascript' src='https://wildcodeschool.fr/wp-content/plugins/wp-simple-pay-pro-for-stripe/assets/js/vendor/pikaday.min.js?ver=2.5.4'></script>
+    <script type='text/javascript' src='https://wildcodeschool.fr/wp-content/plugins/wp-simple-pay-pro-for-stripe/assets/js/vendor/pikaday.jquery.js?ver=2.5.4'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var simplePayFrontendGlobals = {"ajaxurl":"https:\/\/wildcodeschool.fr\/wp-admin\/admin-ajax.php","nonce":"60a22c39c9","paymentSubmittingButtonLabel":"Please wait...","couponAmountOffText":"off","zeroAmountCheckoutButtonLabel":"Start Now","zeroDecimalCurrencies":["BIF","CLP","DJF","GNF","JPY","KMF","KRW","MGA","PYG","RWF","VND","VUV","XAF","XOF","XPF"],"scriptDebug":"false"};
+        var simplePayFormSettings = null;
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='https://wildcodeschool.fr/wp-content/plugins/wp-simple-pay-pro-for-stripe/assets/js/pro-public.min.js?ver=2.5.4'></script>
+    <script type='text/javascript' src='https://wildcodeschool.fr/wp-includes/js/wp-embed.min.js?ver=4.7.5'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var mc4wp_forms_config = [];
+        /* ]]> */
+    </script>
+</div>
+</body>
+</html>
+
+
+{#{% endblock %}#}
