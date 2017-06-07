@@ -1,10 +1,10 @@
 footer {
     background-color: #424242;
     color: #ffffff;
-    height: 900px;
+    height: 840px;
     font-family: "Open Sans", sans-serif;
     font-size: 16px;
-    z-index: 1;
+    z-index: 100;
 }
 
 h4 {
