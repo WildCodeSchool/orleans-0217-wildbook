@@ -12,7 +12,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('BookBundle:Front:nav_barre.html.twig');
+        return $this->render('BookBundle:Front:accueil.html.twig');
     }
 
     /**
@@ -20,14 +20,14 @@ class DefaultController extends Controller
      */
     public function listWildersAction()
     {
-        return $this->render('BookBundle:Front:list_wilders.html.twig');
+        return $this->render('BookBundle:Front:wilder_search.html.twig');
     }
 
     /**
-     * @Route("/listrealisations")
+     * @Route("/search_realisation")
      */
     public function listRealisationsAction()
     {
-        return $this->render('BookBundle:Front:list_realisations.html.twig');
+        return $this->render('BookBundle:Front:realisation_search.html.twig');
     }
 }
