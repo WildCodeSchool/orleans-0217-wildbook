@@ -36,12 +36,12 @@
                             <div class="btn-group">
                                 <button type="button" class="btn-lg btn-default btn-warning dropdown-toggle" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
-                                    ECOLE <span class="caret"></span>
+                                    ECOLE
                                 </button>
                                 <select class="selectpicker dropdown-menu" title="Ecole" data-style="btn-warning">
-                                    <option>Lille</option>
-                                    <option>Orleans</option>
-                                    <option>La Loupe</option>
+                                    {% for school in schools %}
+                                        <option value="{{ school.school }}">{{ school.school }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -50,12 +50,13 @@
                             <div class="btn-group">
                                 <button type="button" class="btn-lg btn-default btn-warning dropdown-toggle" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
-                                    TYPE <span class="caret"></span>
+                                    TYPE
                                 </button>
                                 <select class="selectpicker dropdown-menu" title="Ecole" data-style="btn-warning">
-                                    <option>Vitrine</option>
-                                    <option>Application</option>
-                                    <option>Mobile</option>
+                                    <option value="">Type de projet</option>
+                                    {% for category in categories %}
+                                        <option value="{{ category.label }}">{{ category.label }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -64,12 +65,12 @@
                             <div class="btn-group">
                                 <button type="button" class="btn-lg btn-default btn-warning dropdown-toggle" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
-                                    ANNEE <span class="caret"></span>
+                                    ANNEE
                                 </button>
                                 <select class="selectpicker dropdown-menu" title="Annee" data-style="btn-warning">
-                                    <option>2017</option>
-                                    <option>2016</option>
-                                    <option>2015</option>
+                                    {% for promotion in promotions %}
+                                        <option value="{{ promotion.promotion }}">{{ promotion.promotion }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>

@@ -5,7 +5,8 @@ namespace BookBundle\Controller;
 use BookBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Project controller.
@@ -150,4 +151,6 @@ class ProjectController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
+
 }
