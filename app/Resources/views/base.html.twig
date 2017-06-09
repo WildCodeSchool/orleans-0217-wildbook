@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styleHome.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {% endblock %}
 
     <link rel="icon" type="image/png" href="{{ asset('images/LOGO_WCS_ORANGE-BLANC_PASTILLE.png') }}"/>
@@ -24,97 +25,10 @@
 
 {% block body %}
 
+{% endblock body %}
+
 {% block container %}
-    <!-- HEADER -->
-    <div class="homeHeader container-fluid">
-        {# ---------- IMAGE À DÉTERMINER ! ---------- #}
-        <img class="homeHeaderPic" src="{{ asset('images/WCS_HEADER6.jpg') }}" alt="..."/>
-    </div>
 
-    <!-- BOUTONS NAVGATION (WILDERS + RÉALISATIONS) -->
-    <div class="homeNavigation">
-
-        <a href="{{ path('search_wilder') }}">
-            <div class="homeNavigationButton shadow">
-                WILDERS
-            </div>
-        </a>
-
-        <a href="{{ path('search_realisation') }}">
-            <div class="homeNavigationButton shadow">
-                RÉALISATIONS
-            </div>
-        </a>
-
-    </div>
-
-    <!-- TEXTE ACCEUIL 1 -->
-    <div class="homeText row container-fluid">
-        <div class="col-lg-offset-3 col-lg-6 noPadding">
-            <h2 class="homeTextTitle">Pertem se inatum tanum</h2>
-            <p class="homeTextParagraph">
-                Entesserortis consunte, nos et, que pribuliam opopoente consulestra. Catur hoccives.<br>
-                Upimus et pro prio, con dentens ulumuni rmiliem atiquem noccisusquas caut C. more entelicivere rem
-                culia acii ium nit, ego et publicaeculi praventius, nonsus spimmov ereniricae iamdicae audam
-                sinente, queaucit, nos huiurs incere, es hoc, nium.<br>
-                <br>
-                Similic avoccios audemus ciamquodit, quam sulocressic fureo mediis conc in teribus laris, stratuspio
-                mo iam audam ego critique faucien atampotium ponc opori pertem se milic avoccios audemus ciamquodit
-                inatum tanum horessentrum publinem.
-            </p>
-        </div>
-    </div>
-
-    <!-- IMAGE 1 -->
-    <div class="homeIllustration">
-        {#---------- IMAGE À DÉTERMINER ! ----------#}
-        <img class="homeIllustrationPic" src="{{ asset('images/WCS_HEADER7.jpg') }}" alt="..."/>
-    </div>
-
-    <!-- TEXTE ACCEUIL 2 -->
-    <div class="homeText row container-fluid">
-        <div class="col-lg-offset-3 col-lg-6 noPadding">
-            <h2 class="homeTextTitle">Pertem se inatum tanum</h2>
-            <p class="homeTextParagraph">
-                Entesserortis consunte, nos et, que pribuliam opopoente consulestra. Catur hoccives.<br>
-                Upimus et pro prio, con dentens ulumuni rmiliem atiquem noccisusquas caut C. more entelicivere rem
-                culia acii ium nit, ego et publicaeculi praventius, nonsus spimmov ereniricae iamdicae audam
-                sinente, queaucit, nos huiurs incere, es hoc, nium.<br>
-                <br>
-                Similic avoccios audemus ciamquodit, quam sulocressic fureo mediis conc in teribus laris, stratuspio
-                mo iam audam ego critique faucien atampotium ponc opori pertem se milic avoccios audemus ciamquodit
-                inatum tanum horessentrum publinem.
-            </p>
-        </div>
-    </div>
-
-    <!-- ENCART 'PROFIL DU MOMENT' -->
-
-    <!-- FILET -->
-    <div class="row container-fluid">
-        <hr class="homeLine col-lg-offset-3 col-lg-6">
-    </div>
-
-    <!-- API GÉOLOCATION -->
-    <div class="homeText row container-fluid">
-        <div class="col-lg-offset-3 col-lg-6">
-            <h2 class="homeTextTitle">Notre réseau de Wilders</h2>
-            <p class="homeTextParagraph">
-                Entesserortis consunte, nos et, que pribuliam opopoente dentens ulumuni consulestra.<br>
-                Upimus et pro prio, rmiliem atiquem noccisusquas caut C.
-            </p>
-        </div>
-
-        <div class="row container-fluid">
-            <div class="homeGeolocation col-lg-offset-3 col-lg-6 noPadding"></div>
-        </div>
-    </div>
-
-    <!-- IMAGE 3 (FIN DE PAGE - COLLÉ AU FOOTER)-->
-    <div class="homeIllustration">
-        {#---------- IMAGE À DÉTERMINER ! ----------#}
-        <img class="homeIllustrationPic" src="{{ asset('images/WCS_HEADER8.jpg') }}" alt="..."/>
-    </div>
 {% endblock container %}
 
 {% block footer %}
@@ -249,8 +163,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
 {% endblock javascripts %}
-
-{% endblock body %}
 
 </body>
 </html>
