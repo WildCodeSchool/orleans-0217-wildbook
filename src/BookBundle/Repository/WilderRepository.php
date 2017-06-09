@@ -10,4 +10,19 @@ namespace BookBundle\Repository;
  */
 class WilderRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function searchByName($input)
+    {
+        $qb = $this->createQueryBuilder('w')
+            ->where('w.firstname LIKE :input')
+            ->setParameter('input','%'.$input.'%');
+        return $qb->getQuery()->getResult();
+    }
+
+    public function searchBy($languages)
+    {
+        $qb = $this->createQueryBuilder('w')
+            ->where('w.languages = :languages')
+            ->setParameter('languages', $languages);
+        return $qb->getQuery()->getResult();
+    }
 }

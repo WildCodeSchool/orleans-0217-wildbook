@@ -137,7 +137,7 @@ class ProjectWilderController extends Controller
     /**
      * Displays a form to edit an existing language entity.
      *
-     * @Route("/{id}/delete", name="language_indexdelete")
+     * @Route("/{id}/delete", name="projectwilder_indexdelete")
      * @Method({"GET", "POST"})
      */
     public function indexDeleteAction( ProjectWilder $projectWilder)
