@@ -2,6 +2,7 @@
 
 {% block body %}
 
+
 <div class="container-fluid">
 
     <div class="row col-md-12">
@@ -17,6 +18,8 @@
                     <th>Date</th>
                     <th>Status</th>
                     <th>Summary</th>
+                    <th>Category</th>
+                    <th>School</th>
                     <th>Tags</th>
                     <th>Languages</th>
                     <th>Technologies</th>
@@ -26,6 +29,7 @@
             </thead>
             <tbody>
             {% for project in projects %}
+                {{ dump(project ,project.category) }}
                 <tr>
                     <td><a href="{{ path('project_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
                     <td>{{ project.title }}</td>
@@ -33,6 +37,8 @@
                     <td>{% if project.date %}{{ project.date|date('Y-m-d') }}{% endif %}</td>
                     <td>{{ project.status }}</td>
                     <td>{{ project.summary }}</td>
+                    <td>{{ project.category.label }}</td>
+                    <td>{{ project.school.school }}</td>
 
                     <td>{% for tags in project.tags %}
                             {{ tags.tag }}{% if not loop.last %}, {% endif %}

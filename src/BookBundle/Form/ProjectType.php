@@ -5,6 +5,7 @@ namespace BookBundle\Form;
 use BookBundle\Entity\Category;
 use BookBundle\Entity\Language;
 use BookBundle\Entity\Picture;
+use BookBundle\Entity\School;
 use BookBundle\Entity\Tag;
 use BookBundle\Entity\Technology;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -51,7 +52,12 @@ class ProjectType extends AbstractType
                     'choice_label'=>'language',
                     'expanded'=>true,
                     'multiple'=>true
+                ])
+                ->add('school', EntityType::class, [
+                'class'=>School::class,
+                'choice_label'=>'school'
                 ]);
+
     }
     
     /**
