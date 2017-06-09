@@ -1,8 +1,3 @@
-body {
-    font-family: 'Source Sans Pro', sans-serif;
-    background-color: #fbfbfb;
-}
-
 /** PAGE RECHERCHE REALISATIONS **/
 
 .img1 {
@@ -74,8 +69,15 @@ body {
     height:640px;
 }
 
+.list_realisations h4 {
+    color : #0f0f0f;
+}
+
+.list_wilders h4 {
+    color : #0f0f0f;
+}
+
 .img2 {
     background-image: url("../images/image1b.jpg");
     height: 365px;
-
 }

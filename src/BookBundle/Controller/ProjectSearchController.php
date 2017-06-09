@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: wilder7
- * Date: 08/06/17
- * Time: 17:37
- */
 
 namespace BookBundle\Controller;
 
@@ -57,8 +51,10 @@ class ProjectSearchController extends Controller
         $form->handleRequest($request);
 
         $input=$categories=$schools=$promotions='';
+        $blocResult=false;
 
         if ($form->isValid() && $form->isSubmitted()) {
+            $blocResult=true;
             $data = $form->getData();
             $input = $data['input'];
             $categories = $data['category'];
@@ -74,26 +70,30 @@ class ProjectSearchController extends Controller
                 dump($projectsSearch);
             }
 
-            return $this->render('BookBundle:Front:realisation_list_result.html.twig', array(
-                'projectsSearch' => $projectsSearch
+            return $this->render('BookBundle:Front:realisation_search.html.twig', array(
+                'form' => $form->createView(),
+                'projectsSearch' => $projectsSearch,
+                'blocResult' => $blocResult
+
             ));
         }
 
         return $this->render('BookBundle:Front:realisation_search.html.twig' ,array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'blocResult' => $blocResult
         ));
     }
 
 
-    /**
-     * @Route("/search_realisation_result", name="search_realisation_result")
-     */
-    public function searchRealisationsResultAction($projectsSearch)
-    {
-        return $this->render('BookBundle:Front:realisation_list_result.html.twig', [
-            'projectsSearch' => $projectsSearch
-        ]);
-    }
+//    /**
+//     * @Route("/search_realisation_result", name="search_realisation_result")
+//     */
+//    public function searchRealisationsResultAction($projectsSearch)
+//    {
+//        return $this->render('BookBundle:Front:realisation_list_result.html.twig', [
+//            'projectsSearch' => $projectsSearch
+//        ]);
+//    }
 
 
 
