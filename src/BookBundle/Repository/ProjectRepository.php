@@ -21,8 +21,8 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     public function searchBy($categories)
     {
         $qb = $this->createQueryBuilder('p')
-            ->where('p.category = :categories')
-            ->setParameter('categories', $categories);
+            ->andWhere('p.category IN (:category)')
+            ->setParameter('category', $categories);
         return $qb->getQuery()->getResult();
     }
 }

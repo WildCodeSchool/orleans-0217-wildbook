@@ -58,8 +58,10 @@ class WilderSearchController extends Controller
         $form->handleRequest($request);
 
         $input=$languages=$schools=$promotions='';
+        $blocResult=false;
 
         if ($form->isValid() && $form->isSubmitted()) {
+            $blocResult=true;
             $data = $form->getData();
             $input = $data['input'];
             $languages = $data['language'];
@@ -75,12 +77,15 @@ class WilderSearchController extends Controller
                 dump($wildersSearch);
             }
 
-            return $this->render('BookBundle:Front:wilder_list_result.html.twig', array(
+            return $this->render('BookBundle:Front:wilder_search.html.twig', array(
+                'blocResult' => $blocResult,
+                'form' => $form->createView(),
                 'wildersSearch' => $wildersSearch
             ));
         }
 
         return $this->render('BookBundle:Front:wilder_search.html.twig' ,array(
+            'blocResult' => $blocResult,
             'form' => $form->createView()
         ));
     }
