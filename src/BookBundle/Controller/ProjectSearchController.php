@@ -64,10 +64,10 @@ class ProjectSearchController extends Controller
             $projectsSearch='';
             if (isset($input)){
                 $projectsSearch = $em->getRepository(Project::class)->searchByTitle($input);
-                dump($projectsSearch);
+//                dump($projectsSearch);
             } else {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy($categories,$schools);
-                dump($projectsSearch);
+                $projectsSearch = $em->getRepository(Project::class)->searchBy($categories = null,$schools = null);
+//                dump($projectsSearch);
             }
 
             return $this->render('BookBundle:Front:realisation_search.html.twig', array(

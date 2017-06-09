@@ -18,7 +18,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function searchBy($categories,$schools)
+    public function searchBy($categories = null,$schools = null)
     {
         $qb = $this->createQueryBuilder('p')
             ->where('p.category IN (:category)')
@@ -28,10 +28,11 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function searchByP($schools)
+    public function searchByP($promotions)
     {
         $qb = $this->createQueryBuilder('p')
-            ->andWhere('p.school IN (:school)')
+            ->join('school','s')
+            ->Where('p.school IN (:school)')
             ->setParameter('school', $schools);
 
         return $qb->getQuery()->getResult();
