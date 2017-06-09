@@ -10,4 +10,19 @@ namespace BookBundle\Repository;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function searchByTitle($input)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.title LIKE :input')
+            ->setParameter('input','%'.$input.'%');
+        return $qb->getQuery()->getResult();
+    }
+
+    public function searchBy($categories)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.category = :categories')
+            ->setParameter('categories', $categories);
+        return $qb->getQuery()->getResult();
+    }
 }

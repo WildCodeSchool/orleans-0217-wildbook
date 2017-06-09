@@ -18,81 +18,87 @@
             <div class="search">
                 <div class="row">
                     <div class="col-lg-4 col-lg-offset-4 blocksearch">
-                        <form name="" class="form-inline" method="get">
-                            <div class="form-group inputsearch">
-                                <label class="sr-only" for="">label</label>
-                                <input type="text" class="form-control" name="" id="" placeholder="nom du wilder">
-                            </div>
-                            <button type="submit" class="btn btn-default btn-wcs">OK</button>
-                        </form>
+
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <button type="submit" class="btn btn-default btn-wcs">OK</button>
+                        {{ form_end(form) }}
+
+                        {#<form name="" class="form-inline" method="get">#}
+                            {#<div class="form-group inputsearch">#}
+                                {#<label class="sr-only" for="">label</label>#}
+                                {#<input type="text" class="form-control" name="" id="" placeholder="nom du wilder">#}
+                            {#</div>#}
+                            {#<button type="submit" class="btn btn-default btn-wcs">OK</button>#}
+                        {#</form>#}
                     </div><!-- /.col-lg-6 -->
                 </div><!-- /.row -->
             </div>
 
             <div class="search-selectors">
                 <div class="row col-xs-offset-2">
-                    <form id="" name="" class="form-inline" method="post" action="">
-                        <div class="col-md-2 col-sm-3">
-                            <div class="btn-group">
-                                <button type="button" class="btn-lg btn-default btn-warning dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                    LANGAGE
-                                </button>
-                                <select class="selectpicker dropdown-menu" title="Langage" data-style="btn-warning">
-                                    {% for language in languages %}
-                                        <option value="{{ language.language }}">{{ language.language }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
+                    {#<form id="" name="" class="form-inline" method="post" action="">#}
+                        {#<div class="col-md-2 col-sm-4 col-xs-12">#}
+                            {#<div class="btn-group">#}
+                                {#<button type="button" class="btn-lg btn-default btn-warning dropdown-toggle" data-toggle="dropdown"#}
+                                        {#aria-haspopup="true" aria-expanded="true">#}
+                                    {#LANGAGE#}
+                                {#</button>#}
+                                {#<select class="selectpicker dropdown-menu" title="Langage" data-style="btn-warning">#}
+                                    {#{% for language in languages %}#}
+                                        {#<option value="{{ language.language }}">{{ language.language }}</option>#}
+                                    {#{% endfor %}#}
+                                {#</select>#}
+                            {#</div>#}
+                        {#</div>#}
 
-                        <div class="col-md-2 col-sm-3">
-                            <div class="btn-group">
-                                <button type="button" class="btn-lg btn-default btn-warning dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                    ECOLE
-                                </button>
-                                <select class="selectpicker dropdown-menu" title="Ecole" data-style="btn-warning">
-                                    {% for school in schools %}
-                                        <option value="{{ school.school }}">{{ school.school }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
+                        {#<div class="col-md-2 col-sm-4 col-xs-12">#}
+                            {#<div class="btn-group">#}
+                                {#<button type="button" class="btn-lg btn-default btn-warning dropdown-toggle" data-toggle="dropdown"#}
+                                        {#aria-haspopup="true" aria-expanded="false">#}
+                                    {#ECOLE#}
+                                {#</button>#}
+                                {#<select class="selectpicker dropdown-menu" title="Ecole" data-style="btn-warning">#}
+                                    {#{% for school in schools %}#}
+                                        {#<option value="{{ school.school }}">{{ school.school }}</option>#}
+                                    {#{% endfor %}#}
+                                {#</select>#}
+                            {#</div>#}
+                        {#</div>#}
 
-                        <div class="col-md-2 col-sm-3">
-                            <div class="btn-group">
-                                <button type="button" class="btn-lg btn-default btn-warning dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                    PROMO
-                                </button>
-                                <select class="selectpicker dropdown-menu" title="promo" data-style="btn-warning">
-                                    {% for promotion in promotions %}
-                                        <option value="{{ promotion.promotion }}">{{ promotion.promotion }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
+                        {#<div class="col-md-2 col-sm-4 col-xs-12">#}
+                            {#<div class="btn-group">#}
+                                {#<button type="button" class="btn-lg btn-default btn-warning dropdown-toggle" data-toggle="dropdown"#}
+                                        {#aria-haspopup="true" aria-expanded="false">#}
+                                    {#PROMO#}
+                                {#</button>#}
+                                {#<select class="selectpicker dropdown-menu" title="promo" data-style="btn-warning">#}
+                                    {#{% for promotion in promotions %}#}
+                                        {#<option value="{{ promotion.promotion }}">{{ promotion.promotion }}</option>#}
+                                    {#{% endfor %}#}
+                                {#</select>#}
+                            {#</div>#}
+                        {#</div>#}
 
-                        <div class="col-md-2 col-sm-3">
-                            <div class="btn-group">
-                                <button type="button" class="btn-lg btn-default btn-warning dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                    DISPO
-                                </button>
-                                <select class="selectpicker dropdown-menu" title="dispo" data-style="btn-warning">
-                                    {% for availability in availabilities %}
-                                        <option value="{{ availability.label }}">{{ availability.label }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
+                        {#<div class="col-md-2 col-sm-4 col-xs-12">#}
+                            {#<div class="btn-group">#}
+                                {#<button type="button" class="btn-lg btn-default btn-warning dropdown-toggle" data-toggle="dropdown"#}
+                                        {#aria-haspopup="true" aria-expanded="false">#}
+                                    {#DISPO#}
+                                {#</button>#}
+                                {#<select class="selectpicker dropdown-menu" title="dispo" data-style="btn-warning">#}
+                                    {#{% for availability in availabilities %}#}
+                                        {#<option value="{{ availability.label }}">{{ availability.label }}</option>#}
+                                    {#{% endfor %}#}
+                                {#</select>#}
+                            {#</div>#}
+                        {#</div>#}
 
-                        <div class="col-md-1 col-sm-1">
-                            <button type="submit" class="btn btn-default btn-wcs">OK</button>
-                        </div>
+                        {#<div class="col-md-1 col-sm-1">#}
+                            {#<button type="submit" class="btn btn-default btn-wcs">OK</button>#}
+                        {#</div>#}
 
-                    </form>
+                    {#</form>#}
                 </div>
 
             </div>
