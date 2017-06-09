@@ -105,6 +105,8 @@
 
         </div>
 
+        {% if blocResult=='' %}
+
         <div class="realisation-focus">
 
             <div class="sub-title-slider">
@@ -153,6 +155,22 @@
             </div>
 
         </div>
+
+        {% else %}
+
+            <div class="list_wilders">
+                {% for wilderSearch  in wildersSearch%}
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <a href="#" class="thumbnail">
+                            <img src="{{ asset('images/LOGO_COLO.png') }}" alt="">
+                        </a>
+                        <h4>{{ wilderSearch.firstname }} {{ wilderSearch.lastname }}</h4>
+                    </div>
+                {% endfor %}
+            </div>
+
+        {% endif %}
+
 
     </div>
 
