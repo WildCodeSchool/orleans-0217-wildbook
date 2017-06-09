@@ -18,11 +18,22 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function searchBy($categories)
+    public function searchBy($categories,$schools)
     {
         $qb = $this->createQueryBuilder('p')
-            ->andWhere('p.category IN (:category)')
-            ->setParameter('category', $categories);
+            ->where('p.category IN (:category)')
+            ->setParameter('category', $categories)
+            ->andWhere('p.school IN (:school)')
+            ->setParameter('school', $schools);
+        return $qb->getQuery()->getResult();
+    }
+
+    public function searchByP($schools)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.school IN (:school)')
+            ->setParameter('school', $schools);
+
         return $qb->getQuery()->getResult();
     }
 }

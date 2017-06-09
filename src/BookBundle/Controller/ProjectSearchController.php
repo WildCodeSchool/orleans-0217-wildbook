@@ -66,7 +66,7 @@ class ProjectSearchController extends Controller
                 $projectsSearch = $em->getRepository(Project::class)->searchByTitle($input);
                 dump($projectsSearch);
             } else {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy($categories);
+                $projectsSearch = $em->getRepository(Project::class)->searchBy($categories,$schools);
                 dump($projectsSearch);
             }
 
