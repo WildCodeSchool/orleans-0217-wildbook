@@ -1,33 +1,101 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+
+    {% block header %}
+
+        <div class="homeHeader container-fluid">
+            {# ---------- IMAGE À DÉTERMINER ! ---------- #}
+            <img class="homeHeaderPic" src="{{ asset('images/WCS_HEADER8.jpg') }}" alt="..."/>
+        </div>
+
+        <div class="homeNavigation">
+            {#<a href="{{ path('search_wilders') }}">#}
+                {#<div class="homeNavigationButton shadow">#}
+                    {#WILDERS#}
+                {#</div>#}
+            {#</a>#}
+
+            {#<a href="{{ path('search_realisations') }}">#}
+                {#<div class="homeNavigationButton shadow">#}
+                    {#RÉALIATIONS#}
+                {#</div>#}
+            {#</a>#}
+        </div>
+
+        <div class="homeText row container-fluid">
+            <div class="col-lg-offset-3 col-lg-6 noPadding">
+                <h2 class="homeTextTitle">Pertem se inatum tanum</h2>
+                <p class="homeTextParagraph">
+                    Entesserortis consunte, nos et, que pribuliam opopoente consulestra. Catur hoccives pore nimus
+                    achusaticuliis.<br>
+                    Upimus et pro prio, con dentens ulumuni rmiliem atiquem noccisusquas caut C. more entelicivere rem
+                    culia acii ium nit, ego et publicaeculi praventius, nonsus spimmov ereniricae iamdicae audam
+                    sinente, que
+                    aucit, nos huiurs incere, es hoc, nium. Seribus eterum ora dica nos confectandam in pra ? Quit,
+                    Catatiquas alibust icaelabefaut vata des mantu.<br>
+                    <br>
+                    Similic avoccios audemus ciamquodit, quam sulocressic fureo mediis conc in teribus laris, stratuspio
+                    mo iam audam ego critique faucien atampotium ponc opori pertem se inatum tanum horessentrum
+                    publinem,
+                    et pre, qui tam tatquon pertemerrae tasdam conculudam intem commore mentrei conscio.
+                </p>
+            </div>
+        </div>
+
+        <div class="homeIllustration">
+            {#---------- IMAGE À DÉTERMINER ! ----------#}
+            <img class="homeIllustrationPic" src="{{ asset('images/WCS_HEADER7.jpg') }}" alt="..."/>
+        </div>
+
+        <div class="homeText row container-fluid">
+            <div class="col-lg-offset-3 col-lg-6 noPadding">
+                <h2 class="homeTextTitle">Pertem se inatum tanum</h2>
+                <p class="homeTextParagraph">
+                    Entesserortis consunte, nos et, que pribuliam opopoente consulestra. Catur hoccives pore nimus
+                    achusaticuliis.<br>
+                    Upimus et pro prio, con dentens ulumuni rmiliem atiquem noccisusquas caut C. more entelicivere rem
+                    culia acii ium nit, ego et publicaeculi praventius, nonsus spimmov ereniricae iamdicae audam
+                    sinente, que
+                    aucit, nos huiurs incere, es hoc, nium. Seribus eterum ora dica nos confectandam in pra ? Quit,
+                    Catatiquas alibust icaelabefaut vata des mantu.<br>
+                    <br>
+                    Similic avoccios audemus ciamquodit, quam sulocressic fureo mediis conc in teribus laris, stratuspio
+                    mo iam audam ego critique faucien atampotium ponc opori pertem se inatum tanum horessentrum
+                    publinem,
+                    et pre, qui tam tatquon pertemerrae tasdam conculudam intem commore mentrei conscio.
+                </p>
+            </div>
+        </div>
+
+        <!-- ENCART 'PROFIL DU MOMENT' -->
+
+        <!-- FIN ENCART 'PROFIL DU MOMENT' -->
+
+        <div class="row container-fluid">
+            <hr class="homeLine col-lg-offset-3 col-lg-6">
+        </div>
+
+        <div class="homeText row container-fluid">
+            <div class="col-lg-offset-3 col-lg-6">
+                <h2 class="homeTextTitle">Notre réseau de Wilders</h2>
+                <p class="homeTextParagraph">
+                    Entesserortis consunte, nos et, que pribuliam opopoente consulestra L. Catur hoccives pore nimus
+                    achusat
+                    iculiis.<br>
+                    Upimus et pro prio, con dentens ulumuni rmiliem atiquem noccisusquas caut C.
+                </p>
+            </div>
+
+            <div class="row container-fluid">
+                <div class="homeGeolocation col-lg-offset-3 col-lg-6 noPadding"></div>
+            </div>
+        </div>
+
+        <div class="homeIllustration">
+            {#---------- IMAGE À DÉTERMINER ! ----------#}
+            <img class="homeIllustrationPic" src="{{ asset('images/WCS_HEADER6.jpg') }}" alt="..."/>
+        </div>
+    {% endblock header %}
+
 {% endblock body %}
