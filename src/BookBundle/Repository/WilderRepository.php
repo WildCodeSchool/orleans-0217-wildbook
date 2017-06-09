@@ -21,8 +21,10 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
     public function searchBy($languages)
     {
         $qb = $this->createQueryBuilder('w')
-            ->where('w.languages = :languages')
-            ->setParameter('languages', $languages);
+            ->join('w.language','l')
+            ->addSelect('l')
+            ->where('w.id = :id')
+            ->setParameter('id', $languages);
         return $qb->getQuery()->getResult();
     }
 }

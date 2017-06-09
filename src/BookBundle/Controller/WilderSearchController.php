@@ -73,7 +73,7 @@ class WilderSearchController extends Controller
                 $wildersSearch = $em->getRepository(Wilder::class)->searchByName($input);
                 dump($wildersSearch);
             } else {
-                $wildersSearch = $em->getRepository(Wilder::class)->searchBy($languages);
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy('126');
                 dump($wildersSearch);
             }
 
