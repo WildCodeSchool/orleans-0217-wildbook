@@ -48,6 +48,10 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>Category</th>
+                    <td>{{ project.category.label }}</td>
+                </tr>
+                <tr>
                     <th>Langages</th>
                     <td>{% for languages in project.languages %}
                             {{ languages.language }}{% if not loop.last %}, {% endif %}
