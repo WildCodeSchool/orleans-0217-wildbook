@@ -39,6 +39,16 @@ class LoadLanguageData  extends AbstractFixture implements OrderedFixtureInterfa
         $manager -> persist ( $ruby );
         $this->addReference('Ruby', $ruby );
 
+        $c = new Language ();
+        $c -> setLanguage('C');
+        $manager -> persist ( $c );
+        $this->addReference('C', $c );
+
+        $cplus = new Language ();
+        $cplus -> setLanguage('C++');
+        $manager -> persist ( $cplus );
+        $this->addReference('C++', $cplus );
+
         $manager -> flush ();
     }
 
