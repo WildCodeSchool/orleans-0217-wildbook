@@ -20,10 +20,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
+    /**
+     * WilderSearch Controller.
+     *
+     * @Route("search_wilder")
+     */
 class WilderSearchController extends Controller
 {
     /**
-     * @Route("/search_wilder" , name="search_wilder")
+     * @Route("/" , name="search_wilder")
      */
     public function listWildersAction(Request $request)
     {
@@ -33,7 +38,9 @@ class WilderSearchController extends Controller
             ->setMethod('POST')
             ->add('input', SearchType::class, [
                 'required' => false,
-                'attr' => ['placeholder' => 'wilder']
+                'attr' => ['placeholder' => 'wilder',
+                            'autocomplete' => 'off'
+                ]
             ])
             ->add('school', EntityType::class, [
                 'class'=>School::class,
@@ -88,6 +95,23 @@ class WilderSearchController extends Controller
             'blocResult' => $blocResult,
             'form' => $form->createView()
         ));
+    }
+
+    /*
+    * @Route("/ajax/{wilder}")
+    */
+    public function autocompleteAction(Request $request, $wilder)
+    {
+        if ($request->isXmlHttpRequest()){
+            /**
+             * @var $repository WilderRepository
+             */
+            $repository = $this->getDoctrine()->getRepository('BookBundle:Wilder');
+            $data = $repository->getWilderLike($wilder);
+            return new JsonResponse(array("data" => json_encode($data)));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
     }
 
 }

@@ -27,4 +27,15 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('id', $languages);
         return $qb->getQuery()->getResult();
     }
+
+    public function getWilderLike($wilder)
+    {
+        $wilder = "%" . $wilder . "%";
+        $qb = $this->createQueryBuilder('w')
+            ->select('w.firstname')
+            ->where('w.firstname LIKE :wilder')
+            ->setParameter('wilder', $wilder)
+            ->getQuery();
+        return $qb->getResult();
+    }
 }
