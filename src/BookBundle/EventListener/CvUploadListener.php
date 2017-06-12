@@ -40,7 +40,7 @@ class CvUploadListener
             return;
         }
 
-        if ($fileName = $entity->getCv())) {
+        if ($fileName = $entity->getCv()) {
             $entity->setCv(new File($this->uploader->getTargetDir().'/'.$fileName));
         }
     }

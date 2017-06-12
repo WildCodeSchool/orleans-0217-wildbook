@@ -34,7 +34,9 @@ class WilderType extends AbstractType
                 ->add('profilPicture', null, [
                     'required'=> false,
                 ])
-                ->add('cv')
+                ->add('cv', FileType::class, [
+                    'label'=>'CV (PDF file)'
+                ])
                 ->add('website')
                 ->add('github')
                 ->add('linkedin')
