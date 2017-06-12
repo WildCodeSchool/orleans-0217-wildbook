@@ -35,7 +35,8 @@ class WilderType extends AbstractType
                     'required'=> false,
                 ])
                 ->add('cv', FileType::class, [
-                    'label'=>'CV (PDF file)'
+                    'label'=>'CV (PDF file)',
+                    'required'=>false
                 ])
                 ->add('website')
                 ->add('github')

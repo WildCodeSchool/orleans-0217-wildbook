@@ -1,8 +1,8 @@
 {% extends 'base_admin.html.twig' %}
-{#{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}#}
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
 {#{% form_theme edit_form 'form_div_layout.html.twig' %}#}
 {#{% form_theme edit_form 'form_table_layout.html.twig' %}#}
-{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
+{#{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}#}
 {#{% form_theme edit_form 'foundation_5_layout.html.twig' %}#}
 
 {% block body %}
@@ -10,10 +10,117 @@
     <div class="container-fluid">
 
 
-        <h3>Wilder: {{ wilder.lastname }}</h3>
+        <h3>Wilder: {{ wilder.firstname }} {{ wilder.lastname }}</h3>
         <div class="form-group">
             {{ form_start(edit_form) }}
-            {{ form_widget(edit_form) }}
+
+            {{ form_label(edit_form.firstname,'Prénom') }}
+            {{ form_widget(edit_form.firstname) }}
+            {{ form_errors(edit_form.firstname) }}
+
+            {{ form_label(edit_form.lastname,'Nom') }}
+            {{ form_widget(edit_form.lastname) }}
+            {{ form_errors(edit_form.lastname) }}
+
+            {{ form_label(edit_form.birthDate,'Date de naissance') }}
+            {{ form_widget(edit_form.birthDate) }}
+            {{ form_errors(edit_form.birthDate) }}
+
+            {{ form_label(edit_form.address,'Adresse') }}
+            {{ form_widget(edit_form.address) }}
+            {{ form_errors(edit_form.address) }}
+
+            {{ form_label(edit_form.postalCode,'Code Postal') }}
+            {{ form_widget(edit_form.postalCode) }}
+            {{ form_errors(edit_form.postalCode) }}
+
+            {{ form_label(edit_form.city,'Ville') }}
+            {{ form_widget(edit_form.city) }}
+            {{ form_errors(edit_form.city) }}
+
+            {{ form_label(edit_form.skill,'Compétences') }}
+            {{ form_widget(edit_form.skill) }}
+            {{ form_errors(edit_form.skill) }}
+
+            {{ form_label(edit_form.freelanceAvailability,'Freelance') }}
+            {{ form_widget(edit_form.freelanceAvailability) }}
+            {{ form_errors(edit_form.freelanceAvailability) }}
+
+            {{ form_label(edit_form.modjo,'Modjo') }}
+            {{ form_widget(edit_form.modjo) }}
+            {{ form_errors(edit_form.modjo) }}
+
+            {{ form_label(edit_form.biography,'Biographie') }}
+            {{ form_widget(edit_form.biography) }}
+            {{ form_errors(edit_form.biography) }}
+
+            {{ form_label(edit_form.contactEmail,'Email contact') }}
+            {{ form_widget(edit_form.contactEmail) }}
+            {{ form_errors(edit_form.contactEmail) }}
+
+            {{ form_label(edit_form.profilPicture,'Photo Profil') }}
+            <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" width="100px"/>
+            {{ form_widget(edit_form.profilPicture) }}
+            {{ form_errors(edit_form.profilPicture) }}
+
+            {{ form_label(edit_form.cv,'CV') }}
+            {% if wilder.cv =='' %}
+            {% else %}
+            <a href="{{ asset('uploads/' ~ wilder.cv) }}">voir le cv</a>
+            {% endif %}
+            {{ form_widget(edit_form.cv) }}
+            {{ form_errors(edit_form.cv) }}
+
+            {{ form_label(edit_form.website,'Site perso') }}
+            {{ form_widget(edit_form.website) }}
+            {{ form_errors(edit_form.website) }}
+
+            {{ form_label(edit_form.github,'Github') }}
+            {{ form_widget(edit_form.github) }}
+            {{ form_errors(edit_form.github) }}
+
+            {{ form_label(edit_form.linkedin,'Linkedin') }}
+            {{ form_widget(edit_form.linkedin) }}
+            {{ form_errors(edit_form.linkedin) }}
+
+            {{ form_label(edit_form.facebook,'Facebook') }}
+            {{ form_widget(edit_form.facebook) }}
+            {{ form_errors(edit_form.facebook) }}
+
+            {{ form_label(edit_form.twitter,'Twitter') }}
+            {{ form_widget(edit_form.twitter) }}
+            {{ form_errors(edit_form.twitter) }}
+
+            {{ form_label(edit_form.codewarsUsername,'Identifiant Codewars') }}
+            {{ form_widget(edit_form.codewarsUsername) }}
+            {{ form_errors(edit_form.codewarsUsername) }}
+
+            {{ form_label(edit_form.languages,'Langages') }}
+            {{ form_widget(edit_form.languages) }}
+            {{ form_errors(edit_form.languages) }}
+
+            {{ form_label(edit_form.technologies,'Technologies') }}
+            {{ form_widget(edit_form.technologies) }}
+            {{ form_errors(edit_form.technologies) }}
+
+            {{ form_label(edit_form.availability,'Statut disponibilité') }}
+            {{ form_widget(edit_form.availability) }}
+            {{ form_errors(edit_form.availability) }}
+
+            {{ form_label(edit_form.promotion,'Promotion') }}
+            {{ form_widget(edit_form.promotion) }}
+            {{ form_errors(edit_form.promotion) }}
+
+            {{ form_label(edit_form.userActivation,'Publication Wilder') }}
+            {{ form_widget(edit_form.userActivation) }}
+            {{ form_errors(edit_form.userActivation) }}
+
+            {{ form_label(edit_form.managerActivation,'Publication CampusManager') }}
+            {{ form_widget(edit_form.managerActivation) }}
+            {{ form_errors(edit_form.managerActivation) }}
+
+
+
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-success" value="Edit" />

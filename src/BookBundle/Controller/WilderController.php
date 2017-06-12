@@ -67,7 +67,7 @@ class WilderController extends Controller
             $em->persist($wilder);
             $em->flush();
 
-            return $this->redirectToRoute('wilder_show', array('id' => $wilder->getId()));
+            return $this->redirectToRoute('wilder_index');
         }
 
         return $this->render('wilder/new.html.twig', array(
@@ -133,7 +133,7 @@ class WilderController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('wilder_edit', array('id' => $wilder->getId()));
+            return $this->redirectToRoute('wilder_index');
         }
 
         return $this->render('wilder/edit.html.twig', array(

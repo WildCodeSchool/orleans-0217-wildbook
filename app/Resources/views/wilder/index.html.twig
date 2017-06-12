@@ -14,14 +14,16 @@
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Birthdate</th>
-                    <th>Address</th>
-                    <th>Postalcode</th>
-                    <th>City</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Date Naissance</th>
+                    <th>Adresse</th>
+                    <th>CP</th>
+                    <th>Ville</th>
                     <th>Modjo</th>
-                    <th>Contactemail</th>
-                    <th>Profilpicture</th>
-                    <th>Language</th>
+                    <th>Email</th>
+                    <th>Photo Profil</th>
+                    <th>Langages</th>
                     <th>Useractivation</th>
                     <th>Manageractivation</th>
                     <th>Actions</th>
@@ -31,6 +33,8 @@
                 {% for wilder in wilders %}
                     <tr>
                         <td><a href="{{ path('wilder_show', { 'id': wilder.id }) }}">{{ wilder.id }}</a></td>
+                        <td>{{ wilder.lastname }}</td>
+                        <td>{{ wilder.firstname }}</td>
                         <td>{% if wilder.birthDate %}{{ wilder.birthDate|date('Y-m-d') }}{% endif %}</td>
                         <td>{{ wilder.address }}</td>
                         <td>{{ wilder.postalCode }}</td>
