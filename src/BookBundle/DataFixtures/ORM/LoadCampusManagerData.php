@@ -98,6 +98,6 @@ class LoadCampusManagerData  extends AbstractFixture implements OrderedFixtureIn
     public function getOrder ()
     {
 
-        return 7 ;
+        return 15 ;
     }
 }
