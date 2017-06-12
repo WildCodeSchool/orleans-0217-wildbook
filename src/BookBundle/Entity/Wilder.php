@@ -194,7 +194,7 @@ class Wilder
     /**
      * @var string
      *
-     * @ORM\Column(name="firsname", type="string", length=50)
+     * @ORM\Column(name="firstname", type="string", length=50)
      */
     private $firstname;
 

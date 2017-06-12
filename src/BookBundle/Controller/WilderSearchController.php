@@ -15,12 +15,16 @@ use BookBundle\Entity\School;
 use BookBundle\Entity\Wilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use BookBundle\Repository\WilderRepository;
 
 
-    /**
+/**
      * WilderSearch Controller.
      *
      * @Route("search_wilder")
@@ -97,17 +101,23 @@ class WilderSearchController extends Controller
         ));
     }
 
-    /*
-    * @Route("/ajax/{wilder}")
-    */
-    public function autocompleteAction(Request $request, $wilder)
+     /**
+     * @Route("/ajax/{input}", name="ddddd")
+     * @Method("POST")
+     *
+     * @param Request $request
+     * @param $input
+     *
+     * @return JsonResponse
+     */
+    public function autocompleteAction(Request $request, $input)
     {
         if ($request->isXmlHttpRequest()){
             /**
              * @var $repository WilderRepository
              */
             $repository = $this->getDoctrine()->getRepository('BookBundle:Wilder');
-            $data = $repository->getWilderLike($wilder);
+            $data = $repository->getLike($input);
             return new JsonResponse(array("data" => json_encode($data)));
         } else {
             throw new HttpException('500', 'Invalid call');

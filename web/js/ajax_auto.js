@@ -3,18 +3,18 @@
  */
 $( document ).ready(function() {
     $("#form_input").keyup(function(){
-        var wilder = $(this).val();
-        if ( wilder.length >= 3 ) {
+        var input = $(this).val();
+        if ( input.length >= 2 ) {
             $.ajax({
                 type: "POST",
-                url: "ajax/" + wilder,
+                url: "/search_wilder/ajax/" + input,
                 dataType: 'json',
                 // timeout: 3000,
                 success: function(response){
                     var wilders = JSON.parse(response.data);
                     html = "";
                     for (i = 0; i < wilders.length; i++) {
-                        html += "<li>" + wilders[i].firsname + "</li>";
+                        html += "<li>" + wilders[i].firstname + " " + wilders[i].lastname + "</li>";
                     }
                     $('#autocomplete').html(html);
                     $('#autocomplete li').on('click', function() {
