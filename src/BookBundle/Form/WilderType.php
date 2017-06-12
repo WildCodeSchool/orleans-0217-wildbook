@@ -9,6 +9,7 @@ use BookBundle\Entity\Technology;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,7 +20,9 @@ class WilderType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('birthDate', BirthdayType::class)
+        $builder->add('firstname')
+                ->add('lastname')
+                ->add('birthDate', BirthdayType::class)
                 ->add('address')
                 ->add('postalCode')
                 ->add('city')
@@ -28,7 +31,9 @@ class WilderType extends AbstractType
                 ->add('modjo')
                 ->add('biography')
                 ->add('contactEmail')
-                ->add('profilPicture')
+                ->add('profilPicture', null, [
+                    'required'=> false,
+                ])
                 ->add('cv')
                 ->add('website')
                 ->add('github')
