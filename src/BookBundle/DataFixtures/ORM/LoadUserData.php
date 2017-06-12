@@ -53,29 +53,29 @@ class LoadUserData  extends AbstractFixture implements OrderedFixtureInterface
         $user -> setWilder($this->getReference('Wilder1'));
         $manager -> persist ( $user );
 
-        $user = new User ();
-        $user -> setUsername('user2');
-        $user -> setUsernameCanonical('user2');
-        $user -> setEmail ('user2.test@gmail.com');
-        $user -> setEmailCanonical('user2.test@gmail.com');
-        $user -> setEnabled(true);
-        $user -> setPassword ('7VEX5zLPQofmXaI7pJ9FsekkvPCEMpix81tJFUEIocOQMZqxqFtsu');
-        $user -> setLastLogin(new \DateTime('2017-06-01 12:32:52'));
-        $user -> setRoles([]);
-        $user -> setWilder($this->getReference('Wilder4'));
-        $manager -> persist ( $user );
-
-        $user = new User ();
-        $user -> setUsername('user3');
-        $user -> setUsernameCanonical('user3');
-        $user -> setEmail ('user3.test@gmail.com');
-        $user -> setEmailCanonical('user3.test@gmail.com');
-        $user -> setEnabled(true);
-        $user -> setPassword ('7VEX5zLPQofmXaI7pJ9FsekkvPCEMpix81tJFUEIocOQMZqxqFtsu');
-        $user -> setLastLogin(new \DateTime('2017-06-01 12:32:52'));
-        $user -> setRoles([]);
-        $user -> setWilder($this->getReference('Wilder5'));
-        $manager -> persist ( $user );
+//        $user = new User ();
+//        $user -> setUsername('user2');
+//        $user -> setUsernameCanonical('user2');
+//        $user -> setEmail ('user2.test@gmail.com');
+//        $user -> setEmailCanonical('user2.test@gmail.com');
+//        $user -> setEnabled(true);
+//        $user -> setPassword ('7VEX5zLPQofmXaI7pJ9FsekkvPCEMpix81tJFUEIocOQMZqxqFtsu');
+//        $user -> setLastLogin(new \DateTime('2017-06-01 12:32:52'));
+//        $user -> setRoles([]);
+//        $user -> setWilder($this->getReference('Wilder4'));
+//        $manager -> persist ( $user );
+//
+//        $user = new User ();
+//        $user -> setUsername('user3');
+//        $user -> setUsernameCanonical('user3');
+//        $user -> setEmail ('user3.test@gmail.com');
+//        $user -> setEmailCanonical('user3.test@gmail.com');
+//        $user -> setEnabled(true);
+//        $user -> setPassword ('7VEX5zLPQofmXaI7pJ9FsekkvPCEMpix81tJFUEIocOQMZqxqFtsu');
+//        $user -> setLastLogin(new \DateTime('2017-06-01 12:32:52'));
+//        $user -> setRoles([]);
+//        $user -> setWilder($this->getReference('Wilder5'));
+//        $manager -> persist ( $user );
 
         $manager -> flush ();
     }
