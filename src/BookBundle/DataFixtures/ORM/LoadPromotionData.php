@@ -18,19 +18,19 @@ class LoadPromotionData extends AbstractFixture implements OrderedFixtureInterfa
 {
     public function load ( ObjectManager $manager )
     {
-        $orlSept17 = new Promotion ();
-        $orlSept17 -> setPromotion('OrlSept17');
-        $orlSept17 -> setSchool($this->getReference('Orleans'));
-        $orlSept17 -> setLanguages([$this->getReference('Php')]);
-        $manager -> persist ( $orlSept17 );
-        $this->addReference('OrlSept17', $orlSept17 );
+        $orlSept16 = new Promotion ();
+        $orlSept16 -> setPromotion('OrlSept16');
+        $orlSept16 -> setSchool($this->getReference('Orleans'));
+        $orlSept16 -> setLanguages([$this->getReference('Php')]);
+        $manager -> persist ( $orlSept16 );
+        $this->addReference('OrlSept16', $orlSept16 );
 
-        $orlFev16 = new Promotion ();
-        $orlFev16 -> setPromotion('OrlFev16');
-        $orlFev16 -> setSchool($this->getReference('Orleans'));
-        $orlFev16 -> setLanguages([$this->getReference('Php')]);
-        $manager -> persist ( $orlFev16 );
-        $this->addReference('OrlFev16', $orlFev16 );
+        $orlFev17 = new Promotion ();
+        $orlFev17 -> setPromotion('OrlFev17');
+        $orlFev17 -> setSchool($this->getReference('Orleans'));
+        $orlFev17 -> setLanguages([$this->getReference('Php')]);
+        $manager -> persist ( $orlFev17 );
+        $this->addReference('OrlFev17', $orlFev17 );
 
         $lyonFev17 = new Promotion ();
         $lyonFev17 -> setPromotion('LyonFev17');
