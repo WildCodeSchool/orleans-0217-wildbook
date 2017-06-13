@@ -19,6 +19,7 @@ class LoadProjectData  extends AbstractFixture implements OrderedFixtureInterfac
     public function load ( ObjectManager $manager )
     {
         $project1 = new Project();
+       giat
         $project1 -> setDate(new \DateTime('2016-11-05'));
         $project1 -> setTitle('Le cameleon voyageur');
         $project1 -> setPath('www.le-cameleon-voyeur.com');
