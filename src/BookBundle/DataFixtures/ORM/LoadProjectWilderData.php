@@ -78,6 +78,6 @@ class LoadProjectWilderData  extends AbstractFixture implements OrderedFixtureIn
     public function getOrder ()
     {
 
-        return 12 ;
+        return 18 ;
     }
 }

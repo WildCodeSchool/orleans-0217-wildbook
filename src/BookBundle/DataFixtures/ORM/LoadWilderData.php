@@ -19,6 +19,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
     public function load ( ObjectManager $manager )
     {
         $wilder1 = new Wilder();
+        $wilder1 -> setUser($this->getReference('user1'));
         $wilder1 -> setFirstname('Lannister');
         $wilder1 -> setLastname('Jaime');
         $wilder1 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -47,6 +48,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder2 = new Wilder();
+        $wilder2 -> setUser($this->getReference('user2'));
         $wilder2 -> setFirstname('Lannister');
         $wilder2 -> setLastname('Myrcella');
         $wilder2 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -75,6 +77,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder3 = new Wilder();
+        $wilder3 -> setUser($this->getReference('user3'));
         $wilder3 -> setFirstname('Lannister');
         $wilder3 -> setLastname('Tyrion');
         $wilder3 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -103,6 +106,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder4 = new Wilder();
+        $wilder4 -> setUser($this->getReference('user4'));
         $wilder4 -> setFirstname('Stark');
         $wilder4 -> setLastname('Robb');
         $wilder4 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -131,6 +135,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder5 = new Wilder();
+        $wilder5 -> setUser($this->getReference('user5'));
         $wilder5 -> setFirstname('Stark');
         $wilder5 -> setLastname('Ned');
         $wilder5 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -159,6 +164,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder6 = new Wilder();
+        $wilder6 -> setUser($this->getReference('user6'));
         $wilder6 -> setFirstname('Greyjoy');
         $wilder6 -> setLastname('Theon');
         $wilder6 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -188,6 +194,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder7 = new Wilder();
+        $wilder7 -> setUser($this->getReference('user7'));
         $wilder7 -> setFirstname('Snow');
         $wilder7 -> setLastname('Jon');
         $wilder7 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -216,6 +223,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder8 = new Wilder();
+        $wilder8 -> setUser($this->getReference('user8'));
         $wilder8 -> setFirstname('Targaryen');
         $wilder8 -> setLastname('Aemon');
         $wilder8 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -244,6 +252,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder9 = new Wilder();
+        $wilder9 -> setUser($this->getReference('user9'));
         $wilder9 -> setFirstname('Rayder');
         $wilder9 -> setLastname('Mance');
         $wilder9 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -272,6 +281,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder10 = new Wilder();
+        $wilder10 -> setUser($this->getReference('user10'));
         $wilder10 -> setFirstname('De Fer');
         $wilder10 -> setLastname('La Montagne');
         $wilder10 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -300,6 +310,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder11 = new Wilder();
+        $wilder11 -> setUser($this->getReference('user11'));
         $wilder11 -> setFirstname('Le Limier');
         $wilder11 -> setLastname('Clegane');
         $wilder11 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -328,17 +339,18 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder12 = new Wilder();
+        $wilder12 -> setUser($this->getReference('user12'));
         $wilder12 -> setFirstname('Giantsbane');
         $wilder12 -> setLastname('Tormund');
         $wilder12 -> setBirthDate(new \DateTime('1990-11-17'));
         $wilder12 -> setAddress('36 rue de wester');
-        $wilder12 -> setPostalCode(45140);
+        $wilder12 -> setPostalCode(67000);
         $wilder12 -> setCity('Saran');
         $wilder12 -> setSkill('SCRUM,BDD, Adobe Suite, Microsoft Office, Git');
         $wilder12 -> setFreelanceAvailability(true);
         $wilder12 -> setBiography('Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui permet de penser à la cænogenèse de l\'être dont il est question dans la cause ambiguë entendue à Moÿ, dans un capharnaüm qui, pense-t-il, diminue çà et là la qualité de son œuvre. Prouvez, beau juge, que le fameux sandwich au yak tue. L\'île exiguë, Où l\'obèse jury mûr Fête l\'haï volapük, Âne ex æquo au whist, Ôtez ce vœu déçu. Vieux pelage que je modifie : breitschwanz ou yak ? Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera ! Fougueux, j\'enivre la squaw au pack de beau zythum. Ketch, yawl, jonque flambant neuve… jugez des prix ! Voyez le brick géant que j\'examine près du wharf. Portez ce vieux whisky au juge blond qui fume. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Voix ambiguë d\'un cœur qui, au zéphyr, préfère les jattes de kiwis. Mon pauvre zébu ankylosé choque deux fois ton wagon jaune. Perchez dix, vingt woks. Qu\'y flambé-je ? Le moujik équipé de faux breitschwanz voyage. Kiwi fade, aptéryx, quel jambon vous gâchez ! Jugez qu\'un vieux whisky blond pur malt fonce. Faux kwachas ? Quel projet de voyage zambien ! Fripon, mixez l\'abject whisky qui vidange. Vif juge, trempez ce blond whisky aqueux. Vif P-DG mentor, exhibez la squaw jockey. Juge, flambez l\'exquis patchwork d\'Yvon.Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui pe');
         $wilder12 -> setContactEmail('Wilder12contacte@gmail.com');
-        $wilder12 -> setProfilPicture('tormund- Giantsbane.jpg');
+        $wilder12 -> setProfilPicture('tormund-Giantsbane.jpg');
         $wilder12 -> setWebsite('www.google.com');
         $wilder12 -> setGithub('www.github.com');
         $wilder12 -> setLinkedin('www.linkedin.com');
@@ -357,6 +369,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder13 = new Wilder();
+        $wilder13 -> setUser($this->getReference('user13'));
         $wilder13 -> setFirstname('Drogo');
         $wilder13 -> setLastname('Khal');
         $wilder13 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -384,6 +397,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('wilder13', $wilder13 );
 
         $wilder14 = new Wilder();
+        $wilder14 -> setUser($this->getReference('user14'));
         $wilder14 -> setFirstname('Lannister');
         $wilder14 -> setLastname('Lancel');
         $wilder14 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -411,6 +425,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('wilder14', $wilder14 );
 
         $wilder15 = new Wilder();
+        $wilder15 -> setUser($this->getReference('user15'));
         $wilder15 -> setFirstname('Varys');
         $wilder15 -> setLastname('Lord');
         $wilder15 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -438,6 +453,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('wilder15', $wilder15 );
 
         $wilder16 = new Wilder();
+        $wilder16 -> setUser($this->getReference('user16'));
         $wilder16 -> setFirstname('Martell');
         $wilder16 -> setLastname('Oberyn');
         $wilder16 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -466,6 +482,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder17 = new Wilder();
+        $wilder17 -> setUser($this->getReference('user17'));
         $wilder17 -> setFirstname('Lannister');
         $wilder17 -> setLastname('Cersei');
         $wilder17 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -493,6 +510,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('wilder17', $wilder17 );
 
         $wilder18 = new Wilder();
+        $wilder18 -> setUser($this->getReference('user18'));
         $wilder18 -> setFirstname('Lannister');
         $wilder18 -> setLastname('Tommen');
         $wilder18 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -520,6 +538,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('wilder18', $wilder18 );
 
         $wilder19 = new Wilder();
+        $wilder19 -> setUser($this->getReference('user19'));
         $wilder19 -> setFirstname('Stark');
         $wilder19 -> setLastname('Arya');
         $wilder19 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -547,6 +566,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('wilder19', $wilder19 );
 
         $wilder20 = new Wilder();
+        $wilder20 -> setUser($this->getReference('user20'));
         $wilder20 -> setFirstname('Naharis');
         $wilder20 -> setLastname('Daario');
         $wilder20 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -574,6 +594,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('wilder20', $wilder20 );
 
         $wilder21 = new Wilder();
+        $wilder21 -> setUser($this->getReference('user21'));
         $wilder21 -> setFirstname('Nairn');
         $wilder21 -> setLastname('Hodor');
         $wilder21 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -601,6 +622,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('wilder21', $wilder21 );
 
         $wilder22 = new Wilder();
+        $wilder22 -> setUser($this->getReference('user22'));
         $wilder22 -> setFirstname('Moineau');
         $wilder22 -> setLastname('Le Grand');
         $wilder22 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -628,6 +650,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('wilder22', $wilder22 );
 
         $wilder23 = new Wilder();
+        $wilder23 -> setUser($this->getReference('user23'));
         $wilder23 -> setFirstname('Miss');
         $wilder23 -> setLastname('Missandei');
         $wilder23 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -655,6 +678,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('wilder23', $wilder23 );
 
         $wilder24 = new Wilder();
+        $wilder24 -> setUser($this->getReference('user24'));
         $wilder24 -> setFirstname('Tyrell');
         $wilder24 -> setLastname('Olenna');
         $wilder24 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -683,6 +707,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder25 = new Wilder();
+        $wilder25 -> setUser($this->getReference('user25'));
         $wilder25 -> setFirstname('Lannister');
         $wilder25 -> setLastname('Joffrey');
         $wilder25 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -710,6 +735,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder25', $wilder25 );
 
         $wilder26 = new Wilder();
+        $wilder26 -> setUser($this->getReference('user26'));
         $wilder26 -> setFirstname('Sand');
         $wilder26 -> setLastname('Ellaria');
         $wilder26 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -737,6 +763,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder26', $wilder26 );
 
         $wilder27 = new Wilder();
+        $wilder27 -> setUser($this->getReference('user27'));
         $wilder27 -> setFirstname('Miss');
         $wilder27 -> setLastname('Melisandre');
         $wilder27 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -764,6 +791,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder27', $wilder27 );
 
         $wilder28 = new Wilder();
+        $wilder28 -> setUser($this->getReference('user28'));
         $wilder28 -> setFirstname('Baelish');
         $wilder28 -> setLastname('Petyr');
         $wilder28 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -791,6 +819,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder28', $wilder28 );
 
         $wilder29 = new Wilder();
+        $wilder29 -> setUser($this->getReference('user29'));
         $wilder29 -> setFirstname('Baratheon');
         $wilder29 -> setLastname('Robert');
         $wilder29 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -818,6 +847,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder29', $wilder29 );
 
         $wilder30 = new Wilder();
+        $wilder30 -> setUser($this->getReference('user30'));
         $wilder30 -> setFirstname('Ragekit');
         $wilder30 -> setLastname('Ygritte');
         $wilder30 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -845,6 +875,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder30', $wilder30 );
 
         $wilder31 = new Wilder();
+        $wilder31 -> setUser($this->getReference('user31'));
         $wilder31 -> setFirstname('De Torth');
         $wilder31 -> setLastname('Brienne');
         $wilder31 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -872,6 +903,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder31', $wilder31 );
 
         $wilder32 = new Wilder();
+        $wilder32 -> setUser($this->getReference('user32'));
         $wilder32 -> setFirstname('Bolton');
         $wilder32 -> setLastname('Ramsey');
         $wilder32 -> setBirthDate(new \DateTime('1990-11-17'));
@@ -899,6 +931,375 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder32', $wilder32 );
 
 
+        $wilder33 = new Wilder();
+        $wilder33 -> setUser($this->getReference('user33'));
+        $wilder33 -> setFirstname('Targaryen');
+        $wilder33 -> setLastname('Lord');
+        $wilder33 -> setBirthDate(new \DateTime('1990-11-17'));
+        $wilder33 -> setAddress('36 rue de wester');
+        $wilder33 -> setPostalCode(59000);
+        $wilder33 -> setCity('Lille');
+        $wilder33 -> setSkill('SCRUM,BDD, Adobe Suite, Microsoft Office, Git');
+        $wilder33 -> setFreelanceAvailability(true);
+        $wilder33 -> setBiography('Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui permet de penser à la cænogenèse de l\'être dont il est question dans la cause ambiguë entendue à Moÿ, dans un capharnaüm qui, pense-t-il, diminue çà et là la qualité de son œuvre. Prouvez, beau juge, que le fameux sandwich au yak tue. L\'île exiguë, Où l\'obèse jury mûr Fête l\'haï volapük, Âne ex æquo au whist, Ôtez ce vœu déçu. Vieux pelage que je modifie : breitschwanz ou yak ? Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera ! Fougueux, j\'enivre la squaw au pack de beau zythum. Ketch, yawl, jonque flambant neuve… jugez des prix ! Voyez le brick géant que j\'examine près du wharf. Portez ce vieux whisky au juge blond qui fume. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Voix ambiguë d\'un cœur qui, au zéphyr, préfère les jattes de kiwis. Mon pauvre zébu ankylosé choque deux fois ton wagon jaune. Perchez dix, vingt woks. Qu\'y flambé-je ? Le moujik équipé de faux breitschwanz voyage. Kiwi fade, aptéryx, quel jambon vous gâchez ! Jugez qu\'un vieux whisky blond pur malt fonce. Faux kwachas ? Quel projet de voyage zambien ! Fripon, mixez l\'abject whisky qui vidange. Vif juge, trempez ce blond whisky aqueux. Vif P-DG mentor, exhibez la squaw jockey. Juge, flambez l\'exquis patchwork d\'Yvon.Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui pe');
+        $wilder33 -> setContactEmail('wilder33contacte@gmail.com');
+        $wilder33 -> setProfilPicture('Daenerys-Targaryen.jpg');
+        $wilder33 -> setWebsite('www.google.com');
+        $wilder33 -> setGithub('www.github.com');
+        $wilder33 -> setLinkedin('www.linkedin.com');
+        $wilder33 -> setFacebook('www.facebook.com');
+        $wilder33 -> setTwitter('www.twitter.com');
+        $wilder33 -> setUserActivation(true);
+        $wilder33 -> setCodewarsUsername('ssineriz');
+        $wilder33 -> setManagerActivation(true);
+        $wilder33 -> setPromotion($this->getReference('LilleSept16'));
+        $wilder33 -> setAvailability($this->getReference('ReStage'));
+        $wilder33 -> setLanguages([$this->getReference('Ruby')]);
+        $wilder33 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
+        $manager -> persist ( $wilder33 );
+        $this->addReference('wilder33', $wilder33 );
+
+        $wilder34 = new Wilder();
+        $wilder34 -> setUser($this->getReference('user34'));
+        $wilder34 -> setFirstname('Tyrell');
+        $wilder34 -> setLastname('Margaery');
+        $wilder34 -> setBirthDate(new \DateTime('1990-11-17'));
+        $wilder34 -> setAddress('36 rue de wester');
+        $wilder34 -> setPostalCode(59000);
+        $wilder34 -> setCity('Lille');
+        $wilder34 -> setSkill('SCRUM,BDD, Adobe Suite, Microsoft Office, Git');
+        $wilder34 -> setFreelanceAvailability(true);
+        $wilder34 -> setBiography('Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui permet de penser à la cænogenèse de l\'être dont il est question dans la cause ambiguë entendue à Moÿ, dans un capharnaüm qui, pense-t-il, diminue çà et là la qualité de son œuvre. Prouvez, beau juge, que le fameux sandwich au yak tue. L\'île exiguë, Où l\'obèse jury mûr Fête l\'haï volapük, Âne ex æquo au whist, Ôtez ce vœu déçu. Vieux pelage que je modifie : breitschwanz ou yak ? Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera ! Fougueux, j\'enivre la squaw au pack de beau zythum. Ketch, yawl, jonque flambant neuve… jugez des prix ! Voyez le brick géant que j\'examine près du wharf. Portez ce vieux whisky au juge blond qui fume. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Voix ambiguë d\'un cœur qui, au zéphyr, préfère les jattes de kiwis. Mon pauvre zébu ankylosé choque deux fois ton wagon jaune. Perchez dix, vingt woks. Qu\'y flambé-je ? Le moujik équipé de faux breitschwanz voyage. Kiwi fade, aptéryx, quel jambon vous gâchez ! Jugez qu\'un vieux whisky blond pur malt fonce. Faux kwachas ? Quel projet de voyage zambien ! Fripon, mixez l\'abject whisky qui vidange. Vif juge, trempez ce blond whisky aqueux. Vif P-DG mentor, exhibez la squaw jockey. Juge, flambez l\'exquis patchwork d\'Yvon.Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui pe');
+        $wilder34 -> setContactEmail('wilder34contacte@gmail.com');
+        $wilder34 -> setProfilPicture('Margaery-Tyrell.jpg');
+        $wilder34 -> setWebsite('www.google.com');
+        $wilder34 -> setGithub('www.github.com');
+        $wilder34 -> setLinkedin('www.linkedin.com');
+        $wilder34 -> setFacebook('www.facebook.com');
+        $wilder34 -> setTwitter('www.twitter.com');
+        $wilder34 -> setUserActivation(true);
+        $wilder34 -> setCodewarsUsername('ssineriz');
+        $wilder34 -> setManagerActivation(true);
+        $wilder34 -> setPromotion($this->getReference('LilleSept16'));
+        $wilder34 -> setAvailability($this->getReference('ReStage'));
+        $wilder34 -> setLanguages([$this->getReference('Ruby')]);
+        $wilder34 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
+        $manager -> persist ( $wilder34 );
+        $this->addReference('wilder34', $wilder34 );
+
+        $wilder35 = new Wilder();
+        $wilder35 -> setUser($this->getReference('user35'));
+        $wilder35 -> setFirstname('Stark');
+        $wilder35 -> setLastname('Sansa');
+        $wilder35 -> setBirthDate(new \DateTime('1990-11-17'));
+        $wilder35 -> setAddress('36 rue de wester');
+        $wilder35 -> setPostalCode(59000);
+        $wilder35 -> setCity('Lille');
+        $wilder35 -> setSkill('SCRUM,BDD, Adobe Suite, Microsoft Office, Git');
+        $wilder35 -> setFreelanceAvailability(true);
+        $wilder35 -> setBiography('Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui permet de penser à la cænogenèse de l\'être dont il est question dans la cause ambiguë entendue à Moÿ, dans un capharnaüm qui, pense-t-il, diminue çà et là la qualité de son œuvre. Prouvez, beau juge, que le fameux sandwich au yak tue. L\'île exiguë, Où l\'obèse jury mûr Fête l\'haï volapük, Âne ex æquo au whist, Ôtez ce vœu déçu. Vieux pelage que je modifie : breitschwanz ou yak ? Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera ! Fougueux, j\'enivre la squaw au pack de beau zythum. Ketch, yawl, jonque flambant neuve… jugez des prix ! Voyez le brick géant que j\'examine près du wharf. Portez ce vieux whisky au juge blond qui fume. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Voix ambiguë d\'un cœur qui, au zéphyr, préfère les jattes de kiwis. Mon pauvre zébu ankylosé choque deux fois ton wagon jaune. Perchez dix, vingt woks. Qu\'y flambé-je ? Le moujik équipé de faux breitschwanz voyage. Kiwi fade, aptéryx, quel jambon vous gâchez ! Jugez qu\'un vieux whisky blond pur malt fonce. Faux kwachas ? Quel projet de voyage zambien ! Fripon, mixez l\'abject whisky qui vidange. Vif juge, trempez ce blond whisky aqueux. Vif P-DG mentor, exhibez la squaw jockey. Juge, flambez l\'exquis patchwork d\'Yvon.Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui pe');
+        $wilder35 -> setContactEmail('wilder35contacte@gmail.com');
+        $wilder35 -> setProfilPicture('Sansa-Stark.jpg');
+        $wilder35 -> setWebsite('www.google.com');
+        $wilder35 -> setGithub('www.github.com');
+        $wilder35 -> setLinkedin('www.linkedin.com');
+        $wilder35 -> setFacebook('www.facebook.com');
+        $wilder35 -> setTwitter('www.twitter.com');
+        $wilder35 -> setUserActivation(true);
+        $wilder35 -> setCodewarsUsername('ssineriz');
+        $wilder35 -> setManagerActivation(true);
+        $wilder35 -> setPromotion($this->getReference('LilleSept16'));
+        $wilder35 -> setAvailability($this->getReference('ReStage'));
+        $wilder35 -> setLanguages([$this->getReference('Ruby')]);
+        $wilder35 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
+        $manager -> persist ( $wilder35 );
+        $this->addReference('wilder35', $wilder35 );
+
+        $wilder36 = new Wilder();
+        $wilder36 -> setUser($this->getReference('user36'));
+        $wilder36 -> setFirstname('Stark');
+        $wilder36 -> setLastname('Talisa');
+        $wilder36 -> setBirthDate(new \DateTime('1990-11-17'));
+        $wilder36 -> setAddress('36 rue de wester');
+        $wilder36 -> setPostalCode(59120);
+        $wilder36 -> setCity('Loos');
+        $wilder36 -> setSkill('SCRUM,BDD, Adobe Suite, Microsoft Office, Git');
+        $wilder36 -> setFreelanceAvailability(true);
+        $wilder36 -> setBiography('Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui permet de penser à la cænogenèse de l\'être dont il est question dans la cause ambiguë entendue à Moÿ, dans un capharnaüm qui, pense-t-il, diminue çà et là la qualité de son œuvre. Prouvez, beau juge, que le fameux sandwich au yak tue. L\'île exiguë, Où l\'obèse jury mûr Fête l\'haï volapük, Âne ex æquo au whist, Ôtez ce vœu déçu. Vieux pelage que je modifie : breitschwanz ou yak ? Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera ! Fougueux, j\'enivre la squaw au pack de beau zythum. Ketch, yawl, jonque flambant neuve… jugez des prix ! Voyez le brick géant que j\'examine près du wharf. Portez ce vieux whisky au juge blond qui fume. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Voix ambiguë d\'un cœur qui, au zéphyr, préfère les jattes de kiwis. Mon pauvre zébu ankylosé choque deux fois ton wagon jaune. Perchez dix, vingt woks. Qu\'y flambé-je ? Le moujik équipé de faux breitschwanz voyage. Kiwi fade, aptéryx, quel jambon vous gâchez ! Jugez qu\'un vieux whisky blond pur malt fonce. Faux kwachas ? Quel projet de voyage zambien ! Fripon, mixez l\'abject whisky qui vidange. Vif juge, trempez ce blond whisky aqueux. Vif P-DG mentor, exhibez la squaw jockey. Juge, flambez l\'exquis patchwork d\'Yvon.Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui pe');
+        $wilder36 -> setContactEmail('wilder36contacte@gmail.com');
+        $wilder36 -> setProfilPicture('Talisa-Stark.jpg');
+        $wilder36 -> setWebsite('www.google.com');
+        $wilder36 -> setGithub('www.github.com');
+        $wilder36 -> setLinkedin('www.linkedin.com');
+        $wilder36 -> setFacebook('www.facebook.com');
+        $wilder36 -> setTwitter('www.twitter.com');
+        $wilder36 -> setUserActivation(true);
+        $wilder36 -> setCodewarsUsername('ssineriz');
+        $wilder36 -> setManagerActivation(true);
+        $wilder36 -> setPromotion($this->getReference('LilleFev17'));
+        $wilder36 -> setAvailability($this->getReference('Forma'));
+        $wilder36 -> setLanguages([$this->getReference('Ruby')]);
+        $wilder36 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
+        $manager -> persist ( $wilder36 );
+        $this->addReference('wilder36', $wilder36 );
+
+        $wilder37 = new Wilder();
+        $wilder37 -> setUser($this->getReference('user37'));
+        $wilder37 -> setFirstname('Gris');
+        $wilder37 -> setLastname('Ver');
+        $wilder37 -> setBirthDate(new \DateTime('1990-11-17'));
+        $wilder37 -> setAddress('36 rue de wester');
+        $wilder37 -> setPostalCode(59272);
+        $wilder37 -> setCity('Don');
+        $wilder37 -> setSkill('SCRUM,BDD, Adobe Suite, Microsoft Office, Git');
+        $wilder37 -> setFreelanceAvailability(true);
+        $wilder37 -> setBiography('Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui permet de penser à la cænogenèse de l\'être dont il est question dans la cause ambiguë entendue à Moÿ, dans un capharnaüm qui, pense-t-il, diminue çà et là la qualité de son œuvre. Prouvez, beau juge, que le fameux sandwich au yak tue. L\'île exiguë, Où l\'obèse jury mûr Fête l\'haï volapük, Âne ex æquo au whist, Ôtez ce vœu déçu. Vieux pelage que je modifie : breitschwanz ou yak ? Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera ! Fougueux, j\'enivre la squaw au pack de beau zythum. Ketch, yawl, jonque flambant neuve… jugez des prix ! Voyez le brick géant que j\'examine près du wharf. Portez ce vieux whisky au juge blond qui fume. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Voix ambiguë d\'un cœur qui, au zéphyr, préfère les jattes de kiwis. Mon pauvre zébu ankylosé choque deux fois ton wagon jaune. Perchez dix, vingt woks. Qu\'y flambé-je ? Le moujik équipé de faux breitschwanz voyage. Kiwi fade, aptéryx, quel jambon vous gâchez ! Jugez qu\'un vieux whisky blond pur malt fonce. Faux kwachas ? Quel projet de voyage zambien ! Fripon, mixez l\'abject whisky qui vidange. Vif juge, trempez ce blond whisky aqueux. Vif P-DG mentor, exhibez la squaw jockey. Juge, flambez l\'exquis patchwork d\'Yvon.Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui pe');
+        $wilder37 -> setContactEmail('wilder37contacte@gmail.com');
+        $wilder37 -> setProfilPicture('Ver-Gris.jpg');
+        $wilder37 -> setWebsite('www.google.com');
+        $wilder37 -> setGithub('www.github.com');
+        $wilder37 -> setLinkedin('www.linkedin.com');
+        $wilder37 -> setFacebook('www.facebook.com');
+        $wilder37 -> setTwitter('www.twitter.com');
+        $wilder37 -> setUserActivation(true);
+        $wilder37 -> setCodewarsUsername('ssineriz');
+        $wilder37 -> setManagerActivation(true);
+        $wilder37 -> setPromotion($this->getReference('LilleFev17'));
+        $wilder37 -> setAvailability($this->getReference('Forma'));
+        $wilder37 -> setLanguages([$this->getReference('Ruby')]);
+        $wilder37 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
+        $manager -> persist ( $wilder37 );
+        $this->addReference('wilder37', $wilder37 );
+
+
+
+        $wilder38 = new Wilder();
+        $wilder38 -> setUser($this->getReference('user38'));
+        $wilder38 -> setFirstname('Tyrell');
+        $wilder38 -> setLastname('Loras');
+        $wilder38 -> setBirthDate(new \DateTime('1990-11-17'));
+        $wilder38 -> setAddress('36 rue de wester');
+        $wilder38 -> setPostalCode(75001);
+        $wilder38 -> setCity('Paris');
+        $wilder38 -> setSkill('SCRUM,BDD, Adobe Suite, Microsoft Office, Git');
+        $wilder38 -> setFreelanceAvailability(true);
+        $wilder38 -> setBiography('Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui permet de penser à la cænogenèse de l\'être dont il est question dans la cause ambiguë entendue à Moÿ, dans un capharnaüm qui, pense-t-il, diminue çà et là la qualité de son œuvre. Prouvez, beau juge, que le fameux sandwich au yak tue. L\'île exiguë, Où l\'obèse jury mûr Fête l\'haï volapük, Âne ex æquo au whist, Ôtez ce vœu déçu. Vieux pelage que je modifie : breitschwanz ou yak ? Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera ! Fougueux, j\'enivre la squaw au pack de beau zythum. Ketch, yawl, jonque flambant neuve… jugez des prix ! Voyez le brick géant que j\'examine près du wharf. Portez ce vieux whisky au juge blond qui fume. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Voix ambiguë d\'un cœur qui, au zéphyr, préfère les jattes de kiwis. Mon pauvre zébu ankylosé choque deux fois ton wagon jaune. Perchez dix, vingt woks. Qu\'y flambé-je ? Le moujik équipé de faux breitschwanz voyage. Kiwi fade, aptéryx, quel jambon vous gâchez ! Jugez qu\'un vieux whisky blond pur malt fonce. Faux kwachas ? Quel projet de voyage zambien ! Fripon, mixez l\'abject whisky qui vidange. Vif juge, trempez ce blond whisky aqueux. Vif P-DG mentor, exhibez la squaw jockey. Juge, flambez l\'exquis patchwork d\'Yvon.Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui pe');
+        $wilder38 -> setContactEmail('wilder38contacte@gmail.com');
+        $wilder38 -> setProfilPicture('Loras-Tyrell.jpg');
+        $wilder38 -> setWebsite('www.google.com');
+        $wilder38 -> setGithub('www.github.com');
+        $wilder38 -> setLinkedin('www.linkedin.com');
+        $wilder38 -> setFacebook('www.facebook.com');
+        $wilder38 -> setTwitter('www.twitter.com');
+        $wilder38 -> setUserActivation(true);
+        $wilder38 -> setCodewarsUsername('ssineriz');
+        $wilder38 -> setManagerActivation(true);
+        $wilder38 -> setPromotion($this->getReference('ParisFev17'));
+        $wilder38 -> setAvailability($this->getReference('ReStage'));
+        $wilder38 -> setLanguages([$this->getReference('Ruby')]);
+        $wilder38 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
+        $manager -> persist ( $wilder38 );
+        $this->addReference('wilder38', $wilder38 );
+
+
+        $wilder39 = new Wilder();
+        $wilder39 -> setUser($this->getReference('user39'));
+        $wilder39 -> setFirstname('Forel');
+        $wilder39 -> setLastname('Syrio');
+        $wilder39 -> setBirthDate(new \DateTime('1990-11-17'));
+        $wilder39 -> setAddress('36 rue de wester');
+        $wilder39 -> setPostalCode(70001);
+        $wilder39 -> setCity('Paris');
+        $wilder39 -> setSkill('SCRUM,BDD, Adobe Suite, Microsoft Office, Git');
+        $wilder39 -> setFreelanceAvailability(true);
+        $wilder39 -> setBiography('Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui permet de penser à la cænogenèse de l\'être dont il est question dans la cause ambiguë entendue à Moÿ, dans un capharnaüm qui, pense-t-il, diminue çà et là la qualité de son œuvre. Prouvez, beau juge, que le fameux sandwich au yak tue. L\'île exiguë, Où l\'obèse jury mûr Fête l\'haï volapük, Âne ex æquo au whist, Ôtez ce vœu déçu. Vieux pelage que je modifie : breitschwanz ou yak ? Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera ! Fougueux, j\'enivre la squaw au pack de beau zythum. Ketch, yawl, jonque flambant neuve… jugez des prix ! Voyez le brick géant que j\'examine près du wharf. Portez ce vieux whisky au juge blond qui fume. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Voix ambiguë d\'un cœur qui, au zéphyr, préfère les jattes de kiwis. Mon pauvre zébu ankylosé choque deux fois ton wagon jaune. Perchez dix, vingt woks. Qu\'y flambé-je ? Le moujik équipé de faux breitschwanz voyage. Kiwi fade, aptéryx, quel jambon vous gâchez ! Jugez qu\'un vieux whisky blond pur malt fonce. Faux kwachas ? Quel projet de voyage zambien ! Fripon, mixez l\'abject whisky qui vidange. Vif juge, trempez ce blond whisky aqueux. Vif P-DG mentor, exhibez la squaw jockey. Juge, flambez l\'exquis patchwork d\'Yvon.Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui pe');
+        $wilder39 -> setContactEmail('wilder39contacte@gmail.com');
+        $wilder39 -> setProfilPicture('Syrio-Forel.jpg');
+        $wilder39 -> setWebsite('www.google.com');
+        $wilder39 -> setGithub('www.github.com');
+        $wilder39 -> setLinkedin('www.linkedin.com');
+        $wilder39 -> setFacebook('www.facebook.com');
+        $wilder39 -> setTwitter('www.twitter.com');
+        $wilder39 -> setUserActivation(true);
+        $wilder39 -> setCodewarsUsername('ssineriz');
+        $wilder39 -> setManagerActivation(true);
+        $wilder39 -> setPromotion($this->getReference('ParisFev17'));
+        $wilder39 -> setAvailability($this->getReference('RePoste'));
+        $wilder39 -> setLanguages([$this->getReference('Ruby')]);
+        $wilder39 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
+        $manager -> persist ( $wilder39 );
+        $this->addReference('wilder39', $wilder39 );
+
+        $wilder40 = new Wilder();
+        $wilder40 -> setUser($this->getReference('user40'));
+        $wilder40 -> setFirstname('Lannister');
+        $wilder40 -> setLastname('Tywin');
+        $wilder40 -> setBirthDate(new \DateTime('1990-11-17'));
+        $wilder40 -> setAddress('36 rue de wester');
+        $wilder40 -> setPostalCode(67000);
+        $wilder40 -> setCity('Strasbourg');
+        $wilder40 -> setSkill('SCRUM,BDD, Adobe Suite, Microsoft Office, Git');
+        $wilder40 -> setFreelanceAvailability(true);
+        $wilder40 -> setBiography('Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui permet de penser à la cænogenèse de l\'être dont il est question dans la cause ambiguë entendue à Moÿ, dans un capharnaüm qui, pense-t-il, diminue çà et là la qualité de son œuvre. Prouvez, beau juge, que le fameux sandwich au yak tue. L\'île exiguë, Où l\'obèse jury mûr Fête l\'haï volapük, Âne ex æquo au whist, Ôtez ce vœu déçu. Vieux pelage que je modifie : breitschwanz ou yak ? Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera ! Fougueux, j\'enivre la squaw au pack de beau zythum. Ketch, yawl, jonque flambant neuve… jugez des prix ! Voyez le brick géant que j\'examine près du wharf. Portez ce vieux whisky au juge blond qui fume. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Voix ambiguë d\'un cœur qui, au zéphyr, préfère les jattes de kiwis. Mon pauvre zébu ankylosé choque deux fois ton wagon jaune. Perchez dix, vingt woks. Qu\'y flambé-je ? Le moujik équipé de faux breitschwanz voyage. Kiwi fade, aptéryx, quel jambon vous gâchez ! Jugez qu\'un vieux whisky blond pur malt fonce. Faux kwachas ? Quel projet de voyage zambien ! Fripon, mixez l\'abject whisky qui vidange. Vif juge, trempez ce blond whisky aqueux. Vif P-DG mentor, exhibez la squaw jockey. Juge, flambez l\'exquis patchwork d\'Yvon.Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui pe');
+        $wilder40 -> setContactEmail('Wilder40contacte@gmail.com');
+        $wilder40 -> setProfilPicture('tywin-Lannister.jpg');
+        $wilder40 -> setWebsite('www.google.com');
+        $wilder40 -> setGithub('www.github.com');
+        $wilder40 -> setLinkedin('www.linkedin.com');
+        $wilder40 -> setFacebook('www.facebook.com');
+        $wilder40 -> setTwitter('www.twitter.com');
+        $wilder40 -> setUserActivation(true);
+        $wilder40 -> setCodewarsUsername('ssineriz');
+        $wilder40 -> setManagerActivation(true);
+        $wilder40 -> setPromotion($this->getReference('OrlSept16'));
+        $wilder40 -> setAvailability($this->getReference('ReStage'));
+        $wilder40 -> setLanguages([$this->getReference('Java'), $this->getReference('SQL')]);
+        $wilder40 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
+        $manager -> persist ( $wilder40 );
+        $this->addReference('Wilder40', $wilder40 );
+
+
+        $wilder41 = new Wilder();
+        $wilder41 -> setUser($this->getReference('user41'));
+        $wilder41 -> setFirstname('Flynn');
+        $wilder41 -> setLastname('Bronn');
+        $wilder41 -> setBirthDate(new \DateTime('1990-11-17'));
+        $wilder41 -> setAddress('36 rue de wester');
+        $wilder41 -> setPostalCode(67000);
+        $wilder41 -> setCity('Strasbourg');
+        $wilder41 -> setSkill('SCRUM,BDD, Adobe Suite, Microsoft Office, Git');
+        $wilder41 -> setFreelanceAvailability(true);
+        $wilder41 -> setBiography('Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui permet de penser à la cænogenèse de l\'être dont il est question dans la cause ambiguë entendue à Moÿ, dans un capharnaüm qui, pense-t-il, diminue çà et là la qualité de son œuvre. Prouvez, beau juge, que le fameux sandwich au yak tue. L\'île exiguë, Où l\'obèse jury mûr Fête l\'haï volapük, Âne ex æquo au whist, Ôtez ce vœu déçu. Vieux pelage que je modifie : breitschwanz ou yak ? Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera ! Fougueux, j\'enivre la squaw au pack de beau zythum. Ketch, yawl, jonque flambant neuve… jugez des prix ! Voyez le brick géant que j\'examine près du wharf. Portez ce vieux whisky au juge blond qui fume. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Voix ambiguë d\'un cœur qui, au zéphyr, préfère les jattes de kiwis. Mon pauvre zébu ankylosé choque deux fois ton wagon jaune. Perchez dix, vingt woks. Qu\'y flambé-je ? Le moujik équipé de faux breitschwanz voyage. Kiwi fade, aptéryx, quel jambon vous gâchez ! Jugez qu\'un vieux whisky blond pur malt fonce. Faux kwachas ? Quel projet de voyage zambien ! Fripon, mixez l\'abject whisky qui vidange. Vif juge, trempez ce blond whisky aqueux. Vif P-DG mentor, exhibez la squaw jockey. Juge, flambez l\'exquis patchwork d\'Yvon.Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui pe');
+        $wilder41 -> setContactEmail('Wilder41contacte@gmail.com');
+        $wilder41 -> setProfilPicture('bronn-Flynn.jpg');
+        $wilder41 -> setWebsite('www.google.com');
+        $wilder41 -> setGithub('www.github.com');
+        $wilder41 -> setLinkedin('www.linkedin.com');
+        $wilder41 -> setFacebook('www.facebook.com');
+        $wilder41 -> setTwitter('www.twitter.com');
+        $wilder41 -> setUserActivation(true);
+        $wilder41 -> setCodewarsUsername('ssineriz');
+        $wilder41 -> setManagerActivation(true);
+        $wilder41 -> setPromotion($this->getReference('OrlSept16'));
+        $wilder41 -> setAvailability($this->getReference('ReStage'));
+        $wilder41 -> setLanguages([$this->getReference('Java'), $this->getReference('SQL')]);
+        $wilder41 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
+        $manager -> persist ( $wilder41 );
+        $this->addReference('Wilder41', $wilder41 );
+
+        $wilder42 = new Wilder();
+        $wilder42 -> setUser($this->getReference('user42'));
+        $wilder42 -> setFirstname('La..');
+        $wilder42 -> setLastname('Shae');
+        $wilder42 -> setBirthDate(new \DateTime('1990-11-17'));
+        $wilder42 -> setAddress('36 rue de wester');
+        $wilder42 -> setPostalCode(68000);
+        $wilder42 -> setCity('Colmar');
+        $wilder42 -> setSkill('SCRUM,BDD, Adobe Suite, Microsoft Office, Git');
+        $wilder42 -> setFreelanceAvailability(true);
+        $wilder42 -> setBiography('Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui permet de penser à la cænogenèse de l\'être dont il est question dans la cause ambiguë entendue à Moÿ, dans un capharnaüm qui, pense-t-il, diminue çà et là la qualité de son œuvre. Prouvez, beau juge, que le fameux sandwich au yak tue. L\'île exiguë, Où l\'obèse jury mûr Fête l\'haï volapük, Âne ex æquo au whist, Ôtez ce vœu déçu. Vieux pelage que je modifie : breitschwanz ou yak ? Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera ! Fougueux, j\'enivre la squaw au pack de beau zythum. Ketch, yawl, jonque flambant neuve… jugez des prix ! Voyez le brick géant que j\'examine près du wharf. Portez ce vieux whisky au juge blond qui fume. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Voix ambiguë d\'un cœur qui, au zéphyr, préfère les jattes de kiwis. Mon pauvre zébu ankylosé choque deux fois ton wagon jaune. Perchez dix, vingt woks. Qu\'y flambé-je ? Le moujik équipé de faux breitschwanz voyage. Kiwi fade, aptéryx, quel jambon vous gâchez ! Jugez qu\'un vieux whisky blond pur malt fonce. Faux kwachas ? Quel projet de voyage zambien ! Fripon, mixez l\'abject whisky qui vidange. Vif juge, trempez ce blond whisky aqueux. Vif P-DG mentor, exhibez la squaw jockey. Juge, flambez l\'exquis patchwork d\'Yvon.Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui pe');
+        $wilder42 -> setContactEmail('Wilder42contacte@gmail.com');
+        $wilder42 -> setProfilPicture('shae-La...jpg');
+        $wilder42 -> setWebsite('www.google.com');
+        $wilder42 -> setGithub('www.github.com');
+        $wilder42 -> setLinkedin('www.linkedin.com');
+        $wilder42 -> setFacebook('www.facebook.com');
+        $wilder42 -> setTwitter('www.twitter.com');
+        $wilder42 -> setUserActivation(true);
+        $wilder42 -> setCodewarsUsername('ssineriz');
+        $wilder42 -> setManagerActivation(true);
+        $wilder42 -> setPromotion($this->getReference('OrlSept16'));
+        $wilder42 -> setAvailability($this->getReference('Forma'));
+        $wilder42 -> setLanguages([$this->getReference('Java'), $this->getReference('SQL')]);
+        $wilder42 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
+        $manager -> persist ( $wilder42 );
+        $this->addReference('Wilder42', $wilder42 );
+
+        $wilder43 = new Wilder();
+        $wilder43 -> setUser($this->getReference('user43'));
+        $wilder43 -> setFirstname('Mormont');
+        $wilder43 -> setLastname('Jorah');
+        $wilder43 -> setBirthDate(new \DateTime('1990-11-17'));
+        $wilder43 -> setAddress('36 rue de wester');
+        $wilder43 -> setPostalCode(31000);
+        $wilder43 -> setCity('Toulouse');
+        $wilder43 -> setSkill('SCRUM,BDD, Adobe Suite, Microsoft Office, Git');
+        $wilder43 -> setFreelanceAvailability(true);
+        $wilder43 -> setBiography('Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui permet de penser à la cænogenèse de l\'être dont il est question dans la cause ambiguë entendue à Moÿ, dans un capharnaüm qui, pense-t-il, diminue çà et là la qualité de son œuvre. Prouvez, beau juge, que le fameux sandwich au yak tue. L\'île exiguë, Où l\'obèse jury mûr Fête l\'haï volapük, Âne ex æquo au whist, Ôtez ce vœu déçu. Vieux pelage que je modifie : breitschwanz ou yak ? Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera ! Fougueux, j\'enivre la squaw au pack de beau zythum. Ketch, yawl, jonque flambant neuve… jugez des prix ! Voyez le brick géant que j\'examine près du wharf. Portez ce vieux whisky au juge blond qui fume. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Voix ambiguë d\'un cœur qui, au zéphyr, préfère les jattes de kiwis. Mon pauvre zébu ankylosé choque deux fois ton wagon jaune. Perchez dix, vingt woks. Qu\'y flambé-je ? Le moujik équipé de faux breitschwanz voyage. Kiwi fade, aptéryx, quel jambon vous gâchez ! Jugez qu\'un vieux whisky blond pur malt fonce. Faux kwachas ? Quel projet de voyage zambien ! Fripon, mixez l\'abject whisky qui vidange. Vif juge, trempez ce blond whisky aqueux. Vif P-DG mentor, exhibez la squaw jockey. Juge, flambez l\'exquis patchwork d\'Yvon.Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui pe');
+        $wilder43 -> setContactEmail('Wilder43contacte@gmail.com');
+        $wilder43 -> setProfilPicture('jorah-Mormont.jpg');
+        $wilder43 -> setWebsite('www.google.com');
+        $wilder43 -> setGithub('www.github.com');
+        $wilder43 -> setLinkedin('www.linkedin.com');
+        $wilder43 -> setFacebook('www.facebook.com');
+        $wilder43 -> setTwitter('www.twitter.com');
+        $wilder43 -> setUserActivation(true);
+        $wilder43 -> setCodewarsUsername('ssineriz');
+        $wilder43 -> setManagerActivation(true);
+        $wilder43 -> setPromotion($this->getReference('ToulSept16'));
+        $wilder43 -> setAvailability($this->getReference('Vac'));
+        $wilder43 -> setLanguages([$this->getReference('Java'), $this->getReference('Swift')]);
+        $wilder43 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
+        $manager -> persist ( $wilder43 );
+        $this->addReference('Wilder43', $wilder43 );
+
+        $wilder44 = new Wilder();
+        $wilder44 -> setUser($this->getReference('user44'));
+        $wilder44 -> setFirstname('Geyjoy');
+        $wilder44 -> setLastname('Yara');
+        $wilder44 -> setBirthDate(new \DateTime('1990-11-17'));
+        $wilder44 -> setAddress('36 rue de wester');
+        $wilder44 -> setPostalCode(31140);
+        $wilder44 -> setCity('Montberon');
+        $wilder44 -> setSkill('SCRUM,BDD, Adobe Suite, Microsoft Office, Git');
+        $wilder44 -> setFreelanceAvailability(true);
+        $wilder44 -> setBiography('Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui permet de penser à la cænogenèse de l\'être dont il est question dans la cause ambiguë entendue à Moÿ, dans un capharnaüm qui, pense-t-il, diminue çà et là la qualité de son œuvre. Prouvez, beau juge, que le fameux sandwich au yak tue. L\'île exiguë, Où l\'obèse jury mûr Fête l\'haï volapük, Âne ex æquo au whist, Ôtez ce vœu déçu. Vieux pelage que je modifie : breitschwanz ou yak ? Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera ! Fougueux, j\'enivre la squaw au pack de beau zythum. Ketch, yawl, jonque flambant neuve… jugez des prix ! Voyez le brick géant que j\'examine près du wharf. Portez ce vieux whisky au juge blond qui fume. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Voix ambiguë d\'un cœur qui, au zéphyr, préfère les jattes de kiwis. Mon pauvre zébu ankylosé choque deux fois ton wagon jaune. Perchez dix, vingt woks. Qu\'y flambé-je ? Le moujik équipé de faux breitschwanz voyage. Kiwi fade, aptéryx, quel jambon vous gâchez ! Jugez qu\'un vieux whisky blond pur malt fonce. Faux kwachas ? Quel projet de voyage zambien ! Fripon, mixez l\'abject whisky qui vidange. Vif juge, trempez ce blond whisky aqueux. Vif P-DG mentor, exhibez la squaw jockey. Juge, flambez l\'exquis patchwork d\'Yvon.Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui pe');
+        $wilder44 -> setContactEmail('Wilder44contacte@gmail.com');
+        $wilder44 -> setProfilPicture('yara-Geyjoy.jpg');
+        $wilder44 -> setWebsite('www.google.com');
+        $wilder44 -> setGithub('www.github.com');
+        $wilder44 -> setLinkedin('www.linkedin.com');
+        $wilder44 -> setFacebook('www.facebook.com');
+        $wilder44 -> setTwitter('www.twitter.com');
+        $wilder44 -> setUserActivation(true);
+        $wilder44 -> setCodewarsUsername('ssineriz');
+        $wilder44 -> setManagerActivation(true);
+        $wilder44 -> setPromotion($this->getReference('ToulFev17'));
+        $wilder44 -> setAvailability($this->getReference('Poste'));
+        $wilder44 -> setLanguages([$this->getReference('Java'), $this->getReference('Swift')]);
+        $wilder44 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
+        $manager -> persist ( $wilder44 );
+        $this->addReference('Wilder44', $wilder44 );
+
+        $wilder45 = new Wilder();
+        $wilder45 -> setUser($this->getReference('user45'));
+        $wilder45 -> setFirstname('Mormont');
+        $wilder45 -> setLastname('Lady');
+        $wilder45 -> setBirthDate(new \DateTime('1990-11-17'));
+        $wilder45 -> setAddress('36 rue de wester');
+        $wilder45 -> setPostalCode(31140);
+        $wilder45 -> setCity('Montberon');
+        $wilder45 -> setSkill('SCRUM,BDD, Adobe Suite, Microsoft Office, Git');
+        $wilder45 -> setFreelanceAvailability(true);
+        $wilder45 -> setBiography('Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui permet de penser à la cænogenèse de l\'être dont il est question dans la cause ambiguë entendue à Moÿ, dans un capharnaüm qui, pense-t-il, diminue çà et là la qualité de son œuvre. Prouvez, beau juge, que le fameux sandwich au yak tue. L\'île exiguë, Où l\'obèse jury mûr Fête l\'haï volapük, Âne ex æquo au whist, Ôtez ce vœu déçu. Vieux pelage que je modifie : breitschwanz ou yak ? Dès Noël où un zéphyr haï me vêt de glaçons würmiens, je dîne d’exquis rôtis de bœuf au kir à l’aÿ d’âge mûr & cætera ! Fougueux, j\'enivre la squaw au pack de beau zythum. Ketch, yawl, jonque flambant neuve… jugez des prix ! Voyez le brick géant que j\'examine près du wharf. Portez ce vieux whisky au juge blond qui fume. Bâchez la queue du wagon-taxi avec les pyjamas du fakir. Voix ambiguë d\'un cœur qui, au zéphyr, préfère les jattes de kiwis. Mon pauvre zébu ankylosé choque deux fois ton wagon jaune. Perchez dix, vingt woks. Qu\'y flambé-je ? Le moujik équipé de faux breitschwanz voyage. Kiwi fade, aptéryx, quel jambon vous gâchez ! Jugez qu\'un vieux whisky blond pur malt fonce. Faux kwachas ? Quel projet de voyage zambien ! Fripon, mixez l\'abject whisky qui vidange. Vif juge, trempez ce blond whisky aqueux. Vif P-DG mentor, exhibez la squaw jockey. Juge, flambez l\'exquis patchwork d\'Yvon.Voyez ce jeu exquis wallon, de graphie en kit mais bref. Portez ce vieux whisky au juge blond qui fume sur son île intérieure, à côté de l\'alcôve ovoïde, où les bûches se consument dans l\'âtre, ce qui lui pe');
+        $wilder45 -> setContactEmail('Wilder45contacte@gmail.com');
+        $wilder45 -> setProfilPicture('lady-Mormont.jpg');
+        $wilder45 -> setWebsite('www.google.com');
+        $wilder45 -> setGithub('www.github.com');
+        $wilder45 -> setLinkedin('www.linkedin.com');
+        $wilder45 -> setFacebook('www.facebook.com');
+        $wilder45 -> setTwitter('www.twitter.com');
+        $wilder45 -> setUserActivation(true);
+        $wilder45 -> setCodewarsUsername('ssineriz');
+        $wilder45 -> setManagerActivation(true);
+        $wilder45 -> setPromotion($this->getReference('ToulFev17'));
+        $wilder45 -> setAvailability($this->getReference('RePoste'));
+        $wilder45 -> setLanguages([$this->getReference('Java'), $this->getReference('Swift')]);
+        $wilder45 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
+        $manager -> persist ( $wilder45 );
+        $this->addReference('Wilder45', $wilder45 );
+
+
 
         $manager -> flush ();
     }
@@ -906,7 +1307,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
     public function getOrder ()
     {
 
-        return 10 ;
+        return 14 ;
     }
 }
 
