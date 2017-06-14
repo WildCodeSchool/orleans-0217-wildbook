@@ -10,7 +10,13 @@ namespace BookBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+/**
+ * Admin controller.
+ *
+ * @Route("admin")
+ */
 class AdminController extends Controller
 {
 
@@ -19,7 +25,16 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('BookBundle:Front:accueil.html.twig');
+        return $this->render('base_admin.html.twig');
+    }
+
+    /**
+     * @Route("/login/")
+     */
+    public function loginSuccessAction()
+    {
+
+
     }
 
 }
