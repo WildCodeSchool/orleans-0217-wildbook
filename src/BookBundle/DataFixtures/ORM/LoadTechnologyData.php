@@ -18,10 +18,10 @@ class LoadTechnologyData  extends AbstractFixture implements OrderedFixtureInter
 {
     public function load ( ObjectManager $manager )
     {
-        $symfo = new Technology ();
-        $symfo -> setTechnology('Symfony');
-        $manager -> persist ( $symfo );
-        $this->addReference('Symfo', $symfo );
+        $symfony = new Technology ();
+        $symfony -> setTechnology('Symfony');
+        $manager -> persist ( $symfony );
+        $this->addReference('Symfo', $symfony );
 
         $storm = new Technology ();
         $storm -> setTechnology('PHP Storm');
@@ -37,6 +37,56 @@ class LoadTechnologyData  extends AbstractFixture implements OrderedFixtureInter
         $workb -> setTechnology('WorkBench');
         $manager -> persist ( $workb );
         $this->addReference('Workb', $workb );
+
+        $netBeans = new Technology ();
+        $netBeans -> setTechnology('NetBeans');
+        $manager -> persist ( $netBeans );
+        $this->addReference('NetBeans', $netBeans );
+
+        $eclipse = new Technology ();
+        $eclipse -> setTechnology('Eclipse');
+        $manager -> persist ( $eclipse );
+        $this->addReference('Eclipse', $eclipse );
+
+        $androidS = new Technology ();
+        $androidS -> setTechnology('AndroidS');
+        $manager -> persist ( $androidS );
+        $this->addReference('AndroidS', $androidS );
+
+        $atom = new Technology ();
+        $atom -> setTechnology('Atom');
+        $manager -> persist ( $atom );
+        $this->addReference('Atom', $atom );
+
+        $webStorm = new Technology ();
+        $webStorm -> setTechnology('WebStorm');
+        $manager -> persist ( $webStorm );
+        $this->addReference('WebStorm', $webStorm );
+
+        $rubyMine = new Technology ();
+        $rubyMine -> setTechnology('RubyMine');
+        $manager -> persist ( $rubyMine );
+        $this->addReference('RubyMine', $rubyMine );
+
+        $arcadia = new Technology ();
+        $arcadia -> setTechnology('Arcadia');
+        $manager -> persist ( $arcadia );
+        $this->addReference('Arcadia', $arcadia );
+
+        $wing = new Technology ();
+        $wing -> setTechnology('Wing');
+        $manager -> persist ( $wing );
+        $this->addReference('Wing', $wing );
+
+        $visualC = new Technology ();
+        $visualC -> setTechnology('VisualC');
+        $manager -> persist ( $visualC );
+        $this->addReference('VisualC', $visualC );
+
+        $laravel = new Technology ();
+        $laravel -> setTechnology('Laravel');
+        $manager -> persist ( $laravel );
+        $this->addReference('Laravel', $laravel );
 
         $manager -> flush ();
     }
