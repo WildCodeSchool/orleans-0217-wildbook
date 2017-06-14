@@ -407,7 +407,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder13 -> setLanguages([$this->getReference('Js')]);
         $wilder13 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder13 );
-        $this->addReference('wilder13', $wilder13 );
+        $this->addReference('Wilder13', $wilder13 );
 
         $wilder14 = new Wilder();
         $wilder14 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
@@ -436,7 +436,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder14 -> setLanguages([$this->getReference('Js')]);
         $wilder14 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder14 );
-        $this->addReference('wilder14', $wilder14 );
+        $this->addReference('Wilder14', $wilder14 );
 
         $wilder15 = new Wilder();
         $wilder15 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
@@ -465,7 +465,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder15 -> setLanguages([$this->getReference('Php')]);
         $wilder15 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder15 );
-        $this->addReference('wilder15', $wilder15 );
+        $this->addReference('Wilder15', $wilder15 );
 
         $wilder16 = new Wilder();
         $wilder16 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
@@ -494,7 +494,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder16 -> setLanguages([$this->getReference('Php'), $this->getReference('Js')]);
         $wilder16 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder16 );
-        $this->addReference('wilder16', $wilder16 );
+        $this->addReference('Wilder16', $wilder16 );
 
 
         $wilder17 = new Wilder();
@@ -524,7 +524,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder17 -> setLanguages([$this->getReference('Js')]);
         $wilder17 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder17 );
-        $this->addReference('wilder17', $wilder17 );
+        $this->addReference('Wilder17', $wilder17 );
 
         $wilder18 = new Wilder();
         $wilder18 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
@@ -553,7 +553,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder18 -> setLanguages([$this->getReference('Js')]);
         $wilder18 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder18 );
-        $this->addReference('wilder18', $wilder18 );
+        $this->addReference('Wilder18', $wilder18 );
 
         $wilder19 = new Wilder();
         $wilder19 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
@@ -582,7 +582,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder19 -> setLanguages([$this->getReference('Js')]);
         $wilder19 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder19 );
-        $this->addReference('wilder19', $wilder19 );
+        $this->addReference('Wilder19', $wilder19 );
 
         $wilder20 = new Wilder();
         $wilder20 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
@@ -611,7 +611,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder20 -> setLanguages([$this->getReference('Js')]);
         $wilder20 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder20 );
-        $this->addReference('wilder20', $wilder20 );
+        $this->addReference('Wilder20', $wilder20 );
 
         $wilder21 = new Wilder();
         $wilder21 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
@@ -640,7 +640,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder21 -> setLanguages([$this->getReference('Js')]);
         $wilder21 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder21 );
-        $this->addReference('wilder21', $wilder21 );
+        $this->addReference('Wilder21', $wilder21 );
 
         $wilder22 = new Wilder();
         $wilder22 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
@@ -669,7 +669,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder22 -> setLanguages([$this->getReference('Js')]);
         $wilder22 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder22 );
-        $this->addReference('wilder22', $wilder22 );
+        $this->addReference('Wilder22', $wilder22 );
 
         $wilder23 = new Wilder();
         $wilder23 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
@@ -698,7 +698,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder23 -> setLanguages([$this->getReference('Js')]);
         $wilder23 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder23 );
-        $this->addReference('wilder23', $wilder23 );
+        $this->addReference('Wilder23', $wilder23 );
 
         $wilder24 = new Wilder();
         $wilder24 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
@@ -727,7 +727,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder24 -> setLanguages([$this->getReference('Js')]);
         $wilder24 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder24 );
-        $this->addReference('wilder24', $wilder24 );
+        $this->addReference('Wilder24', $wilder24 );
 
 
         $wilder25 = new Wilder();
@@ -990,7 +990,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder33 -> setLanguages([$this->getReference('Ruby')]);
         $wilder33 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder33 );
-        $this->addReference('wilder33', $wilder33 );
+        $this->addReference('Wilder33', $wilder33 );
 
         $wilder34 = new Wilder();
         $wilder34 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
@@ -1019,7 +1019,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder34 -> setLanguages([$this->getReference('Ruby')]);
         $wilder34 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder34 );
-        $this->addReference('wilder34', $wilder34 );
+        $this->addReference('Wilder34', $wilder34 );
 
         $wilder35 = new Wilder();
         $wilder35 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
@@ -1048,7 +1048,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder35 -> setLanguages([$this->getReference('Ruby')]);
         $wilder35 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder35 );
-        $this->addReference('wilder35', $wilder35 );
+        $this->addReference('Wilder35', $wilder35 );
 
         $wilder36 = new Wilder();
         $wilder36 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
@@ -1077,7 +1077,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder36 -> setLanguages([$this->getReference('Ruby')]);
         $wilder36 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder36 );
-        $this->addReference('wilder36', $wilder36 );
+        $this->addReference('Wilder36', $wilder36 );
 
         $wilder37 = new Wilder();
         $wilder37 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
@@ -1106,7 +1106,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder37 -> setLanguages([$this->getReference('Ruby')]);
         $wilder37 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder37 );
-        $this->addReference('wilder37', $wilder37 );
+        $this->addReference('Wilder37', $wilder37 );
 
 
 
@@ -1137,7 +1137,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder38 -> setLanguages([$this->getReference('Ruby')]);
         $wilder38 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder38 );
-        $this->addReference('wilder38', $wilder38 );
+        $this->addReference('Wilder38', $wilder38 );
 
 
         $wilder39 = new Wilder();
@@ -1167,7 +1167,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $wilder39 -> setLanguages([$this->getReference('Ruby')]);
         $wilder39 -> setTechnologies([$this->getReference('Symfo'), $this->getReference('Boot'), $this->getReference('Storm')]);
         $manager -> persist ( $wilder39 );
-        $this->addReference('wilder39', $wilder39 );
+        $this->addReference('Wilder39', $wilder39 );
 
         $wilder40 = new Wilder();
         $wilder40 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
