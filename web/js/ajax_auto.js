@@ -50,7 +50,7 @@ $( document ).ready(function() {
                             " 300px'> <a" +
                             " href=\"#\"" +
                             " class=\"thumbnail\">" +
-                            "<img src=\"../uploads/" + "\" alt=\"\">"+
+                            "<img src=\"../images/LOGO_COLO.png\" alt=\"\">"+
                             "<h4>" + projects[i].title + "</h4></a></div>"
                     }
                     $('#project-list').html(html);
