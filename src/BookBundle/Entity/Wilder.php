@@ -68,7 +68,7 @@ class Wilder
     /**
      * @var string
      *
-     * @ORM\Column(name="modjo", type="string", length=45, nullable=true)
+     * @ORM\Column(name="modjo", type="string", length=100, nullable=true)
      */
     private $modjo;
 
@@ -199,7 +199,7 @@ class Wilder
     /**
      * @var string
      *
-     * @ORM\Column(name="firsname", type="string", length=50)
+     * @ORM\Column(name="firstname", type="string", length=50)
      */
     private $firstname;
 
