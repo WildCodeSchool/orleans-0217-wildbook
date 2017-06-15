@@ -18,28 +18,36 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
 
 
     public function searchBy($schools , $languages)
-
     {
-
         $qb = $this->createQueryBuilder('w');
 
         if ($schools !== null) {
             $qb
-                ->andWhere('w.school IN (:school)')
+                ->leftJoin('w.promotion','pr')
+                ->addSelect('pr')
+                ->leftJoin('pr.school','s','s.id = pr.school_id')
+                ->addSelect('s')
+                ->andWhere('s.id IN (:school)')
                 ->setParameter('school', $schools);
         }
         if ($languages !== null) {
             $qb
-                ->andWhere('w.languages IN (:languages)')
-                ->setParameter('language', $languages);
+                ->leftJoin('w.languages','l')
+                ->addSelect('l')
+                ->andWhere('l.id IN (:languages)')
+                ->setParameter('languages', $languages);
         }
-//        $qb = $this->createQueryBuilder('w')
-//            ->join('w.language','l')
-//            ->addSelect('l')
-//            ->where('w.id = :id')
-//            ->setParameter('id', $languages);
+
+//                ->leftJoin('p.school', 's')
+//                ->addSelect('s')
+//                ->leftJoin('s.promotions', 'pr', 'pr.school_id = s.id')
+//                ->addSelect('pr')
+//                ->andWhere('pr.id IN (:promotion)')
+//                ->setParameter('promotion', $promotions);
+
         return $qb->getQuery()->getResult();
     }
+
     public function getLike($input)
     {
         $input = "%" . $input . "%";
@@ -50,5 +58,31 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('firstname',$input)
             ->setParameter('lastname',$input)
             ->getQuery();
-        return $qb->getResult(); }
+        return $qb->getResult();
+    }
+
+    public function searchByS($schools)
+    {
+
+        $qb = $this->createQueryBuilder('w')
+                ->leftJoin('w.promotion','pr')
+                ->addSelect('pr')
+                ->leftJoin('pr.school','s','s.id = pr.school_id')
+                ->addSelect('s')
+                ->andWhere('s.id IN (:school)')
+                ->setParameter('school', $schools);
+        return $qb->getQuery()->getResult();
+    }
+
+    public function searchByL($languages)
+    {
+        $qb = $this->createQueryBuilder('w')
+            ->leftJoin('w.languages','l')
+            ->addSelect('l')
+            ->andWhere('l.id IN (:languages)')
+            ->setParameter('languages', $languages);
+        return $qb->getQuery()->getResult();
+    }
+
 }
+
