@@ -21,7 +21,7 @@ class HomeController extends Controller
     /**
      * Shows a wilder entity.
      *
-     * @Route("/wilder/{id}/profile", name="wilder_profile")
+     * @Route("/profile_wilder/{id}", name="wilder_profile")
      */
     public function wilderProfileAction($id)
     {
@@ -38,7 +38,7 @@ class HomeController extends Controller
     /**
      * Shows a project entity.
      *
-     * @Route("/project/{id}/detail", name="project_detail")
+     * @Route("/detail_project/{id}", name="project_detail")
      */
     public function projectDeatailAction($id)
     {

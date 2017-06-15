@@ -10,6 +10,10 @@
 
             <tbody>
             <tr>
+                <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}"
+                     alt="{{ wilder.firstname }} {{ wilder.lastname }}" width="150px">
+            </tr>
+            <tr>
                 <th>Prénom</th>
                 <td>{{ wilder.firstname }}</td>
             </tr>
@@ -49,10 +53,7 @@
                 <th>Contact</th>
                 <td>{{ wilder.contactEmail }}</td>
             </tr>
-            <tr>
-                <th>Image de profil</th>
-                <td>{{ wilder.profilPicture }}</td>
-            </tr>
+
             <tr>
                 <th>Cv</th>
                 <td><a href="{{ asset('uploads/' ~ wilder.cv) }}">Voir le CV (PDF)</a>
