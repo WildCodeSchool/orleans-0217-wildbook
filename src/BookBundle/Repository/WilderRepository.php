@@ -1,7 +1,5 @@
 <?php
-
 namespace BookBundle\Repository;
-
 /**
  * WilderRepository
  *
@@ -18,7 +16,9 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+
     public function searchBy($schools , $languages)
+
     {
 
         $qb = $this->createQueryBuilder('w');
@@ -40,7 +40,6 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
 //            ->setParameter('id', $languages);
         return $qb->getQuery()->getResult();
     }
-
     public function getLike($input)
     {
         $input = "%" . $input . "%";

@@ -5,9 +5,7 @@
  * Date: 08/06/17
  * Time: 17:37
  */
-
 namespace BookBundle\Controller;
-
 use BookBundle\Entity\Language;
 use BookBundle\Entity\Project;
 use BookBundle\Entity\Promotion;
@@ -22,13 +20,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use BookBundle\Repository\WilderRepository;
-
-
 /**
-     * WilderSearch Controller.
-     *
-     * @Route("search_wilder")
-     */
+ * WilderSearch Controller.
+ *
+ * @Route("search_wilder")
+ */
 class WilderSearchController extends Controller
 {
     /**
@@ -37,40 +33,10 @@ class WilderSearchController extends Controller
     public function listWildersAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $form = $this->createFormBuilder(null, ['csrf_protection'=>false])
-            ->setMethod('POST')
-            ->add('input', SearchType::class, [
-                'required' => false,
-                'attr' => ['placeholder' => 'wilder',
-                            'autocomplete' => 'off'
-                ]
-            ])
-            ->add('school', EntityType::class, [
-                'class'=>School::class,
-                'choice_label'=>'school',
-                'expanded'=>true,
-                'multiple'=>true
-            ])
-            ->add('language', EntityType::class, [
-                'class'=>Language::class,
-                'choice_label'=>'language',
-                'expanded'=>true,
-                'multiple'=>true
-            ])
-            ->add('promotion', EntityType::class, [
-                'class'=>Promotion::class,
-                'choice_label'=>'promotion',
-                'expanded'=>true,
-                'multiple'=>true
-            ])
-            ->getForm();
-
+        $form = $this->createForm('BookBundle\Form\WilderSearchType', ['csrf_protection'=>false]);
         $form->handleRequest($request);
-
         $input=$languages=$schools=$promotions='';
         $blocResult=false;
-
         if ($form->isValid() && $form->isSubmitted()) {
             $blocResult=true;
             $data = $form->getData();
@@ -78,7 +44,6 @@ class WilderSearchController extends Controller
             $languages = $data['language'];
             $schools = $data['school'];
             $promotions = $data['promotion'];
-
             $wildersSearch='';
             if (isset($input)){
                 $wildersSearch = $em->getRepository(Wilder::class)->searchByName($input);
@@ -87,21 +52,18 @@ class WilderSearchController extends Controller
                 $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools , $languages);
                 dump($wildersSearch);
             }
-
             return $this->render('BookBundle:Front:wilder_search.html.twig', array(
                 'blocResult' => $blocResult,
                 'form' => $form->createView(),
                 'wildersSearch' => $wildersSearch
             ));
         }
-
         return $this->render('BookBundle:Front:wilder_search.html.twig' ,array(
             'blocResult' => $blocResult,
             'form' => $form->createView()
         ));
     }
-
-     /**
+    /**
      * @Route("/ajax/{input}", name="ddddd")
      * @Method("POST")
      *
@@ -123,5 +85,4 @@ class WilderSearchController extends Controller
             throw new HttpException('500', 'Invalid call');
         }
     }
-
 }
