@@ -1,0 +1,90 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+    <div class="container-fluid">
+
+        <h1>Wilder</h1>
+
+        <table class="table table-condensed">
+
+            <tbody>
+            <tr>
+                <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}"
+                     alt="{{ wilder.firstname }} {{ wilder.lastname }}" width="150px">
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ wilder.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ wilder.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Date de naissance</th>
+                <td>{% if wilder.birthDate %}{{ wilder.birthDate|date('d-m-Y') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ wilder.address }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ wilder.city }}</td>
+            </tr>
+            <tr>
+                <th>Skills</th>
+                <td>{{ wilder.skill }}</td>
+            </tr>
+            <tr>
+                <th>Disponible pour une mission</th>
+                <td>{% if wilder.freelanceAvailability %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modjo</th>
+                <td>{{ wilder.modjo }}</td>
+            </tr>
+            <tr>
+                <th>Biographie</th>
+                <td>{{ wilder.biography }}</td>
+            </tr>
+            <tr>
+                <th>Contact</th>
+                <td>{{ wilder.contactEmail }}</td>
+            </tr>
+
+            <tr>
+                <th>Cv</th>
+                <td><a href="{{ asset('uploads/' ~ wilder.cv) }}">Voir le CV (PDF)</a>
+                </td>
+            </tr>
+            <tr>
+                <th>Website</th>
+                <td>{{ wilder.website }}</td>
+            </tr>
+            <tr>
+                <th>Github</th>
+                <td>{{ wilder.github }}</td>
+            </tr>
+            <tr>
+                <th>Linkedin</th>
+                <td>{{ wilder.linkedin }}</td>
+            </tr>
+            <tr>
+                <th>Facebook</th>
+                <td>{{ wilder.facebook }}</td>
+            </tr>
+            <tr>
+                <th>Twitter</th>
+                <td>{{ wilder.twitter }}</td>
+            </tr>
+            <tr>
+                <th>Codewar</th>
+                <td>{{ wilder.codewarsUsername }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}

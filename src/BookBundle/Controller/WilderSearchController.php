@@ -5,9 +5,7 @@
  * Date: 08/06/17
  * Time: 17:37
  */
-
 namespace BookBundle\Controller;
-
 use BookBundle\Entity\Language;
 use BookBundle\Entity\Project;
 use BookBundle\Entity\Promotion;
@@ -22,8 +20,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use BookBundle\Repository\WilderRepository;
-
-
 /**
  * WilderSearch Controller.
  *
@@ -37,6 +33,7 @@ class WilderSearchController extends Controller
     public function listWildersAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+
 
         $form = $this->createFormBuilder(null, ['csrf_protection' => false])
             ->setMethod('POST')
@@ -82,7 +79,6 @@ class WilderSearchController extends Controller
             $wildersSearch = '';
             if (isset($input)) {
                 $wildersSearch = $em->getRepository(Wilder::class)->searchByName($input);
-
             } else {
                 if ($schools[0] == null) {
                     $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, $languages);
@@ -106,6 +102,8 @@ class WilderSearchController extends Controller
         ));
     }
 
+
+
     /**
      * @Route("/ajax/{input}", name="ddddd")
      * @Method("POST")
@@ -128,5 +126,4 @@ class WilderSearchController extends Controller
             throw new HttpException('500', 'Invalid call');
         }
     }
-
 }

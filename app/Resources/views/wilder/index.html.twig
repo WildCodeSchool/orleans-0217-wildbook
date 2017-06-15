@@ -41,7 +41,8 @@
                         <td>{{ wilder.city }}</td>
                         <td>{{ wilder.modjo }}</td>
                         <td>{{ wilder.contactEmail }}</td>
-                        <td><img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" alt="{{ wilder.firstname }} {{ wilder.lastname }}" width="150px"></td>
+                        <td><img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}"
+                                 alt="{{ wilder.firstname }} {{ wilder.lastname }}" width="150px"></td>
                         <td>
                             <ul>
                                 {% for language in wilder.languages %}
