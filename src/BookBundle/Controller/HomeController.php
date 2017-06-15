@@ -25,7 +25,6 @@ class HomeController extends Controller
      */
     public function wilderProfileAction($id)
     {
-
         $em = $this->getDoctrine()->getManager();
 
         $wilder = $em->getRepository('BookBundle:Wilder')
@@ -33,6 +32,23 @@ class HomeController extends Controller
 
         return $this->render('BookBundle:Front:wilder.html.twig',array(
             'wilder'=>$wilder
+        ));
+    }
+
+    /**
+     * Shows a project entity.
+     *
+     * @Route("/project/{id}/detail", name="project_detail")
+     */
+    public function projectDeatailAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $project = $em->getRepository('BookBundle:Project')
+            ->findOneById($id);
+
+        return $this->render('BookBundle:Front:realisation.html.twig',array(
+            'project'=>$project
         ));
     }
 
