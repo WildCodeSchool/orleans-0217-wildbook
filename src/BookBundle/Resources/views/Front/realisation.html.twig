@@ -5,6 +5,7 @@
     <div class="container-fluid">
 
         <h1>Project</h1>
+
         <table class="table table-condensed">
             <tbody>
             <tr>
@@ -61,17 +62,17 @@
                 </td>
             </tr>
 
-            {# Affichages des images liées au projet ---------- A REVOIR ! #}
+            {#Affiche images liées au projet à retravailler#}
             {#<tr>#}
                 {#<th>Screenshots</th>#}
                 {#<td>#}
                     {#{% for pictures in project.pictures %}#}
-                        {#<img src="{{ asset('uploads/'~ project.picture|basename ) }}"#}
-                             {#alt="{{ project.picture }}" width="150px">#}
+                        {#<img src="{{ asset('uploads/'~ pictures.path|basename ) }}"#}
+                             {#alt="{{ pictures.path }}" width="150px">#}
+                    {#{% if not loop.last %} {% endif %}#}
                     {#{% endfor %}#}
                 {#</td>#}
             {#</tr>#}
-            {# Fin affichages des images liées au projet #}
 
             </tbody>
         </table>
