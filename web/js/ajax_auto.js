@@ -2,7 +2,7 @@
  * Created by biovor on 12/06/17.
  */
 $( document ).ready(function() {
-    $("#form_input").keyup(function(){
+    $("#book_bundle_wilder_search_type_Recherche").keyup(function(){
         var input = $(this).val();
         if ( input.length >= 2 ) {
             $.ajax({
@@ -14,23 +14,23 @@ $( document ).ready(function() {
                     var wilders = JSON.parse(response.data);
                     html = "";
                     for (i = 0; i < wilders.length; i++) {
-                        html += "<li>" + wilders[i].firstname + " " + wilders[i].lastname + "</li>";
+
+                        html +=  "<div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\" style='width: 300px; height:" +
+                            " 300px'> <a" +
+                            " href=\"#\"" +
+                            " class=\"thumbnail\">" +
+                            "<img src=\"../uploads/" + wilders[i].profilPicture + "\" alt=\"\">"+
+                            "<h4>" + wilders[i].firstname + " " + wilders[i].lastname + "</h4></a></div>"
                     }
-                    $('#autocomplete').html(html);
-                    $('#autocomplete li').on('click', function() {
-                        $('#form_input').val($(this).text());
-                        $('#autocomplete').html('');
-                    });
+                    $('#wild-list').html(html);
                 },
                 error: function() {
-                    $('#autocomplete').text('Ajax call error');
+                    $('#wild-list').text('Ajax call error');
                 }
             });
         } else {
-            $('#autocomplete').html('');
+            $('#wild-list').html('');
         }
     });
 });
-
-Contact GitHub API Training Shop Blog About
 
