@@ -93,7 +93,7 @@
             <div class="list_wilders">
                 {% for wilderSearch  in wildersSearch%}
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <a href="#" class="thumbnail">
+                        <a href="{{ path('profile_wilder', { 'id': wilderSearch.id }) }}" class="thumbnail">
                             <img src="{{ asset('uploads/'~ wilderSearch.profilPicture |basename)}}" alt="">
                         <h4>{{ wilderSearch.firstname }} {{ wilderSearch.lastname }}</h4>
                         </a>

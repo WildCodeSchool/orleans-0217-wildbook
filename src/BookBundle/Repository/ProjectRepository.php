@@ -82,7 +82,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     {
         $input = "%" . $input . "%";
         $qb = $this->createQueryBuilder('p')
-            ->select('p.title')
+            ->select('p.title','p.id')
             ->where('p.title LIKE :title')
             ->setParameter('title', $input)
             ->getQuery();
