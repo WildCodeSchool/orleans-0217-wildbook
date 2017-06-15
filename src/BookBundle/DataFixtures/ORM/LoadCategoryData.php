@@ -38,6 +38,12 @@ class LoadCategoryData  extends AbstractFixture implements OrderedFixtureInterfa
         $manager -> persist ( $hacka );
         $this->addReference('Hacka', $hacka );
 
+        $game = new Category ();
+        $game -> setlabel('Gamethon');
+        $manager -> persist ( $game );
+        $this->addReference('Game', $game );
+
+
         $manager -> flush ();
     }
 

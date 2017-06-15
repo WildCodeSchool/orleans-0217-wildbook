@@ -8,7 +8,10 @@
 
         <div class="form-group">
             {{ form_start(edit_form) }}
-            {{ form_widget(edit_form) }}
+            {{ form_label(edit_form.school,'Ecole') }}
+            {{ form_widget(edit_form.school) }}
+            {{ form_errors(edit_form.school) }}
+
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-default" value="Modifier"/>

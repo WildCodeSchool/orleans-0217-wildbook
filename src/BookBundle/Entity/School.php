@@ -40,6 +40,12 @@ class School
      */
     private $campusManagers;
 
+    /**
+     * @var
+     * @ORM\OneToMany (targetEntity="Project", mappedBy="school")
+     */
+    private $projects;
+
 
     /**
      * Get id
@@ -148,5 +154,39 @@ class School
     public function getCampusManagers()
     {
         return $this->campusManagers;
+    }
+
+    /**
+     * Add project
+     *
+     * @param \BookBundle\Entity\Project $project
+     *
+     * @return School
+     */
+    public function addProject(\BookBundle\Entity\Project $project)
+    {
+        $this->projects[] = $project;
+
+        return $this;
+    }
+
+    /**
+     * Remove project
+     *
+     * @param \BookBundle\Entity\Project $project
+     */
+    public function removeProject(\BookBundle\Entity\Project $project)
+    {
+        $this->projects->removeElement($project);
+    }
+
+    /**
+     * Get projects
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProjects()
+    {
+        return $this->projects;
     }
 }
