@@ -27,4 +27,16 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('id', $languages);
         return $qb->getQuery()->getResult();
     }
+
+    public function getLike($input)
+    {
+        $input = "%" . $input . "%";
+        $qb = $this->createQueryBuilder('w')
+            ->select('w.firstname','w.lastname')
+            ->where('w.lastname LIKE :lastname')
+            ->orWhere('w.firstname LIKE :firstname')
+            ->setParameter('firstname',$input)
+            ->setParameter('lastname',$input)
+            ->getQuery();
+        return $qb->getResult(); }
 }

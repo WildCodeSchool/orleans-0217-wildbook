@@ -15,15 +15,24 @@ use BookBundle\Entity\School;
 use BookBundle\Entity\Wilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use BookBundle\Repository\WilderRepository;
 
 
+/**
+     * WilderSearch Controller.
+     *
+     * @Route("search_wilder")
+     */
 class WilderSearchController extends Controller
 {
     /**
-     * @Route("/search_wilder" , name="search_wilder")
+     * @Route("/" , name="search_wilder")
      */
     public function listWildersAction(Request $request)
     {
@@ -33,7 +42,9 @@ class WilderSearchController extends Controller
             ->setMethod('POST')
             ->add('input', SearchType::class, [
                 'required' => false,
-                'attr' => ['placeholder' => 'wilder']
+                'attr' => ['placeholder' => 'wilder',
+                            'autocomplete' => 'off'
+                ]
             ])
             ->add('school', EntityType::class, [
                 'class'=>School::class,
@@ -88,6 +99,29 @@ class WilderSearchController extends Controller
             'blocResult' => $blocResult,
             'form' => $form->createView()
         ));
+    }
+
+     /**
+     * @Route("/ajax/{input}", name="ddddd")
+     * @Method("POST")
+     *
+     * @param Request $request
+     * @param $input
+     *
+     * @return JsonResponse
+     */
+    public function autocompleteAction(Request $request, $input)
+    {
+        if ($request->isXmlHttpRequest()){
+            /**
+             * @var $repository WilderRepository
+             */
+            $repository = $this->getDoctrine()->getRepository('BookBundle:Wilder');
+            $data = $repository->getLike($input);
+            return new JsonResponse(array("data" => json_encode($data)));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
     }
 
 }
