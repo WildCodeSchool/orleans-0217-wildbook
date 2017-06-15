@@ -25,10 +25,10 @@ use BookBundle\Repository\WilderRepository;
 
 
 /**
-     * WilderSearch Controller.
-     *
-     * @Route("search_wilder")
-     */
+ * WilderSearch Controller.
+ *
+ * @Route("search_wilder")
+ */
 class WilderSearchController extends Controller
 {
     /**
@@ -38,70 +38,75 @@ class WilderSearchController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createFormBuilder(null, ['csrf_protection'=>false])
+        $form = $this->createFormBuilder(null, ['csrf_protection' => false])
             ->setMethod('POST')
             ->add('input', SearchType::class, [
                 'required' => false,
                 'attr' => ['placeholder' => 'wilder',
-                            'autocomplete' => 'off'
+                    'autocomplete' => 'off'
                 ]
             ])
             ->add('school', EntityType::class, [
-                'class'=>School::class,
-                'choice_label'=>'school',
-                'expanded'=>true,
-                'multiple'=>true
+                'class' => School::class,
+                'choice_label' => 'school',
+                'expanded' => true,
+                'multiple' => true
             ])
             ->add('language', EntityType::class, [
-                'class'=>Language::class,
-                'choice_label'=>'language',
-                'expanded'=>true,
-                'multiple'=>true
+                'class' => Language::class,
+                'choice_label' => 'language',
+                'expanded' => true,
+                'multiple' => true
             ])
             ->add('promotion', EntityType::class, [
-                'class'=>Promotion::class,
-                'choice_label'=>'promotion',
-                'expanded'=>true,
-                'multiple'=>true
+                'class' => Promotion::class,
+                'choice_label' => 'promotion',
+                'expanded' => true,
+                'multiple' => true
             ])
             ->getForm();
 
         $form->handleRequest($request);
 
-        $input=$languages=$schools=$promotions='';
-        $blocResult=false;
+        $input = $languages = $schools = $promotions = '';
+        $blocResult = false;
 
         if ($form->isValid() && $form->isSubmitted()) {
-            $blocResult=true;
+            $blocResult = true;
             $data = $form->getData();
             $input = $data['input'];
             $languages = $data['language'];
             $schools = $data['school'];
             $promotions = $data['promotion'];
 
-            $wildersSearch='';
-            if (isset($input)){
+            $wildersSearch = '';
+            if (isset($input)) {
                 $wildersSearch = $em->getRepository(Wilder::class)->searchByName($input);
-                dump($wildersSearch);
-            } else {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools , $languages);
-                dump($wildersSearch);
-            }
 
-            return $this->render('BookBundle:Front:wilder_search.html.twig', array(
-                'blocResult' => $blocResult,
-                'form' => $form->createView(),
-                'wildersSearch' => $wildersSearch
-            ));
+            } else {
+                if ($schools[0] == null) {
+                    $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, $languages);
+                } elseif ($languages[0] == null) {
+                    $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, null);
+                } else {
+                    $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, $languages);
+                }
+
+                return $this->render('BookBundle:Front:wilder_search.html.twig', array(
+                    'blocResult' => $blocResult,
+                    'form' => $form->createView(),
+                    'wildersSearch' => $wildersSearch
+                ));
+            }
         }
 
-        return $this->render('BookBundle:Front:wilder_search.html.twig' ,array(
+        return $this->render('BookBundle:Front:wilder_search.html.twig', array(
             'blocResult' => $blocResult,
             'form' => $form->createView()
         ));
     }
 
-     /**
+    /**
      * @Route("/ajax/{input}", name="ddddd")
      * @Method("POST")
      *
@@ -112,7 +117,7 @@ class WilderSearchController extends Controller
      */
     public function autocompleteAction(Request $request, $input)
     {
-        if ($request->isXmlHttpRequest()){
+        if ($request->isXmlHttpRequest()) {
             /**
              * @var $repository WilderRepository
              */
