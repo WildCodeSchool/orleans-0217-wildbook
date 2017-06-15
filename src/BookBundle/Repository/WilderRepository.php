@@ -18,13 +18,26 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function searchBy($languages)
+    public function searchBy($schools , $languages)
     {
-        $qb = $this->createQueryBuilder('w')
-            ->join('w.language','l')
-            ->addSelect('l')
-            ->where('w.id = :id')
-            ->setParameter('id', $languages);
+
+        $qb = $this->createQueryBuilder('w');
+
+        if ($schools !== null) {
+            $qb
+                ->andWhere('w.school IN (:school)')
+                ->setParameter('school', $schools);
+        }
+        if ($languages !== null) {
+            $qb
+                ->andWhere('w.languages IN (:languages)')
+                ->setParameter('language', $languages);
+        }
+//        $qb = $this->createQueryBuilder('w')
+//            ->join('w.language','l')
+//            ->addSelect('l')
+//            ->where('w.id = :id')
+//            ->setParameter('id', $languages);
         return $qb->getQuery()->getResult();
     }
 }
