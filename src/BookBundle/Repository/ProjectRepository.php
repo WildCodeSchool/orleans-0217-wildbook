@@ -14,39 +14,46 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->createQueryBuilder('p')
             ->where('p.title LIKE :input')
-            ->setParameter('input','%'.$input.'%');
+            ->setParameter('input', '%' . $input . '%');
         return $qb->getQuery()->getResult();
     }
 
-    public function searchBy($categories = null,$schools = null, $promotions = null)
+    public function searchBy($schools = null , $categories = null )
     {
-            $qb = $this->createQueryBuilder('p');
-                if($schools){$qb
-                ->where('p.school IN (:school)')
+
+        $qb = $this->createQueryBuilder('p');
+
+            if ($schools !== null) {
+                $qb
+                ->andWhere('p.school IN (:school)')
                 ->setParameter('school', $schools);
-                }
-            if($categories){$qb
+            }
+            if ($categories !== null) {
+                $qb
                 ->andWhere('p.category IN (:category)')
                 ->setParameter('category', $categories);
             }
-            if($promotions){$qb
-                ->leftJoin('p.school','s')
-                ->addSelect('s')
-                ->leftJoin('s.promotions','pr', 'pr.school_id = s.id')
-                ->addSelect('pr')
-                ->where('pr.id IN (:promotion)')
-                ->setParameter('promotion', $promotions);
-            }
-            return $qb->getQuery()->getResult();
+
+
+//        if ($promotions != null) {
+//            $qb
+//                ->leftJoin('p.school', 's')
+//                ->addSelect('s')
+//                ->leftJoin('s.promotions', 'pr', 'pr.school_id = s.id')
+//                ->addSelect('pr')
+//                ->andWhere('pr.id IN (:promotion)')
+//                ->setParameter('promotion', $promotions);
+//        }
+        return $qb->getQuery()->getResult();
 
     }
 
     public function searchByP($promotions)
     {
         $qb = $this->createQueryBuilder('p')
-            ->leftJoin('p.school','s')
+            ->leftJoin('p.school', 's')
             ->addSelect('s')
-            ->leftJoin('s.promotions','pr', 'pr.school_id = s.id')
+            ->leftJoin('s.promotions', 'pr', 'pr.school_id = s.id')
             ->addSelect('pr')
             ->where('pr.id IN (:promotion)')
             ->setParameter('promotion', $promotions);
@@ -60,7 +67,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('p')
             ->where('p.category IN (:category)')
             ->setParameter('category', $categories);
-            return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getResult();
     }
 
     public function searchByS($schools = null)

@@ -26,23 +26,17 @@
             <a href="https://wildcodeschool.fr/" target="_blank">
                 <img class="navbar-brand" src="{{ asset('images/LOGO_COLO.svg') }}" alt="aller à wildcodechool.fr">
             </a>
-            <p>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                Connecté en tant que {{ app.user.username }} -
-                <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">Connexion</a>
-            {% endif %}
-            </p>
+
         </div>
     </nav>
+    {% if is_granted('ROLE_ADMIN') %}
     <aside id="side-menu" class="aside" role="navigation">
         <ul class="nav nav-list accordion">
             <li class="nav-header">
                 <div class="link">Mon profil<i class="fa fa-chevron-down"></i></div>
                 <ul class="submenu">
                     <li><a href="#">Paramètres</a></li>
-                    <li><a href="#">Déconnection</a></li>
+                    <li><a href="#">Déconnexion</a></li>
                 </ul>
             </li>
 
@@ -54,7 +48,6 @@
                     <li><a href="{{ path('promotion_index') }}">Promotions</a></li>
                     <li><a href="{{ path('language_index') }}">Langages</a></li>
                     <li><a href="{{ path('technology_index') }}">Technologies</a></li>
-                    <li><a href="{{ path('project_index') }}">Projets</a></li>
                 </ul>
             </li>
 
@@ -62,8 +55,6 @@
                 <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
                 <ul class="submenu">
                     <li><a href="{{ path('wilder_index') }}">Profils</a></li>
-                    <li><a href="{{ path('language_index') }}">Langages</a></li>
-                    <li><a href="{{ path('technology_index') }}">Technologies</a></li>
                     <li><a href="{{ path('availability_index') }}">Disponibilités</a></li>
                 </ul>
             </li>
@@ -73,14 +64,64 @@
                 <ul class="submenu">
                     <li><a href="{{ path('project_index') }}">Projets</a></li>
                     <li><a href="{{ path('projectwilder_index') }}">Association Projet-Wilders</a></li>
-                    <li><a href="{{ path('language_index') }}">Langages</a></li>
                     <li><a href="{{ path('tag_index') }}">Tags</a></li>
-                    <li><a href="{{ path('technology_index') }}">Technologies</a></li>
                 </ul>
             </li>
 
+
         </ul>
     </aside>
+
+        {% elseif is_granted('ROLE_USER') %}
+            <aside id="side-menu" class="aside" role="navigation">
+                <ul class="nav nav-list accordion">
+                    <li class="nav-header">
+                        <div class="link">Mon profil<i class="fa fa-chevron-down"></i></div>
+                        <ul class="submenu">
+                            <li><a href="#">Paramètres</a></li>
+                            <li><a href="#">Déconnexion</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-header">
+                        <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
+                        <ul class="submenu">
+                            <li><a href="{{ path('wilder_index') }}">Profils</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-header">
+                        <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
+                        <ul class="submenu">
+                            <li><a href="{{ path('project_index') }}">Projets</a></li>
+                            <li><a href="{{ path('projectwilder_index') }}">Association Projet-Wilders</a></li>
+                        </ul>
+                    </li>
+
+
+                </ul>
+            </aside>
+
+    {% else %}
+
+        <aside id="side-menu" class="aside" role="navigation">
+            <ul class="nav nav-list accordion">
+                <li class="nav-header">
+                    <div class="link">Mon profil<i class="fa fa-chevron-down"></i></div>
+                </li>
+
+                <li class="nav-header">
+                    <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
+                </li>
+
+                <li class="nav-header">
+                    <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
+                </li>
+            </ul>
+        </aside>
+
+
+    {% endif %}
 
     <!--Body content-->
     <div class="content">

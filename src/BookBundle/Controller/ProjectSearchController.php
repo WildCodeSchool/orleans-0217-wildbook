@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\Request;
 
 
+
 class ProjectSearchController extends Controller
 {
     /**
@@ -62,16 +63,22 @@ class ProjectSearchController extends Controller
             $promotions = $data['promotion'];
 
             $projectsSearch='';
+
             if (isset($input)){
                 $projectsSearch = $em->getRepository(Project::class)->searchByTitle($input);
-                var_dump($projectsSearch);
             } else {
+                if ($schools[0] == null) {
+                    $projectsSearch = $em->getRepository(Project::class)->searchBy(null, $categories);
+                } elseif ($categories[0] == null) {
+                    $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, null);
+                } else {
+                    $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories);
+                }
 //                $projectsSearch = $em->getRepository(Project::class)->searchByP($promotions);
 //                $projectsSearch = $em->getRepository(Project::class)->searchByS($schools);
-                $projectsSearch = $em->getRepository(Project::class)->searchBy($categories = null,$schools = null, $promotions = null);
-                var_dump($projectsSearch);
+//                $projectsSearch = $em->getRepository(Project::class)->searchBy($categories = null,$schools = null, $promotions = null);
+//                var_dump($projectsSearch);
             }
-
             return $this->render('BookBundle:Front:realisation_search.html.twig', array(
                 'form' => $form->createView(),
                 'projectsSearch' => $projectsSearch,

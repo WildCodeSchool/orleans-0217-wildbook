@@ -1,0 +1,20 @@
+{% extends 'layout_admin.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+    <div class="row col-md-3">
+
+        <h3>Créer un nouvel admin</h3>
+        <div class="form-group">
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Create" />
+            {{ form_end(form) }}
+
+            <a href="{{ path('user_index') }}" class="btn btn-primary">Retour à la liste</a>
+
+        </div>
+    </div>
+{% endblock %}
