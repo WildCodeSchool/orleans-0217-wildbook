@@ -10,29 +10,29 @@ namespace BookBundle\Repository;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function searchByTitle($input)
-    {
-        $qb = $this->createQueryBuilder('p')
-            ->where('p.title LIKE :input')
-            ->setParameter('input', '%' . $input . '%');
-        return $qb->getQuery()->getResult();
-    }
+//    public function searchByTitle($input)
+//    {
+//        $qb = $this->createQueryBuilder('p')
+//            ->where('p.title LIKE :input')
+//            ->setParameter('input', '%' . $input . '%');
+//        return $qb->getQuery()->getResult();
+//    }
 
-    public function searchBy($schools = null , $categories = null )
+    public function searchBy($schools = null, $categories = null)
     {
 
         $qb = $this->createQueryBuilder('p');
 
-            if ($schools !== null) {
-                $qb
+        if ($schools !== null) {
+            $qb
                 ->andWhere('p.school IN (:school)')
                 ->setParameter('school', $schools);
-            }
-            if ($categories !== null) {
-                $qb
+        }
+        if ($categories !== null) {
+            $qb
                 ->andWhere('p.category IN (:category)')
                 ->setParameter('category', $categories);
-            }
+        }
 
 
 //        if ($promotions != null) {
@@ -76,5 +76,16 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->where('p.school IN (:school)')
             ->setParameter('school', $schools);
         return $qb->getQuery()->getResult();
+    }
+
+    public function getLike($input)
+    {
+        $input = "%" . $input . "%";
+        $qb = $this->createQueryBuilder('p')
+            ->select('p.title')
+            ->where('p.title LIKE :title')
+            ->setParameter('title', $input)
+            ->getQuery();
+        return $qb->getResult();
     }
 }

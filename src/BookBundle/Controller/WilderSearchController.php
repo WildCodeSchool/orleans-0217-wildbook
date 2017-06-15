@@ -35,23 +35,17 @@ class WilderSearchController extends Controller
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm('BookBundle\Form\WilderSearchType', ['csrf_protection'=>false]);
         $form->handleRequest($request);
-        $input=$languages=$schools=$promotions='';
         $blocResult=false;
+
         if ($form->isValid() && $form->isSubmitted()) {
             $blocResult=true;
             $data = $form->getData();
-            $input = $data['input'];
             $languages = $data['language'];
             $schools = $data['school'];
             $promotions = $data['promotion'];
-            $wildersSearch='';
-            if (isset($input)){
-                $wildersSearch = $em->getRepository(Wilder::class)->searchByName($input);
-                dump($wildersSearch);
-            } else {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools , $languages);
-                dump($wildersSearch);
-            }
+
+            $wildersSearch= $em->getRepository(wilder::class)->searchBy($schools , $languages);
+
             return $this->render('BookBundle:Front:wilder_search.html.twig', array(
                 'blocResult' => $blocResult,
                 'form' => $form->createView(),
@@ -81,6 +75,7 @@ class WilderSearchController extends Controller
             $repository = $this->getDoctrine()->getRepository('BookBundle:Wilder');
             $data = $repository->getLike($input);
             return new JsonResponse(array("data" => json_encode($data)));
+
         } else {
             throw new HttpException('500', 'Invalid call');
         }
