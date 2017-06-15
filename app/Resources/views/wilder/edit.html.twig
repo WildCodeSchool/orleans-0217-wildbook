@@ -1,9 +1,6 @@
 {% extends 'layout_admin.html.twig' %}
 {% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
-{#{% form_theme edit_form 'form_div_layout.html.twig' %}#}
-{#{% form_theme edit_form 'form_table_layout.html.twig' %}#}
-{#{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}#}
-{#{% form_theme edit_form 'foundation_5_layout.html.twig' %}#}
+
 
 {% block content %}
 
@@ -66,7 +63,8 @@
             {{ form_label(edit_form.cv,'CV') }}
             {% if wilder.cv =='' %}
             {% else %}
-            <a href="{{ asset('uploads/' ~ wilder.cv) }}">voir le cv</a>
+            <img src="{{ asset('uploads/'~ wilder.cv) }}" width="100px"/>
+            {#<a href="{{ asset('uploads/' ~ wilder.cv) }}">voir le cv</a>#}
             {% endif %}
             {{ form_widget(edit_form.cv) }}
             {{ form_errors(edit_form.cv) }}
@@ -139,4 +137,4 @@
 
 
     </div>
-{% endblock body %}
+{% endblock%}
