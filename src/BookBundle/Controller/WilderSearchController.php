@@ -33,33 +33,7 @@ class WilderSearchController extends Controller
     public function listWildersAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createFormBuilder(null, ['csrf_protection'=>false])
-            ->setMethod('POST')
-            ->add('input', SearchType::class, [
-                'required' => false,
-                'attr' => ['placeholder' => 'wilder',
-                    'autocomplete' => 'off'
-                ]
-            ])
-            ->add('school', EntityType::class, [
-                'class'=>School::class,
-                'choice_label'=>'school',
-                'expanded'=>true,
-                'multiple'=>true
-            ])
-            ->add('language', EntityType::class, [
-                'class'=>Language::class,
-                'choice_label'=>'language',
-                'expanded'=>true,
-                'multiple'=>true
-            ])
-            ->add('promotion', EntityType::class, [
-                'class'=>Promotion::class,
-                'choice_label'=>'promotion',
-                'expanded'=>true,
-                'multiple'=>true
-            ])
-            ->getForm();
+        $form = $this->createForm('BookBundle\Form\WilderSearchType', ['csrf_protection'=>false]);
         $form->handleRequest($request);
         $input=$languages=$schools=$promotions='';
         $blocResult=false;
