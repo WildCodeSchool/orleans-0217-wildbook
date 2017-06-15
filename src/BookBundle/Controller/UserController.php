@@ -51,22 +51,73 @@ class UserController extends Controller
     {
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->createUser();
-        $user->setUsername('baba');
-        $user->setEmail('baba@gmail.com');
-        $user->setPassword('baba');
-        $userManager->updateUser($user);
-//        $form = $this->createForm('',$user);
-//        $form->handleRequest($request);
+        $form = $this->createForm('BookBundle\Form\UserType', $user);
+        $form->handleRequest($request);
 
-//        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
+            $email_exist = $userManager->findUserByEmail($user->getEmail());
+            if ($email_exist) {
+                return $this->redirectToRoute('user_index');
+            } else {
+                $em = $this->getDoctrine()->getManager();
+//                $password = uniqid();
+//                $user->setPlainPassword($password);
+                $user->setPlainPassword('password');
+                $user->setEnabled(true);
+                $user->setRoles(array('ROLE_USER'));
+                $userManager->updateUser($user);
+                $em->persist($user);
+                $em->flush();
+                // mail à l'utilisateur créé avec envoi de $password non hashé
+            }
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
 
             return $this->redirectToRoute('user_index');
         }
 
+        return $this->render('user/new.html.twig', array(
+            'user' => $user,
+            'form' => $form->createView(),
+        ));
 
+    }
+
+    /**
+     * Creates a new User entity.
+     *
+     * @Route("/new/admin", name="user_admin_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newAdminAction(Request $request)
+    {
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->createUser();
+        $form = $this->createForm('BookBundle\Form\UserType', $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $email_exist = $userManager->findUserByEmail($user->getEmail());
+            if ($email_exist) {
+                return $this->redirectToRoute('user_index');
+            } else {
+                $em = $this->getDoctrine()->getManager();
+                $user->setPlainPassword('password');
+                $user->setEnabled(true);
+                $user->setRoles(array('ROLE_ADMIN'));
+                $userManager->updateUser($user);
+                $em->persist($user);
+                $em->flush();
+            }
+
+
+            return $this->redirectToRoute('user_index');
+        }
+
+        return $this->render('user/new_admin.html.twig', array(
+            'user' => $user,
+            'form' => $form->createView(),
+        ));
+
+    }
 
 }

@@ -25,7 +25,7 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('base_admin.html.twig');
+        return $this->render('layout_admin.html.twig');
     }
 
     /**
