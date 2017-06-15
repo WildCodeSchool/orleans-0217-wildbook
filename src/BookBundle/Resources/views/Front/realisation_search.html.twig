@@ -156,7 +156,7 @@
                 <div class="list_realisations">
                     {% for projectSearch in projectsSearch%}
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            <a href="#" class="thumbnail">
+                            <a href="{{ path('detail_project', { 'id': projectSearch.id }) }}" class="thumbnail">
                                 <img src="{{ asset('images/LOGO_COLO.png') }}" alt="">
                             </a>
                             <h4>{{ projectSearch.title }}</h4>
