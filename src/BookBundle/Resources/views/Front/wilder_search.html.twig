@@ -36,6 +36,12 @@
             </div>
         </div>
 
+
+    <div class="list_wilder row" id="wild-list">
+
+    </div>
+
+
         {% if blocResult=='' %}
 
         <div class="realisation-focus">
@@ -99,12 +105,11 @@
         {% endif %}
 
     </div>
-        {% endif %}
-    </div>
 
 
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     <script src="{{ asset('js/ajax_auto.js') }}"></script>
 {% endblock javascripts %}

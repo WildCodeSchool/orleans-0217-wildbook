@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
     {% block stylesheets %}
-        {{ parent() }}
+
         <link rel="stylesheet" href="{{ asset('css/styleHome.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -24,7 +24,7 @@
                 root.className += " no-touch";
             }
         </script>
-
+        {{ parent() }}
     {% endblock %}
 {% block nav %}
 <div class='l-preloader'>
