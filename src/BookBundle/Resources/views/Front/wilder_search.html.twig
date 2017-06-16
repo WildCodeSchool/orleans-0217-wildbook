@@ -106,5 +106,6 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     <script src="{{ asset('js/ajax_auto.js') }}"></script>
 {% endblock javascripts %}
