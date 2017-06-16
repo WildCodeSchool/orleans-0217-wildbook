@@ -8,13 +8,13 @@ namespace BookBundle\Repository;
  */
 class WilderRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function searchByName($input)
-    {
-        $qb = $this->createQueryBuilder('w')
-            ->where('w.firstname LIKE :input')
-            ->setParameter('input','%'.$input.'%');
-        return $qb->getQuery()->getResult();
-    }
+//    public function searchByName($input)
+//    {
+//        $qb = $this->createQueryBuilder('w')
+//            ->where('w.firstname LIKE :input')
+//            ->setParameter('input','%'.$input.'%');
+//        return $qb->getQuery()->getResult();
+//    }
 
 
     public function searchBy($schools , $languages)
@@ -52,7 +52,7 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
     {
         $input = "%" . $input . "%";
         $qb = $this->createQueryBuilder('w')
-            ->select('w.firstname','w.lastname','w.profilPicture')
+            ->select('w.firstname','w.lastname','w.profilPicture','w.id')
             ->where('w.lastname LIKE :lastname')
             ->orWhere('w.firstname LIKE :firstname')
             ->setParameter('firstname',$input)

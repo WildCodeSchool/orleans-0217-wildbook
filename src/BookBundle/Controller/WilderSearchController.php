@@ -11,6 +11,7 @@ use BookBundle\Entity\Project;
 use BookBundle\Entity\Promotion;
 use BookBundle\Entity\School;
 use BookBundle\Entity\Wilder;
+use BookBundle\Form\WilderSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -35,65 +36,32 @@ class WilderSearchController extends Controller
         $em = $this->getDoctrine()->getManager();
 
 
-        $form = $this->createFormBuilder(null, ['csrf_protection' => false])
-            ->setMethod('POST')
-            ->add('input', SearchType::class, [
-                'required' => false,
-                'attr' => ['placeholder' => 'wilder',
-                    'autocomplete' => 'off'
-                ]
-            ])
-            ->add('school', EntityType::class, [
-                'class' => School::class,
-                'choice_label' => 'school',
-                'expanded' => true,
-                'multiple' => true
-            ])
-            ->add('language', EntityType::class, [
-                'class' => Language::class,
-                'choice_label' => 'language',
-                'expanded' => true,
-                'multiple' => true
-            ])
-            ->add('promotion', EntityType::class, [
-                'class' => Promotion::class,
-                'choice_label' => 'promotion',
-                'expanded' => true,
-                'multiple' => true
-            ])
-            ->getForm();
-
+        $form = $this->createForm(WilderSearchType::class, ['csrf_protection' => false]);
         $form->handleRequest($request);
-
-        $input = $languages = $schools = $promotions = '';
         $blocResult = false;
+
 
         if ($form->isValid() && $form->isSubmitted()) {
             $blocResult = true;
             $data = $form->getData();
-            $input = $data['input'];
             $languages = $data['language'];
             $schools = $data['school'];
             $promotions = $data['promotion'];
-
             $wildersSearch = '';
-            if (isset($input)) {
-                $wildersSearch = $em->getRepository(Wilder::class)->searchByName($input);
-            } else {
-                if ($schools[0] == null) {
-                    $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, $languages);
-                } elseif ($languages[0] == null) {
-                    $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, null);
-                } else {
-                    $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, $languages);
-                }
 
-                return $this->render('BookBundle:Front:wilder_search.html.twig', array(
-                    'blocResult' => $blocResult,
-                    'form' => $form->createView(),
-                    'wildersSearch' => $wildersSearch
-                ));
+            if ($schools[0] == null) {
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, $languages);
+            } elseif ($languages[0] == null) {
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, null);
+            } else {
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, $languages);
             }
+
+            return $this->render('BookBundle:Front:wilder_search.html.twig', array(
+                'blocResult' => $blocResult,
+                'form' => $form->createView(),
+                'wildersSearch' => $wildersSearch
+            ));
         }
 
         return $this->render('BookBundle:Front:wilder_search.html.twig', array(
@@ -102,10 +70,8 @@ class WilderSearchController extends Controller
         ));
     }
 
-
-
     /**
-     * @Route("/ajax/{input}", name="ddddd")
+     * @Route("/ajax/{input}")
      * @Method("POST")
      *
      * @param Request $request
@@ -122,6 +88,7 @@ class WilderSearchController extends Controller
             $repository = $this->getDoctrine()->getRepository('BookBundle:Wilder');
             $data = $repository->getLike($input);
             return new JsonResponse(array("data" => json_encode($data)));
+
         } else {
             throw new HttpException('500', 'Invalid call');
         }

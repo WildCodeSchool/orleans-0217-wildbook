@@ -6,49 +6,33 @@ use BookBundle\Entity\Category;
 use BookBundle\Entity\Project;
 use BookBundle\Entity\Promotion;
 use BookBundle\Entity\School;
+use BookBundle\Form\ProjectSearchType;
+use BookBundle\Repository\ProjectRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 
-
+/**
+ * ProjectSearch Controller.
+ *
+ * @Route("search_realisation")
+ */
 class ProjectSearchController extends Controller
 {
     /**
-     * @Route("/search_realisation", name="search_realisation")
+     * @Route("/", name="search_realisation")
      */
     public function listRealisationsAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createFormBuilder(null, ['csrf_protection'=>false])
-            ->setMethod('POST')
-            ->add('input', SearchType::class, [
-                'required' => false,
-                'attr' => ['placeholder' => 'nom du projet']
-            ])
-            ->add('school', EntityType::class, [
-                'class'=>School::class,
-                'choice_label'=>'school',
-                'expanded'=>true,
-                'multiple'=>true
-            ])
-            ->add('category', EntityType::class, [
-                'class'=>Category::class,
-                'choice_label'=>'label',
-                'expanded'=>true,
-                'multiple'=>true
-            ])
-            ->add('promotion', EntityType::class, [
-                'class'=>Promotion::class,
-                'choice_label'=>'promotion',
-                'expanded'=>true,
-                'multiple'=>true
-            ])
-            ->getForm();
-
+        $form = $this->createForm(ProjectSearchType::class, ['csrf_protection'=>false]);
         $form->handleRequest($request);
 
         $input=$categories=$schools=$promotions='';
@@ -57,16 +41,12 @@ class ProjectSearchController extends Controller
         if ($form->isValid() && $form->isSubmitted()) {
             $blocResult=true;
             $data = $form->getData();
-            $input = $data['input'];
             $categories = $data['category'];
             $schools = $data['school'];
             $promotions = $data['promotion'];
 
             $projectsSearch='';
 
-            if (isset($input)){
-                $projectsSearch = $em->getRepository(Project::class)->searchByTitle($input);
-            } else {
                 if ($schools[0] == null) {
                     $projectsSearch = $em->getRepository(Project::class)->searchBy(null, $categories);
                 } elseif ($categories[0] == null) {
@@ -78,7 +58,7 @@ class ProjectSearchController extends Controller
 //                $projectsSearch = $em->getRepository(Project::class)->searchByS($schools);
 //                $projectsSearch = $em->getRepository(Project::class)->searchBy($categories = null,$schools = null, $promotions = null);
 //                var_dump($projectsSearch);
-            }
+
             return $this->render('BookBundle:Front:realisation_search.html.twig', array(
                 'form' => $form->createView(),
                 'projectsSearch' => $projectsSearch,
@@ -91,6 +71,29 @@ class ProjectSearchController extends Controller
             'form' => $form->createView(),
             'blocResult' => $blocResult
         ));
+    }
+
+    /**
+     * @Route("/ajax/{input}")
+     * @Method("POST")
+     *
+     * @param Request $request
+     * @param $input
+     *
+     * @return JsonResponse
+     */
+    public function autocompleteAction(Request $request, $input)
+    {
+        if ($request->isXmlHttpRequest()){
+            /**
+             * @var $repository ProjectRepository
+             */
+            $repository = $this->getDoctrine()->getRepository('BookBundle:Project');
+            $data = $repository->getLike($input);
+            return new JsonResponse(array("data" => json_encode($data)));
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
     }
 
 

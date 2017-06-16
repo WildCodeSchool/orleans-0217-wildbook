@@ -18,87 +18,31 @@
             <div class="search">
                 <div class="row">
                     <div class="col-lg-4 col-lg-offset-4 blocksearch">
-
                         {{ form_start(form) }}
-                        {{ form_widget(form) }}
+                        {{ form_errors(form) }}
+                        {{ form_row(form.school) }}
+                        {{ form_row(form.category) }}
+                        {{ form_row(form.promotion) }}
                         <button type="submit" class="btn btn-default btn-wcs">OK</button>
                         {{ form_end(form) }}
 
-                        {#{{ form_start(form_search) }}#}
-                        {#{{ form_widget(form_search) }}#}
-                        {#<button type="submit" class="btn btn-default btn-wcs">OK</button>#}
-                        {#{{ form_end(form_search) }}#}
-
-                        {#<form name="" class="form-inline" method="get">#}
-                            {#<div class="form-group inputsearch">#}
-                                {#<label class="sr-only" for="">label</label>#}
-                                {#<input type="text" class="form-control" name="form[input]" id="" placeholder="Nom du projet">#}
-                            {#</div>#}
-                            {#<button type="submit" class="btn btn-default btn-wcs">OK</button>#}
-                        {#</form>#}
+                        {{ form_start(form) }}
+                        {{ form_row(form.Recherche) }}
+                        {{ form_end(form) }}
                     </div><!-- /.col-lg-6 -->
                 </div><!-- /.row -->
             </div>
 
             <div class="search-selectors">
                 <div class="row col-xs-offset-2">
-
-
-
-                    {#<form id="" name="" class="form-inline" method="post" action="">#}
-                        {#<div class="col-md-3 col-sm-6">#}
-                            {#<div class="btn-group">#}
-                                {#<button type="button" class="btn-lg btn-default btn-warning dropdown-toggle" data-toggle="dropdown"#}
-                                        {#aria-haspopup="true" aria-expanded="false">#}
-                                    {#ECOLE#}
-                                {#</button>#}
-                                {#<select class="selectpicker dropdown-menu" title="Ecole" data-style="btn-warning">#}
-                                    {#{% for school in schools %}#}
-                                        {#<option value="{{ school.school }}">{{ school.school }}</option>#}
-                                    {#{% endfor %}#}
-                                {#</select>#}
-                            {#</div>#}
-                        {#</div>#}
-
-                        {#<div class="col-md-3 col-sm-6">#}
-                            {#<div class="btn-group">#}
-                                {#<button type="button" class="btn-lg btn-default btn-warning dropdown-toggle" data-toggle="dropdown"#}
-                                        {#aria-haspopup="true" aria-expanded="false">#}
-                                    {#TYPE#}
-                                {#</button>#}
-                                {#<select class="selectpicker dropdown-menu" title="Ecole" data-style="btn-warning">#}
-                                    {#<option value="">Type de projet</option>#}
-                                    {#{% for category in categories %}#}
-                                        {#<option value="{{ category.label }}">{{ category.label }}</option>#}
-                                    {#{% endfor %}#}
-                                {#</select>#}
-                            {#</div>#}
-                        {#</div>#}
-
-                        {#<div class="col-md-3 col-sm-6">#}
-                            {#<div class="btn-group">#}
-                                {#<button type="button" class="btn-lg btn-default btn-warning dropdown-toggle" data-toggle="dropdown"#}
-                                        {#aria-haspopup="true" aria-expanded="false">#}
-                                    {#ANNEE#}
-                                {#</button>#}
-                                {#<select class="selectpicker dropdown-menu" title="Annee" data-style="btn-warning">#}
-                                    {#{% for promotion in promotions %}#}
-                                        {#<option value="{{ promotion.promotion }}">{{ promotion.promotion }}</option>#}
-                                    {#{% endfor %}#}
-                                {#</select>#}
-                            {#</div>#}
-                        {#</div>#}
-
-                        {#<div class="col-md-1 col-sm-1">#}
-                            {#<button type="submit" class="btn btn-default btn-wcs">OK</button>#}
-                        {#</div>#}
-
-                    {#</form>#}
                 </div>
-
             </div>
+        </div>
+
+        <div class="list_realisations row" id="project-list">
 
         </div>
+
 
         {% if blocResult=='' %}
 
@@ -148,11 +92,9 @@
                     </a>
                 </div>
             </div>
-
         </div>
 
             {% else %}
-
                 <div class="list_realisations">
                     {% for projectSearch in projectsSearch%}
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
@@ -160,6 +102,7 @@
                                 <img src="{{ asset('images/LOGO_COLO.png') }}" alt="">
                             </a>
                             <h4>{{ projectSearch.title }}</h4>
+                            {{ dump(projectSearch) }}
                         </div>
                     {% endfor %}
                 </div>
@@ -171,5 +114,8 @@
     <div class="container-fluid img2">
     </div>
 
-
 {% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/ajax_auto.js') }}"></script>
+{% endblock javascripts %}
