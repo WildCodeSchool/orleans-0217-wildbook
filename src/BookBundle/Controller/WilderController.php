@@ -48,22 +48,6 @@ class WilderController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-
-            //je gère mon upload
-//            $file = $wilder->getProfilPicture();
-//            $fileName = $fileUploader->upload($file);
-
-//            //génère un nom unique pour le file avant de l'enregistrer
-//            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-//
-//            //déplace le file vers le repertoire où les images sont stockées
-//            $file->move(
-//                $this->getParameter('upload_directory'),
-//                $fileName
-//            );
-//            $wilder->setProfilPicture($fileName);
-
             $em->persist($wilder);
             $em->flush();
 
@@ -101,36 +85,10 @@ class WilderController extends Controller
     public function editAction(Request $request, Wilder $wilder, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($wilder);
-
-        // avant de charger le formulaire
-
-//        if ($wilder->getProfilPicture()) {
-//            $wilder->setProfilPicture(
-//                new File($this->getParameter('upload_directory').'/'.
-//                $wilder->getProfilPicture())
-//             );
-//        }
-
         $editForm = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-
-            //je gère mon upload
-//            $file = $wilder->getProfilPicture();
-//
-//            if ($file) {
-//                $fileName = $fileUploader->upload($file);
-////                //génère un nom unique pour le file avant de l'enregistrer
-////                $fileName = md5(uniqid()).'.'.$file->guessExtension();
-////                //déplace le file vers le repertoire où les images sont stockées
-////                $file->move(
-////                    $this->getParameter('upload_directory'),
-////                    $fileName
-////                );
-//                $wilder->setProfilPicture($fileName);
-//            }
-
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('wilder_index');
@@ -178,5 +136,4 @@ class WilderController extends Controller
             ->getForm()
         ;
     }
-
 }
