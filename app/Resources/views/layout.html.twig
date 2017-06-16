@@ -4,6 +4,27 @@
         {{ parent() }}
         <link rel="stylesheet" href="{{ asset('css/styleHome.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+
+        <link rel="icon" type="image/png" href="{{ asset('images/LOGO_WCS_ORANGE-BLANC_PASTILLE.png') }}"/>
+
+        <link rel='stylesheet' id='cff-font-awesome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css?ver=4.5.0' type='text/css' media='all' />
+        <link rel='stylesheet' id='material-icons-css'  href='https://fonts.googleapis.com/icon?family=Material+Icons&#038;ver=4.7.5' type='text/css' media='all' />
+        <link rel='stylesheet' id='us-base-css'  href='//wildcodeschool.fr/wp-content/themes/Zephyr/framework/css/us-base.min.css?ver=4.0.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='us-style-css'  href='//wildcodeschool.fr/wp-content/themes/Zephyr/css/style.min.css?ver=4.0.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='us-responsive-css'  href='//wildcodeschool.fr/wp-content/themes/Zephyr/css/responsive.min.css?ver=4.0.2' type='text/css' media='all' />
+
+        <link rel='stylesheet' id='us-theme-options-css' href="{{ asset('css/vc_shortcodes-custom_nav.min.css') }}"
+              type="text/css"/>
+
+        <script type='text/javascript' src='https://wildcodeschool.fr/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+        <script type="text/javascript">
+            if ( ! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                var root = document.getElementsByTagName( 'html' )[0];
+                root.className += " no-touch";
+            }
+        </script>
+
     {% endblock %}
 {% block nav %}
 <div class='l-preloader'>
@@ -416,4 +437,26 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        if (window.$us === undefined) window.$us = {};
+        $us.canvasOptions = ($us.canvasOptions || {});
+        $us.canvasOptions.disableEffectsWidth = 900;
+        $us.canvasOptions.responsive = true;
+
+        $us.langOptions = ($us.langOptions || {});
+        $us.langOptions.magnificPopup = ($us.langOptions.magnificPopup || {});
+        $us.langOptions.magnificPopup.tPrev = 'Précédent (clavier, flèche vers la gauche)'; // Alt text on left arrow
+        $us.langOptions.magnificPopup.tNext = 'Suivant (clavier, touche flèche vers la droite)'; // Alt text on right arrow
+        $us.langOptions.magnificPopup.tCounter = '%curr% de %total%'; // Markup for "1 of 7" counter
+
+        $us.navOptions = ($us.navOptions || {});
+        $us.navOptions.mobileWidth = 900;
+        $us.navOptions.togglable = true;
+        $us.ajaxLoadJs = true;
+        $us.templateDirectoryUri = '//wildcodeschool.fr/wp-content/themes/Zephyr';
+    </script>
+    <script type="text/javascript" src="{{ asset('js/js_nav.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/chat.tawk.js') }}" ></script>
+    <script type='text/javascript' src='//wildcodeschool.fr/wp-content/themes/Zephyr/framework/js/us.core.min.js?ver=4.0.2'></script>
 {% endblock javascripts %}
