@@ -5,7 +5,8 @@ namespace BookBundle\Controller;
 use BookBundle\Entity\CampusManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Campusmanager controller.
@@ -139,7 +140,7 @@ class CampusManagerController extends Controller
     /**
      * Displays a form to edit an existing language entity.
      *
-     * @Route("/{id}/delete", name="language_indexdelete")
+     * @Route("/{id}/delete", name="campusmanager_indexdelete")
      * @Method({"GET", "POST"})
      */
     public function indexDeleteAction( CampusManager $campusManager)

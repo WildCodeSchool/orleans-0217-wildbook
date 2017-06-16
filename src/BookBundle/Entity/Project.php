@@ -108,6 +108,12 @@ class Project
     private $projectWilders;
 
     /**
+     * @var
+     * @ORM\ManyToOne (targetEntity="School", inversedBy="projects")
+     */
+    private $school;
+
+    /**
      * @return mixed
      */
     public function getTags()
@@ -510,5 +516,29 @@ class Project
     public function getProjectWilders()
     {
         return $this->projectWilders;
+    }
+
+    /**
+     * Set school
+     *
+     * @param \BookBundle\Entity\School $school
+     *
+     * @return Project
+     */
+    public function setSchool(\BookBundle\Entity\School $school = null)
+    {
+        $this->school = $school;
+
+        return $this;
+    }
+
+    /**
+     * Get school
+     *
+     * @return \BookBundle\Entity\School
+     */
+    public function getSchool()
+    {
+        return $this->school;
     }
 }

@@ -4,6 +4,7 @@ namespace BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Wilder
@@ -67,7 +68,7 @@ class Wilder
     /**
      * @var string
      *
-     * @ORM\Column(name="modjo", type="string", length=45, nullable=true)
+     * @ORM\Column(name="modjo", type="string", length=100, nullable=true)
      */
     private $modjo;
 
@@ -89,6 +90,8 @@ class Wilder
      * @var string
      *
      * @ORM\Column(name="profilPicture", type="string", length=255, nullable=true)
+     *
+     * @Assert\Image()
      */
     private $profilPicture;
 
@@ -96,6 +99,8 @@ class Wilder
      * @var string
      *
      * @ORM\Column(name="cv", type="string", length=255, nullable=true)
+     *
+     * @Assert\File(mimeTypes={ "application/pdf" })
      */
     private $cv;
 
@@ -194,7 +199,7 @@ class Wilder
     /**
      * @var string
      *
-     * @ORM\Column(name="firsname", type="string", length=50)
+     * @ORM\Column(name="firstname", type="string", length=50)
      */
     private $firstname;
 

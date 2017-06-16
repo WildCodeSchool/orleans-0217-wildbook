@@ -1,6 +1,6 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 
-{% block body %}
+{% block content %}
 
 <div class="container-fluid">
 
@@ -46,6 +46,10 @@
                             {{ tags.tag }}{% if not loop.last %}, {% endif %}
                         {% endfor %}
                     </td>
+                </tr>
+                <tr>
+                    <th>Category</th>
+                    <td>{{ project.category.label }}</td>
                 </tr>
                 <tr>
                     <th>Langages</th>

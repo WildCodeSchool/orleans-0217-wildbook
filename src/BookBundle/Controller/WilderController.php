@@ -3,9 +3,12 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\Wilder;
+use BookBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Wilder controller.
@@ -25,7 +28,7 @@ class WilderController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $wilders = $em->getRepository('BookBundle:Wilder')->findAll();
-dump($wilders);
+
         return $this->render('wilder/index.html.twig', array(
             'wilders' => $wilders,
         ));
@@ -37,7 +40,7 @@ dump($wilders);
      * @Route("/new", name="wilder_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader)
     {
         $wilder = new Wilder();
         $form = $this->createForm('BookBundle\Form\WilderType', $wilder);
@@ -48,7 +51,7 @@ dump($wilders);
             $em->persist($wilder);
             $em->flush();
 
-            return $this->redirectToRoute('wilder_show', array('id' => $wilder->getId()));
+            return $this->redirectToRoute('wilder_index');
         }
 
         return $this->render('wilder/new.html.twig', array(
@@ -79,7 +82,7 @@ dump($wilders);
      * @Route("/{id}/edit", name="wilder_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Wilder $wilder)
+    public function editAction(Request $request, Wilder $wilder, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($wilder);
         $editForm = $this->createForm('BookBundle\Form\WilderType', $wilder);
@@ -88,7 +91,7 @@ dump($wilders);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('wilder_edit', array('id' => $wilder->getId()));
+            return $this->redirectToRoute('wilder_index');
         }
 
         return $this->render('wilder/edit.html.twig', array(

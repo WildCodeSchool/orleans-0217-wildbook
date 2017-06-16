@@ -1,7 +1,7 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
-{% block body %}
+{% block content %}
     <div class="container-fluid">
         <div class="row col-md-6">
 
@@ -9,7 +9,7 @@
         <div class="form-group">
             {{ form_start(form) }}
 
-            {{ form_label(form.technology) }}
+            {{ form_label(form.technology,'technologie') }}
             {{ form_widget(form.technology) }}
             {{ form_errors(form.technology) }}
         </div>

@@ -1,14 +1,14 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
-{% block body %}
+{% block content %}
     <div class="container-fluid">
 
         <h3>Créer une nouvelle école</h3>
         <div class="form-group">
             {{ form_start(form) }}
 
-            {{ form_label(form.school) }}
+            {{ form_label(form.school,'ecole') }}
             {{ form_widget(form.school) }}
             {{ form_errors(form.school) }}
         </div>

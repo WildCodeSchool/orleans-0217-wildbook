@@ -1,6 +1,6 @@
-{% extends 'base_admin.html.twig' %}
+{% extends 'layout_admin.html.twig' %}
 
-{% block body %}
+{% block content %}
 
     <div class="container-fluid">
 
@@ -55,7 +55,8 @@
             </tr>
             <tr>
                 <th>Cv</th>
-                <td>{{ wilder.cv }}</td>
+                <td><a href="{{ asset('uploads/' ~ wilder.cv) }}">Voir le CV (PDF)</a>
+                </td>
             </tr>
             <tr>
                 <th>Website</th>

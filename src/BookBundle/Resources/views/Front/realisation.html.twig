@@ -1,0 +1,82 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+    <div class="container-fluid">
+
+        <h1>Project</h1>
+
+        <table class="table table-condensed">
+            <tbody>
+            <tr>
+                <th>Titre</th>
+                <td>{{ project.title }}</td>
+            </tr>
+            <tr>
+                <th>Lien</th>
+                <td>{{ project.path }}</td>
+            </tr>
+            <tr>
+                <th>Client</th>
+                <td>{{ project.customer }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if project.date %}{{ project.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ project.status }}</td>
+            </tr>
+            <tr>
+                <th>Résumé</th>
+                <td>{{ project.summary }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ project.description }}</td>
+            </tr>
+            <tr>
+                <th>Tags</th>
+                <td>{% for tags in project.tags %}
+                        {{ tags.tag }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ project.category.label }}</td>
+            </tr>
+            <tr>
+                <th>Langages</th>
+                <td>{% for languages in project.languages %}
+                        {{ languages.language }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Technologies</th>
+                <td>{% for technologies in project.technologies %}
+                        {{ technologies.technology }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+
+            {#Affiche images liées au projet à retravailler#}
+            {#<tr>#}
+                {#<th>Screenshots</th>#}
+                {#<td>#}
+                    {#{% for pictures in project.pictures %}#}
+                        {#<img src="{{ asset('uploads/'~ pictures.path|basename ) }}"#}
+                             {#alt="{{ pictures.path }}" width="150px">#}
+                    {#{% if not loop.last %} {% endif %}#}
+                    {#{% endfor %}#}
+                {#</td>#}
+            {#</tr>#}
+
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}
