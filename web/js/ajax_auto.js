@@ -20,7 +20,7 @@ $( document ).ready(function() {
                             " href=\"/profile_wilder/"+ wilders[i].id +
                             "\" class=\"thumbnail\">" +
                             "<img src=\"../uploads/" + wilders[i].profilPicture + "\" alt=\"\">"+
-                            "<h4>" + wilders[i].firstname + " " + wilders[i].lastname + "</h4></a></div>"
+                            "<h4>" + wilders[i].lastname + " " + wilders[i].firstname + "</h4></a></div>"
                     }
                     $('#wild-list').html(html);
                 },
