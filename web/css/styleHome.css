@@ -24,7 +24,7 @@ a:hover {
 
 /** PAGE ACCUEIL **/
 
-.homeHeader {
+.homeHeadera {
     z-index: -999;
     position: relative;
     height: 500px;
@@ -32,7 +32,7 @@ a:hover {
     overflow: hidden; /* les dépassements de l'image contenue seront masqués */
 }
 
-.homeHeaderPic {
+.homeHeaderaPic {
     position: absolute;
     width: 100vw;
     margin-top: -25%;
