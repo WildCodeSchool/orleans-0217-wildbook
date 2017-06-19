@@ -121,9 +121,26 @@ class UserController extends Controller
                 return $this->redirectToRoute('user_index');
             } else {
                 $em = $this->getDoctrine()->getManager();
-                $user->setPlainPassword('password');
-                $user->setEnabled(true);
+//                $user->setPlainPassword('password');
+//                $user->setEnabled(true);
+//                $user->setRoles(array('ROLE_ADMIN'));
+
+                $user->setPlainPassword(md5(uniqid()));
+                $user->setEnabled(false);
                 $user->setRoles(array('ROLE_ADMIN'));
+                $user->setConfirmationToken(md5(uniqid()));
+
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('registration')
+                    ->setFrom('veronique.jollivel@gmail.com')
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        $this->renderView('BookBundle:FinishRegistration:registration_email.html.twig',
+                            array('token'=> $user->getConfirmationToken())),
+                        'text/html'
+                    );
+                $this->get('mailer')->send($message);
+
                 $userManager->updateUser($user);
                 $em->persist($user);
                 $em->flush();
@@ -135,7 +152,5 @@ class UserController extends Controller
             'user' => $user,
             'form' => $form->createView(),
         ));
-
     }
-
 }

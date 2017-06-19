@@ -20,10 +20,11 @@
         <aside id="side-menu" class="aside" role="navigation">
             <ul class="nav nav-list accordion">
                 <li class="nav-header">
-                    <div class="link">Mon profil<i class="fa fa-chevron-down"></i></div>
+                    <div class="link">Profil Utilisateur<i class="fa fa-chevron-down"></i></div>
                     <ul class="submenu">
-                        <li><a href="#">Paramètres</a></li>
-                        <li><a href="#">Déconnexion</a></li>
+                        <li><a href="{{ path('user_new') }}">Création d'un wilder</a></li>
+                        <li><a href="{{ path('user_admin_new') }}">Création d'un campus manager</a></li>
+                        <li><a href="{{ path('user_index') }}">Liste des Users</a></li>
                     </ul>
                 </li>
 
@@ -62,14 +63,6 @@
     {% elseif is_granted('ROLE_USER') %}
         <aside id="side-menu" class="aside" role="navigation">
             <ul class="nav nav-list accordion">
-                <li class="nav-header">
-                    <div class="link">Mon profil<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <li><a href="#">Paramètres</a></li>
-                        <li><a href="#">Déconnexion</a></li>
-                    </ul>
-                </li>
-
                 <li class="nav-header">
                     <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
                     <ul class="submenu">
