@@ -68,8 +68,8 @@
             {{ form_label(edit_form.cv,'CV') }}
             {% if wilder.cv =='' %}
             {% else %}
-            <img src="{{ asset('uploads/'~ wilder.cv) }}" width="100px"/>
-            {#<a href="{{ asset('uploads/' ~ wilder.cv) }}">voir le cv</a>#}
+            {#<img src="{{ asset('uploads/'~ wilder.cv) }}" width="100px"/>#}
+            <a href="{{ asset('uploads/' ~ wilder.cv) }}">voir le cv</a>
             {% endif %}
             {{ form_widget(edit_form.cv) }}
             {{ form_errors(edit_form.cv) }}
@@ -118,10 +118,10 @@
             {{ form_widget(edit_form.userActivation) }}
             {{ form_errors(edit_form.userActivation) }}
 
+
             {{ form_label(edit_form.managerActivation,'Publication CampusManager') }}
             {{ form_widget(edit_form.managerActivation) }}
             {{ form_errors(edit_form.managerActivation) }}
-
 
 
         </div>

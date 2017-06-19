@@ -80,7 +80,7 @@ class WilderController extends Controller
         var_dump($this->getUser()->getRoles());
 
 
-        if ($idW === $idU or 'ROLE_ADMIN' === $this->getUser()->getRoles()) {
+        if ($idW === $idU or ['ROLE_ADMIN','ROLE_USER'] === $this->getUser()->getRoles()) {
             return $this->render('wilder/show.html.twig', array(
                 'wilder' => $wilder,
                 'delete_form' => $deleteForm->createView(),
@@ -115,7 +115,7 @@ class WilderController extends Controller
             return $this->redirectToRoute('wilder_index');
         }
 
-        if ($idW === $idU){
+        if ($idW === $idU or ['ROLE_ADMIN','ROLE_USER'] === $this->getUser()->getRoles()){
 
         return $this->render('wilder/edit.html.twig', array(
             'wilder' => $wilder,
