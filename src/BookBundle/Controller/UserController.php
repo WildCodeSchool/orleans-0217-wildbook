@@ -15,7 +15,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
+use Swift_Message;
 
 /**
  * User controller.
@@ -29,6 +31,7 @@ class UserController extends Controller
      *
      * @Route("/", name="user_index")
      * @Method("GET")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function indexAction()
     {
@@ -46,6 +49,7 @@ class UserController extends Controller
      *
      * @Route("/new", name="user_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function newAction(Request $request)
     {
@@ -60,15 +64,30 @@ class UserController extends Controller
                 return $this->redirectToRoute('user_index');
             } else {
                 $em = $this->getDoctrine()->getManager();
-//                $password = uniqid();
-//                $user->setPlainPassword($password);
-                $user->setPlainPassword('password');
-                $user->setEnabled(true);
+//                $user->setPlainPassword('password');
+//                $user->setEnabled(true);
+//                $user->setRoles(array('ROLE_USER'));
+
+                $user->setPlainPassword(md5(uniqid()));
+                $user->setEnabled(false);
                 $user->setRoles(array('ROLE_USER'));
+                $user->setConfirmationToken(md5(uniqid()));
+
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('registration')
+                    ->setFrom('veronique.jollivel@gmail.com')
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        $this->renderView('BookBundle:FinishRegistration:registration_email.html.twig',
+                            array('token'=> $user->getConfirmationToken())),
+                        'text/html'
+                    );
+                $this->get('mailer')->send($message);
+
                 $userManager->updateUser($user);
                 $em->persist($user);
                 $em->flush();
-                // mail à l'utilisateur créé avec envoi de $password non hashé
+
             }
 
 
@@ -87,6 +106,7 @@ class UserController extends Controller
      *
      * @Route("/new/admin", name="user_admin_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function newAdminAction(Request $request)
     {
@@ -108,8 +128,6 @@ class UserController extends Controller
                 $em->persist($user);
                 $em->flush();
             }
-
-
             return $this->redirectToRoute('user_index');
         }
 

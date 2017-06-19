@@ -7,6 +7,8 @@ use BookBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -22,6 +24,7 @@ class WilderController extends Controller
      *
      * @Route("/", name="wilder_index")
      * @Method("GET")
+     * @Security("has_role('ROLE_USER')")
      */
     public function indexAction()
     {
@@ -39,6 +42,7 @@ class WilderController extends Controller
      *
      * @Route("/new", name="wilder_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
      */
     public function newAction(Request $request, FileUploader $fileUploader)
     {
@@ -48,22 +52,7 @@ class WilderController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-
-            //je gère mon upload
-//            $file = $wilder->getProfilPicture();
-//            $fileName = $fileUploader->upload($file);
-
-//            //génère un nom unique pour le file avant de l'enregistrer
-//            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-//
-//            //déplace le file vers le repertoire où les images sont stockées
-//            $file->move(
-//                $this->getParameter('upload_directory'),
-//                $fileName
-//            );
-//            $wilder->setProfilPicture($fileName);
-
+            $wilder->setUser($this->getUser());
             $em->persist($wilder);
             $em->flush();
 
@@ -81,15 +70,23 @@ class WilderController extends Controller
      *
      * @Route("/{id}", name="wilder_show")
      * @Method("GET")
+     * @Security("has_role('ROLE_USER')")
      */
     public function showAction(Wilder $wilder)
     {
         $deleteForm = $this->createDeleteForm($wilder);
+        $idW = $wilder->getUser()->getId();
+        $idU = $this->getUser()->getId();
 
-        return $this->render('wilder/show.html.twig', array(
-            'wilder' => $wilder,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        if ($idW === $idU) {
+            return $this->render('wilder/show.html.twig', array(
+                'wilder' => $wilder,
+                'delete_form' => $deleteForm->createView(),
+            ));
+        } else {
+            throw new Exception('chemin interdit');
+        }
+
     }
 
     /**
@@ -97,50 +94,33 @@ class WilderController extends Controller
      *
      * @Route("/{id}/edit", name="wilder_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
      */
     public function editAction(Request $request, Wilder $wilder, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($wilder);
 
-        // avant de charger le formulaire
-
-//        if ($wilder->getProfilPicture()) {
-//            $wilder->setProfilPicture(
-//                new File($this->getParameter('upload_directory').'/'.
-//                $wilder->getProfilPicture())
-//             );
-//        }
-
         $editForm = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        $idW = $wilder->getUser()->getId();
+        $idU = $this->getUser()->getId();
 
-            //je gère mon upload
-//            $file = $wilder->getProfilPicture();
-//
-//            if ($file) {
-//                $fileName = $fileUploader->upload($file);
-////                //génère un nom unique pour le file avant de l'enregistrer
-////                $fileName = md5(uniqid()).'.'.$file->guessExtension();
-////                //déplace le file vers le repertoire où les images sont stockées
-////                $file->move(
-////                    $this->getParameter('upload_directory'),
-////                    $fileName
-////                );
-//                $wilder->setProfilPicture($fileName);
-//            }
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('wilder_index');
         }
 
+        if ($idW === $idU){
+
         return $this->render('wilder/edit.html.twig', array(
             'wilder' => $wilder,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+        }
     }
 
     /**
@@ -148,6 +128,7 @@ class WilderController extends Controller
      *
      * @Route("/{id}", name="wilder_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteAction(Request $request, Wilder $wilder)
     {

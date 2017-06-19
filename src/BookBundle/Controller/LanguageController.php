@@ -5,7 +5,9 @@ namespace BookBundle\Controller;
 use BookBundle\Entity\Language;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Language controller.
@@ -19,6 +21,7 @@ class LanguageController extends Controller
      *
      * @Route("/", name="language_index")
      * @Method("GET")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function indexAction()
     {
@@ -36,6 +39,7 @@ class LanguageController extends Controller
      *
      * @Route("/new", name="language_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function newAction(Request $request)
     {
@@ -62,6 +66,7 @@ class LanguageController extends Controller
      *
      * @Route("/{id}", name="language_show")
      * @Method("GET")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function showAction(Language $language)
     {
@@ -78,6 +83,7 @@ class LanguageController extends Controller
      *
      * @Route("/{id}/edit", name="language_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function editAction(Request $request, Language $language)
     {
@@ -103,6 +109,7 @@ class LanguageController extends Controller
      *
      * @Route("/{id}", name="language_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteAction(Request $request, Language $language)
     {
@@ -123,6 +130,7 @@ class LanguageController extends Controller
      *
      * @Route("/{id}/delete", name="language_indexdelete")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function indexDeleteAction( Language $language)
     {
@@ -139,6 +147,7 @@ class LanguageController extends Controller
      * @param Language $language The language entity
      *
      * @return \Symfony\Component\Form\Form The form
+     * @Security("has_role('ROLE_ADMIN')")
      */
     private function createDeleteForm(Language $language)
     {

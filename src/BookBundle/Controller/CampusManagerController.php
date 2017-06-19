@@ -6,6 +6,7 @@ use BookBundle\Entity\CampusManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -20,6 +21,7 @@ class CampusManagerController extends Controller
      *
      * @Route("/", name="campusmanager_index")
      * @Method("GET")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function indexAction()
     {
@@ -37,6 +39,7 @@ class CampusManagerController extends Controller
      *
      * @Route("/new", name="campusmanager_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function newAction(Request $request)
     {
@@ -65,15 +68,24 @@ class CampusManagerController extends Controller
      *
      * @Route("/{id}", name="campusmanager_show")
      * @Method("GET")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function showAction(CampusManager $campusManager)
     {
         $deleteForm = $this->createDeleteForm($campusManager);
 
-        return $this->render('campusmanager/show.html.twig', array(
-            'campusManager' => $campusManager,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $idC = $campusManager->getUser()->getId();
+        $idU = $this->getUser()->getId();
+
+        if ($idC === $idU) {
+
+            return $this->render('campusmanager/show.html.twig', array(
+                'campusManager' => $campusManager,
+                'delete_form' => $deleteForm->createView(),
+            ));
+        } else {
+            throw new Exception('chemin interdit');
+        }
     }
 
     /**
@@ -81,6 +93,7 @@ class CampusManagerController extends Controller
      *
      * @Route("/{id}/edit", name="campusmanager_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function editAction(Request $request, CampusManager $campusManager)
     {
@@ -88,17 +101,23 @@ class CampusManagerController extends Controller
         $editForm = $this->createForm('BookBundle\Form\CampusManagerType', $campusManager);
         $editForm->handleRequest($request);
 
+        $idC = $campusManager->getUser()->getId();
+        $idU = $this->getUser()->getId();
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('campusmanager_index');
         }
 
-        return $this->render('campusmanager/edit.html.twig', array(
-            'campusManager' => $campusManager,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        if ($idC === $idU) {
+
+            return $this->render('campusmanager/edit.html.twig', array(
+                'campusManager' => $campusManager,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }
     }
 
     /**
@@ -106,6 +125,7 @@ class CampusManagerController extends Controller
      *
      * @Route("/{id}", name="campusmanager_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteAction(Request $request, CampusManager $campusManager)
     {
@@ -127,14 +147,14 @@ class CampusManagerController extends Controller
      * @param CampusManager $campusManager The campusManager entity
      *
      * @return \Symfony\Component\Form\Form The form
+     * @Security("has_role('ROLE_ADMIN')")
      */
     private function createDeleteForm(CampusManager $campusManager)
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('campusmanager_delete', array('id' => $campusManager->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 
     /**
@@ -142,8 +162,9 @@ class CampusManagerController extends Controller
      *
      * @Route("/{id}/delete", name="campusmanager_indexdelete")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
-    public function indexDeleteAction( CampusManager $campusManager)
+    public function indexDeleteAction(CampusManager $campusManager)
     {
         $deleteForm = $this->createDeleteForm($campusManager);
 
