@@ -25,20 +25,24 @@ class WilderSearchType extends AbstractType
         ->add('school', EntityType::class, [
             'class'=>School::class,
             'choice_label'=>'school',
-            'expanded'=>true,
-            'multiple'=>true
+            'expanded'=>false,
+            'multiple'=>true,
+            'attr'=> ['class'=>'selectpicker multiple']
         ])
         ->add('language', EntityType::class, [
             'class'=>Language::class,
             'choice_label'=>'language',
-            'expanded'=>true,
-            'multiple'=>true
+            'expanded'=>false,
+            'multiple'=>true,
+            'attr'=> ['class'=>'selectpicker multiple']
         ])
         ->add('promotion', EntityType::class, [
             'class'=>Promotion::class,
             'choice_label'=>'promotion',
-            'expanded'=>true,
-            'multiple'=>true
+            'expanded'=>false,
+            'multiple'=>true,
+            'attr'=> ['class'=>'selectpicker multiple'],
+            'query_builder'=>
         ]);
 
     }
