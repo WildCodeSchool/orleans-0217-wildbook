@@ -77,12 +77,12 @@ class WilderController extends Controller
     public function showAction(Wilder $wilder)
     {
         $deleteForm = $this->createDeleteForm($wilder);
-        $idW = $wilder->getUser()->getId();
-        $idU = $this->getUser()->getId();
+        $idWilder = $wilder->getUser()->getId();
+        $idUser = $this->getUser()->getId();
         var_dump($this->getUser()->getRoles());
 
 
-        if ($idW === $idU or 'ROLE_ADMIN' === $this->getUser()->getRoles()) {
+        if ($idWilder === $idUser or 'ROLE_ADMIN' === $this->getUser()->getRoles()) {
             return $this->render('wilder/show.html.twig', array(
                 'wilder' => $wilder,
                 'delete_form' => $deleteForm->createView(),
@@ -108,8 +108,8 @@ class WilderController extends Controller
         $editForm = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $editForm->handleRequest($request);
 
-        $idW = $wilder->getUser()->getId();
-        $idU = $this->getUser()->getId();
+        $idWilder = $wilder->getUser()->getId();
+        $idUser = $this->getUser()->getId();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
@@ -118,7 +118,7 @@ class WilderController extends Controller
             return $this->redirectToRoute('wilder_index');
         }
 
-        if ($idW === $idU){
+        if ($idWilder === $idUser){
 
         return $this->render('wilder/edit.html.twig', array(
             'wilder' => $wilder,
