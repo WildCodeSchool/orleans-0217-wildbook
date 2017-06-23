@@ -77,8 +77,6 @@ class WilderController extends Controller
         $deleteForm = $this->createDeleteForm($wilder);
         $idW = $wilder->getUser()->getId();
         $idU = $this->getUser()->getId();
-        var_dump($this->getUser()->getRoles());
-
 
         if ($idW === $idU or ['ROLE_ADMIN','ROLE_USER'] === $this->getUser()->getRoles()) {
             return $this->render('wilder/show.html.twig', array(

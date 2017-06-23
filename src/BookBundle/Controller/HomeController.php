@@ -2,6 +2,7 @@
 
 namespace BookBundle\Controller;
 
+use BookBundle\Entity\HomeWilder;
 use BookBundle\Entity\Wilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,6 +16,7 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
+
         return $this->render('BookBundle:Front:accueil.html.twig');
     }
 

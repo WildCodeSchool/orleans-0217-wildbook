@@ -132,7 +132,7 @@ class UserController extends Controller
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('registration')
-                    ->setFrom('veronique.jollivel@gmail.com')
+                    ->setFrom('mailer_user')
                     ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView('BookBundle:FinishRegistration:registration_email.html.twig',
