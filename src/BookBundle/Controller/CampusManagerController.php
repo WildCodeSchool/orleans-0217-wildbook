@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Campusmanager controller.
  *
  * @Route("campusmanager")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class CampusManagerController extends Controller
 {
@@ -21,7 +22,7 @@ class CampusManagerController extends Controller
      *
      * @Route("/", name="campusmanager_index")
      * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function indexAction()
     {
@@ -39,7 +40,7 @@ class CampusManagerController extends Controller
      *
      * @Route("/new", name="campusmanager_new")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function newAction(Request $request)
     {
@@ -68,16 +69,16 @@ class CampusManagerController extends Controller
      *
      * @Route("/{id}", name="campusmanager_show")
      * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function showAction(CampusManager $campusManager)
     {
         $deleteForm = $this->createDeleteForm($campusManager);
 
-        $idC = $campusManager->getUser()->getId();
-        $idU = $this->getUser()->getId();
+        $idCampusManager = $campusManager->getUser()->getId();
+        $idUser = $this->getUser()->getId();
 
-        if ($idC === $idU) {
+        if ($idCampusManager === $idUser) {
 
             return $this->render('campusmanager/show.html.twig', array(
                 'campusManager' => $campusManager,
@@ -93,7 +94,7 @@ class CampusManagerController extends Controller
      *
      * @Route("/{id}/edit", name="campusmanager_edit")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function editAction(Request $request, CampusManager $campusManager)
     {
@@ -101,8 +102,8 @@ class CampusManagerController extends Controller
         $editForm = $this->createForm('BookBundle\Form\CampusManagerType', $campusManager);
         $editForm->handleRequest($request);
 
-        $idC = $campusManager->getUser()->getId();
-        $idU = $this->getUser()->getId();
+        $idCampusManager = $campusManager->getUser()->getId();
+        $idUser = $this->getUser()->getId();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -110,7 +111,7 @@ class CampusManagerController extends Controller
             return $this->redirectToRoute('campusmanager_index');
         }
 
-        if ($idC === $idU) {
+        if ($idCampusManager === $idUser) {
 
             return $this->render('campusmanager/edit.html.twig', array(
                 'campusManager' => $campusManager,
@@ -125,7 +126,7 @@ class CampusManagerController extends Controller
      *
      * @Route("/{id}", name="campusmanager_delete")
      * @Method("DELETE")
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function deleteAction(Request $request, CampusManager $campusManager)
     {
@@ -147,7 +148,7 @@ class CampusManagerController extends Controller
      * @param CampusManager $campusManager The campusManager entity
      *
      * @return \Symfony\Component\Form\Form The form
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     private function createDeleteForm(CampusManager $campusManager)
     {
@@ -162,7 +163,7 @@ class CampusManagerController extends Controller
      *
      * @Route("/{id}/delete", name="campusmanager_indexdelete")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function indexDeleteAction(CampusManager $campusManager)
     {

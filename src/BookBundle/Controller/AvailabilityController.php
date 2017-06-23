@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Availability controller.
  *
  * @Route("availability")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class AvailabilityController extends Controller
 {
@@ -22,7 +23,7 @@ class AvailabilityController extends Controller
      *
      * @Route("/", name="availability_index")
      * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      *
      */
     public function indexAction()
@@ -40,7 +41,7 @@ class AvailabilityController extends Controller
      *
      * @Route("/new", name="availability_new")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function newAction(Request $request)
     {
@@ -67,7 +68,7 @@ class AvailabilityController extends Controller
      *
      * @Route("/{id}", name="availability_show")
      * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function showAction(Availability $availability)
     {
@@ -84,7 +85,7 @@ class AvailabilityController extends Controller
      *
      * @Route("/{id}/edit", name="availability_edit")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function editAction(Request $request, Availability $availability)
     {
@@ -110,7 +111,7 @@ class AvailabilityController extends Controller
      *
      * @Route("/{id}/delete", name="availability_indexdelete")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function indexDeleteAction( Availability $availability)
     {
@@ -126,7 +127,7 @@ class AvailabilityController extends Controller
      *
      * @Route("/{id}", name="availability_delete")
      * @Method("DELETE")
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function deleteAction(Request $request, Availability $availability)
     {

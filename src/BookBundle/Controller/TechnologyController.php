@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Technology controller.
  *
  * @Route("technology")
- *
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class TechnologyController extends Controller
 {
@@ -22,7 +22,7 @@ class TechnologyController extends Controller
      *
      * @Route("/", name="technology_index")
      * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function indexAction()
     {
@@ -40,7 +40,7 @@ class TechnologyController extends Controller
      *
      * @Route("/new", name="technology_new")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function newAction(Request $request)
     {
@@ -67,7 +67,7 @@ class TechnologyController extends Controller
      *
      * @Route("/{id}", name="technology_show")
      * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function showAction(Technology $technology)
     {
@@ -84,7 +84,7 @@ class TechnologyController extends Controller
      *
      * @Route("/{id}/edit", name="technology_edit")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function editAction(Request $request, Technology $technology)
     {
@@ -110,7 +110,7 @@ class TechnologyController extends Controller
      *
      * @Route("/{id}", name="technology_delete")
      * @Method("DELETE")
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function deleteAction(Request $request, Technology $technology)
     {
@@ -132,7 +132,7 @@ class TechnologyController extends Controller
      * @param Technology $technology The technology entity
      *
      * @return \Symfony\Component\Form\Form The form
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     private function createDeleteForm(Technology $technology)
     {
