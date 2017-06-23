@@ -52,7 +52,9 @@ class WilderController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $wilder->setUser($this->getUser());
+
             $em->persist($wilder);
             $em->flush();
 
@@ -101,6 +103,7 @@ class WilderController extends Controller
     public function editAction(Request $request, Wilder $wilder, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($wilder);
+
 
         $editForm = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $editForm->handleRequest($request);
@@ -161,5 +164,4 @@ class WilderController extends Controller
             ->getForm()
         ;
     }
-
 }
