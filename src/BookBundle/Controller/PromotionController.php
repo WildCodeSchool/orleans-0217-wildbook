@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Promotion controller.
  *
  * @Route("promotion")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class PromotionController extends Controller
 {
@@ -22,7 +23,7 @@ class PromotionController extends Controller
      *
      * @Route("/", name="promotion_index")
      * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function indexAction()
     {
@@ -40,7 +41,7 @@ class PromotionController extends Controller
      *
      * @Route("/new", name="promotion_new")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function newAction(Request $request)
     {
@@ -67,7 +68,7 @@ class PromotionController extends Controller
      *
      * @Route("/{id}/delete", name="promotion_indexdelete")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function indexDeleteAction( Promotion $promotion)
     {
@@ -83,7 +84,7 @@ class PromotionController extends Controller
      *
      * @Route("/{id}", name="promotion_show")
      * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function showAction(Promotion $promotion)
     {
@@ -100,7 +101,7 @@ class PromotionController extends Controller
      *
      * @Route("/{id}/edit", name="promotion_edit")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function editAction(Request $request, Promotion $promotion)
     {
@@ -126,7 +127,7 @@ class PromotionController extends Controller
      *
      * @Route("/{id}", name="promotion_delete")
      * @Method("DELETE")
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function deleteAction(Request $request, Promotion $promotion)
     {
@@ -148,7 +149,7 @@ class PromotionController extends Controller
      * @param Promotion $promotion The promotion entity
      *
      * @return \Symfony\Component\Form\Form The form
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     private function createDeleteForm(Promotion $promotion)
     {

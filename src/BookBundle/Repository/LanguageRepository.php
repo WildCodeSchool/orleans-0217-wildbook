@@ -10,14 +10,4 @@ namespace BookBundle\Repository;
  */
 class LanguageRepository extends \Doctrine\ORM\EntityRepository
 {
-
-//    public function searchBy($languages)
-//    {
-//        $qb = $this->createQueryBuilder('l')
-//            ->join('l.wilder','w')
-//            ->addSelect('w')
-//            ->where('l.language = :language')
-//            ->setParameter('language', $languages);
-//        return $qb->getQuery()->getResult();
-//    }
 }

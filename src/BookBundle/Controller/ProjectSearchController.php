@@ -37,6 +37,7 @@ class ProjectSearchController extends Controller
 
         $input=$categories=$schools=$promotions='';
         $blocResult=false;
+        $projectsSearch='';
 
         if ($form->isValid() && $form->isSubmitted()) {
             $blocResult=true;
@@ -45,31 +46,19 @@ class ProjectSearchController extends Controller
             $schools = $data['school'];
             $promotions = $data['promotion'];
 
-            $projectsSearch='';
-
-                if ($schools[0] == null) {
-                    $projectsSearch = $em->getRepository(Project::class)->searchBy(null, $categories);
-                } elseif ($categories[0] == null) {
-                    $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, null);
-                } else {
-                    $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories);
-                }
-//                $projectsSearch = $em->getRepository(Project::class)->searchByP($promotions);
-//                $projectsSearch = $em->getRepository(Project::class)->searchByS($schools);
-//                $projectsSearch = $em->getRepository(Project::class)->searchBy($categories = null,$schools = null, $promotions = null);
-//                var_dump($projectsSearch);
-
-            return $this->render('BookBundle:Front:realisation_search.html.twig', array(
-                'form' => $form->createView(),
-                'projectsSearch' => $projectsSearch,
-                'blocResult' => $blocResult
-
-            ));
+            if ($schools[0] == null) {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, $categories);
+            } elseif ($categories[0] == null) {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, null);
+            } else {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories);
+            }
         }
 
         return $this->render('BookBundle:Front:realisation_search.html.twig' ,array(
             'form' => $form->createView(),
-            'blocResult' => $blocResult
+            'blocResult' => $blocResult,
+            'projectsSearch' => $projectsSearch,
         ));
     }
 
@@ -95,18 +84,4 @@ class ProjectSearchController extends Controller
             throw new HttpException('500', 'Invalid call');
         }
     }
-
-
-//    /**
-//     * @Route("/search_realisation_result", name="search_realisation_result")
-//     */
-//    public function searchRealisationsResultAction($projectsSearch)
-//    {
-//        return $this->render('BookBundle:Front:realisation_list_result.html.twig', [
-//            'projectsSearch' => $projectsSearch
-//        ]);
-//    }
-
-
-
 }

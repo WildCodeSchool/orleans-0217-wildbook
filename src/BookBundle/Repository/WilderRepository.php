@@ -8,15 +8,6 @@ namespace BookBundle\Repository;
  */
 class WilderRepository extends \Doctrine\ORM\EntityRepository
 {
-//    public function searchByName($input)
-//    {
-//        $qb = $this->createQueryBuilder('w')
-//            ->where('w.firstname LIKE :input')
-//            ->setParameter('input','%'.$input.'%');
-//        return $qb->getQuery()->getResult();
-//    }
-
-
     public function searchBy($schools , $languages)
     {
         $qb = $this->createQueryBuilder('w');
@@ -37,14 +28,6 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
                 ->andWhere('l.id IN (:languages)')
                 ->setParameter('languages', $languages);
         }
-
-//                ->leftJoin('p.school', 's')
-//                ->addSelect('s')
-//                ->leftJoin('s.promotions', 'pr', 'pr.school_id = s.id')
-//                ->addSelect('pr')
-//                ->andWhere('pr.id IN (:promotion)')
-//                ->setParameter('promotion', $promotions);
-
         return $qb->getQuery()->getResult();
     }
 
@@ -83,6 +66,5 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('languages', $languages);
         return $qb->getQuery()->getResult();
     }
-
 }
 
