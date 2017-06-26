@@ -86,15 +86,30 @@
             <div class="col-lg-offset-2 col-lg-8 noPadding" id="mapid" style="height: 580px;"></div>
         </div>
 
+
     <!-- IMAGE 3 (FIN DE PAGE - COLLÉ AU FOOTER)-->
     <div class="homeIllustration">
         {#---------- IMAGE À DÉTERMINER ! ----------#}
         <img class="homeIllustrationPic" src="{{ asset('images/WCS_HEADER8.jpg') }}" alt="..."/>
     </div>
+
 {% endblock container %}
 
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/leaflet.js') }}"></script>
-    <script src="{{ asset('js/mape.js') }}"></script>
+    <script>
+
+        var mymap = L.map('mapid').setView([47.0833, 2.4], 6);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1IjoiYmlvdm9yIiwiYSI6ImNqNGR5dWJ4czBxNjMzM21rY213NnFhZXIifQ.2tpNDSQIPP-zL4m3iy_bTA'
+        }).addTo(mymap);
+
+        {% for school in schools %}
+        var marker = L.marker([{{ school.location }}]).addTo(mymap);
+        {% endfor %}
+    </script>
 {% endblock javascripts %}
