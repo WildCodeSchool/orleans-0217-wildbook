@@ -76,7 +76,7 @@ class UserController extends Controller
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('registration')
-                    ->setFrom('veronique.jollivel@gmail.com')
+                    ->setFrom('mailer_user')
                     ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView('BookBundle:FinishRegistration:registration_email.html.twig',
@@ -122,9 +122,6 @@ class UserController extends Controller
                 return $this->redirectToRoute('user_index');
             } else {
                 $em = $this->getDoctrine()->getManager();
-//                $user->setPlainPassword('password');
-//                $user->setEnabled(true);
-//                $user->setRoles(array('ROLE_ADMIN'));
 
                 $user->setPlainPassword(md5(uniqid()));
                 $user->setEnabled(false);
