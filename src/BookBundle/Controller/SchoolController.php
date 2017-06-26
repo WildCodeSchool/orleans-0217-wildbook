@@ -46,11 +46,9 @@ class SchoolController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $convert = new ConvertCity();
-
-//            $location = $convert->convertGps($form['school']->getData());
-            $form['school']->getData();
-            dump($form['location']->getData());
-            die();
+            $school->setLocation($convert->convertGps($form['school']->getData()));
+//            dump($form['location']->getData());
+//            die();
             $em = $this->getDoctrine()->getManager();
             $em->persist($school);
             $em->flush();

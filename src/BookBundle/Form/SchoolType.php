@@ -14,8 +14,7 @@ class SchoolType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('school')
-                ->add('location', HiddenType::class);
+        $builder->add('school');
     }
     
     /**
