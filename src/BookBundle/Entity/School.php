@@ -31,6 +31,13 @@ class School
     /**
      * @var string
      *
+     * @ORM\Column(name="address", type="string", length=255)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="school", type="string", length=45)
      */
     private $school;
@@ -219,5 +226,29 @@ class School
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     *
+     * @return School
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 }
