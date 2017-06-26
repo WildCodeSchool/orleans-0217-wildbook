@@ -1,6 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block container %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/leaflet.css') }}">
+    {% endblock %}
     <!-- HEADER -->
     <div class="homeHeadera container-fluid">
          {#---------- IMAGE À DÉTERMINER ! ----------#}
@@ -71,20 +76,15 @@
         <hr class="homeLine col-lg-offset-3 col-lg-6">
     </div>
 
-    <!-- API GÉOLOCATION -->
-    <div class="homeText row container-fluid">
-        <div class="col-lg-offset-3 col-lg-6">
-            <h2 class="homeTextTitle">Notre réseau de Wilders</h2>
-            <p class="homeTextParagraph">
-                Entesserortis consunte, nos et, que pribuliam opopoente dentens ulumuni consulestra.<br>
-                Upimus et pro prio, rmiliem atiquem noccisusquas caut C.
-            </p>
+        <!-- API GÉOLOCATION -->
+        <div class="homeText row container-fluid">
+            <div class="col-lg-offset-3 col-lg-6">
+                <h2 class="homeTextTitle">Notre réseau de Wilders</h2>
+            </div>
         </div>
-
         <div class="row container-fluid">
-            <div class="homeGeolocation col-lg-offset-3 col-lg-6 noPadding"></div>
+            <div class="col-lg-offset-2 col-lg-8 noPadding" id="mapid" style="height: 580px;"></div>
         </div>
-    </div>
 
     <!-- IMAGE 3 (FIN DE PAGE - COLLÉ AU FOOTER)-->
     <div class="homeIllustration">
@@ -92,3 +92,9 @@
         <img class="homeIllustrationPic" src="{{ asset('images/WCS_HEADER8.jpg') }}" alt="..."/>
     </div>
 {% endblock container %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/leaflet.js') }}"></script>
+    <script src="{{ asset('js/mape.js') }}"></script>
+{% endblock javascripts %}
