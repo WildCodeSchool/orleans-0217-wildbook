@@ -3,6 +3,7 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\Wilder;
+use BookBundle\Service\ConvertCity;
 use BookBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -40,13 +41,15 @@ class WilderController extends Controller
      * @Route("/new", name="wilder_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, FileUploader $fileUploader)
+    public function newAction(Request $request, FileUploader $fileUploader, ConvertCity $convert)
     {
         $wilder = new Wilder();
         $form = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $address = $form['postalCode']->getData() .' '. $form['city']->getData();
+            $wilder->setLocation($convert->convertGps($address));
             $em = $this->getDoctrine()->getManager();
             $em->persist($wilder);
             $em->flush();
@@ -85,36 +88,10 @@ class WilderController extends Controller
     public function editAction(Request $request, Wilder $wilder, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($wilder);
-
-        // avant de charger le formulaire
-
-//        if ($wilder->getProfilPicture()) {
-//            $wilder->setProfilPicture(
-//                new File($this->getParameter('upload_directory').'/'.
-//                $wilder->getProfilPicture())
-//             );
-//        }
-
         $editForm = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-
-            //je gère mon upload
-//            $file = $wilder->getProfilPicture();
-//
-//            if ($file) {
-//                $fileName = $fileUploader->upload($file);
-////                //génère un nom unique pour le file avant de l'enregistrer
-////                $fileName = md5(uniqid()).'.'.$file->guessExtension();
-////                //déplace le file vers le repertoire où les images sont stockées
-////                $file->move(
-////                    $this->getParameter('upload_directory'),
-////                    $fileName
-////                );
-//                $wilder->setProfilPicture($fileName);
-//            }
-
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('wilder_index');

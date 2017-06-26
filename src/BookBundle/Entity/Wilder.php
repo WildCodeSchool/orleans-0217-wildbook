@@ -38,6 +38,13 @@ class Wilder
     private $address;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=45, nullable=true)
+     */
+    private $location;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="postalCode", type="integer", nullable=true)
@@ -920,5 +927,29 @@ class Wilder
     public function getLastname()
     {
         return $this->lastname;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     *
+     * @return Wilder
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }
