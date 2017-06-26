@@ -4,6 +4,7 @@ namespace BookBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,7 +15,10 @@ class SchoolType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('school');
+        $builder->add('school')
+                ->add('address',TextType::class, [
+                    'attr' => ['placeholder' => '6 place de l\'Hôtel de Ville,75004 Paris']
+    ]);
     }
     
     /**

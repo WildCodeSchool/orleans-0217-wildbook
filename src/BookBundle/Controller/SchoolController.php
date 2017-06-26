@@ -45,7 +45,7 @@ class SchoolController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $school->setLocation($convert->convertGps($form['school']->getData()));
+            $school->setLocation($convert->convertGps($form['address']->getData()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($school);
             $em->flush();
@@ -88,7 +88,7 @@ class SchoolController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $school->setLocation($convert->convertGps($school->getSchool()));
+            $school->setLocation($convert->convertGps($school->getAddress()));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('school_index');
