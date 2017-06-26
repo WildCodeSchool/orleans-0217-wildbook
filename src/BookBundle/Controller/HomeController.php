@@ -14,12 +14,9 @@ class HomeController extends Controller
     /**
      * @Route("/")
      */
-    public function indexAction($wilderAccueil,$accroche)
+    public function indexAction()
     {
-        return $this->render('BookBundle:Front:accueil.html.twig', array(
-            'wilderAccueil'=>$wilderAccueil,
-            'accroche'=>$accroche
-        ));
+        return $this->render('BookBundle:Front:accueil.html.twig');
     }
 
     /**

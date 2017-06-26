@@ -10,8 +10,11 @@
         <h3>Wilder: {{ wilder.firstname }} {{ wilder.lastname }}</h3>
         <h4>Email User: {{ wilder.user.email }}</h4>
         <h4>Username: {{ wilder.user.username }}</h4>
-        <h5>Projets réalisés : {% for projectWilders in wilder.projectWilders %}
-                {{ projectWilders.project.title }}<br/>{% if not loop.last %} {% endif %}
+        <h5>Projets réalisés :
+            {% for projectWilders in wilder.projectWilders %}
+                {{ projectWilders.project.title }}
+                {#{% if not loop.last %} #}
+                {#{% endif %}#}
             {% endfor %}</h5>
         <div class="form-group">
             {{ form_start(edit_form) }}
@@ -68,8 +71,8 @@
             {{ form_label(edit_form.cv,'CV') }}
             {% if wilder.cv =='' %}
             {% else %}
-            {#<img src="{{ asset('uploads/'~ wilder.cv) }}" width="100px"/>#}
-            <a href="{{ asset('uploads/' ~ wilder.cv) }}">voir le cv</a>
+                {#<img src="{{ asset('uploads/'~ wilder.cv) }}" width="100px"/>#}
+                <a href="{{ asset('uploads/' ~ wilder.cv) }}">voir le cv</a>
             {% endif %}
             {{ form_widget(edit_form.cv) }}
             {{ form_errors(edit_form.cv) }}
@@ -126,7 +129,7 @@
 
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-success" value="Edit" />
+            <input type="submit" class="btn btn-success" value="Edit"/>
         </div>
         {{ form_end(edit_form) }}
 
@@ -142,4 +145,4 @@
 
 
     </div>
-{% endblock%}
+{% endblock %}

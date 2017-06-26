@@ -5,24 +5,29 @@ namespace BookBundle\Form;
 use BookBundle\Entity\Wilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
 class HomeWilderType extends AbstractType
 {
+
     /**
-     * {@inheritdoc}
+     * @param FormBuilderInterface $builder
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('description')
-                ->add('wilder',EntityType::class,
-                    ['class'=>Wilder::class,
-                     'choice_label'=>'lastname']);
+        $builder->add('wilder', EntityType::class, array(
+            'class'=>Wilder::class,
+            'choice_label'=>'lastname'
+        ))
+            ->add('description',TextType::class);
     }
-    
+
     /**
-     * {@inheritdoc}
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -31,13 +36,15 @@ class HomeWilderType extends AbstractType
         ));
     }
 
+
     /**
-     * {@inheritdoc}
+     * @return string
      */
     public function getBlockPrefix()
     {
         return 'bookbundle_homewilder';
     }
+
 
 
 }
