@@ -23,16 +23,16 @@ class HomeWilder
 
     /**
      * @var string
-     *
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var
-     * @ORM\OneToOne (targetEntity="Wilder")
+     * @ORM\ManyToOne (targetEntity="Wilder",inversedBy="homewilder")
      */
-    private $wilder;
+    private $wilders;
+
 
     /**
      * @return mixed
@@ -86,5 +86,28 @@ class HomeWilder
     {
         return $this->description;
     }
-}
 
+    /**
+     * Set wilders
+     *
+     * @param \BookBundle\Entity\Wilder $wilders
+     *
+     * @return HomeWilder
+     */
+    public function setWilders(\BookBundle\Entity\Wilder $wilders = null)
+    {
+        $this->wilders = $wilders;
+
+        return $this;
+    }
+
+    /**
+     * Get wilders
+     *
+     * @return \BookBundle\Entity\Wilder
+     */
+    public function getWilders()
+    {
+        return $this->wilders;
+    }
+}

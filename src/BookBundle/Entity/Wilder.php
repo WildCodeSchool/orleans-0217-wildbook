@@ -197,6 +197,12 @@ class Wilder
     private $user;
 
     /**
+     * @var
+     * @ORM\OneToMany (targetEntity="HomeWilder", mappedBy="wilders")
+     */
+    private $homeWilder;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=50)
@@ -920,5 +926,53 @@ class Wilder
     public function getLastname()
     {
         return $this->lastname;
+    }
+
+    /**
+     * Set homeWilder
+     *
+     * @param \BookBundle\Entity\HomeWilder $homeWilder
+     *
+     * @return Wilder
+     */
+    public function setHomeWilder(\BookBundle\Entity\HomeWilder $homeWilder = null)
+    {
+        $this->homeWilder = $homeWilder;
+
+        return $this;
+    }
+
+    /**
+     * Get homeWilder
+     *
+     * @return \BookBundle\Entity\HomeWilder
+     */
+    public function getHomeWilder()
+    {
+        return $this->homeWilder;
+    }
+
+    /**
+     * Add homeWilder
+     *
+     * @param \BookBundle\Entity\HomeWilder $homeWilder
+     *
+     * @return Wilder
+     */
+    public function addHomeWilder(\BookBundle\Entity\HomeWilder $homeWilder)
+    {
+        $this->homeWilder[] = $homeWilder;
+
+        return $this;
+    }
+
+    /**
+     * Remove homeWilder
+     *
+     * @param \BookBundle\Entity\HomeWilder $homeWilder
+     */
+    public function removeHomeWilder(\BookBundle\Entity\HomeWilder $homeWilder)
+    {
+        $this->homeWilder->removeElement($homeWilder);
     }
 }

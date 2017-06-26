@@ -32,6 +32,7 @@ class WilderController extends Controller
 
         $wilders = $em->getRepository('BookBundle:Wilder')->findAll();
 
+
         return $this->render('wilder/index.html.twig', array(
             'wilders' => $wilders,
         ));
