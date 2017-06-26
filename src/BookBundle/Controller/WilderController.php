@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * Wilder controller.
@@ -79,16 +80,15 @@ class WilderController extends Controller
         $deleteForm = $this->createDeleteForm($wilder);
         $idWilder = $wilder->getUser()->getId();
         $idUser = $this->getUser()->getId();
-        var_dump($this->getUser()->getRoles());
 
-
-        if ($idWilder === $idUser or 'ROLE_ADMIN' === $this->getUser()->getRoles()) {
+        if ($idWilder === $idUser or in_array('ROLE_ADMIN',$this->getUser()->getRoles())) {
             return $this->render('wilder/show.html.twig', array(
                 'wilder' => $wilder,
                 'delete_form' => $deleteForm->createView(),
             ));
         } else {
             throw new Exception('chemin interdit');
+//            throw new HttpException()
         }
 
     }
@@ -118,7 +118,7 @@ class WilderController extends Controller
             return $this->redirectToRoute('wilder_index');
         }
 
-        if ($idWilder === $idUser){
+        if ($idWilder === $idUser or in_array('ROLE_ADMIN',$this->getUser()->getRoles())){
 
         return $this->render('wilder/edit.html.twig', array(
             'wilder' => $wilder,
