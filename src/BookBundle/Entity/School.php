@@ -24,6 +24,13 @@ class School
     /**
      * @var string
      *
+     * @ORM\Column(name="location", type="string", length=45)
+     */
+    private $location;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="school", type="string", length=45)
      */
     private $school;
@@ -188,5 +195,29 @@ class School
     public function getProjects()
     {
         return $this->projects;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     *
+     * @return School
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }

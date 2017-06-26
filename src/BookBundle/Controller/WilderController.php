@@ -48,22 +48,6 @@ class WilderController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-
-            //je gère mon upload
-//            $file = $wilder->getProfilPicture();
-//            $fileName = $fileUploader->upload($file);
-
-//            //génère un nom unique pour le file avant de l'enregistrer
-//            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-//
-//            //déplace le file vers le repertoire où les images sont stockées
-//            $file->move(
-//                $this->getParameter('upload_directory'),
-//                $fileName
-//            );
-//            $wilder->setProfilPicture($fileName);
-
             $em->persist($wilder);
             $em->flush();
 

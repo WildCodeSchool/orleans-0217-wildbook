@@ -3,6 +3,7 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\School;
+use BookBundle\Service\ConvertCity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -44,6 +45,12 @@ class SchoolController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $convert = new ConvertCity();
+
+//            $location = $convert->convertGps($form['school']->getData());
+            $form['school']->getData();
+            dump($form['location']->getData());
+            die();
             $em = $this->getDoctrine()->getManager();
             $em->persist($school);
             $em->flush();
