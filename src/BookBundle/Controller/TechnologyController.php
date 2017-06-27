@@ -5,12 +5,15 @@ namespace BookBundle\Controller;
 use BookBundle\Entity\Technology;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Technology controller.
  *
  * @Route("technology")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class TechnologyController extends Controller
 {
@@ -19,6 +22,7 @@ class TechnologyController extends Controller
      *
      * @Route("/", name="technology_index")
      * @Method("GET")
+     *
      */
     public function indexAction()
     {
@@ -36,6 +40,7 @@ class TechnologyController extends Controller
      *
      * @Route("/new", name="technology_new")
      * @Method({"GET", "POST"})
+     *
      */
     public function newAction(Request $request)
     {
@@ -62,6 +67,7 @@ class TechnologyController extends Controller
      *
      * @Route("/{id}", name="technology_show")
      * @Method("GET")
+     *
      */
     public function showAction(Technology $technology)
     {
@@ -78,6 +84,7 @@ class TechnologyController extends Controller
      *
      * @Route("/{id}/edit", name="technology_edit")
      * @Method({"GET", "POST"})
+     *
      */
     public function editAction(Request $request, Technology $technology)
     {
@@ -103,6 +110,7 @@ class TechnologyController extends Controller
      *
      * @Route("/{id}", name="technology_delete")
      * @Method("DELETE")
+     *
      */
     public function deleteAction(Request $request, Technology $technology)
     {
@@ -124,6 +132,7 @@ class TechnologyController extends Controller
      * @param Technology $technology The technology entity
      *
      * @return \Symfony\Component\Form\Form The form
+     *
      */
     private function createDeleteForm(Technology $technology)
     {

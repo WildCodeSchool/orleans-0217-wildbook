@@ -5,12 +5,15 @@ namespace BookBundle\Controller;
 use BookBundle\Entity\Tag;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Tag controller.
  *
  * @Route("tag")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class TagController extends Controller
 {
@@ -19,6 +22,7 @@ class TagController extends Controller
      *
      * @Route("/", name="tag_index")
      * @Method("GET")
+     *
      */
     public function indexAction()
     {
@@ -36,6 +40,7 @@ class TagController extends Controller
      *
      * @Route("/new", name="tag_new")
      * @Method({"GET", "POST"})
+     *
      */
     public function newAction(Request $request)
     {
@@ -62,6 +67,7 @@ class TagController extends Controller
      *
      * @Route("/{id}", name="tag_show")
      * @Method("GET")
+     *
      */
     public function showAction(Tag $tag)
     {
@@ -78,6 +84,7 @@ class TagController extends Controller
      *
      * @Route("/{id}/edit", name="tag_edit")
      * @Method({"GET", "POST"})
+     *
      */
     public function editAction(Request $request, Tag $tag)
     {
@@ -103,6 +110,7 @@ class TagController extends Controller
      *
      * @Route("/{id}", name="tag_delete")
      * @Method("DELETE")
+     *
      */
     public function deleteAction(Request $request, Tag $tag)
     {
@@ -124,6 +132,7 @@ class TagController extends Controller
      * @param Tag $tag The tag entity
      *
      * @return \Symfony\Component\Form\Form The form
+     *
      */
     private function createDeleteForm(Tag $tag)
     {
@@ -139,6 +148,7 @@ class TagController extends Controller
      *
      * @Route("/{id}/delete", name="tag_indexdelete")
      * @Method({"GET", "POST"})
+     *
      */
     public function indexDeleteAction( Tag $tag)
     {

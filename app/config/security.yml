@@ -19,6 +19,7 @@ security:
               login_path: /
               provider: fos_userbundle
               default_target_path: /admin/
+              csrf_token_generator: security.csrf.token_manager
 #            form_login:
 #                provider: fos_userbundle
 #                csrf_token_generator: security.csrf.token_manager

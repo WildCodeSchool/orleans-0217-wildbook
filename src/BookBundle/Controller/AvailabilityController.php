@@ -5,12 +5,16 @@ namespace BookBundle\Controller;
 use BookBundle\Entity\Availability;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * Availability controller.
  *
  * @Route("availability")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class AvailabilityController extends Controller
 {
@@ -19,6 +23,8 @@ class AvailabilityController extends Controller
      *
      * @Route("/", name="availability_index")
      * @Method("GET")
+     *
+     *
      */
     public function indexAction()
     {
@@ -35,6 +41,7 @@ class AvailabilityController extends Controller
      *
      * @Route("/new", name="availability_new")
      * @Method({"GET", "POST"})
+     *
      */
     public function newAction(Request $request)
     {
@@ -61,6 +68,7 @@ class AvailabilityController extends Controller
      *
      * @Route("/{id}", name="availability_show")
      * @Method("GET")
+     *
      */
     public function showAction(Availability $availability)
     {
@@ -77,6 +85,7 @@ class AvailabilityController extends Controller
      *
      * @Route("/{id}/edit", name="availability_edit")
      * @Method({"GET", "POST"})
+     *
      */
     public function editAction(Request $request, Availability $availability)
     {
@@ -102,6 +111,7 @@ class AvailabilityController extends Controller
      *
      * @Route("/{id}/delete", name="availability_indexdelete")
      * @Method({"GET", "POST"})
+     *
      */
     public function indexDeleteAction( Availability $availability)
     {
@@ -117,6 +127,7 @@ class AvailabilityController extends Controller
      *
      * @Route("/{id}", name="availability_delete")
      * @Method("DELETE")
+     *
      */
     public function deleteAction(Request $request, Availability $availability)
     {
@@ -138,6 +149,7 @@ class AvailabilityController extends Controller
      * @param Availability $availability The availability entity
      *
      * @return \Symfony\Component\Form\Form The form
+     * @Security("has_role('ROLE_ADMIN')")
      */
     private function createDeleteForm(Availability $availability)
     {
