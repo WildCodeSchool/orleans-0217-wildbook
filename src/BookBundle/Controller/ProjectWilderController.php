@@ -5,7 +5,9 @@ namespace BookBundle\Controller;
 use BookBundle\Entity\ProjectWilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Projectwilder controller.
@@ -19,6 +21,7 @@ class ProjectWilderController extends Controller
      *
      * @Route("/", name="projectwilder_index")
      * @Method("GET")
+     * @Security("has_role('ROLE_USER')")
      */
     public function indexAction()
     {
@@ -36,6 +39,7 @@ class ProjectWilderController extends Controller
      *
      * @Route("/new", name="projectwilder_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
      */
     public function newAction(Request $request)
     {
@@ -62,6 +66,7 @@ class ProjectWilderController extends Controller
      *
      * @Route("/{id}", name="projectwilder_show")
      * @Method("GET")
+     * @Security("has_role('ROLE_USER')")
      */
     public function showAction(ProjectWilder $projectWilder)
     {
@@ -78,6 +83,7 @@ class ProjectWilderController extends Controller
      *
      * @Route("/{id}/edit", name="projectwilder_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
      */
     public function editAction(Request $request, ProjectWilder $projectWilder)
     {
@@ -103,6 +109,7 @@ class ProjectWilderController extends Controller
      *
      * @Route("/{id}", name="projectwilder_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_USER')")
      */
     public function deleteAction(Request $request, ProjectWilder $projectWilder)
     {
@@ -124,6 +131,7 @@ class ProjectWilderController extends Controller
      * @param ProjectWilder $projectWilder The projectWilder entity
      *
      * @return \Symfony\Component\Form\Form The form
+     * @Security("has_role('ROLE_USER')")
      */
     private function createDeleteForm(ProjectWilder $projectWilder)
     {
@@ -139,6 +147,7 @@ class ProjectWilderController extends Controller
      *
      * @Route("/{id}/delete", name="projectwilder_indexdelete")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
      */
     public function indexDeleteAction( ProjectWilder $projectWilder)
     {
