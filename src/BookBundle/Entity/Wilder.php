@@ -197,12 +197,7 @@ class Wilder
      */
     private $user;
 
-    /**
-     * @var
-     * @ORM\OneToOne (targetEntity="HomeWilder",inversedBy="wilder",cascade={"persist","remove"})
-     * @ORM\JoinColumn(name="home_wilder_id", referencedColumnName="id", onDelete="SET NULL")
-     */
-    private $homeWilder;
+
 
     /**
      * @var string
@@ -930,29 +925,4 @@ class Wilder
         return $this->lastname;
     }
 
-
-
-    /**
-     * Set homeWilder
-     *
-     * @param \BookBundle\Entity\HomeWilder $homeWilder
-     *
-     * @return Wilder
-     */
-    public function setHomeWilder(\BookBundle\Entity\HomeWilder $homeWilder = null)
-    {
-        $this->homeWilder = $homeWilder;
-
-        return $this;
-    }
-
-    /**
-     * Get homeWilder
-     *
-     * @return \BookBundle\Entity\HomeWilder
-     */
-    public function getHomeWilder()
-    {
-        return $this->homeWilder;
-    }
 }

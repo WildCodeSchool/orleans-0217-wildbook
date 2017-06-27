@@ -17,7 +17,6 @@ use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\Request;
 
 
-
 class HomeWilderController extends Controller
 {
     /**
@@ -30,30 +29,21 @@ class HomeWilderController extends Controller
         $homewilder = new HomeWilder();
         $em = $this->getDoctrine()->getManager();
 
-        $homeWildersIndex = $em->getRepository(HomeWilder::class)->findAll();
+        $homeWilder = $em->getRepository(HomeWilder::class)->findOneBy([]);
 
         $form = $this->createForm(HomeWilderType::class, $homewilder);
         $form->handleRequest($request);
 
         if ($form->isValid() && $form->isSubmitted()) {
-            if(isset($homeWildersIndex) && !empty($homeWildersIndex)){
-
-
-                foreach ($homeWildersIndex as $homeWilderIndex){
-
-                    $homeWilderIndex->getWilder()->setHomeWilder();
-//                    dump($homeWilderIndex);die();
-                    $em->remove($homeWilderIndex);
-                    $em->persist($homeWilderIndex->getWilder());
-                    $em->flush();
-                }
+            if (isset($homeWilder) && !empty($homeWilder)) {
+                $em->remove($homeWilder);
+                $em->flush();
             }
-            $homewilder->getWilder()->setHomeWilder($homewilder);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($homewilder);
             $em->flush();
         }
-
         return $this->render('wilder/wilderHome.html.twig', array(
             'form' => $form->createView()
         ));

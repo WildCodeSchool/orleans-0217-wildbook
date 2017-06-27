@@ -29,7 +29,7 @@ class HomeWilder
 
     /**
      * @var
-     * @ORM\OneToOne (targetEntity="Wilder", mappedBy="homeWilder" , cascade={"persist","remove"})
+     * @ORM\OneToOne (targetEntity="Wilder")
      */
     private $wilder;
 
