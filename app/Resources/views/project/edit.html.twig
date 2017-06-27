@@ -1,9 +1,6 @@
 {% extends 'layout_admin.html.twig' %}
-{#{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}#}
-{#{% form_theme edit_form 'form_div_layout.html.twig' %}#}
-{#{% form_theme edit_form 'form_table_layout.html.twig' %}#}
 {% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
-{#{% form_theme edit_form 'foundation_5_layout.html.twig' %}#}
+
 
 {% block content %}
 
@@ -11,10 +8,10 @@
 
 
         <h3>Projet: id:{{ project.id }} - {{ project.title }}</h3>
-        <h4>Wilders ayant réalisé le projet :</h4>
-           <p> {% for projectWilders in project.projectWilders %}
-            {{ projectWilders.wilder.firstname }}{{ projectWilders.wilder.lastname }}{% if not loop.last %} {% endif %}
-            {% endfor %}</p>
+        <h4>Wilders ayant réalisé le projet : </h4>
+            <ul>{% for projectWilders in project.projectWilders %}
+            <li>{{ projectWilders.wilder.firstname }}{{ projectWilders.wilder.lastname }}</li>
+            {% endfor %}</ul>
         <div class="form-group">
             {{ form_start(edit_form) }}
             {{ form_widget(edit_form) }}

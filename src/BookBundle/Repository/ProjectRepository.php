@@ -10,17 +10,8 @@ namespace BookBundle\Repository;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
-//    public function searchByTitle($input)
-//    {
-//        $qb = $this->createQueryBuilder('p')
-//            ->where('p.title LIKE :input')
-//            ->setParameter('input', '%' . $input . '%');
-//        return $qb->getQuery()->getResult();
-//    }
-
     public function searchBy($schools = null, $categories = null)
     {
-
         $qb = $this->createQueryBuilder('p');
 
         if ($schools !== null) {
@@ -33,19 +24,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
                 ->andWhere('p.category IN (:category)')
                 ->setParameter('category', $categories);
         }
-
-
-//        if ($promotions != null) {
-//            $qb
-//                ->leftJoin('p.school', 's')
-//                ->addSelect('s')
-//                ->leftJoin('s.promotions', 'pr', 'pr.school_id = s.id')
-//                ->addSelect('pr')
-//                ->andWhere('pr.id IN (:promotion)')
-//                ->setParameter('promotion', $promotions);
-//        }
         return $qb->getQuery()->getResult();
-
     }
 
     public function searchByP($promotions)

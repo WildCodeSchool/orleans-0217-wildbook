@@ -23,6 +23,7 @@ use Swift_Message;
  * User controller.
  *
  * @Route("user")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class UserController extends Controller
 {
@@ -31,7 +32,7 @@ class UserController extends Controller
      *
      * @Route("/", name="user_index")
      * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function indexAction()
     {
@@ -49,7 +50,7 @@ class UserController extends Controller
      *
      * @Route("/new", name="user_new")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function newAction(Request $request)
     {
@@ -106,7 +107,7 @@ class UserController extends Controller
      *
      * @Route("/new/admin", name="user_admin_new")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      */
     public function newAdminAction(Request $request)
     {
@@ -121,9 +122,6 @@ class UserController extends Controller
                 return $this->redirectToRoute('user_index');
             } else {
                 $em = $this->getDoctrine()->getManager();
-//                $user->setPlainPassword('password');
-//                $user->setEnabled(true);
-//                $user->setRoles(array('ROLE_ADMIN'));
 
                 $user->setPlainPassword(md5(uniqid()));
                 $user->setEnabled(false);

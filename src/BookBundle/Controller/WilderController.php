@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * Wilder controller.
@@ -53,7 +54,9 @@ class WilderController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $wilder->setUser($this->getUser());
+
             $em->persist($wilder);
             $em->flush();
 
@@ -76,16 +79,21 @@ class WilderController extends Controller
     public function showAction(Wilder $wilder)
     {
         $deleteForm = $this->createDeleteForm($wilder);
-        $idW = $wilder->getUser()->getId();
-        $idU = $this->getUser()->getId();
 
-        if ($idW === $idU or ['ROLE_ADMIN','ROLE_USER'] === $this->getUser()->getRoles()) {
+        $idWilder = $wilder->getUser()->getId();
+        $idUser = $this->getUser()->getId();
+
+
+        if ($idWilder === $idUser or in_array('ROLE_ADMIN',$this->getUser()->getRoles())) {
+
+
             return $this->render('wilder/show.html.twig', array(
                 'wilder' => $wilder,
                 'delete_form' => $deleteForm->createView(),
             ));
         } else {
             throw new Exception('chemin interdit');
+//            throw new HttpException()
         }
 
     }
@@ -101,11 +109,12 @@ class WilderController extends Controller
     {
         $deleteForm = $this->createDeleteForm($wilder);
 
+
         $editForm = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $editForm->handleRequest($request);
 
-        $idW = $wilder->getUser()->getId();
-        $idU = $this->getUser()->getId();
+        $idWilder = $wilder->getUser()->getId();
+        $idUser = $this->getUser()->getId();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
@@ -114,7 +123,8 @@ class WilderController extends Controller
             return $this->redirectToRoute('wilder_index');
         }
 
-        if ($idW === $idU or ['ROLE_ADMIN','ROLE_USER'] === $this->getUser()->getRoles()){
+        if ($idWilder === $idUser or in_array('ROLE_ADMIN',$this->getUser()->getRoles())){
+
 
         return $this->render('wilder/edit.html.twig', array(
             'wilder' => $wilder,
@@ -160,6 +170,5 @@ class WilderController extends Controller
             ->getForm()
         ;
     }
-
 
 }
