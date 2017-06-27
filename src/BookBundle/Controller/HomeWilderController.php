@@ -41,9 +41,10 @@ class HomeWilderController extends Controller
 
                 foreach ($homeWildersIndex as $homeWilderIndex){
 
-                    $homeWilderIndex->getWilder()->setHomeWilder(null);
+                    $homeWilderIndex->getWilder()->setHomeWilder();
 //                    dump($homeWilderIndex);die();
                     $em->remove($homeWilderIndex);
+                    $em->persist($homeWilderIndex->getWilder());
                     $em->flush();
                 }
             }
@@ -62,7 +63,7 @@ class HomeWilderController extends Controller
      *
      * @Route("wilder/view", name="wilder_view")
      */
-    public function viewHomeWilder()
+    public function viewHomeWilderAction()
     {
         $em = $this->getDoctrine()->getManager();
         $homeWilder = $em->getRepository(HomeWilder::class)->findAll();
