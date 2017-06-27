@@ -85,13 +85,15 @@ class WilderController extends Controller
      * @Route("/{id}/edit", name="wilder_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Wilder $wilder, FileUploader $fileUploader)
+    public function editAction(Request $request, Wilder $wilder, FileUploader $fileUploader, ConvertCity $convert)
     {
         $deleteForm = $this->createDeleteForm($wilder);
         $editForm = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $address = $wilder->getPostalCode() .' '. $wilder->getCity();
+            $wilder->setLocation($convert->convertGps($address));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('wilder_index');
