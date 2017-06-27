@@ -3,6 +3,7 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\Wilder;
+use BookBundle\Service\CodeWarsApi;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
@@ -23,15 +24,17 @@ class HomeController extends Controller
      *
      * @Route("/profile_wilder/{id}", name="profile_wilder")
      */
-    public function wilderProfileAction($id)
+    public function wilderProfileAction($id, CodeWarsApi $codewarsApi, Wilder $wilder )
     {
+        $score = $codewarsApi->codeWarsScore($wilder->getCodewarsUsername());
         $em = $this->getDoctrine()->getManager();
 
         $wilder = $em->getRepository('BookBundle:Wilder')
             ->findOneById($id);
 
         return $this->render('BookBundle:Front:wilder.html.twig',array(
-            'wilder'=>$wilder
+            'wilder'=>$wilder,
+            'codewars'=>$score
         ));
     }
 
