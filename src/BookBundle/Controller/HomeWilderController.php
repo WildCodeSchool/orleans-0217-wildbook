@@ -30,18 +30,45 @@ class HomeWilderController extends Controller
         $homewilder = new HomeWilder();
         $em = $this->getDoctrine()->getManager();
 
+        $homeWildersIndex = $em->getRepository(HomeWilder::class)->findAll();
+
         $form = $this->createForm(HomeWilderType::class, $homewilder);
         $form->handleRequest($request);
 
         if ($form->isValid() && $form->isSubmitted()) {
+            if(isset($homeWildersIndex) && !empty($homeWildersIndex)){
+
+
+                foreach ($homeWildersIndex as $homeWilderIndex){
+
+                    $homeWilderIndex->getWilder()->setHomeWilder(null);
+//                    dump($homeWilderIndex);die();
+                    $em->remove($homeWilderIndex);
+                    $em->flush();
+                }
+            }
+            $homewilder->getWilder()->setHomeWilder($homewilder);
             $em = $this->getDoctrine()->getManager();
             $em->persist($homewilder);
-            dump($homewilder);die();
             $em->flush();
         }
 
         return $this->render('wilder/wilderHome.html.twig', array(
             'form' => $form->createView()
+        ));
+    }
+
+    /**
+     *
+     * @Route("wilder/view", name="wilder_view")
+     */
+    public function viewHomeWilder()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $homeWilder = $em->getRepository(HomeWilder::class)->findAll();
+
+        return $this->render('wilder/accueilHomeWilder.html.twig', array(
+            'homeWilder' => $homeWilder
         ));
     }
 

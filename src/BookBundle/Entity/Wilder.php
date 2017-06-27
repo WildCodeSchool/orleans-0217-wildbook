@@ -3,6 +3,7 @@
 namespace BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Annotations\AnnotationException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -198,7 +199,8 @@ class Wilder
 
     /**
      * @var
-     * @ORM\OneToMany (targetEntity="HomeWilder", mappedBy="wilders")
+     * @ORM\OneToOne (targetEntity="HomeWilder",inversedBy="wilder",cascade={"persist","remove"})
+     * @ORM\JoinColumn(name="home_wilder_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $homeWilder;
 
@@ -928,6 +930,8 @@ class Wilder
         return $this->lastname;
     }
 
+
+
     /**
      * Set homeWilder
      *
@@ -950,29 +954,5 @@ class Wilder
     public function getHomeWilder()
     {
         return $this->homeWilder;
-    }
-
-    /**
-     * Add homeWilder
-     *
-     * @param \BookBundle\Entity\HomeWilder $homeWilder
-     *
-     * @return Wilder
-     */
-    public function addHomeWilder(\BookBundle\Entity\HomeWilder $homeWilder)
-    {
-        $this->homeWilder[] = $homeWilder;
-
-        return $this;
-    }
-
-    /**
-     * Remove homeWilder
-     *
-     * @param \BookBundle\Entity\HomeWilder $homeWilder
-     */
-    public function removeHomeWilder(\BookBundle\Entity\HomeWilder $homeWilder)
-    {
-        $this->homeWilder->removeElement($homeWilder);
     }
 }

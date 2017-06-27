@@ -29,28 +29,9 @@ class HomeWilder
 
     /**
      * @var
-     * @ORM\ManyToOne (targetEntity="Wilder",inversedBy="homewilder")
+     * @ORM\OneToOne (targetEntity="Wilder", mappedBy="homeWilder" , cascade={"persist","remove"})
      */
-    private $wilders;
-
-
-    /**
-     * @return mixed
-     */
-    public function getWilder()
-    {
-        return $this->wilder;
-    }
-
-    /**
-     * @param mixed $wilder
-     * @return HomeWilder
-     */
-    public function setWilder($wilder)
-    {
-        $this->wilder = $wilder;
-        return $this;
-    }
+    private $wilder;
 
 
     /**
@@ -87,27 +68,29 @@ class HomeWilder
         return $this->description;
     }
 
+
+
     /**
-     * Set wilders
+     * Set wilder
      *
-     * @param \BookBundle\Entity\Wilder $wilders
+     * @param \BookBundle\Entity\Wilder $wilder
      *
      * @return HomeWilder
      */
-    public function setWilders(\BookBundle\Entity\Wilder $wilders = null)
+    public function setWilder(\BookBundle\Entity\Wilder $wilder = null)
     {
-        $this->wilders = $wilders;
+        $this->wilder = $wilder;
 
         return $this;
     }
 
     /**
-     * Get wilders
+     * Get wilder
      *
      * @return \BookBundle\Entity\Wilder
      */
-    public function getWilders()
+    public function getWilder()
     {
-        return $this->wilders;
+        return $this->wilder;
     }
 }

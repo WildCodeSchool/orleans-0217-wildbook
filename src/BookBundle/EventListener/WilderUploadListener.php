@@ -15,6 +15,7 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Request;
 
 class WilderUploadListener
 {
@@ -42,6 +43,8 @@ class WilderUploadListener
     public function postLoad(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
+//        $path = $request->getPathInfo();
+//        dump($path); die();
 
         if (!$entity instanceof Wilder) {
             return;
