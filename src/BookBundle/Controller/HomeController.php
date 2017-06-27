@@ -24,13 +24,13 @@ class HomeController extends Controller
      *
      * @Route("/profile_wilder/{id}", name="profile_wilder")
      */
-    public function wilderProfileAction($id, CodeWarsApi $codewarsApi, Wilder $wilder )
+    public function wilderProfileAction(CodeWarsApi $codewarsApi, Wilder $wilder )
     {
         $score = $codewarsApi->codeWarsScore($wilder->getCodewarsUsername());
         $em = $this->getDoctrine()->getManager();
 
         $wilder = $em->getRepository('BookBundle:Wilder')
-            ->findOneById($id);
+            ->findOneById($wilder);
 
         return $this->render('BookBundle:Front:wilder.html.twig',array(
             'wilder'=>$wilder,
