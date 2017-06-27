@@ -3,6 +3,7 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\School;
+use BookBundle\Service\ConvertCity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -41,13 +42,14 @@ class SchoolController extends Controller
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, ConvertCity $convert )
     {
         $school = new School();
         $form = $this->createForm('BookBundle\Form\SchoolType', $school);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $school->setLocation($convert->convertGps($form['address']->getData()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($school);
             $em->flush();
@@ -85,13 +87,14 @@ class SchoolController extends Controller
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
-    public function editAction(Request $request, School $school)
+    public function editAction(Request $request, School $school, ConvertCity $convert)
     {
         $deleteForm = $this->createDeleteForm($school);
         $editForm = $this->createForm('BookBundle\Form\SchoolType', $school);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $school->setLocation($convert->convertGps($school->getAddress()));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('school_index');

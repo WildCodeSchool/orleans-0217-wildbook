@@ -2,6 +2,7 @@
 
 namespace BookBundle\Controller;
 
+use BookBundle\Entity\School;
 use BookBundle\Entity\Wilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,7 +16,13 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('BookBundle:Front:accueil.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $schools = $em->getRepository(School::class)->findAll();
+        $wilders = $em->getRepository(Wilder::class)->findAll();
+        return $this->render('BookBundle:Front:accueil.html.twig', array(
+            'schools' => $schools,
+            'wilders' =>$wilders
+        ));
     }
 
     /**

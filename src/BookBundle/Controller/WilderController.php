@@ -3,6 +3,7 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\Wilder;
+use BookBundle\Service\ConvertCity;
 use BookBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -45,17 +46,17 @@ class WilderController extends Controller
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_USER')")
      */
-    public function newAction(Request $request, FileUploader $fileUploader)
+    public function newAction(Request $request, FileUploader $fileUploader, ConvertCity $convert)
     {
         $wilder = new Wilder();
         $form = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $address = $form['postalCode']->getData() .' '. $form['city']->getData();
+            $wilder->setLocation($convert->convertGps($address));
             $em = $this->getDoctrine()->getManager();
-
             $wilder->setUser($this->getUser());
-
             $em->persist($wilder);
             $em->flush();
 
@@ -100,19 +101,17 @@ class WilderController extends Controller
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_USER')")
      */
-    public function editAction(Request $request, Wilder $wilder, FileUploader $fileUploader)
+    public function editAction(Request $request, Wilder $wilder, FileUploader $fileUploader, ConvertCity $convert)
     {
         $deleteForm = $this->createDeleteForm($wilder);
-
-
         $editForm = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $editForm->handleRequest($request);
 
-        $idWilder = $wilder->getUser()->getId();
-        $idUser = $this->getUser()->getId();
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-
+            $address = $wilder->getPostalCode() .' '. $wilder->getCity();
+            $wilder->setLocation($convert->convertGps($address));
+            $idWilder = $wilder->getUser()->getId();
+            $idUser = $this->getUser()->getId();
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('wilder_index');

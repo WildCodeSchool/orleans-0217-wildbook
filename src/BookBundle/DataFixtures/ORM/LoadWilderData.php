@@ -19,6 +19,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
     public function load ( ObjectManager $manager )
     {
         $wilder1 = new Wilder();
+        $wilder1 -> setLocation('47.9108329, 1.9157977');
         $wilder1 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder1 -> setUser($this->getReference('user1'));
         $wilder1 -> setFirstname('Lannister');
@@ -49,6 +50,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder2 = new Wilder();
+        $wilder2 -> setLocation('47.9108329, 1.9157977');
         $wilder2 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder2 -> setUser($this->getReference('user2'));
         $wilder2 -> setFirstname('Lannister');
@@ -79,6 +81,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder3 = new Wilder();
+        $wilder3 -> setLocation('47.9108329, 1.9157977');
         $wilder3 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder3 -> setUser($this->getReference('user3'));
         $wilder3 -> setFirstname('Lannister');
@@ -109,6 +112,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder4 = new Wilder();
+        $wilder4 -> setLocation('47.9108329, 1.9157977');
         $wilder4 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder4 -> setUser($this->getReference('user4'));
         $wilder4 -> setFirstname('Stark');
@@ -139,6 +143,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder5 = new Wilder();
+        $wilder5 -> setLocation('48.862725, 2.287592000000018');
         $wilder5 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder5 -> setUser($this->getReference('user5'));
         $wilder5 -> setFirstname('Stark');
@@ -169,6 +174,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder6 = new Wilder();
+        $wilder6 -> setLocation('48.862725, 2.287592000000018');
         $wilder6 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder6 -> setUser($this->getReference('user6'));
         $wilder6 -> setFirstname('Greyjoy');
@@ -200,6 +206,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder7 = new Wilder();
+        $wilder7 -> setLocation('47.865408, 1.897564999999986');
         $wilder7 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder7 -> setUser($this->getReference('user7'));
         $wilder7 -> setFirstname('Snow');
@@ -230,6 +237,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder8 = new Wilder();
+        $wilder8 -> setLocation('47.865408, 1.897564999999986');
         $wilder8 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder8 -> setUser($this->getReference('user8'));
         $wilder8 -> setFirstname('Targaryen');
@@ -260,6 +268,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder9 = new Wilder();
+        $wilder9 -> setLocation('47.72002699999999, 1.9410080000000107');
         $wilder9 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder9 -> setUser($this->getReference('user9'));
         $wilder9 -> setFirstname('Rayder');
@@ -290,6 +299,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder10 = new Wilder();
+        $wilder10 -> setLocation('48.44385399999999, 1.4890120000000024');
         $wilder10 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder10 -> setUser($this->getReference('user10'));
         $wilder10 -> setFirstname('De Fer');
@@ -320,6 +330,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder11 = new Wilder();
+        $wilder11 -> setLocation('48.04798, 1.6943679999999404');
         $wilder11 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder11 -> setUser($this->getReference('user11'));
         $wilder11 -> setFirstname('Le Limier');
@@ -350,6 +361,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder12 = new Wilder();
+        $wilder12 -> setLocation('47.94791, 1.8807339999999613');
         $wilder12 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder12 -> setUser($this->getReference('user12'));
         $wilder12 -> setFirstname('Giantsbane');
@@ -381,6 +393,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder13 = new Wilder();
+        $wilder13 -> setLocation('45.764043, 4.835658999999964');
         $wilder13 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder13 -> setUser($this->getReference('user13'));
         $wilder13 -> setFirstname('Drogo');
@@ -410,6 +423,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder13', $wilder13 );
 
         $wilder14 = new Wilder();
+        $wilder14 -> setLocation('45.764043, 4.835658999999964');
         $wilder14 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder14 -> setUser($this->getReference('user14'));
         $wilder14 -> setFirstname('Lannister');
@@ -439,6 +453,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder14', $wilder14 );
 
         $wilder15 = new Wilder();
+        $wilder15 -> setLocation('45.746821, 4.724916900000039');
         $wilder15 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder15 -> setUser($this->getReference('user15'));
         $wilder15 -> setFirstname('Varys');
@@ -498,6 +513,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder17 = new Wilder();
+        $wilder17 -> setLocation('48.471285, 1.0143050000000358');
         $wilder17 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder17 -> setUser($this->getReference('user17'));
         $wilder17 -> setFirstname('Lannister');
@@ -527,6 +543,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder17', $wilder17 );
 
         $wilder18 = new Wilder();
+        $wilder18 -> setLocation('48.471285, 1.0143050000000358');
         $wilder18 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder18 -> setUser($this->getReference('user18'));
         $wilder18 -> setFirstname('Lannister');
@@ -556,6 +573,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder18', $wilder18 );
 
         $wilder19 = new Wilder();
+        $wilder19 -> setLocation('48.471285, 1.0143050000000358');
         $wilder19 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder19 -> setUser($this->getReference('user19'));
         $wilder19 -> setFirstname('Stark');
@@ -614,6 +632,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder20', $wilder20 );
 
         $wilder21 = new Wilder();
+        $wilder21 -> setLocation('48.432856, 0.09126600000001872');
         $wilder21 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder21 -> setUser($this->getReference('user21'));
         $wilder21 -> setFirstname('Nairn');
@@ -643,6 +662,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder21', $wilder21 );
 
         $wilder22 = new Wilder();
+        $wilder22 -> setLocation('48.432856, 0.09126600000001872');
         $wilder22 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder22 -> setUser($this->getReference('user22'));
         $wilder22 -> setFirstname('Moineau');
@@ -672,6 +692,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder22', $wilder22 );
 
         $wilder23 = new Wilder();
+        $wilder23 -> setLocation('48.347607, 0.3673300000000381');
         $wilder23 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder23 -> setUser($this->getReference('user23'));
         $wilder23 -> setFirstname('Miss');
@@ -701,6 +722,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder23', $wilder23 );
 
         $wilder24 = new Wilder();
+        $wilder24 -> setLocation('48.347607, 0.3673300000000381');
         $wilder24 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder24 -> setUser($this->getReference('user24'));
         $wilder24 -> setFirstname('Tyrell');
@@ -731,6 +753,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder25 = new Wilder();
+        $wilder25 -> setLocation('44.837789, -0.5791799999999512');
         $wilder25 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder25 -> setUser($this->getReference('user25'));
         $wilder25 -> setFirstname('Lannister');
@@ -760,6 +783,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder25', $wilder25 );
 
         $wilder26 = new Wilder();
+        $wilder26 -> setLocation('44.837789, -0.5791799999999512');
         $wilder26 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder26 -> setUser($this->getReference('user26'));
         $wilder26 -> setFirstname('Sand');
@@ -789,6 +813,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder26', $wilder26 );
 
         $wilder27 = new Wilder();
+        $wilder27 -> setLocation('44.837789, -0.5791799999999512');
         $wilder27 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder27 -> setUser($this->getReference('user27'));
         $wilder27 -> setFirstname('Miss');
@@ -818,6 +843,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder27', $wilder27 );
 
         $wilder28 = new Wilder();
+        $wilder28 -> setLocation('44.8019097, -0.6488504999999805');
         $wilder28 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder28 -> setUser($this->getReference('user28'));
         $wilder28 -> setFirstname('Baelish');
@@ -847,6 +873,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder28', $wilder28 );
 
         $wilder29 = new Wilder();
+        $wilder29 -> setLocation('44.8019097, -0.6488504999999805');
         $wilder29 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder29 -> setUser($this->getReference('user29'));
         $wilder29 -> setFirstname('Baratheon');
@@ -876,6 +903,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder29', $wilder29 );
 
         $wilder30 = new Wilder();
+        $wilder30 -> setLocation('44.880543, -0.4614890000000287');
         $wilder30 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder30 -> setUser($this->getReference('user30'));
         $wilder30 -> setFirstname('Ragekit');
@@ -905,6 +933,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder30', $wilder30 );
 
         $wilder31 = new Wilder();
+        $wilder31 -> setLocation('48.40467599999999, 2.701620000000048');
         $wilder31 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder31 -> setUser($this->getReference('user31'));
         $wilder31 -> setFirstname('De Torth');
@@ -934,6 +963,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder31', $wilder31 );
 
         $wilder32 = new Wilder();
+        $wilder32 -> setLocation('48.40467599999999, 2.701620000000048');
         $wilder32 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder32 -> setUser($this->getReference('user32'));
         $wilder32 -> setFirstname('Bolton');
@@ -964,6 +994,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder33 = new Wilder();
+        $wilder33 -> setLocation('50.62925, 3.057256000000052');
         $wilder33 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder33 -> setUser($this->getReference('user33'));
         $wilder33 -> setFirstname('Targaryen');
@@ -993,6 +1024,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder33', $wilder33 );
 
         $wilder34 = new Wilder();
+        $wilder34 -> setLocation('50.62925, 3.057256000000052');
         $wilder34 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder34 -> setUser($this->getReference('user34'));
         $wilder34 -> setFirstname('Tyrell');
@@ -1022,6 +1054,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder34', $wilder34 );
 
         $wilder35 = new Wilder();
+        $wilder35 -> setLocation('50.62925, 3.057256000000052');
         $wilder35 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder35 -> setUser($this->getReference('user35'));
         $wilder35 -> setFirstname('Stark');
@@ -1051,6 +1084,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder35', $wilder35 );
 
         $wilder36 = new Wilder();
+        $wilder36 -> setLocation('50.61513900000001, 3.017729000000031');
         $wilder36 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder36 -> setUser($this->getReference('user36'));
         $wilder36 -> setFirstname('Stark');
@@ -1080,6 +1114,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder36', $wilder36 );
 
         $wilder37 = new Wilder();
+        $wilder37 -> setLocation('50.54699929999999, 2.9176195000000007');
         $wilder37 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder37 -> setUser($this->getReference('user37'));
         $wilder37 -> setFirstname('Gris');
@@ -1111,6 +1146,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder38 = new Wilder();
+        $wilder38 -> setLocation('48.85661400000001, 2.3522219000000177');
         $wilder38 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder38 -> setUser($this->getReference('user38'));
         $wilder38 -> setFirstname('Tyrell');
@@ -1141,6 +1177,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder39 = new Wilder();
+        $wilder39 -> setLocation('48.85661400000001, 2.3522219000000177');
         $wilder39 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder39 -> setUser($this->getReference('user39'));
         $wilder39 -> setFirstname('Forel');
@@ -1170,6 +1207,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder39', $wilder39 );
 
         $wilder40 = new Wilder();
+        $wilder40 -> setLocation('48.57340529999999, 7.752111300000024');
         $wilder40 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder40 -> setUser($this->getReference('user40'));
         $wilder40 -> setFirstname('Lannister');
@@ -1200,6 +1238,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
 
 
         $wilder41 = new Wilder();
+        $wilder41 -> setLocation('48.57340529999999, 7.752111300000024');
         $wilder41 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder41 -> setUser($this->getReference('user41'));
         $wilder41 -> setFirstname('Flynn');
@@ -1229,6 +1268,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder41', $wilder41 );
 
         $wilder42 = new Wilder();
+        $wilder42 -> setLocation('48.0793589, 7.358512000000019');
         $wilder42 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder42 -> setUser($this->getReference('user42'));
         $wilder42 -> setFirstname('La..');
@@ -1258,6 +1298,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder42', $wilder42 );
 
         $wilder43 = new Wilder();
+        $wilder43 -> setLocation('43.604652, 1.4442090000000007');
         $wilder43 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder43 -> setUser($this->getReference('user43'));
         $wilder43 -> setFirstname('Mormont');
@@ -1287,6 +1328,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder43', $wilder43 );
 
         $wilder44 = new Wilder();
+        $wilder44 -> setLocation('43.71623899999999, 1.4803518999999596');
         $wilder44 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder44 -> setUser($this->getReference('user44'));
         $wilder44 -> setFirstname('Geyjoy');
@@ -1316,6 +1358,7 @@ class LoadWilderData  extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('Wilder44', $wilder44 );
 
         $wilder45 = new Wilder();
+        $wilder45 -> setLocation('43.71623899999999, 1.4803518999999596');
         $wilder45 -> setModjo("'Dieu est le maître du ciel, et l'argent le maître de la terre.'");
         $wilder45 -> setUser($this->getReference('user45'));
         $wilder45 -> setFirstname('Mormont');
