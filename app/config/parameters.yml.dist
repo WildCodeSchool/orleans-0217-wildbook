@@ -19,3 +19,4 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 
     upload_directory: '%kernel.project_dir%/web/uploads'
+    accessTokenMap: 'pk.eyJ1IjoiYmlvdm9yIiwiYSI6ImNqNGR5dWJ4czBxNjMzM21rY213NnFhZXIifQ.2tpNDSQIPP-zL4m3iy_bTA'

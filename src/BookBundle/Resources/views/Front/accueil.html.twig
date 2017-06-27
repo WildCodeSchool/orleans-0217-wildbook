@@ -83,7 +83,7 @@
             </div>
         </div>
         <div class="row container-fluid">
-            <div class="col-lg-offset-2 col-lg-8 noPadding" id="mapid" style="height: 580px;"></div>
+            <div class="col-lg-offset-2 col-lg-8 noPadding" id="mapid"></div>
         </div>
 
 
@@ -92,7 +92,6 @@
         {#---------- IMAGE À DÉTERMINER ! ----------#}
         <img class="homeIllustrationPic" src="{{ asset('images/WCS_HEADER8.jpg') }}" alt="..."/>
     </div>
-    {{ dump(wilders) }}
 {% endblock container %}
 
 {% block javascripts %}
@@ -105,7 +104,7 @@
             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
             maxZoom: 18,
             id: 'mapbox.streets',
-            accessToken: 'pk.eyJ1IjoiYmlvdm9yIiwiYSI6ImNqNGR5dWJ4czBxNjMzM21rY213NnFhZXIifQ.2tpNDSQIPP-zL4m3iy_bTA'
+            accessToken: '{{ TokenMap }}'
         }).addTo(mymap);
 
         var wildIcon = L.icon({
