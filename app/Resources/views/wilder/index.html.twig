@@ -21,7 +21,8 @@
                     <th>CP</th>
                     <th>Ville</th>
                     <th>Modjo</th>
-                    <th>Email</th>
+                    <th>Email user</th>
+                    <th>Email contact sup</th>
                     <th>Photo Profil</th>
                     <th>Langages</th>
                     <th>Useractivation</th>
@@ -40,6 +41,7 @@
                         <td>{{ wilder.postalCode }}</td>
                         <td>{{ wilder.city }}</td>
                         <td>{{ wilder.modjo }}</td>
+                        <td>{{ wilder.user.email }}</td>
                         <td>{{ wilder.contactEmail }}</td>
                         <td><img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}"
                                  alt="{{ wilder.firstname }} {{ wilder.lastname }}" width="150px"></td>

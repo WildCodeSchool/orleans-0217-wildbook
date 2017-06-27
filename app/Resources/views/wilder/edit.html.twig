@@ -8,6 +8,11 @@
 
 
         <h3>Wilder: {{ wilder.firstname }} {{ wilder.lastname }}</h3>
+        <h4>Email User: {{ wilder.user.email }}</h4>
+        <h4>Username: {{ wilder.user.username }}</h4>
+        <ul>Projets réalisés : {% for projectWilders in wilder.projectWilders %}
+               <li> {{ projectWilders.project.title }}</li>
+            {% endfor %}</ul>>
         <div class="form-group">
             {{ form_start(edit_form) }}
 
