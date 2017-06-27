@@ -10,8 +10,8 @@
         <h3>Projet: id:{{ project.id }} - {{ project.title }}</h3>
         <h4>Wilders ayant réalisé le projet : </h4>
             <ul>{% for projectWilders in project.projectWilders %}
-            <li>{{ projectWilders.wilder.firstname }}{{ projectWilders.wilder.lastname }}</li>{% if not loop.last %} {% endif %}
-            {% endfor %}</ul></p>
+            <li>{{ projectWilders.wilder.firstname }}{{ projectWilders.wilder.lastname }}</li>
+            {% endfor %}</ul>
         <div class="form-group">
             {{ form_start(edit_form) }}
             {{ form_widget(edit_form) }}
