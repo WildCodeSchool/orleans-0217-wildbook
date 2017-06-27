@@ -3,6 +3,7 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\Wilder;
+use BookBundle\Form\WilderSearchType;
 use BookBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -27,14 +28,37 @@ class WilderController extends Controller
      * @Method("GET")
      * @Security("has_role('ROLE_USER')")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm(WilderSearchType::class, ['csrf_protection' => false]);
+        $form->handleRequest($request);
+        $blocResult = false;
 
-        $wilders = $em->getRepository('BookBundle:Wilder')->findAll();
+        if ($form->isValid() && $form->isSubmitted()) {
+            $blocResult = true;
+            $data = $form->getData();;
+            $schools = $data['school'];
+            $promotions = $data['promotion'];
+            $wildersSearch = '';
+
+            if ($schools[0] == null) {
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, $promotions);
+            } elseif ($promotions[0] == null) {
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, null);
+            } else {
+                $wildersSearch = $em->getRepository('BookBundle:Wilder')->findAll();
+            }
+
+            return $this->render('BookBundle:Front:wilder_search.html.twig', array(
+                'blocResult' => $blocResult,
+                'form' => $form->createView(),
+                'wildersSearch' => $wildersSearch
+            ));
+        }
 
         return $this->render('wilder/index.html.twig', array(
-            'wilders' => $wilders,
+            'form' => $form,
         ));
     }
 
