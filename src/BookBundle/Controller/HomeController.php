@@ -18,8 +18,10 @@ class HomeController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $schools = $em->getRepository(School::class)->findAll();
+        $wilders = $em->getRepository(Wilder::class)->findAll();
         return $this->render('BookBundle:Front:accueil.html.twig', array(
             'schools' => $schools,
+            'wilders' =>$wilders
         ));
     }
 
