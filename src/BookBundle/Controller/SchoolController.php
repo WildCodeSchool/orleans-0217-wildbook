@@ -3,9 +3,12 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\School;
+use BookBundle\Service\ConvertCity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * School controller.
@@ -19,6 +22,7 @@ class SchoolController extends Controller
      *
      * @Route("/", name="school_index")
      * @Method("GET")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function indexAction()
     {
@@ -36,14 +40,16 @@ class SchoolController extends Controller
      *
      * @Route("/new", name="school_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, ConvertCity $convert )
     {
         $school = new School();
         $form = $this->createForm('BookBundle\Form\SchoolType', $school);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $school->setLocation($convert->convertGps($form['address']->getData()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($school);
             $em->flush();
@@ -62,6 +68,7 @@ class SchoolController extends Controller
      *
      * @Route("/{id}", name="school_show")
      * @Method("GET")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function showAction(School $school)
     {
@@ -78,14 +85,16 @@ class SchoolController extends Controller
      *
      * @Route("/{id}/edit", name="school_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
-    public function editAction(Request $request, School $school)
+    public function editAction(Request $request, School $school, ConvertCity $convert)
     {
         $deleteForm = $this->createDeleteForm($school);
         $editForm = $this->createForm('BookBundle\Form\SchoolType', $school);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $school->setLocation($convert->convertGps($school->getAddress()));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('school_index');
@@ -103,6 +112,7 @@ class SchoolController extends Controller
      *
      * @Route("/{id}", name="school_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function deleteAction(Request $request, School $school)
     {
@@ -124,6 +134,7 @@ class SchoolController extends Controller
      * @param School $school The school entity
      *
      * @return \Symfony\Component\Form\Form The form
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     private function createDeleteForm(School $school)
     {
@@ -139,6 +150,7 @@ class SchoolController extends Controller
      *
      * @Route("/{id}/delete", name="school_indexdelete")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function indexDeleteAction(School $school)
     {

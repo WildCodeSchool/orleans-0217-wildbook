@@ -3,12 +3,16 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\Wilder;
+use BookBundle\Service\ConvertCity;
 use BookBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * Wilder controller.
@@ -22,12 +26,14 @@ class WilderController extends Controller
      *
      * @Route("/", name="wilder_index")
      * @Method("GET")
+     * @Security("has_role('ROLE_USER')")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
         $wilders = $em->getRepository('BookBundle:Wilder')->findAll();
+
 
         return $this->render('wilder/index.html.twig', array(
             'wilders' => $wilders,
@@ -39,15 +45,19 @@ class WilderController extends Controller
      *
      * @Route("/new", name="wilder_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
      */
-    public function newAction(Request $request, FileUploader $fileUploader)
+    public function newAction(Request $request, FileUploader $fileUploader, ConvertCity $convert)
     {
         $wilder = new Wilder();
         $form = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $address = $form['postalCode']->getData() .' '. $form['city']->getData();
+            $wilder->setLocation($convert->convertGps($address));
             $em = $this->getDoctrine()->getManager();
+            $wilder->setUser($this->getUser());
             $em->persist($wilder);
             $em->flush();
 
@@ -65,15 +75,28 @@ class WilderController extends Controller
      *
      * @Route("/{id}", name="wilder_show")
      * @Method("GET")
+     * @Security("has_role('ROLE_USER')")
      */
     public function showAction(Wilder $wilder)
     {
         $deleteForm = $this->createDeleteForm($wilder);
 
-        return $this->render('wilder/show.html.twig', array(
-            'wilder' => $wilder,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $idWilder = $wilder->getUser()->getId();
+        $idUser = $this->getUser()->getId();
+
+
+        if ($idWilder === $idUser or in_array('ROLE_ADMIN',$this->getUser()->getRoles())) {
+
+
+            return $this->render('wilder/show.html.twig', array(
+                'wilder' => $wilder,
+                'delete_form' => $deleteForm->createView(),
+            ));
+        } else {
+            throw new Exception('chemin interdit');
+//            throw new HttpException()
+        }
+
     }
 
     /**
@@ -81,24 +104,33 @@ class WilderController extends Controller
      *
      * @Route("/{id}/edit", name="wilder_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
      */
-    public function editAction(Request $request, Wilder $wilder, FileUploader $fileUploader)
+    public function editAction(Request $request, Wilder $wilder, FileUploader $fileUploader, ConvertCity $convert)
     {
         $deleteForm = $this->createDeleteForm($wilder);
         $editForm = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $address = $wilder->getPostalCode() .' '. $wilder->getCity();
+            $wilder->setLocation($convert->convertGps($address));
+            $idWilder = $wilder->getUser()->getId();
+            $idUser = $this->getUser()->getId();
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('wilder_index');
         }
+
+        if ($idWilder === $idUser or in_array('ROLE_ADMIN',$this->getUser()->getRoles())){
+
 
         return $this->render('wilder/edit.html.twig', array(
             'wilder' => $wilder,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+        }
     }
 
     /**
@@ -106,6 +138,7 @@ class WilderController extends Controller
      *
      * @Route("/{id}", name="wilder_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteAction(Request $request, Wilder $wilder)
     {
@@ -136,4 +169,5 @@ class WilderController extends Controller
             ->getForm()
         ;
     }
+
 }

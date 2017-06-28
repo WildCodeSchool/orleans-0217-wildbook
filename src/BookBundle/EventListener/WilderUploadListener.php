@@ -15,14 +15,17 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class WilderUploadListener
 {
     private $uploader;
 
-    public function __construct(FileUploader $uploader)
+    public function __construct(FileUploader $uploader, RequestStack $requestStack)
     {
         $this->uploader = $uploader;
+        $this->requestStack = $requestStack;
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -47,8 +50,11 @@ class WilderUploadListener
             return;
         }
 
-        if ($fileName = $entity->getProfilPicture()) {
-            $entity->setProfilPicture(new File($this->uploader->getTargetDir().'/'.$fileName));
+        $masterRequest = $this->requestStack->getMasterRequest()->get('_route');
+        if ($masterRequest == "wilder_edit") {
+            if ($fileName = $entity->getProfilPicture()) {
+                $entity->setProfilPicture(new File($this->uploader->getTargetDir() . '/' . $fileName));
+            }
         }
 
     }
@@ -61,7 +67,7 @@ class WilderUploadListener
             return;
         }
 
-        if(is_file($entity->getProfilPicture())) {
+        if (is_file($entity->getProfilPicture())) {
             unlink($entity->getProfilPicture());
         }
 

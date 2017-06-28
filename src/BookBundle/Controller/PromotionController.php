@@ -6,12 +6,15 @@ use BookBundle\Entity\Promotion;
 use BookBundle\Form\PromotionType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Promotion controller.
  *
  * @Route("promotion")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class PromotionController extends Controller
 {
@@ -20,6 +23,7 @@ class PromotionController extends Controller
      *
      * @Route("/", name="promotion_index")
      * @Method("GET")
+     *
      */
     public function indexAction()
     {
@@ -37,6 +41,7 @@ class PromotionController extends Controller
      *
      * @Route("/new", name="promotion_new")
      * @Method({"GET", "POST"})
+     *
      */
     public function newAction(Request $request)
     {
@@ -63,6 +68,7 @@ class PromotionController extends Controller
      *
      * @Route("/{id}/delete", name="promotion_indexdelete")
      * @Method({"GET", "POST"})
+     *
      */
     public function indexDeleteAction( Promotion $promotion)
     {
@@ -78,6 +84,7 @@ class PromotionController extends Controller
      *
      * @Route("/{id}", name="promotion_show")
      * @Method("GET")
+     *
      */
     public function showAction(Promotion $promotion)
     {
@@ -94,6 +101,7 @@ class PromotionController extends Controller
      *
      * @Route("/{id}/edit", name="promotion_edit")
      * @Method({"GET", "POST"})
+     *
      */
     public function editAction(Request $request, Promotion $promotion)
     {
@@ -119,6 +127,7 @@ class PromotionController extends Controller
      *
      * @Route("/{id}", name="promotion_delete")
      * @Method("DELETE")
+     *
      */
     public function deleteAction(Request $request, Promotion $promotion)
     {
@@ -140,6 +149,7 @@ class PromotionController extends Controller
      * @param Promotion $promotion The promotion entity
      *
      * @return \Symfony\Component\Form\Form The form
+     *
      */
     private function createDeleteForm(Promotion $promotion)
     {
