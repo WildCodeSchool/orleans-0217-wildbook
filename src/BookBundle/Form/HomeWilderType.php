@@ -2,42 +2,49 @@
 
 namespace BookBundle\Form;
 
+use BookBundle\Entity\Wilder;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SchoolType extends AbstractType
+
+class HomeWilderType extends AbstractType
 {
+
     /**
-     * {@inheritdoc}
+     * @param FormBuilderInterface $builder
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('school')
-                ->add('address',TextType::class, [
-                    'attr' => ['placeholder' => '6 place de l\'Hôtel de Ville,75004 Paris']
-    ]);
+        $builder->add('wilder', EntityType::class, array(
+            'class'=>Wilder::class,
+            'choice_label'=>'lastname'
+        ))
+            ->add('description',TextType::class);
     }
-    
+
     /**
-     * {@inheritdoc}
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BookBundle\Entity\School'
+            'data_class' => 'BookBundle\Entity\HomeWilder'
         ));
     }
 
+
     /**
-     * {@inheritdoc}
+     * @return string
      */
     public function getBlockPrefix()
     {
-        return 'bookbundle_school';
+        return 'bookbundle_homewilder';
     }
+
 
 
 }
