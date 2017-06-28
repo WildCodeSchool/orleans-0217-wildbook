@@ -61,14 +61,13 @@
             {{ form_errors(edit_form.contactEmail) }}
 
             {{ form_label(edit_form.profilPicture,'Photo Profil') }}
-            <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" width="100px"/>
+            <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" class ="imageWilderAdmin"/>
             {{ form_widget(edit_form.profilPicture) }}
             {{ form_errors(edit_form.profilPicture) }}
 
             {{ form_label(edit_form.cv,'CV') }}
             {% if wilder.cv =='' %}
             {% else %}
-                {#<img src="{{ asset('uploads/'~ wilder.cv) }}" width="100px"/>#}
                 <a href="{{ asset('uploads/' ~ wilder.cv) }}">voir le cv</a>
             {% endif %}
             {{ form_widget(edit_form.cv) }}
