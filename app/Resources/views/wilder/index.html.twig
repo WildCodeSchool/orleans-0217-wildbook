@@ -91,3 +91,7 @@
         </div>
     </div>
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/ajax_auto_admin.js') }}" ></script>
+{% endblock javascripts %}
