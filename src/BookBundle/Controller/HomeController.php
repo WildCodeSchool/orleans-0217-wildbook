@@ -2,6 +2,7 @@
 
 namespace BookBundle\Controller;
 
+use BookBundle\Entity\HomeWilder;
 use BookBundle\Entity\School;
 use BookBundle\Entity\Wilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

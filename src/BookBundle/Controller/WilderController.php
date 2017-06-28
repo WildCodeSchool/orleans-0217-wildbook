@@ -34,6 +34,7 @@ class WilderController extends Controller
 
         $wilders = $em->getRepository('BookBundle:Wilder')->findAll();
 
+
         return $this->render('wilder/index.html.twig', array(
             'wilders' => $wilders,
         ));
@@ -79,10 +80,14 @@ class WilderController extends Controller
     public function showAction(Wilder $wilder)
     {
         $deleteForm = $this->createDeleteForm($wilder);
+
         $idWilder = $wilder->getUser()->getId();
         $idUser = $this->getUser()->getId();
 
+
         if ($idWilder === $idUser or in_array('ROLE_ADMIN',$this->getUser()->getRoles())) {
+
+
             return $this->render('wilder/show.html.twig', array(
                 'wilder' => $wilder,
                 'delete_form' => $deleteForm->createView(),
@@ -118,6 +123,7 @@ class WilderController extends Controller
         }
 
         if ($idWilder === $idUser or in_array('ROLE_ADMIN',$this->getUser()->getRoles())){
+
 
         return $this->render('wilder/edit.html.twig', array(
             'wilder' => $wilder,
@@ -163,4 +169,5 @@ class WilderController extends Controller
             ->getForm()
         ;
     }
+
 }

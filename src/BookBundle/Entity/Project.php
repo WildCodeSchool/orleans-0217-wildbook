@@ -114,6 +114,16 @@ class Project
     private $school;
 
     /**
+     * @var boolean
+     */
+    private $homeProject;
+
+    /**
+     * @var string
+     */
+    private $homeTextProject;
+
+    /**
      * @return mixed
      */
     public function getTags()
