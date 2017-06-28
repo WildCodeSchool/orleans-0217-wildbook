@@ -80,12 +80,6 @@ class Project
 
     /**
      * @var
-     * @ORM\OneToMany (targetEntity="Picture", mappedBy="picture")
-     */
-    private $pictures;
-
-    /**
-     * @var
      * @ORM\ManyToOne (targetEntity="Category", inversedBy="projects")
      */
     private $category;
@@ -352,40 +346,6 @@ class Project
     public function removeTag(\BookBundle\Entity\Tag $tag)
     {
         $this->tags->removeElement($tag);
-    }
-
-    /**
-     * Add picture
-     *
-     * @param \BookBundle\Entity\Picture $picture
-     *
-     * @return Project
-     */
-    public function addPicture(\BookBundle\Entity\Picture $picture)
-    {
-        $this->pictures[] = $picture;
-
-        return $this;
-    }
-
-    /**
-     * Remove picture
-     *
-     * @param \BookBundle\Entity\Picture $picture
-     */
-    public function removePicture(\BookBundle\Entity\Picture $picture)
-    {
-        $this->pictures->removeElement($picture);
-    }
-
-    /**
-     * Get pictures
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPictures()
-    {
-        return $this->pictures;
     }
 
     /**
