@@ -3,7 +3,7 @@
         {% for homeWild in homeWilder %}
         <div class="thumbnail">
             <img src="{{ asset('uploads/'~ homeWild.wilder.profilPicture|basename ) }}"
-                 alt="{{ homeWild.wilder.firstname }}{{ homeWild.wilder.lastname }}" width="400px">
+                 alt="{{ homeWild.wilder.firstname }}{{ homeWild.wilder.lastname }}" class="homeWilder">
             <div class="caption">
                 <h3>{{ homeWild.wilder.firstname }}{{ homeWild.wilder.lastname }}</h3>
                 <p>
