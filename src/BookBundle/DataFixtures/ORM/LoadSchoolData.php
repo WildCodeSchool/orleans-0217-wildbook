@@ -20,48 +20,66 @@ class LoadSchoolData extends AbstractFixture implements OrderedFixtureInterface
     {
         $orleans = new School ();
         $orleans -> setSchool('Orleans');
+        $orleans -> setAddress('45000 Orleans');
+        $orleans -> setLocation('47.9108329, 1.9157977');
         $manager -> persist ( $orleans);
         $this->addReference('Orleans', $orleans);
 
 
         $lyon = new School ();
         $lyon -> setSchool('Lyon');
+        $lyon -> setAddress('69000 lyon');
+        $lyon -> setLocation('45.7567546, 4.8409266');
         $manager -> persist ( $lyon );
         $this->addReference('Lyon', $lyon);
 
 
         $loupe = new School ();
         $loupe -> setSchool('La Loupe');
+        $loupe -> setAddress('28240 La loupe');
+        $loupe -> setLocation('48.471285, 1.014305');
         $manager -> persist ( $loupe );
         $this->addReference('Loupe', $loupe);
 
         $bordeaux = new School ();
         $bordeaux -> setSchool('Bordeaux');
+        $bordeaux -> setAddress('33000 bordeaux');
+        $bordeaux -> setLocation('44.8350088, -0.587269');
         $manager -> persist ( $bordeaux );
         $this->addReference('Bordeaux', $bordeaux);
 
         $lille = new School ();
         $lille -> setSchool('Lille');
+        $lille -> setAddress('59000 lille');
+        $lille -> setLocation('50.6138111, 3.0423599');
         $manager -> persist ( $lille );
         $this->addReference('Lille', $lille);
 
         $paris = new School ();
         $paris -> setSchool('Paris');
+        $paris -> setAddress('75000 paris');
+        $paris -> setLocation('48.8785419, 2.3642198');
         $manager -> persist ( $paris );
         $this->addReference('Paris', $paris);
 
         $strasbourg = new School ();
         $strasbourg -> setSchool('Strasbourg');
+        $strasbourg -> setAddress('67000 strasbourg');
+        $strasbourg -> setLocation('48.6019858, 7.7835217');
         $manager -> persist ( $strasbourg );
         $this->addReference('Strasbourg', $strasbourg);
 
         $toulouse = new School ();
         $toulouse -> setSchool('Toulouse');
+        $toulouse -> setAddress('31000 toulouse');
+        $toulouse -> setLocation('43.6046256, 1.444205');
         $manager -> persist ( $toulouse );
         $this->addReference('Toulouse', $toulouse);
 
         $fontainebleau = new School ();
         $fontainebleau -> setSchool('Fontainebleau');
+        $fontainebleau -> setAddress('77300 fontainebleau');
+        $fontainebleau -> setLocation('48.3880879, 2.6613069');
         $manager -> persist ( $fontainebleau );
         $this->addReference('Fontaine', $fontainebleau);
 
