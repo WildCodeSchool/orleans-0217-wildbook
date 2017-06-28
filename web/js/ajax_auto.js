@@ -46,12 +46,30 @@ $( document ).ready(function() {
                     html = "";
                     for (i = 0; i < projects.length; i++) {
 
-                        html +=  "<div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\" style='width: 300px; height:" +
-                            " 300px'> <a" +
-                            " href=\"/detail_project/"+ projects[i].id +
-                            "\" class=\"thumbnail\">" +
-                            "<img src=\"../images/LOGO_COLO.png\" alt=\"\">"+
-                            "<h4>" + projects[i].title + "</h4></a></div>"
+                        html += "<tr>" +
+                            "<td><a href=\"{{ path('wilder_show', { 'id': wilder.id }) }}\">{{ wilder.id" +
+                            " }}</a></td>"+
+                        "<td>{{ wilder.lastname }}</td>"+
+                        "<td>{{ wilder.firstname }}</td>"+
+                        "<td>{% if wilder.birthDate %}{{ wilder.birthDate|date('Y-m-d') }}{% endif %}</td>"+
+                        "<td>{{ wilder.address }}</td>"+
+                        "<td>{{ wilder.postalCode }}</td>"+
+                        "<td>{{ wilder.city }}</td>"+
+                        "<td>{{ wilder.modjo }}</td>"+
+                        "<td>{{ wilder.user.email }}</td>"+
+                        "<td>{{ wilder.contactEmail }}</td>"+
+                        "<td><img src=\"{{ asset('uploads/'~ wilder.profilPicture|basename ) }} \"alt=\"{{" +
+                            " wilder.firstname }} {{ wilder.lastname }}\" width='150px'></td>"+
+                        "<td><ul>{% for language in wilder.languages %} <li>  {{ language.language }}</li> {% endfor" +
+                            " %} </ul> </td>"+
+                        "<td>{% if wilder.userActivation %}Yes{% else %}No{% endif %}</td>"+
+                        "<td>{% if wilder.managerActivation %}Yendifes{% else %}No{%  %}</td>"+
+                        "<td>"+
+                        "<a href=\"{{ path('wilder_edit', { 'id': wilder.id }) }}\" class='btn btn-success'> <span" +
+                        " class='glyphicon glyphicon-pencil'></span> Modifier </a> " +
+                        "<a href=\"{{ path('wilder_delete', { 'id': wilder.id }) }}\" class='btn btn-default'> " +
+                        "<span class='glyphicon glyphicon-trash'></span> Delete </a> </td>"+
+                            "</tr>"
                     }
                     $('#project-list').html(html);
                 },
