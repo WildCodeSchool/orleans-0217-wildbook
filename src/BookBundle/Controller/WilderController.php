@@ -4,12 +4,14 @@ namespace BookBundle\Controller;
 
 use BookBundle\Entity\Wilder;
 use BookBundle\Form\WilderSearchType;
+use BookBundle\Repository\WilderRepository;
 use BookBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -191,5 +193,29 @@ class WilderController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/ajax/{input}")
+     * @Method("POST")
+     *
+     * @param Request $request
+     * @param $input
+     *
+     * @return JsonResponse
+     */
+    public function autocompleteAction(Request $request, $input)
+    {
+        if ($request->isXmlHttpRequest()) {
+            /**
+             * @var $repository WilderRepository
+             */
+            $repository = $this->getDoctrine()->getRepository('BookBundle:Wilder');
+            $data = $repository->getLikeAdmin($input);
+            return new JsonResponse(array("data" => json_encode($data)));
+
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
     }
 }

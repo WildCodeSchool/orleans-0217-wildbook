@@ -66,5 +66,19 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('languages', $languages);
         return $qb->getQuery()->getResult();
     }
+
+    public function getLikeAdmin($input)
+    {
+        $input = "%" . $input . "%";
+        $qb = $this->createQueryBuilder('w')
+            ->select('w.firstname','w.lastname','w.profilPicture','w.id','w.userActivation','w.managerActivation','w.city','pr.promotion')
+            ->leftJoin('w.promotion','pr')
+            ->where('w.lastname LIKE :lastname')
+            ->orWhere('w.firstname LIKE :firstname')
+            ->setParameter('firstname',$input)
+            ->setParameter('lastname',$input)
+            ->getQuery();
+        return $qb->getResult();
+    }
 }
 

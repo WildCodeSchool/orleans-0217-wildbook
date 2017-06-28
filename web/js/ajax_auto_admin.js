@@ -7,7 +7,7 @@ $( document ).ready(function() {
         if ( input.length >= 2 ) {
             $.ajax({
                 type: "POST",
-                url: "/search_wilder/ajax/" + input,
+                url: "/wilder/ajax/" + input,
                 dataType: 'json',
                 // timeout: 3000,
                 success: function(response){
@@ -16,27 +16,30 @@ $( document ).ready(function() {
                     for (i = 0; i < wilders.length; i++) {
 
                         html +=  "<tr>" +
-                            "<td><a href=\"{{ path('wilder_show', { 'id': wilder.id }) }}\">{{ wilder.id" +
-                            " }}</a></td>"+
-                            "<td>" + wilders[i].lastname + "</td>"+
+                            "<td><a href=\"/wilder_show/"+ wilders[i].id +"\">"+ wilders[i].id +"</a></td>"+
+                            "<td><img src=\"../uploads/" + wilders[i].profilPicture + "\" width='150px'></td>"+
                             "<td>" + wilders[i].firstname + "</td>"+
-                            "<td>{% if wilder.birthDate %}{{ wilder.birthDate|date('Y-m-d') }}{% endif %}</td>"+
-                            "<td>" + wilders[i].address + "</td>"+
-                            "<td>" + wilders[i].postalCode + "</td>"+
+                            "<td>" + wilders[i].lastname + "</td>"+
                             "<td>" + wilders[i].city + "</td>"+
-                            "<td>" + wilders[i].modjo + "</td>"+
-                            "<td></td>"+
-                            "<td>{{ wilder.contactEmail }}</td>"+
-                            "<td><img src=\"{{ asset('uploads/'~ wilder.profilPicture|basename ) }} \"alt=\"{{" +
-                            " wilder.firstname }} {{ wilder.lastname }}\" width='150px'></td>"+
-                            "<td><ul>{% for language in wilder.languages %} <li>  {{ language.language }}</li> {% endfor" +
-                            " %} </ul> </td>"+
-                            "<td>{% if wilder.userActivation %}Yes{% else %}No{% endif %}</td>"+
-                            "<td>{% if wilder.managerActivation %}Yendifes{% else %}No{%  %}</td>"+
-                            "<td>"+
-                            "<a href=\"{{ path('wilder_edit', { 'id': wilder.id }) }}\" class='btn btn-success'> <span" +
+                            "<td>" + wilders[i].promotion + "</td>"+
+                            "<td>";
+
+                        if (wilders[i].userActivation == true){
+                            html +=  'Oui';
+                        } else{
+                            html += 'Non';
+                        }
+                        html += "</td><td>";
+
+                        if (wilders[i].managerActivation == true){
+                            html += 'Oui';
+                        }else{
+                            html += 'Non';
+                        }
+                        html += "</td><td>"+
+                            "<a href=\"/wilder_edit/"+ wilders[i].id +"\" class='btn btn-success'> <span" +
                             " class='glyphicon glyphicon-pencil'></span> Modifier </a> " +
-                            "<a href=\"{{ path('wilder_delete', { 'id': wilder.id }) }}\" class='btn btn-default'> " +
+                            "<a href=\"/wilder_delete/"+ wilders[i].id +"\" class='btn btn-default'> " +
                             "<span class='glyphicon glyphicon-trash'></span> Delete </a> </td>"+
                             "</tr>"
                     }
