@@ -27,10 +27,6 @@ class HomeController extends Controller
     public function wilderProfileAction(CodeWarsApi $codewarsApi, Wilder $wilder )
     {
         $score = $codewarsApi->codeWarsScore($wilder->getCodewarsUsername());
-        $em = $this->getDoctrine()->getManager();
-
-        $wilder = $em->getRepository('BookBundle:Wilder')
-            ->findOneById($wilder);
 
         return $this->render('BookBundle:Front:wilder.html.twig',array(
             'wilder'=>$wilder,
