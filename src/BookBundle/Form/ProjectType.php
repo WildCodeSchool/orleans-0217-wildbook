@@ -25,6 +25,21 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title', TextType::class)
+                ->add('principalPicture', null, [
+                    'required'=> false,
+                ])
+                ->add('firstPicture', null, [
+                    'required'=> false,
+                ])
+                ->add('secondPicture', null, [
+                    'required'=> false,
+                ])
+                ->add('thirdPicture', null, [
+                    'required'=> false,
+                ])
+                ->add('fourthPicture', null, [
+                    'required'=> false,
+                ])
                 ->add('customer')
                 ->add('date')
                 ->add('status')

@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use BookBundle\Service\FileUploader;
 
 /**
  * Project controller.
@@ -38,7 +39,7 @@ class ProjectController extends Controller
      * @Route("/new", name="project_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader)
     {
         $project = new Project();
         $form = $this->createForm('BookBundle\Form\ProjectType', $project);
@@ -46,6 +47,9 @@ class ProjectController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+
+
             $em->persist($project);
             $em->flush();
 
@@ -80,7 +84,7 @@ class ProjectController extends Controller
      * @Route("/{id}/edit", name="project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project)
+    public function editAction(Request $request, Project $project, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('BookBundle\Form\ProjectType', $project);
