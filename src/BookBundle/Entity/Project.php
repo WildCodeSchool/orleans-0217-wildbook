@@ -115,11 +115,49 @@ class Project
 
     /**
      * @var boolean
+     * @ORM\Column(name="homeProject", type="text", nullable=true)
      */
     private $homeProject;
 
     /**
+     * @return mixed
+     */
+    public function getHomeProject()
+    {
+        return $this->homeProject;
+    }
+
+    /**
+     * @param mixed $homeProject
+     * @return Project
+     */
+    public function setHomeProject($homeProject)
+    {
+        $this->homeProject = $homeProject;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHomeTextProject()
+    {
+        return $this->homeTextProject;
+    }
+
+    /**
+     * @param string $homeTextProject
+     * @return Project
+     */
+    public function setHomeTextProject($homeTextProject)
+    {
+        $this->homeTextProject = $homeTextProject;
+        return $this;
+    }
+
+    /**
      * @var string
+     * @ORM\Column(name="homeTextProject", type="text", nullable=true)
      */
     private $homeTextProject;
 

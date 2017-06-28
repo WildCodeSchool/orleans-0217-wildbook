@@ -63,5 +63,43 @@ $( document ).ready(function() {
             $('#project-list').html('');
         }
     });
+
+    $("#bookbundle_homeproject_title").keyup(function(){
+        var input = $(this).val();
+        if ( input.length >= 2 ) {
+            $.ajax({
+                type: "POST",
+                url: "/project/accueil/ajax/" + input,
+                dataType: 'json',
+                // timeout: 3000,
+                success: function(response){
+                    var project = JSON.parse(response.data);
+                    html = "";
+                    for (i = 0; i < project.length; i++) {
+
+                        // html +=  "<div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4\" style='width: 300px; height:" +
+                        //     " 300px'> <a" +
+                        //     " href=\"/detail_project/"+ project[i].id +
+                        //     "\" class=\"thumbnail\">" +
+                        //     "<img src=\"../images/LOGO_COLO.png\" alt=\"\">"+
+                        //     "<h4>" + project[i].title + "</h4></a></div>"
+
+                        html += "<ul><li>project[i].title</li></ul>"
+
+                    }
+                    $('#project-list').html(html);
+                },
+                error: function() {
+                    $('#project-list').text('Ajax call error');
+                }
+            });
+        } else {
+            $('#project-list').html('');
+        }
+    });
 });
+
+
+
+
 
