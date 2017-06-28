@@ -3,6 +3,7 @@
 namespace BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Annotations\AnnotationException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -36,6 +37,13 @@ class Wilder
      * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=45, nullable=true)
+     */
+    private $location;
 
     /**
      * @var int
@@ -195,6 +203,8 @@ class Wilder
      * @ORM\OneToOne (targetEntity="User", inversedBy="wilder")
      */
     private $user;
+
+
 
     /**
      * @var string
@@ -921,4 +931,29 @@ class Wilder
     {
         return $this->lastname;
     }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     *
+     * @return Wilder
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
 }
