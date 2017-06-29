@@ -10,50 +10,30 @@ namespace BookBundle\Repository;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function searchBy($schools = null, $categories = null)
+    public function searchBy($schools = null, $categories = null, $promotions = null)
     {
         $qb = $this->createQueryBuilder('p');
 
-        if ($schools !== null) {
+        if ($schools) {
             $qb
                 ->andWhere('p.school IN (:school)')
-                ->setParameter('school', $schools);
+                    ->setParameter('school', $schools);
         }
-        if ($categories !== null) {
+
+        if ($categories) {
             $qb
                 ->andWhere('p.category IN (:category)')
-                ->setParameter('category', $categories);
+                    ->setParameter('category', $categories);
         }
-        return $qb->getQuery()->getResult();
-    }
 
-    public function searchByP($promotions)
-    {
-        $qb = $this->createQueryBuilder('p')
-            ->leftJoin('p.school', 's')
-            ->addSelect('s')
-            ->leftJoin('s.promotions', 'pr', 'pr.school_id = s.id')
-            ->addSelect('pr')
-            ->where('pr.id IN (:promotion)')
-            ->setParameter('promotion', $promotions);
-        var_dump($qb->getDQL());
+        if ($promotions) {
+            $qb
+                ->leftJoin('p.school','s')
+                ->leftJoin('s.promotions','pr', 'pr.school_id = s.id')
+                ->where('pr.id IN (:promotion)')
+                    ->setParameter('promotion', $promotions);
+        }
 
-        return $qb->getQuery()->getResult();
-    }
-
-    public function searchByC($categories = null)
-    {
-        $qb = $this->createQueryBuilder('p')
-            ->where('p.category IN (:category)')
-            ->setParameter('category', $categories);
-        return $qb->getQuery()->getResult();
-    }
-
-    public function searchByS($schools = null)
-    {
-        $qb = $this->createQueryBuilder('p')
-            ->where('p.school IN (:school)')
-            ->setParameter('school', $schools);
         return $qb->getQuery()->getResult();
     }
 
@@ -63,7 +43,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('p')
             ->select('p.title','p.id')
             ->where('p.title LIKE :title')
-            ->setParameter('title', $input)
+                ->setParameter('title', $input)
             ->getQuery();
         return $qb->getResult();
     }
