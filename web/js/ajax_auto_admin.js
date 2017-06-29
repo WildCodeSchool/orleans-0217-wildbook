@@ -16,7 +16,7 @@ $( document ).ready(function() {
                     for (i = 0; i < wilders.length; i++) {
 
                         html +=  "<tr>" +
-                            "<td><a href=\"/wilder_show/"+ wilders[i].id +"\">"+ wilders[i].id +"</a></td>"+
+                            "<td><a href=\"/wilder/"+ wilders[i].id +"\">"+ wilders[i].id +"</a></td>"+
                             "<td><img src=\"../uploads/" + wilders[i].profilPicture + "\" width='150px'></td>"+
                             "<td>" + wilders[i].firstname + "</td>"+
                             "<td>" + wilders[i].lastname + "</td>"+
@@ -37,9 +37,9 @@ $( document ).ready(function() {
                             html += 'Non';
                         }
                         html += "</td><td>"+
-                            "<a href=\"/wilder_edit/"+ wilders[i].id +"\" class='btn btn-success'> <span" +
+                            "<a href=\"/wilder/"+ wilders[i].id +"/edit"+"\" class='btn btn-success'> <span" +
                             " class='glyphicon glyphicon-pencil'></span> Modifier </a> " +
-                            "<a href=\"/wilder_delete/"+ wilders[i].id +"\" class='btn btn-default'> " +
+                            "<a href=\"/wilder/"+ wilders[i].id +"\" class='btn btn-default'> " +
                             "<span class='glyphicon glyphicon-trash'></span> Delete </a> </td>"+
                             "</tr>"
                     }

@@ -41,9 +41,9 @@
                 </thead>
                 <tbody id="wild-list">
 
-                {% if blocResult=='' %}
+                {#{% if blocResult=='' %}#}
 
-                {% else %}
+                {#{% else %}#}
 
                     {% for wilder in wilders %}
                         <tr>
@@ -79,7 +79,7 @@
                             </td>
                         </tr>
                     {% endfor %}
-                {% endif %}
+                {#{% endif %}#}
                 </tbody>
             </table>
             <a class="btn btn-default" href="{{ path('wilder_new') }}" role="button">Crée un nouveau wilder</a>

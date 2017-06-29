@@ -30,6 +30,7 @@ class WilderController extends Controller
      * Lists all wilder entities.
      *
      * @Route("/", name="wilder_index")
+     * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_USER')")
      */
     public function indexAction(Request $request)
@@ -37,11 +38,11 @@ class WilderController extends Controller
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(WilderSearchType::class, ['csrf_protection' => false]);
         $form->handleRequest($request);
-        $blocResult = false;
+//        $blocResult = false;
         $wilders = $em->getRepository('BookBundle:Wilder')->findAll();
       
         if ($form->isValid() && $form->isSubmitted()) {
-            $blocResult = true;
+//            $blocResult = true;
             $data = $form->getData();;
             $schools = $data['school'];
             $promotions = $data['promotion'];
@@ -56,7 +57,7 @@ class WilderController extends Controller
             }
 
             return $this->render('BookBundle:Front:wilder_search.html.twig', array(
-                'blocResult' => $blocResult,
+//                'blocResult' => $blocResult,
                 'form' => $form->createView(),
                 'wildersSearch' => $wildersSearch
 
@@ -66,7 +67,7 @@ class WilderController extends Controller
         return $this->render('wilder/index.html.twig', array(
             'form' => $form->createView(),
             'wilders' => $wilders,
-            'blocResult' => $blocResult
+//            'blocResult' => $blocResult
         ));
     }
 
