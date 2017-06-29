@@ -10,20 +10,30 @@ namespace BookBundle\Repository;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function searchBy($schools = null, $categories = null, $promotion = null)
+    public function searchBy($schools = null, $categories = null, $promotions = null)
     {
         $qb = $this->createQueryBuilder('p');
 
         if ($schools) {
             $qb
                 ->andWhere('p.school IN (:school)')
-                ->setParameter('school', $schools);
+                    ->setParameter('school', $schools);
         }
+
         if ($categories) {
             $qb
                 ->andWhere('p.category IN (:category)')
-                ->setParameter('category', $categories);
+                    ->setParameter('category', $categories);
         }
+
+        if ($promotions) {
+            $qb
+                ->leftJoin('p.school','s')
+                ->leftJoin('s.promotions','pr', 'pr.school_id = s.id')
+                ->where('pr.id IN (:promotion)')
+                    ->setParameter('promotion', $promotions);
+        }
+
         return $qb->getQuery()->getResult();
     }
 
