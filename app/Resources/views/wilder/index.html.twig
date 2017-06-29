@@ -58,7 +58,8 @@
                             <td>{{ wilder.user.email }}</td>
                             <td>{{ wilder.contactEmail }}</td>
                             <td><img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}"
-                                     alt="{{ wilder.firstname }} {{ wilder.lastname }}" width="150px"></td>
+                                     alt="{{ wilder.firstname }} {{ wilder.lastname }}"
+                                     attribut-hidden (width="150px")></td>
                             <td>
                                 <ul>
                                     {% for language in wilder.languages %}
