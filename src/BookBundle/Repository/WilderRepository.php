@@ -15,25 +15,22 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
         if ($schools) {
             $qb
                 ->leftJoin('w.promotion','pr')
-                //->addSelect('pr')
                 ->leftJoin('pr.school','s','s.id = pr.school_id')
-               // ->addSelect('s')
                 ->andWhere('s.id IN (:school)')
-                ->setParameter('school', $schools);
+                    ->setParameter('school', $schools);
         }
         if ($languages) {
             $qb
                 ->leftJoin('w.languages','l')
-           //     ->addSelect('l')
                 ->andWhere('l.id IN (:languages)')
-                ->setParameter('languages', $languages);
+                    ->setParameter('languages', $languages);
         }
 
         if ($promotions) {
             $qb
                 ->leftJoin('w.promotion','p')
                 ->andWhere('p.id IN (:promotion)')
-                ->setParameter('promotion', $promotions);
+                    ->setParameter('promotion', $promotions);
         }
 
         return $qb->getQuery()->getResult();
@@ -50,29 +47,6 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('lastname',$input)
             ->getQuery();
         return $qb->getResult();
-    }
-
-    public function searchByS($schools)
-    {
-
-        $qb = $this->createQueryBuilder('w')
-                ->leftJoin('w.promotion','pr')
-                ->addSelect('pr')
-                ->leftJoin('pr.school','s','s.id = pr.school_id')
-                ->addSelect('s')
-                ->andWhere('s.id IN (:school)')
-                ->setParameter('school', $schools);
-        return $qb->getQuery()->getResult();
-    }
-
-    public function searchByL($languages)
-    {
-        $qb = $this->createQueryBuilder('w')
-            ->leftJoin('w.languages','l')
-            ->addSelect('l')
-            ->andWhere('l.id IN (:languages)')
-            ->setParameter('languages', $languages);
-        return $qb->getQuery()->getResult();
     }
 
     public function getLikeAdmin($input)
