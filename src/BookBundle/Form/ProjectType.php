@@ -4,7 +4,6 @@ namespace BookBundle\Form;
 
 use BookBundle\Entity\Category;
 use BookBundle\Entity\Language;
-use BookBundle\Entity\Picture;
 use BookBundle\Entity\School;
 use BookBundle\Entity\Tag;
 use BookBundle\Entity\Technology;
