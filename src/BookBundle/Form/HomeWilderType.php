@@ -19,11 +19,8 @@ class HomeWilderType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('wilder', EntityType::class, array(
-            'class'=>Wilder::class,
-            'choice_label'=>'lastname'
-        ))
-            ->add('description',TextType::class);
+        $builder->add('wilder',TextType::class)
+                ->add('description',TextType::class);
     }
 
     /**

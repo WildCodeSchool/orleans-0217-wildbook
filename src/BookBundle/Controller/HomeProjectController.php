@@ -43,7 +43,6 @@ class HomeProjectController extends Controller
 
         if ($form->isValid() && $form->isSubmitted()) {
             $data = $form->getData();
-            dump($data->getTitle());
             $em = $this->getDoctrine()->getManager();
             $homeProject = $em->getRepository(Project::class)->findOneByTitle($data->getTitle());
             $homeProject->sethomeProject($data->gethomeProject());
@@ -84,7 +83,6 @@ class HomeProjectController extends Controller
         $form->handleRequest($request);
 
         $homeProjects = $em->getRepository(Project::class)->homeProject();
-        dump($homeProjects);
         if ($form->isValid() && $form->isSubmitted()) {
             $data = $form->getData();
                 if ($data->gethomeProject() == true) {

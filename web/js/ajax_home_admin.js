@@ -23,7 +23,7 @@ $( document ).ready(function() {
             error: function() {
                 $('#projectList').text('Ajax call error');
             }
-        });
+        })
     } else {
         $('#projectList').html('');
     }
