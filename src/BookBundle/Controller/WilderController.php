@@ -223,5 +223,5 @@ class WilderController extends Controller
             throw new HttpException('500', 'Invalid call');
         }
     }
->>>>>>> f02b9925fb39047afb6375d908ad835d631f5358
+
 }
