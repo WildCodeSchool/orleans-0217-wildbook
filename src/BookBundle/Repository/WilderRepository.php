@@ -8,23 +8,31 @@ namespace BookBundle\Repository;
  */
 class WilderRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function searchBy($schools , $languages)
+    public function searchBy($schools, $languages, $promotions)
     {
         $qb = $this->createQueryBuilder('w');
 
-        if ($schools !== null) {
+        if ($schools) {
             $qb
                 ->leftJoin('w.promotion','pr')
                 ->leftJoin('pr.school','s','s.id = pr.school_id')
                 ->andWhere('s.id IN (:school)')
                     ->setParameter('school', $schools);
         }
-        if ($languages !== null) {
+        if ($languages) {
             $qb
                 ->leftJoin('w.languages','l')
                 ->andWhere('l.id IN (:languages)')
                     ->setParameter('languages', $languages);
         }
+
+        if ($promotions) {
+            $qb
+                ->leftJoin('w.promotion','p')
+                ->andWhere('p.id IN (:promotion)')
+                    ->setParameter('promotion', $promotions);
+        }
+
         return $qb->getQuery()->getResult();
     }
 
