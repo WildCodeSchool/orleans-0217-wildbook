@@ -15,18 +15,15 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
         if ($schools !== null) {
             $qb
                 ->leftJoin('w.promotion','pr')
-                ->addSelect('pr')
                 ->leftJoin('pr.school','s','s.id = pr.school_id')
-                ->addSelect('s')
                 ->andWhere('s.id IN (:school)')
-                ->setParameter('school', $schools);
+                    ->setParameter('school', $schools);
         }
         if ($languages !== null) {
             $qb
                 ->leftJoin('w.languages','l')
-                ->addSelect('l')
                 ->andWhere('l.id IN (:languages)')
-                ->setParameter('languages', $languages);
+                    ->setParameter('languages', $languages);
         }
         return $qb->getQuery()->getResult();
     }
@@ -37,34 +34,25 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('w')
             ->select('w.firstname','w.lastname','w.profilPicture','w.id')
             ->where('w.lastname LIKE :lastname')
+                ->setParameter('lastname',$input)
             ->orWhere('w.firstname LIKE :firstname')
-            ->setParameter('firstname',$input)
-            ->setParameter('lastname',$input)
+                ->setParameter('firstname',$input)
             ->getQuery();
         return $qb->getResult();
     }
 
-    public function searchByS($schools)
+    public function getLikeAdmin($input)
     {
-
+        $input = "%" . $input . "%";
         $qb = $this->createQueryBuilder('w')
-                ->leftJoin('w.promotion','pr')
-                ->addSelect('pr')
-                ->leftJoin('pr.school','s','s.id = pr.school_id')
-                ->addSelect('s')
-                ->andWhere('s.id IN (:school)')
-                ->setParameter('school', $schools);
-        return $qb->getQuery()->getResult();
-    }
-
-    public function searchByL($languages)
-    {
-        $qb = $this->createQueryBuilder('w')
-            ->leftJoin('w.languages','l')
-            ->addSelect('l')
-            ->andWhere('l.id IN (:languages)')
-            ->setParameter('languages', $languages);
-        return $qb->getQuery()->getResult();
+            ->select('w.firstname','w.lastname','w.profilPicture','w.id','w.userActivation','w.managerActivation','w.city','pr.promotion')
+            ->leftJoin('w.promotion','pr')
+            ->where('w.lastname LIKE :lastname')
+                ->setParameter('lastname',$input)
+            ->orWhere('w.firstname LIKE :firstname')
+                ->setParameter('firstname',$input)
+            ->getQuery();
+        return $qb->getResult();
     }
 }
 

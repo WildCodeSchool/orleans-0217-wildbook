@@ -3,6 +3,8 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\Wilder;
+use BookBundle\Form\WilderSearchType;
+use BookBundle\Repository\WilderRepository;
 use BookBundle\Service\CodeWarsApi;
 use BookBundle\Service\ConvertCity;
 use BookBundle\Service\FileUploader;
@@ -11,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -25,19 +28,45 @@ class WilderController extends Controller
     /**
      * Lists all wilder entities.
      *
-     * @Route("/", name="wilder_index")
+     * @Route("/", name="wilder")
      * @Method("GET")
      * @Security("has_role('ROLE_USER')")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
+        $form = $this->createForm(WilderSearchType::class, ['csrf_protection' => false]);
+        $form->handleRequest($request);
+        $blocResult = false;
         $wilders = $em->getRepository('BookBundle:Wilder')->findAll();
+      
+        if ($form->isValid() && $form->isSubmitted()) {
+            $blocResult = true;
+            $data = $form->getData();;
+            $schools = $data['school'];
+            $promotions = $data['promotion'];
+            $wildersSearch = '';
 
+            if ($schools[0] == null) {
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, $promotions);
+            } elseif ($promotions[0] == null) {
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, null);
+            } else {
+                $wildersSearch = $em->getRepository('BookBundle:Wilder')->findAll();
+            }
+
+            return $this->render('BookBundle:Front:wilder_search.html.twig', array(
+                'blocResult' => $blocResult,
+                'form' => $form->createView(),
+                'wildersSearch' => $wildersSearch
+
+            ));
+        }
 
         return $this->render('wilder/index.html.twig', array(
+            'form' => $form->createView(),
             'wilders' => $wilders,
+            'blocResult' => $blocResult
         ));
     }
 
@@ -95,7 +124,6 @@ class WilderController extends Controller
             ));
         } else {
             throw new Exception('chemin interdit');
-//            throw new HttpException()
         }
 
     }
@@ -169,6 +197,30 @@ class WilderController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/ajax/{input}")
+     * @Method("POST")
+     *
+     * @param Request $request
+     * @param $input
+     *
+     * @return JsonResponse
+     */
+    public function autocompleteAction(Request $request, $input)
+    {
+        if ($request->isXmlHttpRequest()) {
+            /**
+             * @var $repository WilderRepository
+             */
+            $repository = $this->getDoctrine()->getRepository('BookBundle:Wilder');
+            $data = $repository->getLikeAdmin($input);
+            return new JsonResponse(array("data" => json_encode($data)));
+
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
     }
 
 }
