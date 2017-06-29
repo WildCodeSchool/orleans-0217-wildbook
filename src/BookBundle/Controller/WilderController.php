@@ -8,8 +8,6 @@ use BookBundle\Service\CodeWarsApi;
 use BookBundle\Service\ConvertCity;
 use BookBundle\Form\WilderSearchType;
 use BookBundle\Repository\WilderRepository;
-use BookBundle\Service\CodeWarsApi;
-use BookBundle\Service\ConvertCity;
 use BookBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -31,8 +29,7 @@ class WilderController extends Controller
     /**
      * Lists all wilder entities.
      *
-     * @Route("/", name="wilder")
-     * @Method("GET")
+     * @Route("/", name="wilder_index")
      * @Security("has_role('ROLE_USER')")
      */
     public function indexAction(Request $request)
