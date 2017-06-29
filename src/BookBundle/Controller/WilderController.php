@@ -3,6 +3,9 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\Wilder;
+
+use BookBundle\Service\CodeWarsApi;
+use BookBundle\Service\ConvertCity;
 use BookBundle\Form\WilderSearchType;
 use BookBundle\Repository\WilderRepository;
 use BookBundle\Service\CodeWarsApi;

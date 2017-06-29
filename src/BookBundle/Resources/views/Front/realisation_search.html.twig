@@ -1,5 +1,10 @@
 {% extends 'layout.html.twig' %}
 
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
+    {% endblock %}
+
 {% block body %}
 
     <div class="container-fluid img1">
@@ -102,7 +107,6 @@
                                 <img src="{{ asset('images/LOGO_COLO.png') }}" alt="">
                             </a>
                             <h4>{{ projectSearch.title }}</h4>
-                            {{ dump(projectSearch) }}
                         </div>
                     {% endfor %}
                 </div>
@@ -119,4 +123,5 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/ajax_auto.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
 {% endblock javascripts %}
