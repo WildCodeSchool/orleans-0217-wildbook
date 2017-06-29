@@ -141,6 +141,9 @@ class WilderController extends Controller
         $editForm = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $editForm->handleRequest($request);
 
+        $idWilder = $wilder->getUser()->getId();
+        $idUser = $this->getUser()->getId();
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $address = $wilder->getPostalCode() .' '. $wilder->getCity();
             $wilder->setLocation($convert->convertGps($address));

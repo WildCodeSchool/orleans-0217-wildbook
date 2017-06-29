@@ -47,4 +47,13 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+
+    public function homeProject()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.homeProject = :homeProject')
+            ->setParameter('homeProject', true)
+            ->getQuery();
+        return $qb->getResult();
+    }
 }
