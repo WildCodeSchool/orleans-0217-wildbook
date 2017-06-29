@@ -1,32 +1,31 @@
 <div class="slider">
-<div id="carousel" class="carousel slide" data-ride="carousel">
-    {% set plimit = 3 %}
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            {% for project in homeProjects %}
-            <img src="{{ asset('images/slider01.jpg') }}" height="760px" alt="slider01">
-            <div class="carousel-caption">
-                <h3>{{ project.homeTextProject }}</h3>
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+        {% set plimit = homeProjects|length %}
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                {% for project in homeProjects %}
+                <img src="{{ asset('images/slider01.jpg') }}" class="img_project_carousel" alt="slider01">
+                <div class="carousel-caption">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.homeTextProject }}</p>
+                </div>
+                {% if loop.index % plimit == 0 and not loop.last %}
             </div>
-            {% if loop.index % plimit == 0 and not loop.last %}
+            {% endif %}
         </div>
-        {% endif %}
+        <div class="item">
+            {% endfor %}
+        </div>
     </div>
-    <div class="item">
-        {% endfor %}
-    </div>
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
-</div>
-
-    {#<!-- Controls -->#}
-    {#<a class="left carousel-control" href="#carousel" role="button" data-slide="prev">#}
-        {#<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>#}
-        {#<span class="sr-only">Previous</span>#}
-    {#</a>#}
-    {#<a class="right carousel-control" href="#carousel" role="button" data-slide="next">#}
-        {#<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>#}
-        {#<span class="sr-only">Next</span>#}
-    {#</a>#}
-
 
 

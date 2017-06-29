@@ -7,7 +7,6 @@ $( document ).ready(function() {
             type: "POST",
             url: "/project/accueil/ajax/" + input,
             dataType: 'json',
-            // timeout: 3000,
             success: function(response) {
                 var project = JSON.parse(response.data);
                 html = "";
