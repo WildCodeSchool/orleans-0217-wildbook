@@ -17,3 +17,4 @@ Entity/*~
 /web/bundles/
 .idea
 *.php~
+/web/uploads/
