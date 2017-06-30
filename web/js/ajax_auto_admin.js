@@ -37,9 +37,11 @@ $( document ).ready(function() {
                             html += 'Non';
                         }
                         html += "</td><td>"+
+
                             "<a href=\"/wilder/"+ wilders[i].id +"/edit\" class='btn btn-success'> <span" +
+
                             " class='glyphicon glyphicon-pencil'></span> Modifier </a> " +
-                            "<a href=\"/wilder_delete/"+ wilders[i].id +"\" class='btn btn-default'> " +
+                            "<a href=\"/wilder/"+ wilders[i].id +"\" class='btn btn-default'> " +
                             "<span class='glyphicon glyphicon-trash'></span> Delete </a> </td>"+
                             "</tr>"
                     }

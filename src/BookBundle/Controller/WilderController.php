@@ -37,10 +37,11 @@ class WilderController extends Controller
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(WilderSearchType::class, ['csrf_protection' => false]);
         $form->handleRequest($request);
-        $blocResult = false;
+//        $blocResult = false;
         $wilders = $em->getRepository('BookBundle:Wilder')->findAll();
       
         if ($form->isValid() && $form->isSubmitted()) {
+  $data = $form->getData();;
             $blocResult = true;
             $data = $form->getData();
             $languages = $data['language'];
@@ -65,8 +66,10 @@ class WilderController extends Controller
             }
 
 
+
             return $this->render('wilder/index.html.twig', array(
                 'blocResult' => $blocResult,
+
                 'form' => $form->createView(),
                 'wilders' => $wildersSearch
 
@@ -76,7 +79,7 @@ class WilderController extends Controller
         return $this->render('wilder/index.html.twig', array(
             'form' => $form->createView(),
             'wilders' => $wilders,
-            'blocResult' => $blocResult
+//            'blocResult' => $blocResult
         ));
     }
 
