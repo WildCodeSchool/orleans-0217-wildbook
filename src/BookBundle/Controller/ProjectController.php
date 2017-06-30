@@ -4,10 +4,13 @@ namespace BookBundle\Controller;
 
 use BookBundle\Entity\Project;
 use BookBundle\Form\ProjectSearchType;
+use BookBundle\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * Project controller.
@@ -180,5 +183,28 @@ class ProjectController extends Controller
         ));
     }
 
+    /**
+     * @Route("/ajax/{input}")
+     * @Method("POST")
+     *
+     * @param Request $request
+     * @param $input
+     *
+     * @return JsonResponse
+     */
+    public function autocompleteAction(Request $request, $input)
+    {
+        if ($request->isXmlHttpRequest()) {
+            /**
+             * @var $repository ProjectRepository
+             */
+            $repository = $this->getDoctrine()->getRepository('BookBundle:Project');
+            $data = $repository->getLikeAdmin($input);
+            return new JsonResponse(array("data" => json_encode($data)));
+
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+    }
 
 }
