@@ -68,7 +68,7 @@ class WilderController extends Controller
             return $this->render('wilder/index.html.twig', array(
                 'blocResult' => $blocResult,
                 'form' => $form->createView(),
-                'wildersSearch' => $wildersSearch
+                'wilders' => $wildersSearch
 
             ));
         }
