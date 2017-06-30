@@ -1,38 +1,47 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: wilder7
+ * Date: 28/06/17
+ * Time: 21:47
+ */
 
 namespace BookBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PictureType extends AbstractType
+class ResetProjectType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * @param FormBuilderInterface $builder
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('path')->add('isPrincipal')->add('project');
+        $builder->add('homeProject',CheckboxType::class);
     }
-    
+
     /**
-     * {@inheritdoc}
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'BookBundle\Entity\Picture'
+            'data_class' => 'BookBundle\Entity\Project'
         ));
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
     public function getBlockPrefix()
     {
-        return 'bookbundle_picture';
+        return 'bookbundle_resethomeproject';
     }
+
 
 
 }
