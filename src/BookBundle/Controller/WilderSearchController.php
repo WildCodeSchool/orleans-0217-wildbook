@@ -35,7 +35,7 @@ class WilderSearchController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(WilderSearchType::class, ['csrf_protection' => false]);
+        $form = $this->createForm(WilderSearchType::class);
         $form->handleRequest($request);
         $blocResult = false;
 

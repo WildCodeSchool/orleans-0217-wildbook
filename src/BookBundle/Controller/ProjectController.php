@@ -3,6 +3,7 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\Project;
+use BookBundle\Form\ProjectSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -20,17 +21,46 @@ class ProjectController extends Controller
      * Lists all project entities.
      *
      * @Route("/", name="project_index")
-     * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $projects = $em->getRepository('BookBundle:Project')->findAll();
+        $form = $this->createForm(ProjectSearchType::class);
+        $form->handleRequest($request);
 
-        return $this->render('project/index.html.twig', array(
-            'projects' => $projects,
+        $input=$categories=$schools=$promotions='';
+        $projectsSearch='';
+
+        if ($form->isValid() && $form->isSubmitted()) {
+            $blocResult=true;
+            $data = $form->getData();
+            $schools = $data['school'];
+            $categories = $data['category'];
+            $promotions = $data['promotion'];
+
+            if ($schools[0] == null & $categories[0] == null ) {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, null, $promotions);
+            } elseif ($schools[0] == null & $promotions[0] == null) {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, $categories, null );
+            } elseif ($categories[0] == null & $promotions[0] == null) {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, null, null);
+            } elseif ($schools[0] == null) {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, $categories, $promotions);
+            } elseif ($categories[0] == null) {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, null, $promotions);
+            } elseif ($promotions[0] == null) {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories, null);
+            } else {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories, $promotions);
+            }
+        }
+
+        return $this->render('project/index.html.twig',array(
+            'form' => $form->createView(),
+            'projects' => $projectsSearch,
         ));
+
     }
 
     /**
