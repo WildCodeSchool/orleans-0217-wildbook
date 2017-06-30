@@ -4,11 +4,9 @@ namespace BookBundle\Controller;
 
 use BookBundle\Entity\Wilder;
 
-use BookBundle\Service\CodeWarsApi;
-use BookBundle\Service\ConvertCity;
+
 use BookBundle\Form\WilderSearchType;
 use BookBundle\Repository\WilderRepository;
-use BookBundle\Service\CodeWarsApi;
 use BookBundle\Service\ConvertCity;
 use BookBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -31,7 +29,7 @@ class WilderController extends Controller
     /**
      * Lists all wilder entities.
      *
-     * @Route("/", name="wilder")
+     * @Route("/", name="wilder_index")
      * @Method("GET")
      * @Security("has_role('ROLE_USER')")
      */
@@ -45,7 +43,7 @@ class WilderController extends Controller
       
         if ($form->isValid() && $form->isSubmitted()) {
             $blocResult = true;
-            $data = $form->getData();;
+            $data = $form->getData();
             $schools = $data['school'];
             $promotions = $data['promotion'];
             $wildersSearch = '';
