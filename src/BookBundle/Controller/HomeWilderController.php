@@ -34,22 +34,24 @@ class HomeWilderController extends Controller
      */
     public function wilderAccueilAction(Request $request = null)
     {
-        $homewilder = new HomeWilder();
+        $wilder = new HomeWilder();
         $em = $this->getDoctrine()->getManager();
-
         $homeWilder = $em->getRepository(HomeWilder::class)->findOneBy([]);
 
-        $form = $this->createForm(HomeWilderType::class, $homewilder);
+        $form = $this->createForm(HomeWilderType::class);
         $form->handleRequest($request);
 
-        if ($form->isValid() && $form->isSubmitted()) {
-            if (isset($homeWilder) && !empty($homeWilder)) {
-                $em->remove($homeWilder);
-                $em->flush();
-            }
+        if (isset($homeWilder) && !empty($homeWilder)) {
+            $em->remove($homeWilder);
+            $em->flush();
+        }
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($homewilder);
+        if ($form->isValid() && $form->isSubmitted()) {
+            $data = $form->getData();
+            $wild = $em->getRepository(Wilder::class)->getLikeHomeWilder($data['wilder']);
+            $wilder->setWilder($wild[0]);
+            $wilder->setDescription($data['description']);
+            $em->persist($wilder);
             $em->flush();
         }
         return $this->render('wilder/wilderHome.html.twig', array(

@@ -62,5 +62,17 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+
+    public function getLikeHomeWilder($input)
+    {
+        $input = "%" . $input . "%";
+        $qb = $this->createQueryBuilder('w')
+            ->where('w.lastname LIKE :lastname')
+            ->setParameter('lastname',$input)
+            ->orWhere('w.firstname LIKE :firstname')
+            ->setParameter('firstname',$input)
+            ->getQuery();
+        return $qb->getResult();
+    }
 }
 

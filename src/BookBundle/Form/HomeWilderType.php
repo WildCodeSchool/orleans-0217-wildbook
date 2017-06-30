@@ -23,15 +23,15 @@ class HomeWilderType extends AbstractType
                 ->add('description',TextType::class);
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'BookBundle\Entity\HomeWilder'
-        ));
-    }
+//    /**
+//     * @param OptionsResolver $resolver
+//     */
+//    public function configureOptions(OptionsResolver $resolver)
+//    {
+//        $resolver->setDefaults(array(
+//            'data_class' => 'BookBundle\Entity\HomeWilder'
+//        ));
+//    }
 
 
     /**
