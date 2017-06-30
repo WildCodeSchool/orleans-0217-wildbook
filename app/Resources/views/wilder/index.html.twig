@@ -33,7 +33,6 @@
 
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Photo De Profil</th>
                     <th>Nom</th>
                     <th>Prénom</th>
@@ -52,10 +51,10 @@
 
                     {% for wilder in wilders %}
                         <tr>
-                            <td><a href="{{ path('wilder_show', { 'id': wilder.id }) }}">{{ wilder.id }}</a></td>
-                            <td><img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}"
+                            <td><a href="{{ path('wilder_show', { 'id': wilder.id }) }}"> <img src="{{ asset
+                                    ('uploads/'~ wilder.profilPicture|basename ) }}"
                                      alt="{{ wilder.firstname }} {{ wilder.lastname }}"
-                                     width="150px"></td>
+                                     width="150px"></a></td>
                             <td>{{ wilder.firstname }}</td>
                             <td>{{ wilder.lastname }}</td>
                             <td>{{ wilder.city }}</td>
