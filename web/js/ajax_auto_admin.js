@@ -75,7 +75,7 @@ $( document ).ready(function() {
                             "<td>" + projects[i].status + "</td>"+
                             "<td>" + projects[i].category + "</td>"+
                             "<td>" + projects[i].school + "</td>"+
-                            "<td>" + projects[i].url + "</td>"+
+                            "<td>" + projects[i].path + "</td>"+
                             "<td><a href=\"/project/"+ projects[i].id +"/edit\" class='btn btn-success'> <span" +
                             " class='glyphicon glyphicon-pencil'></span> Modifier </a> " +
                             "<a href=\"/project_delete/"+ projects[i].id +"\" class='btn btn-default'> " +
