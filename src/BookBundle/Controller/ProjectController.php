@@ -20,7 +20,6 @@ class ProjectController extends Controller
      * Lists all project entities.
      *
      * @Route("/", name="project_index")
-     * @Method("GET")
      */
     public function indexAction(Request $request)
     {
