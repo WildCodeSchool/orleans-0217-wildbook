@@ -1,36 +1,105 @@
 {% extends 'layout_admin.html.twig' %}
-{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
 
 
 {% block content %}
 
-<div class="container-fluid">
+    <div class="container-fluid">
 
 
-        <h3>Projet: id:{{ project.id }} - {{ project.title }}</h3>
-        <h4>Wilders ayant réalisé le projet : </h4>
-            <ul>{% for projectWilders in project.projectWilders %}
-            <li>{{ projectWilders.wilder.firstname }}{{ projectWilders.wilder.lastname }}</li>
+        <h3>{{ project.title }}</h3>
+        <h4>Wilders ayant réalisé ce projet : </h4>
+        <ul>{% for projectWilders in project.projectWilders %}
+                <li>{{ projectWilders.wilder.firstname }}{{ projectWilders.wilder.lastname }}</li>
             {% endfor %}</ul>
         <div class="form-group">
             {{ form_start(edit_form) }}
+
+            {{ form_label(edit_form.title,'Titre') }}
+            {{ form_widget(edit_form.title) }}
+            {{ form_errors(edit_form.title) }}
+
+            {{ form_label(edit_form.principalPicture,'Image principale') }}
+            <img src="{{ asset('uploads/'~ project.principalPicture|basename ) }}" class="imageProjectAdmin"/>
+            {{ form_widget(edit_form.principalPicture) }}
+            {{ form_errors(edit_form.principalPicture) }}
+
+            {{ form_label(edit_form.firstPicture,'Image 1') }}
+            <img src="{{ asset('uploads/'~ project.firstPicture|basename ) }}" class="imageProjectAdmin"/>
+            {{ form_widget(edit_form.firstPicture) }}
+            {{ form_errors(edit_form.firstPicture) }}
+
+            {{ form_label(edit_form.secondPicture,'Image 2') }}
+            <img src="{{ asset('uploads/'~ project.secondPicture|basename ) }}" class="imageProjectAdmin"/>
+            {{ form_widget(edit_form.secondPicture) }}
+            {{ form_errors(edit_form.secondPicture) }}
+
+            {{ form_label(edit_form.thirdPicture,'Image 3') }}
+            <img src="{{ asset('uploads/'~ project.thirdPicture|basename ) }}" class="imageProjectAdmin"/>
+            {{ form_widget(edit_form.thirdPicture) }}
+            {{ form_errors(edit_form.thirdPicture) }}
+
+            {{ form_label(edit_form.fourthPicture,'Image 4') }}
+            <img src="{{ asset('uploads/'~ project.fourthPicture|basename ) }}" class="imageProjectAdmin"/>
+            {{ form_widget(edit_form.fourthPicture) }}
+            {{ form_errors(edit_form.fourthPicture) }}
+
+            {{ form_label(edit_form.customer,'Client') }}
+            {{ form_widget(edit_form.customer) }}
+            {{ form_errors(edit_form.customer) }}
+
+            {{ form_label(edit_form.date,'Date') }}
+            {{ form_widget(edit_form.date) }}
+            {{ form_errors(edit_form.date) }}
+
+            {{ form_label(edit_form.status,'Statut') }}
+            {{ form_widget(edit_form.status) }}
+            {{ form_errors(edit_form.status) }}
+
+            {{ form_label(edit_form.description,'Description') }}
+            {{ form_widget(edit_form.description) }}
+            {{ form_errors(edit_form.description) }}
+
+            {{ form_label(edit_form.path,'Url') }}
+            {{ form_widget(edit_form.path) }}
+            {{ form_errors(edit_form.path) }}
+
+            {{ form_label(edit_form.tags,'Tags') }}
+            {{ form_widget(edit_form.tags) }}
+            {{ form_errors(edit_form.tags) }}
+
+            {{ form_label(edit_form.summary,'Résumé') }}
+            {{ form_widget(edit_form.summary) }}
+            {{ form_errors(edit_form.summary) }}
+
+            {{ form_label(edit_form.category,'Catégorie') }}
+            {{ form_widget(edit_form.category) }}
+            {{ form_errors(edit_form.category) }}
+
+            {{ form_label(edit_form.technologies,'Technologies') }}
+            {{ form_widget(edit_form.technologies) }}
+            {{ form_errors(edit_form.technologies) }}
+
+            {{ form_label(edit_form.languages,'Langages') }}
+            {{ form_widget(edit_form.languages) }}
+            {{ form_errors(edit_form.languages) }}
+
+            {{ form_label(edit_form.school,'École') }}
+            {{ form_widget(edit_form.school) }}
+            {{ form_errors(edit_form.school) }}
+
             {{ form_widget(edit_form) }}
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-success" value="Edit" />
+            <input type="submit" class="btn btn-success" value="Valider"/>
         </div>
         {{ form_end(edit_form) }}
 
-        <div class="form-group">
-            {{ form_start(delete_form) }}
-            <input type="submit" class="btn btn-danger" value="Delete">
-            {{ form_end(delete_form) }}
-        </div>
 
         <div class="form-group">
             <a href="{{ path('project_index') }}" class="btn btn-primary">Retour à la liste</a>
         </div>
 
 
-</div>
+    </div>
 {% endblock %}

@@ -13,15 +13,19 @@
                     <td>{{ project.id }}</td>
                 </tr>
                 <tr>
-                    <th>Title</th>
+                    <th>Titre</th>
                     <td>{{ project.title }}</td>
+                </tr>
+                <tr>
+                    <th>Image principale</th>
+                    <td><img src="{{ asset('uploads/'~ project.principalPicture|basename ) }}" class="imageProjectAdmin"/></td>
                 </tr>
                 <tr>
                     <th>Url</th>
                     <td>{{ project.path }}</td>
                 </tr>
                 <tr>
-                    <th>Customer</th>
+                    <th>Client</th>
                     <td>{{ project.customer }}</td>
                 </tr>
                 <tr>
@@ -29,11 +33,11 @@
                     <td>{% if project.date %}{{ project.date|date('Y-m-d') }}{% endif %}</td>
                 </tr>
                 <tr>
-                    <th>Status</th>
+                    <th>Statut</th>
                     <td>{{ project.status }}</td>
                 </tr>
                 <tr>
-                    <th>Summary</th>
+                    <th>Résumé</th>
                     <td>{{ project.summary }}</td>
                 </tr>
                 <tr>
@@ -48,7 +52,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>Category</th>
+                    <th>Catégorie</th>
                     <td>{{ project.category.label }}</td>
                 </tr>
                 <tr>
@@ -65,17 +69,34 @@
                         {% endfor %}
                     </td>
                 </tr>
+                <tr>
+                    <th>Image 1</th>
+                    <td><img src="{{ asset('uploads/'~ project.firstPicture|basename ) }}" class="imageProjectAdmin"/></td>
+                </tr>
+                <tr>
+                    <th>Image 2</th>
+                    <td><img src="{{ asset('uploads/'~ project.secondPicture|basename ) }}" class="imageProjectAdmin"/></td>
+                </tr>
+                <tr>
+                    <th>Image 3</th>
+                    <td><img src="{{ asset('uploads/'~ project.thirdPicture|basename ) }}" class="imageProjectAdmin"/></td>
+                </tr>
+                <tr>
+                    <th>Image 4</th>
+                    <td><img src="{{ asset('uploads/'~ project.fourthPicture|basename ) }}" class="imageProjectAdmin"/></td>
+                </tr>
+
             </tbody>
     </table>
 
     <div class="form-group">
         {{ form_start(delete_form) }}
-        <input type="submit" class="btn btn-danger" value="Delete">
+        <input type="submit" class="btn btn-danger" value="Supprimer">
         {{ form_end(delete_form) }}
     </div>
 
     <div class="form-group">
-        <a href="{{ path('project_edit', { 'id': project.id }) }}" class="btn btn-primary">Edit</a>
+        <a href="{{ path('project_edit', { 'id': project.id }) }}" class="btn btn-primary">Modifier</a>
     </div>
 
     <div class="form-group">
