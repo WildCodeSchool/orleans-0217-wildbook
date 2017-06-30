@@ -68,7 +68,7 @@ $( document ).ready(function() {
                     for (i = 0; i < projects.length; i++) {
 
                         html +=  "<tr>" +
-                            "<td><img src=\"../uploads/" + projects[i].profilPicture + "\" width='150px'>"+
+                            "<td></td>"+
                             "<td><a href=\"/project/"+ projects[i].id +"\"" + projects[i].title + "></td>"+
                             "<td>" + projects[i].customer + "</td>"+
                             "<td>" + projects[i].date + "</td>"+

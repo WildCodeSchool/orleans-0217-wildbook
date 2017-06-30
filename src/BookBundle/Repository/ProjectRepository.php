@@ -52,7 +52,9 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     {
         $input = "%" . $input . "%";
         $qb = $this->createQueryBuilder('p')
-            ->select('p.title','p.id','p.customer','p.date','p.status','p.category','p.school','p.path')
+            ->select('p.title','p.id','p.customer','p.date','p.status','c.label','s.school','p.path')
+            ->leftJoin('p.school','s')
+            ->leftJoin('p.category','c')
             ->where('p.title LIKE :title')
             ->setParameter('title', $input)
             ->getQuery();
