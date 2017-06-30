@@ -48,6 +48,20 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getResult();
     }
 
+
+    public function getLikeAdmin($input)
+    {
+        $input = "%" . $input . "%";
+        $qb = $this->createQueryBuilder('p')
+            ->select('p.title','p.id','p.customer','p.date','p.status','c.label','s.school','p.path')
+            ->leftJoin('p.school','s')
+            ->leftJoin('p.category','c')
+            ->where('p.title LIKE :title')
+                ->setParameter('title', $input)
+            ->getQuery();
+        return $qb->getResult();
+    }
+  
     public function homeProject()
     {
         $qb = $this->createQueryBuilder('p')
