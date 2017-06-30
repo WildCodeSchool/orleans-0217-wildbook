@@ -20,7 +20,7 @@ $( document ).ready(function() {
                             " href=\"/profile_wilder/"+ wilders[i].id +
                             "\" class=\"thumbnail\">" +
                             "<img src=\"../uploads/" + wilders[i].profilPicture + "\" alt=\"\">"+
-                            "<h4>" + wilders[i].lastname + " " + wilders[i].firstname + "</h4></a></div>"
+                            "<h4>" + wilders[i].lastname + " " + wilders[i].firstname + "</h4></a></div>";
                     }
                     $('#wild-list').html(html);
                 },
@@ -46,11 +46,10 @@ $( document ).ready(function() {
                     html = "";
                     for (i = 0; i < projects.length; i++) {
 
-                        html +=  "<div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4 imageShearchProject\"> <a" +
-                            " href=\"/detail_project/"+ projects[i].id +
-                            "\" class=\"thumbnail\">" +
+                        html +=  "<div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4 imageShearchProject\">" +
+                            "<a href=\"/detail_project/"+ projects[i].id +"\" class=\"thumbnail\">" +
                             "<img src=\"../images/LOGO_COLO.png\" alt=\"\">"+
-                            "<h4>" + projects[i].title + "</h4></a></div>"
+                            "<h4>" + projects[i].title + "</h4></a></div>";
                     }
                     $('#project-list').html(html);
                 },
