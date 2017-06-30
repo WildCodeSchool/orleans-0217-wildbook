@@ -30,7 +30,6 @@ class WilderController extends Controller
      * Lists all wilder entities.
      *
      * @Route("/", name="wilder_index")
-     * @Method("GET")
      * @Security("has_role('ROLE_USER')")
      */
     public function indexAction(Request $request)
@@ -44,19 +43,29 @@ class WilderController extends Controller
         if ($form->isValid() && $form->isSubmitted()) {
             $blocResult = true;
             $data = $form->getData();
+            $languages = $data['language'];
             $schools = $data['school'];
             $promotions = $data['promotion'];
             $wildersSearch = '';
 
-            if ($schools[0] == null) {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, $promotions);
+            if ($schools[0] == null & $languages[0] == null ) {
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, null, $promotions);
+            } elseif ($schools[0] == null & $promotions[0] == null ) {
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, $languages, null);
+            } elseif ($promotions[0] == null & $languages[0] == null ) {
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, null, null);
+            } elseif ($languages[0] == null) {
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, null, $promotions);
             } elseif ($promotions[0] == null) {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, null);
-            } else {
-                $wildersSearch = $em->getRepository('BookBundle:Wilder')->findAll();
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, $languages, null);
+            }elseif ($schools[0] == null) {
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, $languages, $promotions);
+            }else {
+                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, $languages, $promotions);
             }
 
-            return $this->render('BookBundle:Front:wilder_search.html.twig', array(
+
+            return $this->render('wilder/index.html.twig', array(
                 'blocResult' => $blocResult,
                 'form' => $form->createView(),
                 'wildersSearch' => $wildersSearch
