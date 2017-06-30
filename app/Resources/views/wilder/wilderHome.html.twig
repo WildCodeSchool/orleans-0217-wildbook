@@ -1,0 +1,17 @@
+{% extends 'layout_admin.html.twig' %}
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block content %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <ul id="wilderList"></ul>
+    <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/ajax_home_wilder_admin.js') }}"></script>
+{% endblock javascripts %}

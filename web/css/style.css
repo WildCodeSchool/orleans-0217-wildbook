@@ -69,6 +69,10 @@
     height:640px;
 }
 
+.img_project_carousel {
+    height:760px;
+}
+
 .list_realisations h4 {
     color : #0f0f0f;
 }
@@ -80,4 +84,8 @@
 .img2 {
     background-image: url("../images/image1b.jpg");
     height: 365px;
+}
+
+#mapid{
+    height: 580px;
 }

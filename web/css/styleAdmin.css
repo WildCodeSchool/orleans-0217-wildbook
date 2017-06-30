@@ -13,3 +13,17 @@ body {
 .crud {
     padding-top: 40px;
 }
+
+.imageWilderAdmin {
+    width: 100px;
+}
+
+.imageProjectAdmin {
+    height: 100px;
+    display: block;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}

@@ -7,10 +7,12 @@
         <h3>Créer une nouvelle école</h3>
         <div class="form-group">
             {{ form_start(form) }}
-
-            {{ form_label(form.school,'ecole') }}
+            {{ form_label(form.school,'Ecole') }}
             {{ form_widget(form.school) }}
             {{ form_errors(form.school) }}
+            {{ form_label(form.address,'Adresse') }}
+            {{ form_widget(form.address) }}
+            {{ form_errors(form.address) }}
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-default" value="Créer"/>

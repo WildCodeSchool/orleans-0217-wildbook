@@ -23,20 +23,26 @@ class ProjectSearchType extends AbstractType
             ->add('school', EntityType::class, [
                 'class'=>School::class,
                 'choice_label'=>'school',
-                'expanded'=>true,
-                'multiple'=>true
+                'expanded'=>false,
+                'required'=>false,
+                'multiple'=>true,
+                'attr'=> ['class'=>'selectpicker multiple']
             ])
             ->add('category', EntityType::class, [
                 'class'=>Category::class,
                 'choice_label'=>'label',
-                'expanded'=>true,
-                'multiple'=>true
+                'expanded'=>false,
+                'required'=>false,
+                'multiple'=>true,
+                'attr'=> ['class'=>'selectpicker multiple']
             ])
             ->add('promotion', EntityType::class, [
                 'class'=>Promotion::class,
                 'choice_label'=>'promotion',
-                'expanded'=>true,
-                'multiple'=>true
+                'expanded'=>false,
+                'required'=>false,
+                'multiple'=>true,
+                'attr'=> ['class'=>'selectpicker multiple']
             ])
             ->getForm();
 
@@ -45,7 +51,9 @@ class ProjectSearchType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-
+        $resolver->setDefaults(array(
+            'csrf_protection' => false,
+        ));
     }
 
     public function getBlockPrefix()

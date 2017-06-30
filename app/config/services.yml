@@ -44,18 +44,21 @@ services:
             - { name: doctrine.event_listener, event: postLoad }
             - { name: doctrine.event_listener, event: preRemove }
 
-#    BookBundle\EventListener\RegistrationListener:
-#        tags:
-#            - { name: kernel.event_subscriber}
-#
-#    BookBundle\EventListener\AuthentificationListener:
-#            tags:
-#                - { name: kernel.event_subscriber}
 
     BookBundle\EventListener\CvUploadListener:
-            tags:
-                - { name: doctrine.event_listener, event: prePersist }
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postLoad }
+            - { name: doctrine.event_listener, event: preRemove }
 
     BookBundle\Twig\TwigExtension:
-            tags:
-                - { name: twig.extension }
+        tags:
+            - { name: twig.extension }
+
+    BookBundle\EventListener\ProjectPictureUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postLoad }
+            - { name: doctrine.event_listener, event: preRemove }

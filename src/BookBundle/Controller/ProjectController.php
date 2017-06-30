@@ -3,10 +3,17 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\Project;
+use BookBundle\Form\ProjectSearchType;
+use BookBundle\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use BookBundle\Service\FileUploader;
+
 
 /**
  * Project controller.
@@ -19,17 +26,46 @@ class ProjectController extends Controller
      * Lists all project entities.
      *
      * @Route("/", name="project_index")
-     * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $projects = $em->getRepository('BookBundle:Project')->findAll();
+        $form = $this->createForm(ProjectSearchType::class);
+        $form->handleRequest($request);
 
-        return $this->render('project/index.html.twig', array(
-            'projects' => $projects,
+        $input=$categories=$schools=$promotions='';
+        $projectsSearch='';
+
+        if ($form->isValid() && $form->isSubmitted()) {
+            $blocResult=true;
+            $data = $form->getData();
+            $schools = $data['school'];
+            $categories = $data['category'];
+            $promotions = $data['promotion'];
+
+            if ($schools[0] == null & $categories[0] == null ) {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, null, $promotions);
+            } elseif ($schools[0] == null & $promotions[0] == null) {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, $categories, null );
+            } elseif ($categories[0] == null & $promotions[0] == null) {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, null, null);
+            } elseif ($schools[0] == null) {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, $categories, $promotions);
+            } elseif ($categories[0] == null) {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, null, $promotions);
+            } elseif ($promotions[0] == null) {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories, null);
+            } else {
+                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories, $promotions);
+            }
+        }
+
+        return $this->render('project/index.html.twig',array(
+            'form' => $form->createView(),
+            'projects' => $projectsSearch,
         ));
+
     }
 
     /**
@@ -38,7 +74,7 @@ class ProjectController extends Controller
      * @Route("/new", name="project_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader)
     {
         $project = new Project();
         $form = $this->createForm('BookBundle\Form\ProjectType', $project);
@@ -46,6 +82,9 @@ class ProjectController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+
+
             $em->persist($project);
             $em->flush();
 
@@ -68,8 +107,6 @@ class ProjectController extends Controller
     {
         $deleteForm = $this->createDeleteForm($project);
 
-
-
         return $this->render('project/show.html.twig', array(
             'project' => $project,
             'delete_form' => $deleteForm->createView(),
@@ -82,7 +119,7 @@ class ProjectController extends Controller
      * @Route("/{id}/edit", name="project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project)
+    public function editAction(Request $request, Project $project, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('BookBundle\Form\ProjectType', $project);
@@ -152,5 +189,28 @@ class ProjectController extends Controller
         ));
     }
 
+    /**
+     * @Route("/ajax/{input}")
+     * @Method("POST")
+     *
+     * @param Request $request
+     * @param $input
+     *
+     * @return JsonResponse
+     */
+    public function autocompleteAction(Request $request, $input)
+    {
+        if ($request->isXmlHttpRequest()) {
+            /**
+             * @var $repository ProjectRepository
+             */
+            $repository = $this->getDoctrine()->getRepository('BookBundle:Project');
+            $data = $repository->getLikeAdmin($input);
+            return new JsonResponse(array("data" => json_encode($data)));
+
+        } else {
+            throw new HttpException('500', 'Invalid call');
+        }
+    }
 
 }
