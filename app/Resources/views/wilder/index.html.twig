@@ -52,9 +52,9 @@
                     {% for wilder in wilders %}
                         <tr>
                             <td><a href="{{ path('wilder_show', { 'id': wilder.id }) }}"> <img src="{{ asset
-                                    ('uploads/'~ wilder.profilPicture|basename ) }}"
+                                    ('uploads/'~ wilder.profilPicture ) }}"
                                      alt="{{ wilder.firstname }} {{ wilder.lastname }}"
-                                     width="150px"></a></td>
+                                     attribut-hiden-sylvain=(width="150px")></a></td>
                             <td>{{ wilder.firstname }}</td>
                             <td>{{ wilder.lastname }}</td>
                             <td>{{ wilder.city }}</td>
