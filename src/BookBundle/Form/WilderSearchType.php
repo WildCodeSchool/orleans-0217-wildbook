@@ -54,7 +54,6 @@ class WilderSearchType extends AbstractType
         $resolver->setDefaults(array(
             'csrf_protection' => false,
         ));
-
     }
 
     public function getBlockPrefix()
