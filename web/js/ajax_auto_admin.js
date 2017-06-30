@@ -69,9 +69,9 @@ $( document ).ready(function() {
 
                         html +=  "<tr>" +
                             "<td></td>"+
-                            "<td><a href=\"/project/"+ projects[i].id +"\"" + projects[i].title + "></td>"+
+                            "<td><a href=\"/project/"+ projects[i].id +"\">" + projects[i].title + "</td>"+
                             "<td>" + projects[i].customer + "</td>"+
-                            "<td>" + projects[i].date + "</td>"+
+                            "<td>" + projects[i].date.date + "</td>"+
                             "<td>" + projects[i].status + "</td>"+
                             "<td>" + projects[i].category + "</td>"+
                             "<td>" + projects[i].school + "</td>"+

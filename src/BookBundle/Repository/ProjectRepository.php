@@ -56,7 +56,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->leftJoin('p.school','s')
             ->leftJoin('p.category','c')
             ->where('p.title LIKE :title')
-            ->setParameter('title', $input)
+                ->setParameter('title', $input)
             ->getQuery();
         return $qb->getResult();
     }
