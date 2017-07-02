@@ -37,7 +37,7 @@ class WilderSearchController extends Controller
 
         $form = $this->createForm(WilderSearchType::class);
         $form->handleRequest($request);
-        $blocResult = false;
+        $wildersSearch = '';
 
 
         if ($form->isValid() && $form->isSubmitted()) {
@@ -46,7 +46,6 @@ class WilderSearchController extends Controller
             $languages = $data['language'];
             $schools = $data['school'];
             $promotions = $data['promotion'];
-            $wildersSearch = '';
 
             if ($schools[0] == null & $languages[0] == null ) {
                 $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, null, $promotions);
@@ -63,17 +62,11 @@ class WilderSearchController extends Controller
             }else {
                 $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, $languages, $promotions);
             }
-
-            return $this->render('BookBundle:Front:wilder_search.html.twig', array(
-                'blocResult' => $blocResult,
-                'form' => $form->createView(),
-                'wildersSearch' => $wildersSearch
-            ));
         }
 
         return $this->render('BookBundle:Front:wilder_search.html.twig', array(
-            'blocResult' => $blocResult,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'wilders' => $wildersSearch
         ));
     }
 
