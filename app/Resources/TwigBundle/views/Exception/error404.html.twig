@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <div class ="error center-block">
+        <h1> Page not found </h1>
+
+        {% if is_granted ( 'IS_AUTHENTICATED_FULLY' ) %}
+            {# ... #}
+        {% endif %}
+
+        <p>
+            The requested page couldn't be located. Checkout for any URL
+            misspelling or <a href= " {{ path ( 'book_home_index' ) }} " > return to the homepage </a> .
+        </p>
+    </div>
+{% endblock %}
