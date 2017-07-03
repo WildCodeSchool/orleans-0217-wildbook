@@ -9,31 +9,23 @@
     {% block body %}
 
         <div class="wrap">
-            <nav class="navbar navbar-inverse" role="navigation">
+            <nav class="nav-bar navbar-inverse" role="navigation">
                 <div id="top-menu" class="container-fluid active">
-                    <div class="navbar-header">
-                        <a href="https://wildcodeschool.fr/" target="_blank">
-                            <img class="navbar-brand" src="{{ asset('images/LOGO_COLO.svg') }}" alt="aller à wildcodechool.fr">
-                        </a>
-                    </div>
-                    <div>
-                        <div class="nav navbar-nav navbar-right conex">
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                                <a href="{{ path('fos_user_security_logout') }}">
-                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                </a>
-                            {% else %}
-                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-                            {% endif %}
-                        </div>
+                    <a href="https://wildcodeschool.fr/" target="_blank">
+                        <img class="navbar-brand" src="{{ asset('images/LOGO_COLO.svg') }}" alt="aller à wildcodechool.fr">
+                    </a>
+                    <div class="navbar-right conex">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                            <a href="{{ path('fos_user_security_logout') }}">
+                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        {% endif %}
                     </div>
                 </div>
             </nav>
-
-
-
-
 
             {% if is_granted('ROLE_ADMIN') %}
                 <aside id="side-menu" class="aside" role="navigation">
