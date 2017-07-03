@@ -11,6 +11,9 @@ namespace BookBundle\Controller;
 use BookBundle\Entity\User;
 use BookBundle\Entity\Wilder;
 use FOS\UserBundle\Model\User as BaseUser;
+use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Controller\ResettingController;
+use FOS\UserBundle\Mailer;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -75,6 +78,7 @@ class UserController extends Controller
                 $user->setEnabled(false);
                 $user->setRoles(array('ROLE_USER'));
                 $user->setConfirmationToken(md5(uniqid()));
+
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('registration')
