@@ -32,18 +32,21 @@
                         {{ form_start(form) }}
                         {{ form_row(form) }}
                         {{ form_end(form) }}
-                    </div><!-- /.col-lg-6 -->
-                </div><!-- /.row -->
+                    </div>
+                </div>
             </div>
         </div>
 
-
-    <div class="list_wilder row" id="wild-list">
-
-    </div>
-
-
-        {% if blocResult=='' %}
+        <div class="list_wilders row" id="wild-list">
+            {% for wilder  in wilders%}
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+                    <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}" class="thumbnail">
+                        <img src="{{ asset('uploads/'~ wilder.profilPicture ) }}" alt="">
+                        <h4>{{ wilder.firstname }} {{ wilder.lastname }}</h4>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
 
         <div class="realisation-focus">
             <div class="sub-title-slider">
@@ -89,21 +92,6 @@
                 </div>
             </div>
         </div>
-
-        {% else %}
-
-            <div class="list_wilders">
-                {% for wilderSearch  in wildersSearch%}
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <a href="{{ path('profile_wilder', { 'id': wilderSearch.id }) }}" class="thumbnail">
-                            <img src="{{ asset('uploads/'~ wilderSearch.profilPicture|basename ) }}" alt="">
-                        </a>
-                        <h4>{{ wilderSearch.firstname }} {{ wilderSearch.lastname }}</h4>
-                    </div>
-                {% endfor %}
-            </div>
-
-        {% endif %}
 
     </div>
 
