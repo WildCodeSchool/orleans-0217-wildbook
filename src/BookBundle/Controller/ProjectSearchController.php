@@ -32,11 +32,10 @@ class ProjectSearchController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(ProjectSearchType::class, ['csrf_protection'=>false]);
+        $form = $this->createForm(ProjectSearchType::class);
         $form->handleRequest($request);
 
         $input=$categories=$schools=$promotions='';
-        $blocResult=false;
         $projectsSearch='';
 
         if ($form->isValid() && $form->isSubmitted()) {
@@ -65,7 +64,6 @@ class ProjectSearchController extends Controller
 
         return $this->render('BookBundle:Front:realisation_search.html.twig' ,array(
             'form' => $form->createView(),
-            'blocResult' => $blocResult,
             'projectsSearch' => $projectsSearch,
         ));
     }
