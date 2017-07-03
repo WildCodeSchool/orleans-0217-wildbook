@@ -74,5 +74,14 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+
+    public function getWilderUser($input)
+    {
+        $qb = $this->createQueryBuilder('w')
+            ->where('w.user = :user')
+                ->setParameter('user', $input)
+            ->getQuery();
+        return $qb->getResult();
+    }
 }
 

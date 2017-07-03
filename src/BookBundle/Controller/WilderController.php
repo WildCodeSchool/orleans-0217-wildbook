@@ -2,9 +2,8 @@
 
 namespace BookBundle\Controller;
 
+use BookBundle\Entity\User;
 use BookBundle\Entity\Wilder;
-
-
 use BookBundle\Form\WilderSearchType;
 use BookBundle\Repository\WilderRepository;
 use BookBundle\Service\ConvertCity;
@@ -30,7 +29,7 @@ class WilderController extends Controller
      * Lists all wilder entities.
      *
      * @Route("/", name="wilder_index")
-     * @Security("has_role('ROLE_USER')")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function indexAction(Request $request)
     {
@@ -41,7 +40,7 @@ class WilderController extends Controller
         $wilders = $em->getRepository('BookBundle:Wilder')->findAll();
       
         if ($form->isValid() && $form->isSubmitted()) {
-  $data = $form->getData();;
+            $data = $form->getData();;
             $blocResult = true;
             $data = $form->getData();
             $languages = $data['language'];
@@ -238,5 +237,6 @@ class WilderController extends Controller
             throw new HttpException('500', 'Invalid call');
         }
     }
+
 
 }
