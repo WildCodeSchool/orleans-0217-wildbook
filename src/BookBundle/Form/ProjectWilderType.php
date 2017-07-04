@@ -27,7 +27,6 @@ class ProjectWilderType extends AbstractType
                 'class'=> Wilder::class,
                 'choice_label'=>'fullName',
                 'multiple'=>false,
-//                'query_builder'=>''
             ]);
     }
     

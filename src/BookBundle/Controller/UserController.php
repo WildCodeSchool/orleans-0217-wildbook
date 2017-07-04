@@ -191,7 +191,7 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
         $projects = $em->getRepository('BookBundle:Project')->projectsByWilder($userId);
         if (!isset($projects)) {
-//            return $this->redirectToRoute();
+            return $this->redirectToRoute('home_admin');
         } else {
             return $this->render('user/indexProject.html.twig', [
                 'projects' => $projects

@@ -21,7 +21,7 @@ class AdminController extends Controller
 {
 
     /**
-     * @Route("/")
+     * @Route("/" , name="home_admin")
      */
     public function indexAction()
     {
