@@ -44,9 +44,9 @@ class UserController extends Controller
 
         $users = $em->getRepository('BookBundle:User')->findAll();
 
-        return $this->render('user/index.html.twig', array(
+        return $this->render('user/index.html.twig', [
             'users' => $users,
-        ));
+        ]);
     }
 
     /**
@@ -72,11 +72,11 @@ class UserController extends Controller
                 $em = $this->getDoctrine()->getManager();
 //                $user->setPlainPassword('password');
 //                $user->setEnabled(true);
-//                $user->setRoles(array('ROLE_USER'));
+//                $user->setRoles(['ROLE_USER']);
 
                 $user->setPlainPassword(md5(uniqid()));
                 $user->setEnabled(false);
-                $user->setRoles(array('ROLE_USER'));
+                $user->setRoles(['ROLE_USER']);
                 $user->setConfirmationToken(md5(uniqid()));
 
 
@@ -86,7 +86,7 @@ class UserController extends Controller
                     ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView('BookBundle:FinishRegistration:registration_email.html.twig',
-                            array('token' => $user->getConfirmationToken())),
+                            ['token' => $user->getConfirmationToken()]),
                         'text/html'
                     );
                 $this->get('mailer')->send($message);
@@ -101,10 +101,10 @@ class UserController extends Controller
             return $this->redirectToRoute('user_index');
         }
 
-        return $this->render('user/new.html.twig', array(
+        return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-        ));
+        ]);
 
     }
 
@@ -132,7 +132,7 @@ class UserController extends Controller
 
                 $user->setPlainPassword(md5(uniqid()));
                 $user->setEnabled(false);
-                $user->setRoles(array('ROLE_ADMIN'));
+                $user->setRoles(['ROLE_ADMIN']);
                 $user->setConfirmationToken(md5(uniqid()));
 
                 $message = \Swift_Message::newInstance()
@@ -141,7 +141,7 @@ class UserController extends Controller
                     ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView('BookBundle:FinishRegistration:registration_email.html.twig',
-                            array('token' => $user->getConfirmationToken())),
+                            ['token' => $user->getConfirmationToken()]),
                         'text/html'
                     );
                 $this->get('mailer')->send($message);
@@ -153,10 +153,10 @@ class UserController extends Controller
             return $this->redirectToRoute('user_index');
         }
 
-        return $this->render('user/new_admin.html.twig', array(
+        return $this->render('user/new_admin.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -167,37 +167,16 @@ class UserController extends Controller
      */
     public function indexWilderAction()
     {
-        $userId = $this->getUser()->getId();
-
         $em = $this->getDoctrine()->getManager();
-        $wild = $em->getRepository('BookBundle:Wilder')->getWilderUser($userId);
+        $wild = $em->getRepository('BookBundle:Wilder')->findByUser($this->getUser());
         if (!isset($wild[0])) {
             return $this->redirectToRoute('wilder_new');
         } else {
             $wilder = $wild[0];
-            return $this->render('user/indexWilder.html.twig', array(
+            return $this->render('user/indexWilder.html.twig', [
                 'wilder' => $wilder
-            ));
+            ]);
         }
     }
 
-    /**
-     * @Route("/project-wilder-one-index", name="project_one_wilder_index")
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @Security("has_role('ROLE_USER')")
-     */
-    public function indexProjectWilderAction()
-    {
-        $userId = $this->getUser()->getId();
-
-        $em = $this->getDoctrine()->getManager();
-        $projects = $em->getRepository('BookBundle:Project')->projectsByWilder($userId);
-        if (!isset($projects)) {
-            return $this->redirectToRoute();
-        } else {
-            return $this->render('user/indexProject.html.twig', array(
-                'projects' => $projects
-            ));
-        }
-    }
 }
