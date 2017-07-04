@@ -552,168 +552,42 @@ class Project
         return $this->school;
     }
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="principal_picture", type="string", length=255, nullable=true)
-     *
-     * @Assert\Image()
+    /** @var
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="path")
      */
-    private $principalPicture;
+    private $pictures;
 
     /**
-     * @var string
+     * Add picture
      *
-     * @ORM\Column(name="first_picture", type="string", length=255, nullable=true)
-     *
-     * @Assert\Image()
-     */
-    private $firstPicture;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="second_picture", type="string", length=255, nullable=true)
-     *
-     * @Assert\Image()
-     */
-    private $secondPicture;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="third_picture", type="string", length=255, nullable=true)
-     *
-     * @Assert\Image()
-     */
-    private $thirdPicture;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="fourth_picture", type="string", length=255, nullable=true)
-     *
-     * @Assert\Image()
-     */
-    private $fourthPicture;
-
-    /**
-     * Set principalPicture
-     *
-     * @param string $principalPicture
+     * @param \BookBundle\Entity\Picture $picture
      *
      * @return Project
      */
-    public function setPrincipalPicture($principalPicture)
+    public function addPicture(\BookBundle\Entity\Picture $picture)
     {
-        $this->principalPicture = $principalPicture;
+        $this->pictures[] = $picture;
 
         return $this;
     }
 
     /**
-     * Get principalPicture
+     * Remove picture
      *
-     * @return string
+     * @param \BookBundle\Entity\Picture $picture
      */
-    public function getPrincipalPicture()
+    public function removePicture(\BookBundle\Entity\Picture $picture)
     {
-        return $this->principalPicture;
+        $this->pictures->removeElement($picture);
     }
 
     /**
-     * Set firstPicture
+     * Get pictures
      *
-     * @param string $firstPicture
-     *
-     * @return Project
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setFirstPicture($firstPicture)
+    public function getPictures()
     {
-        $this->firstPicture = $firstPicture;
-
-        return $this;
-    }
-
-    /**
-     * Get firstPicture
-     *
-     * @return string
-     */
-    public function getFirstPicture()
-    {
-        return $this->firstPicture;
-    }
-
-    /**
-     * Set secondPicture
-     *
-     * @param string $secondPicture
-     *
-     * @return Project
-     */
-    public function setSecondPicture($secondPicture)
-    {
-        $this->secondPicture = $secondPicture;
-
-        return $this;
-    }
-
-    /**
-     * Get secondPicture
-     *
-     * @return string
-     */
-    public function getSecondPicture()
-    {
-        return $this->secondPicture;
-    }
-
-    /**
-     * Set thirdPicture
-     *
-     * @param string $thirdPicture
-     *
-     * @return Project
-     */
-    public function setThirdPicture($thirdPicture)
-    {
-        $this->thirdPicture = $thirdPicture;
-
-        return $this;
-    }
-
-    /**
-     * Get thirdPicture
-     *
-     * @return string
-     */
-    public function getThirdPicture()
-    {
-        return $this->thirdPicture;
-    }
-
-    /**
-     * Set fourthPicture
-     *
-     * @param string $fourthPicture
-     *
-     * @return Project
-     */
-    public function setFourthPicture($fourthPicture)
-    {
-        $this->fourthPicture = $fourthPicture;
-
-        return $this;
-    }
-
-    /**
-     * Get fourthPicture
-     *
-     * @return string
-     */
-    public function getFourthPicture()
-    {
-        return $this->fourthPicture;
+        return $this->pictures;
     }
 }
