@@ -34,51 +34,22 @@ class WilderController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm(WilderSearchType::class, ['csrf_protection' => false]);
+        $form = $this->createForm(WilderSearchType::class);
         $form->handleRequest($request);
-        $blocResult = false;
-        $wilders = $em->getRepository('BookBundle:Wilder')->findAll();
-      
+        $wilders='';
+
         if ($form->isValid() && $form->isSubmitted()) {
-            $data = $form->getData();;
-            $blocResult = true;
             $data = $form->getData();
             $languages = $data['language'];
             $schools = $data['school'];
             $promotions = $data['promotion'];
-            $wildersSearch = '';
 
-            if ($schools[0] == null & $languages[0] == null ) {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, null, $promotions);
-            } elseif ($schools[0] == null & $promotions[0] == null ) {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, $languages, null);
-            } elseif ($promotions[0] == null & $languages[0] == null ) {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, null, null);
-            } elseif ($languages[0] == null) {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, null, $promotions);
-            } elseif ($promotions[0] == null) {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, $languages, null);
-            }elseif ($schools[0] == null) {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, $languages, $promotions);
-            }else {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, $languages, $promotions);
-            }
-
-
-
-            return $this->render('wilder/index.html.twig', array(
-                'blocResult' => $blocResult,
-
-                'form' => $form->createView(),
-                'wilders' => $wildersSearch
-
-            ));
+            $wilders = $em->getRepository(wilder::class)->searchBy($schools, $languages, $promotions);
         }
 
         return $this->render('wilder/index.html.twig', array(
             'form' => $form->createView(),
             'wilders' => $wilders,
-            'blocResult' => $blocResult
         ));
     }
 
@@ -169,11 +140,11 @@ class WilderController extends Controller
         if ($idWilder === $idUser or in_array('ROLE_ADMIN',$this->getUser()->getRoles())){
 
 
-        return $this->render('wilder/edit.html.twig', array(
-            'wilder' => $wilder,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+            return $this->render('wilder/edit.html.twig', array(
+                'wilder' => $wilder,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
         }
     }
 
@@ -212,7 +183,7 @@ class WilderController extends Controller
             ->setAction($this->generateUrl('wilder_delete', array('id' => $wilder->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 
     /**
@@ -238,6 +209,4 @@ class WilderController extends Controller
             throw new HttpException('500', 'Invalid call');
         }
     }
-
-
 }
