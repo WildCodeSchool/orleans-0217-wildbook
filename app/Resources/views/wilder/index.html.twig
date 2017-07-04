@@ -33,7 +33,6 @@
 
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Photo De Profil</th>
                     <th>Nom</th>
                     <th>Prénom</th>
@@ -52,16 +51,15 @@
 
                     {% for wilder in wilders %}
                         <tr>
-                            <td><a href="{{ path('wilder_show', { 'id': wilder.id }) }}">{{ wilder.id }}</a></td>
-                            <td><img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}"
-                                     alt="{{ wilder.firstname }} {{ wilder.lastname }}"
-                                     width="150px"></td>
+                            <td><a href="{{ path('wilder_show', { 'id': wilder.id }) }}"> <img src="{{ asset
+                                    ('uploads/'~ wilder.profilPicture|basename ) }}" alt="{{ wilder.firstname }} {{
+                                    wilder.lastname }}" class="imageShearchWilderAdmin"></a></td>
                             <td>{{ wilder.firstname }}</td>
                             <td>{{ wilder.lastname }}</td>
                             <td>{{ wilder.city }}</td>
                             <td>{{ wilder.promotion.promotion }}</td>
-                            <td>{% if wilder.userActivation %}Yes{% else %}No{% endif %}</td>
-                            <td>{% if wilder.managerActivation %}Yes{% else %}No{% endif %}</td>
+                            <td>{% if wilder.userActivation ? Yes :No %}</td>
+                            <td>{% if wilder.managerActivation? Yes :No %}</td>
                             <td>
                                 <a href="{{ path('wilder_edit', { 'id': wilder.id }) }}" class="btn btn-success">
                                     <span class="glyphicon glyphicon-pencil"></span> Modifier

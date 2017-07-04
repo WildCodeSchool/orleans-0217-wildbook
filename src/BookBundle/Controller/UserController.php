@@ -70,9 +70,6 @@ class UserController extends Controller
                 return $this->redirectToRoute('user_index');
             } else {
                 $em = $this->getDoctrine()->getManager();
-//                $user->setPlainPassword('password');
-//                $user->setEnabled(true);
-//                $user->setRoles(array('ROLE_USER'));
 
                 $user->setPlainPassword(md5(uniqid()));
                 $user->setEnabled(false);
@@ -86,7 +83,7 @@ class UserController extends Controller
                     ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView('BookBundle:FinishRegistration:registration_email.html.twig',
-                            array('token' => $user->getConfirmationToken())),
+                            ['token' => $user->getConfirmationToken()]),
                         'text/html'
                     );
                 $this->get('mailer')->send($message);
@@ -94,6 +91,7 @@ class UserController extends Controller
                 $userManager->updateUser($user);
                 $em->persist($user);
                 $em->flush();
+                $this->addFlash('success', 'Nouveau wilder enregistré ');
 
             }
 
@@ -149,6 +147,7 @@ class UserController extends Controller
                 $userManager->updateUser($user);
                 $em->persist($user);
                 $em->flush();
+                $this->addFlash('success', 'Nouveau campus manager enregistré ');
             }
             return $this->redirectToRoute('user_index');
         }
@@ -168,15 +167,15 @@ class UserController extends Controller
     public function indexWilderAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $wild = $em->getRepository('BookBundle:Wilder')->findByUser($this->getUser());
-        if (!isset($wild[0])) {
+        $wilder = $em->getRepository('BookBundle:Wilder')->findOneByUser($this->getUser());
+        if (!isset($wilder)) {
             return $this->redirectToRoute('wilder_new');
         } else {
-            $wilder = $wild[0];
             return $this->render('user/indexWilder.html.twig', [
                 'wilder' => $wilder
             ]);
         }
+
     }
 
     /**
@@ -197,5 +196,7 @@ class UserController extends Controller
                 'projects' => $projects
             ]);
         }
+
     }
+
 }

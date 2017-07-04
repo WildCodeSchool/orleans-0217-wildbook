@@ -8,6 +8,7 @@
 
 namespace BookBundle\EventListener;
 
+use BookBundle\Entity\Picture;
 use BookBundle\Entity\Project;
 use BookBundle\Service\FileUploader;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -44,26 +45,14 @@ class ProjectPictureUploadListener
     {
         $entity = $args->getEntity();
 
-        if (!$entity instanceof Project) {
+        if (!$entity instanceof Picture) {
             return;
         }
 
         $masterRequest = $this->requestStack->getMasterRequest()->get('_route');
         if ($masterRequest == "project_edit") {
-            if ($fileName = $entity->getPrincipalPicture()) {
-                $entity->setPrincipalPicture(new File($this->uploader->getTargetDir() . '/' . $fileName));
-            }
-            if ($fileName = $entity->getFirstPicture()) {
-                $entity->setFirstPicture(new File($this->uploader->getTargetDir() . '/' . $fileName));
-            }
-            if ($fileName = $entity->getSecondPicture()) {
-                $entity->setSecondPicture(new File($this->uploader->getTargetDir() . '/' . $fileName));
-            }
-            if ($fileName = $entity->getThirdPicture()) {
-                $entity->setThirdPicture(new File($this->uploader->getTargetDir() . '/' . $fileName));
-            }
-            if ($fileName = $entity->getFourthPicture()) {
-                $entity->setFourthPicture(new File($this->uploader->getTargetDir() . '/' . $fileName));
+            if ($fileName = $entity->getPath()) {
+                $entity->setPath(new File($this->uploader->getTargetDir() . '/' . $fileName));
             }
         }
 
@@ -74,28 +63,12 @@ class ProjectPictureUploadListener
     {
         $entity = $args->getEntity();
 
-        if (!$entity instanceof Project) {
+        if (!$entity instanceof Picture) {
             return;
         }
 
-        if (is_file($entity->getPrincipalPicture())) {
-            unlink($entity->getPrincipalPicture());
-        }
-
-        if (is_file($entity->getFirstPicture())) {
-            unlink($entity->getFirstPicture());
-        }
-
-        if (is_file($entity->getSecondPicture())) {
-            unlink($entity->getSecondPicture());
-        }
-
-        if (is_file($entity->getThirdPicture())) {
-            unlink($entity->getThirdPicture());
-        }
-
-        if (is_file($entity->getFourthPicture())) {
-            unlink($entity->getFourthPicture());
+        if (is_file($entity->getPath())) {
+            unlink($entity->getPath());
         }
 
     }
@@ -103,70 +76,23 @@ class ProjectPictureUploadListener
     private function uploadFile($entity)
     {
 
-        if (!$entity instanceof Project) {
+        if (!$entity instanceof Picture) {
             return;
         }
 
-        $file = $entity->getPrincipalPicture();
+        $file = $entity->getPath();
 
         if (!$file instanceof UploadedFile) {
             return;
         }
 
         $fileName = $this->uploader->upload($file);
-        $entity->setPrincipalPicture($fileName);
+        $entity->setPath($fileName);
 
-        if (!$entity instanceof Project) {
+        if (!$entity instanceof Picture) {
             return;
         }
 
-        $file = $entity->getFirstPicture();
-
-        if (!$file instanceof UploadedFile) {
-            return;
-        }
-
-        $fileName = $this->uploader->upload($file);
-        $entity->setFirstPicture($fileName);
-
-        if (!$entity instanceof Project) {
-            return;
-        }
-
-        $file = $entity->getSecondPicture();
-
-        if (!$file instanceof UploadedFile) {
-            return;
-        }
-
-        $fileName = $this->uploader->upload($file);
-        $entity->setSecondPicture($fileName);
-
-        if (!$entity instanceof Project) {
-            return;
-        }
-
-        $file = $entity->getThirdPicture();
-
-        if (!$file instanceof UploadedFile) {
-            return;
-        }
-
-        $fileName = $this->uploader->upload($file);
-        $entity->setThirdPicture($fileName);
-
-        if (!$entity instanceof Project) {
-            return;
-        }
-
-        $file = $entity->getFourthPicture();
-
-        if (!$file instanceof UploadedFile) {
-            return;
-        }
-
-        $fileName = $this->uploader->upload($file);
-        $entity->setFourthPicture($fileName);
     }
 
 }

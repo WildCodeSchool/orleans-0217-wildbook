@@ -2,7 +2,9 @@
 
 namespace BookBundle\Controller;
 
+use BookBundle\Entity\Picture;
 use BookBundle\Entity\Project;
+use BookBundle\Form\PictureType;
 use BookBundle\Form\ProjectSearchType;
 use BookBundle\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -87,6 +89,7 @@ class ProjectController extends Controller
 
             $em->persist($project);
             $em->flush();
+            $this->addFlash('success', 'Nouveau projet '. $project->getTitle().' enregistré');
 
             return $this->redirectToRoute('project_index');
         }
@@ -141,7 +144,9 @@ class ProjectController extends Controller
     {
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('BookBundle\Form\ProjectType', $project);
+        $pictureForm = $this->createForm(PictureType::class);
         $editForm->handleRequest($request);
+
 
         if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
             if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -178,6 +183,7 @@ class ProjectController extends Controller
 
         }
 
+
     }
 
     /**
@@ -196,6 +202,7 @@ class ProjectController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($project);
             $em->flush();
+            $this->addFlash('danger', 'Projet '. $project->gettitle().' supprimé');
         }
 
         return $this->redirectToRoute('project_index');
