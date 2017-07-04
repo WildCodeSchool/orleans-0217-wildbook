@@ -53,6 +53,7 @@ class PromotionController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($promotion);
             $em->flush();
+            $this->addFlash('success', 'Nouvelle promotion enregistrée');
 
             return $this->redirectToRoute('promotion_index', array('id' => $promotion->getId()));
         }
@@ -111,6 +112,7 @@ class PromotionController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('warning', 'Promotion modifiée');
 
             return $this->redirectToRoute('promotion_index', array('id' => $promotion->getId()));
         }
@@ -138,6 +140,7 @@ class PromotionController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($promotion);
             $em->flush();
+            $this->addFlash('danger', 'Promotion supprimée');
         }
 
         return $this->redirectToRoute('promotion_index');
