@@ -167,11 +167,10 @@ class UserController extends Controller
     public function indexWilderAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $wild = $em->getRepository('BookBundle:Wilder')->findByUser($this->getUser());
-        if (!isset($wild[0])) {
+        $wilder = $em->getRepository('BookBundle:Wilder')->findOneByUser($this->getUser());
+        if (!isset($wilder)) {
             return $this->redirectToRoute('wilder_new');
         } else {
-            $wilder = $wild[0];
             return $this->render('user/indexWilder.html.twig', [
                 'wilder' => $wilder
             ]);
