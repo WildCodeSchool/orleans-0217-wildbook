@@ -52,6 +52,7 @@ class TechnologyController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($technology);
             $em->flush();
+            $this->addFlash('success', 'Nouvelle technologie enregistrée');
 
             return $this->redirectToRoute('technology_index');
         }
@@ -94,6 +95,7 @@ class TechnologyController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('warning', 'Technologie modifiée');
 
             return $this->redirectToRoute('technology_index');
         }
@@ -121,6 +123,7 @@ class TechnologyController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($technology);
             $em->flush();
+            $this->addFlash('danger', 'Technologie supprimée');
         }
 
         return $this->redirectToRoute('technology_index');
