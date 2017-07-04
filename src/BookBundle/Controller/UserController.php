@@ -9,7 +9,11 @@
 namespace BookBundle\Controller;
 
 use BookBundle\Entity\User;
+use BookBundle\Entity\Wilder;
 use FOS\UserBundle\Model\User as BaseUser;
+use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Controller\ResettingController;
+use FOS\UserBundle\Mailer;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -23,7 +27,6 @@ use Swift_Message;
  * User controller.
  *
  * @Route("user")
- * @Security("has_role('ROLE_ADMIN')")
  */
 class UserController extends Controller
 {
@@ -32,6 +35,7 @@ class UserController extends Controller
      *
      * @Route("/", name="user_index")
      * @Method("GET")
+     * @Security("has_role('ROLE_ADMIN')")
      *
      */
     public function indexAction()
@@ -40,9 +44,9 @@ class UserController extends Controller
 
         $users = $em->getRepository('BookBundle:User')->findAll();
 
-        return $this->render('user/index.html.twig', array(
+        return $this->render('user/index.html.twig', [
             'users' => $users,
-        ));
+        ]);
     }
 
     /**
@@ -50,6 +54,7 @@ class UserController extends Controller
      *
      * @Route("/new", name="user_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      *
      */
     public function newAction(Request $request)
@@ -68,8 +73,9 @@ class UserController extends Controller
 
                 $user->setPlainPassword(md5(uniqid()));
                 $user->setEnabled(false);
-                $user->setRoles(array('ROLE_USER'));
+                $user->setRoles(['ROLE_USER']);
                 $user->setConfirmationToken(md5(uniqid()));
+
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('registration')
@@ -77,7 +83,7 @@ class UserController extends Controller
                     ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView('BookBundle:FinishRegistration:registration_email.html.twig',
-                            array('token'=> $user->getConfirmationToken())),
+                            ['token' => $user->getConfirmationToken()]),
                         'text/html'
                     );
                 $this->get('mailer')->send($message);
@@ -93,10 +99,10 @@ class UserController extends Controller
             return $this->redirectToRoute('user_index');
         }
 
-        return $this->render('user/new.html.twig', array(
+        return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-        ));
+        ]);
 
     }
 
@@ -105,6 +111,7 @@ class UserController extends Controller
      *
      * @Route("/new/admin", name="user_admin_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      *
      */
     public function newAdminAction(Request $request)
@@ -123,7 +130,7 @@ class UserController extends Controller
 
                 $user->setPlainPassword(md5(uniqid()));
                 $user->setEnabled(false);
-                $user->setRoles(array('ROLE_ADMIN'));
+                $user->setRoles(['ROLE_ADMIN']);
                 $user->setConfirmationToken(md5(uniqid()));
 
                 $message = \Swift_Message::newInstance()
@@ -132,7 +139,7 @@ class UserController extends Controller
                     ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView('BookBundle:FinishRegistration:registration_email.html.twig',
-                            array('token'=> $user->getConfirmationToken())),
+                            ['token' => $user->getConfirmationToken()]),
                         'text/html'
                     );
                 $this->get('mailer')->send($message);
@@ -145,9 +152,29 @@ class UserController extends Controller
             return $this->redirectToRoute('user_index');
         }
 
-        return $this->render('user/new_admin.html.twig', array(
+        return $this->render('user/new_admin.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-        ));
+        ]);
     }
+
+    /**
+     *
+     * @Route("/one-index", name="one_wilder_index")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function indexWilderAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $wilder = $em->getRepository('BookBundle:Wilder')->findOneByUser($this->getUser());
+        if (!isset($wilder)) {
+            return $this->redirectToRoute('wilder_new');
+        } else {
+            return $this->render('user/indexWilder.html.twig', [
+                'wilder' => $wilder
+            ]);
+        }
+    }
+
 }
