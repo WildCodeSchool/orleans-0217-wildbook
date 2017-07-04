@@ -41,10 +41,10 @@ class PictureController extends Controller
     public function newAction(Request $request, Project $project)
     {
         $picture = new Picture();
-        $picture_form = $this->createForm('BookBundle\Form\PictureType', $picture);
-        $picture_form->handleRequest($request);
+        $pictureForm = $this->createForm('BookBundle\Form\PictureType', $picture);
+        $pictureForm->handleRequest($request);
 
-        if ($picture_form->isSubmitted() && $picture_form->isValid()) {
+        if ($pictureForm->isSubmitted() && $pictureForm->isValid()) {
             $picture->setProject($project);
             $em = $this->getDoctrine()->getManager();
             $em->persist($picture);
@@ -56,7 +56,7 @@ class PictureController extends Controller
 
         return $this->render('picture/new.html.twig', array(
             'picture' => $picture,
-            'form' => $picture_form->createView(),
+            'form' => $pictureForm->createView(),
         ));
     }
 
