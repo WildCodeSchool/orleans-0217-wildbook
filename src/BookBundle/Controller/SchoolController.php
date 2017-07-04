@@ -53,6 +53,7 @@ class SchoolController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($school);
             $em->flush();
+            $this->addFlash('success', 'Nouvelle école enregistrée');
 
             return $this->redirectToRoute('school_index', array('id' => $school->getId()));
         }
@@ -96,7 +97,7 @@ class SchoolController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $school->setLocation($convert->convertGps($school->getAddress()));
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('warning', 'École modifiée');
             return $this->redirectToRoute('school_index');
         }
 
@@ -123,6 +124,7 @@ class SchoolController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($school);
             $em->flush();
+            $this->addFlash('danger', 'École supprimée');
         }
 
         return $this->redirectToRoute('school_index');
