@@ -68,13 +68,15 @@ $( document ).ready(function() {
                     html = "";
                     for (i = 0; i < projects.length; i++) {
 
+                        date= new Date(projects[i].date.date);
+
                         html +=  "<tr>" +
                             "<td></td>"+
                             "<td><a href=\"/project/"+ projects[i].id +"\">" + projects[i].title + "</td>"+
                             "<td>" + projects[i].customer + "</td>"+
-                            "<td>" + projects[i].date.date + "</td>"+
+                            "<td>"+ date.getDate() +"/"+date.getMonth()+"/"+date.getFullYear()+"</td>"+
                             "<td>" + projects[i].status + "</td>"+
-                            "<td>" + projects[i].category + "</td>"+
+                            "<td>" + projects[i].label + "</td>"+
                             "<td>" + projects[i].school + "</td>"+
                             "<td>" + projects[i].path + "</td>"+
                             "<td><a href=\"/project/"+ projects[i].id +"/edit\" class='btn btn-success'> <span" +

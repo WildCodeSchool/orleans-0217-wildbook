@@ -83,7 +83,7 @@ class UserController extends Controller
                     ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView('BookBundle:FinishRegistration:registration_email.html.twig',
-                            array('token' => $user->getConfirmationToken())),
+                            ['token' => $user->getConfirmationToken()]),
                         'text/html'
                     );
                 $this->get('mailer')->send($message);
@@ -167,15 +167,15 @@ class UserController extends Controller
     public function indexWilderAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $wild = $em->getRepository('BookBundle:Wilder')->findByUser($this->getUser());
-        if (!isset($wild[0])) {
+        $wilder = $em->getRepository('BookBundle:Wilder')->findOneByUser($this->getUser());
+        if (!isset($wilder)) {
             return $this->redirectToRoute('wilder_new');
         } else {
-            $wilder = $wild[0];
             return $this->render('user/indexWilder.html.twig', [
                 'wilder' => $wilder
             ]);
         }
+
     }
 
     /**
@@ -196,5 +196,7 @@ class UserController extends Controller
                 'projects' => $projects
             ]);
         }
+
     }
+
 }

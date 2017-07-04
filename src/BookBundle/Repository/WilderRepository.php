@@ -83,5 +83,6 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+
 }
 
