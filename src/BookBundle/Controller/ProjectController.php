@@ -127,8 +127,10 @@ class ProjectController extends Controller
         $editForm = $this->createForm('BookBundle\Form\ProjectType', $project);
         $pictureForm = $this->createForm(PictureType::class);
         $editForm->handleRequest($request);
+        $pictures = $project->getPictures();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('project_index');
@@ -136,6 +138,7 @@ class ProjectController extends Controller
 
         return $this->render('project/edit.html.twig', array(
             'project' => $project,
+            'pictures' => $pictures,
             'edit_form' => $editForm->createView(),
             'picture_form' => $pictureForm->createView(),
             'delete_form' => $deleteForm->createView(),

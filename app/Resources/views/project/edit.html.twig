@@ -7,6 +7,11 @@
 
     <div class="container-fluid">
 
+{% for picture in project.pictures %}
+    {{ dump(picture) }}
+{% endfor %}
+
+
         <h3>{{ project.title }}</h3>
         <h4>Wilders ayant réalisé ce projet : </h4>
         <ul>{% for projectWilders in project.projectWilders %}
@@ -63,6 +68,10 @@
             {{ form_widget(edit_form.school) }}
             {{ form_errors(edit_form.school) }}
 
+            {% for picture in project.pictures %}
+            <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class ="imageWilderAdmin"/>
+            {% endfor %}
+
             {{ form_widget(edit_form) }}
         </div>
         <div class="form-group">
@@ -106,6 +115,38 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Charger une image</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    {# upload images de projet #}
+                    <div class="modal-body">
+                        {{ form_start(picture_form, {'action':path('picture_edit', {'id':project.id})}) }}
+
+                        {{ form_label(picture_form) }}
+                        {{ form_widget(picture_form) }}
+                        {{ form_errors(picture_form) }}
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <input type="submit" class="btn btn-success" value="Sauvegarder"/>
+                    </div>
+                    {{ form_end(picture_form) }}
+
+                </div>
+            </div>
+        </div>
+
 
 
         <div class="form-group">

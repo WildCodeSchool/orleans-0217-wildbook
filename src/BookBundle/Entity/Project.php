@@ -360,6 +360,7 @@ class Project
         $this->languages = new ArrayCollection();
         $this->technologies = new ArrayCollection();
         $this->projectWilders = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     /**
@@ -553,7 +554,7 @@ class Project
     }
 
     /** @var
-     * @ORM\OneToMany(targetEntity="Picture", mappedBy="path")
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="project",cascade = {"persist","remove"})
      */
     private $pictures;
 
@@ -564,11 +565,19 @@ class Project
      *
      * @return Project
      */
-    public function addPicture(\BookBundle\Entity\Picture $picture)
+    public function addPictures(\BookBundle\Entity\Picture $pictures)
     {
-        $this->pictures[] = $picture;
+        $this->pictures[] = $pictures;
 
         return $this;
+    }
+
+    /**
+     * @param mixed $technologies
+     */
+    public function setPicture($pictures)
+    {
+        $this->pictures = $pictures;
     }
 
     /**
