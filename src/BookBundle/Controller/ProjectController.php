@@ -34,20 +34,20 @@ class ProjectController extends Controller
         $form = $this->createForm(ProjectSearchType::class);
         $form->handleRequest($request);
 
-        $input=$categories=$schools=$promotions='';
-        $projectsSearch='';
+        $input = $categories = $schools = $promotions = '';
+        $projectsSearch = '';
 
         if ($form->isValid() && $form->isSubmitted()) {
-            $blocResult=true;
+            $blocResult = true;
             $data = $form->getData();
             $schools = $data['school'];
             $categories = $data['category'];
             $promotions = $data['promotion'];
 
-            if ($schools[0] == null & $categories[0] == null ) {
+            if ($schools[0] == null & $categories[0] == null) {
                 $projectsSearch = $em->getRepository(Project::class)->searchBy(null, null, $promotions);
             } elseif ($schools[0] == null & $promotions[0] == null) {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, $categories, null );
+                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, $categories, null);
             } elseif ($categories[0] == null & $promotions[0] == null) {
                 $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, null, null);
             } elseif ($schools[0] == null) {
@@ -61,7 +61,7 @@ class ProjectController extends Controller
             }
         }
 
-        return $this->render('project/index.html.twig',array(
+        return $this->render('project/index.html.twig', array(
             'form' => $form->createView(),
             'projects' => $projectsSearch,
         ));
@@ -82,7 +82,6 @@ class ProjectController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
 
 
             $em->persist($project);
@@ -125,17 +124,41 @@ class ProjectController extends Controller
         $editForm = $this->createForm('BookBundle\Form\ProjectType', $project);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+                return $this->redirectToRoute('project_index');
+            }
+            return $this->render('project/edit.html.twig', array(
+                'project' => $project,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        } else {
+            $userId = $this->getUser()->getId();
+            $projectId = $project->getId();
 
-            return $this->redirectToRoute('project_index');
-        }
+            $em = $this->getDoctrine()->getManager();
+            $projectsUser = $em->getRepository('BookBundle:Project')->projectsByWilder($userId);
+            $projectsUserId = [];
+            foreach ($projectsUser as $projectUser) {
+                $projectsUserId[] = $projectUser->getId();
+            }
+                if (in_array($projectId,$projectsUserId)) {
+                    if ($editForm->isSubmitted() && $editForm->isValid()) {
+                        $this->getDoctrine()->getManager()->flush();
+                        return $this->redirectToRoute('project_one_wilder_index');
+                    }
+                    return $this->render('project/edit.html.twig', array(
+                        'project' => $project,
+                        'edit_form' => $editForm->createView(),
+                    ));
+                } else {
+                    return $this->redirectToRoute('project_one_wilder_index');
+                }
 
-        return $this->render('project/edit.html.twig', array(
-            'project' => $project,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+            }
+
     }
 
     /**
@@ -170,8 +193,7 @@ class ProjectController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('project_delete', array('id' => $project->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 
     /**
@@ -180,7 +202,7 @@ class ProjectController extends Controller
      * @Route("/{id}/delete", name="project_indexdelete")
      * @Method({"GET", "POST"})
      */
-    public function indexDeleteAction( Project $project)
+    public function indexDeleteAction(Project $project)
     {
         $deleteForm = $this->createDeleteForm($project);
 
