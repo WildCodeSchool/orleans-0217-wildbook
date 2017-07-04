@@ -11,7 +11,8 @@
             <nav class="nav-bar navbar-inverse" role="navigation">
                 <div id="top-menu" class="container-fluid active">
                     <a href="https://wildcodeschool.fr/" target="_blank">
-                        <img class="navbar-brand" src="{{ asset('images/LOGO_COLO.svg') }}" alt="aller à wildcodechool.fr">
+                        <img class="navbar-brand" src="{{ asset('images/LOGO_COLO.svg') }}"
+                             alt="aller à wildcodechool.fr">
                     </a>
                     <div class="navbar-right conex">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -37,7 +38,7 @@
                                 <li><a href="{{ path('user_index') }}">Liste des Users</a></li>
                             </ul>
                         </li>
-                        
+
                         <li class="nav-header">
                             <div class="link">Écoles<i class="fa fa-chevron-down"></i></div>
                             <ul class="submenu">
@@ -48,7 +49,7 @@
                                 <li><a href="{{ path('technology_index') }}">Technologies</a></li>
                             </ul>
                         </li>
-                        
+
                         <li class="nav-header">
                             <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
                             <ul class="submenu">
@@ -65,21 +66,25 @@
                                 <li><a href="{{ path('tag_index') }}">Tags</a></li>
                             </ul>
                         </li>
-
-    {% elseif is_granted('ROLE_USER') %}
-        <aside id="side-menu" class="aside" role="navigation">
-            <ul class="nav nav-list accordion">
-                <li class="nav-header">
-                    <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <li><a href="{{ path('one_wilder_index') }}">Profils</a></li>
                     </ul>
-                </li>
+                </aside>
 
-                <li class="nav-header">
-                    <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <li><a href="{{ path('project_index') }}">Projets</a></li>
+            {% elseif is_granted('ROLE_USER') %}
+                <aside id="side-menu" class="aside" role="navigation">
+                    <ul class="nav nav-list accordion">
+                        <li class="nav-header">
+                            <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
+                            <ul class="submenu">
+                                <li><a href="{{ path('one_wilder_index') }}">Profils</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-header">
+                            <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
+                            <ul class="submenu">
+                                <li><a href="{{ path('project_index') }}">Projets</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </aside>
 
@@ -143,7 +148,10 @@
                     </div>
                 </section>
             </div>
+            </ul>
+            </aside>
         </div>
+
     {% endblock %}
 
 {% block javascripts %}
