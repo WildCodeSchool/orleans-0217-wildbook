@@ -65,9 +65,6 @@ class UserController extends Controller
                 return $this->redirectToRoute('user_index');
             } else {
                 $em = $this->getDoctrine()->getManager();
-//                $user->setPlainPassword('password');
-//                $user->setEnabled(true);
-//                $user->setRoles(array('ROLE_USER'));
 
                 $user->setPlainPassword(md5(uniqid()));
                 $user->setEnabled(false);
@@ -88,6 +85,7 @@ class UserController extends Controller
                 $userManager->updateUser($user);
                 $em->persist($user);
                 $em->flush();
+                $this->addFlash('success', 'Nouveau wilder enregistré ');
 
             }
 
@@ -142,6 +140,7 @@ class UserController extends Controller
                 $userManager->updateUser($user);
                 $em->persist($user);
                 $em->flush();
+                $this->addFlash('success', 'Nouveau campus manager enregistré ');
             }
             return $this->redirectToRoute('user_index');
         }
