@@ -87,7 +87,7 @@ class ProjectController extends Controller
 
             $em->persist($project);
             $em->flush();
-            $this->addFlash('success', 'Nouveau projet '. $project->gettitle().' enregistré');
+            $this->addFlash('success', 'Nouveau projet '. $project->getTitle().' enregistré');
 
             return $this->redirectToRoute('project_index');
         }
