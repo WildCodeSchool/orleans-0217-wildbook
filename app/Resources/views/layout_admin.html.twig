@@ -37,7 +37,7 @@
                                 <li><a href="{{ path('user_index') }}">Liste des Users</a></li>
                             </ul>
                         </li>
-                        
+
                         <li class="nav-header">
                             <div class="link">Écoles<i class="fa fa-chevron-down"></i></div>
                             <ul class="submenu">
@@ -48,7 +48,7 @@
                                 <li><a href="{{ path('technology_index') }}">Technologies</a></li>
                             </ul>
                         </li>
-                        
+
                         <li class="nav-header">
                             <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
                             <ul class="submenu">
@@ -66,20 +66,14 @@
                             </ul>
                         </li>
 
-    {% elseif is_granted('ROLE_USER') %}
-        <aside id="side-menu" class="aside" role="navigation">
-            <ul class="nav nav-list accordion">
-                <li class="nav-header">
-                    <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <li><a href="{{ path('one_wilder_index') }}">Profils</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-header">
-                    <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <li><a href="{{ path('project_index') }}">Projets</a></li>
+                        <li class="nav-header">
+                            <div class="link">Mise en avant<i class="fa fa-chevron-down"></i></div>
+                            <ul class="submenu">
+                                <li><a href="{{ path('wilder_accueil') }}">Wilder - HomePage</a></li>
+                                <li><a href="{{ path('project_accueil') }}">Projets - Mettre en avant </a></li>
+                                <li><a href="{{ path('project_reset') }}">Projets - Supprimer les sélections </a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </aside>
 
