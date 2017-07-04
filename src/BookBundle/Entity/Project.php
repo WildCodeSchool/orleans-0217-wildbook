@@ -26,14 +26,14 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=60)
+     * @ORM\Column(name="title", type="string", length=60, nullable=true)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="path", type="string", length=255, nullable=true)
+     * @ORM\Column(name="path", type="string", length=255)
      */
     private $path;
 
