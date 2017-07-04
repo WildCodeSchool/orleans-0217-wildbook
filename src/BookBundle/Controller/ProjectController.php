@@ -2,7 +2,9 @@
 
 namespace BookBundle\Controller;
 
+use BookBundle\Entity\Picture;
 use BookBundle\Entity\Project;
+use BookBundle\Form\PictureType;
 use BookBundle\Form\ProjectSearchType;
 use BookBundle\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -124,6 +126,7 @@ class ProjectController extends Controller
     {
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('BookBundle\Form\ProjectType', $project);
+        $pictureForm = $this->createForm(PictureType::class);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -135,7 +138,9 @@ class ProjectController extends Controller
         return $this->render('project/edit.html.twig', array(
             'project' => $project,
             'edit_form' => $editForm->createView(),
+            'picture_form' => $pictureForm->createView(),
             'delete_form' => $deleteForm->createView(),
+
         ));
     }
 

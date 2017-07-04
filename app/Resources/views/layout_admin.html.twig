@@ -13,8 +13,19 @@
                     <a href="https://wildcodeschool.fr/" target="_blank">
                         <img class="navbar-brand" src="{{ asset('images/LOGO_COLO.svg') }}" alt="aller à wildcodechool.fr">
                     </a>
+                    <div class="navbar-right conex">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                            <a href="{{ path('fos_user_security_logout') }}">
+                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                            </a>
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        {% endif %}
+                    </div>
                 </div>
             </nav>
+
             {% if is_granted('ROLE_ADMIN') %}
                 <aside id="side-menu" class="aside" role="navigation">
                     <ul class="nav nav-list accordion">
@@ -26,7 +37,7 @@
                                 <li><a href="{{ path('user_index') }}">Liste des Users</a></li>
                             </ul>
                         </li>
-
+                        
                         <li class="nav-header">
                             <div class="link">Écoles<i class="fa fa-chevron-down"></i></div>
                             <ul class="submenu">
@@ -37,7 +48,7 @@
                                 <li><a href="{{ path('technology_index') }}">Technologies</a></li>
                             </ul>
                         </li>
-
+                        
                         <li class="nav-header">
                             <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
                             <ul class="submenu">
@@ -127,7 +138,6 @@
                 </section>
             </div>
         </div>
-
     {% endblock %}
 
 {% block javascripts %}
