@@ -52,7 +52,7 @@ class TagController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($tag);
             $em->flush();
-
+            $this->addFlash('success', 'Nouveau tag enregistré');
             return $this->redirectToRoute('tag_index', array('id' => $tag->getId()));
         }
 
@@ -94,7 +94,7 @@ class TagController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('warning', 'Tag modifié');
             return $this->redirectToRoute('tag_index');
         }
 
@@ -121,6 +121,7 @@ class TagController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($tag);
             $em->flush();
+            $this->addFlash('danger', 'Tag supprimé');
         }
 
         return $this->redirectToRoute('tag_index');

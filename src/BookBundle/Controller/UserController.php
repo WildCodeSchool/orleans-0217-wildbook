@@ -91,6 +91,7 @@ class UserController extends Controller
                 $userManager->updateUser($user);
                 $em->persist($user);
                 $em->flush();
+                $this->addFlash('success', 'Nouveau wilder enregistré ');
 
             }
 
@@ -146,6 +147,7 @@ class UserController extends Controller
                 $userManager->updateUser($user);
                 $em->persist($user);
                 $em->flush();
+                $this->addFlash('success', 'Nouveau campus manager enregistré ');
             }
             return $this->redirectToRoute('user_index');
         }

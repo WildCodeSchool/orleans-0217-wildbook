@@ -16,10 +16,7 @@
                     <th>Titre</th>
                     <td>{{ project.title }}</td>
                 </tr>
-                <tr>
-                    <th>Image principale</th>
-                    <td><img src="{{ asset('uploads/'~ project.principalPicture|basename ) }}" class="imageProjectAdmin"/></td>
-                </tr>
+
                 <tr>
                     <th>Url</th>
                     <td>{{ project.path }}</td>
@@ -68,22 +65,6 @@
                             {{ technologies.technology }}{% if not loop.last %}, {% endif %}
                         {% endfor %}
                     </td>
-                </tr>
-                <tr>
-                    <th>Image 1</th>
-                    <td><img src="{{ asset('uploads/'~ project.firstPicture|basename ) }}" class="imageProjectAdmin"/></td>
-                </tr>
-                <tr>
-                    <th>Image 2</th>
-                    <td><img src="{{ asset('uploads/'~ project.secondPicture|basename ) }}" class="imageProjectAdmin"/></td>
-                </tr>
-                <tr>
-                    <th>Image 3</th>
-                    <td><img src="{{ asset('uploads/'~ project.thirdPicture|basename ) }}" class="imageProjectAdmin"/></td>
-                </tr>
-                <tr>
-                    <th>Image 4</th>
-                    <td><img src="{{ asset('uploads/'~ project.fourthPicture|basename ) }}" class="imageProjectAdmin"/></td>
                 </tr>
 
             </tbody>

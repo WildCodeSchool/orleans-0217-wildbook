@@ -53,7 +53,7 @@ class AvailabilityController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($availability);
             $em->flush();
-
+            $this->addFlash('success', 'Nouveau statut enregistré');
             return $this->redirectToRoute('availability_index', array('id' => $availability->getId()));
         }
 
@@ -95,7 +95,7 @@ class AvailabilityController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('warning', 'Statut modifié');
             return $this->redirectToRoute('availability_index', array('id' => $availability->getId()));
         }
 
@@ -138,6 +138,7 @@ class AvailabilityController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($availability);
             $em->flush();
+            $this->addFlash('danger', 'Status supprimé');
         }
 
         return $this->redirectToRoute('availability_index');
