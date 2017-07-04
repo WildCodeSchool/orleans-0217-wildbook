@@ -70,9 +70,6 @@ class UserController extends Controller
                 return $this->redirectToRoute('user_index');
             } else {
                 $em = $this->getDoctrine()->getManager();
-//                $user->setPlainPassword('password');
-//                $user->setEnabled(true);
-//                $user->setRoles(['ROLE_USER']);
 
                 $user->setPlainPassword(md5(uniqid()));
                 $user->setEnabled(false);
