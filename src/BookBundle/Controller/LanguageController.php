@@ -48,11 +48,12 @@ class LanguageController extends Controller
         $form = $this->createForm('BookBundle\Form\LanguageType', $language);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($language);
             $em->flush();
-
+            $this->addFlash('success', 'Nouveau langage enregistré');
             return $this->redirectToRoute('language_index', array('id' => $language->getId()));
         }
 
@@ -94,6 +95,7 @@ class LanguageController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('warning', 'Langage modifié');
 
             return $this->redirectToRoute('language_index', array('id' => $language->getId()));
         }
@@ -121,6 +123,7 @@ class LanguageController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($language);
             $em->flush();
+            $this->addFlash('danger', 'Langage supprimé');
         }
 
         return $this->redirectToRoute('language_index');
@@ -156,6 +159,6 @@ class LanguageController extends Controller
             ->setAction($this->generateUrl('language_delete', array('id' => $language->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 }

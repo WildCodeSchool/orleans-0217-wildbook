@@ -193,6 +193,7 @@ class WilderController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($wilder);
             $em->flush();
+            $this->addFlash('danger', 'Wilder supprimé');
         }
 
         return $this->redirectToRoute('wilder_index');

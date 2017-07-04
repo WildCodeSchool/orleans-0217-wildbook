@@ -1,11 +1,11 @@
 {% extends 'layout_admin.html.twig' %}
 {% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+{% form_theme picture_form 'bootstrap_3_layout.html.twig' %}
 
 
 {% block content %}
 
     <div class="container-fluid">
-
 
         <h3>{{ project.title }}</h3>
         <h4>Wilders ayant réalisé ce projet : </h4>
@@ -18,31 +18,6 @@
             {{ form_label(edit_form.title,'Titre') }}
             {{ form_widget(edit_form.title) }}
             {{ form_errors(edit_form.title) }}
-
-            {{ form_label(edit_form.principalPicture,'Image principale') }}
-            <img src="{{ asset('uploads/'~ project.principalPicture|basename ) }}" class="imageProjectAdmin"/>
-            {{ form_widget(edit_form.principalPicture) }}
-            {{ form_errors(edit_form.principalPicture) }}
-
-            {{ form_label(edit_form.firstPicture,'Image 1') }}
-            <img src="{{ asset('uploads/'~ project.firstPicture|basename ) }}" class="imageProjectAdmin"/>
-            {{ form_widget(edit_form.firstPicture) }}
-            {{ form_errors(edit_form.firstPicture) }}
-
-            {{ form_label(edit_form.secondPicture,'Image 2') }}
-            <img src="{{ asset('uploads/'~ project.secondPicture|basename ) }}" class="imageProjectAdmin"/>
-            {{ form_widget(edit_form.secondPicture) }}
-            {{ form_errors(edit_form.secondPicture) }}
-
-            {{ form_label(edit_form.thirdPicture,'Image 3') }}
-            <img src="{{ asset('uploads/'~ project.thirdPicture|basename ) }}" class="imageProjectAdmin"/>
-            {{ form_widget(edit_form.thirdPicture) }}
-            {{ form_errors(edit_form.thirdPicture) }}
-
-            {{ form_label(edit_form.fourthPicture,'Image 4') }}
-            <img src="{{ asset('uploads/'~ project.fourthPicture|basename ) }}" class="imageProjectAdmin"/>
-            {{ form_widget(edit_form.fourthPicture) }}
-            {{ form_errors(edit_form.fourthPicture) }}
 
             {{ form_label(edit_form.customer,'Client') }}
             {{ form_widget(edit_form.customer) }}
@@ -94,6 +69,43 @@
             <input type="submit" class="btn btn-success" value="Valider"/>
         </div>
         {{ form_end(edit_form) }}
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+            Charger une image
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Charger une image</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    {# upload images de projet #}
+                    <div class="modal-body">
+                        {{ form_start(picture_form, {'action':path('picture_new', {'id':project.id})}) }}
+
+                        {{ form_label(picture_form) }}
+                        {{ form_widget(picture_form) }}
+                        {{ form_errors(picture_form) }}
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <input type="submit" class="btn btn-success" value="Sauvegarder"/>
+                    </div>
+                    {{ form_end(picture_form) }}
+
+                </div>
+            </div>
+        </div>
 
 
         <div class="form-group">
