@@ -138,7 +138,7 @@ class AvailabilityController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($availability);
             $em->flush();
-            $this->addFlash('danger', 'Status supprimé');
+            $this->addFlash('danger', 'Statut supprimé');
         }
 
         return $this->redirectToRoute('availability_index');

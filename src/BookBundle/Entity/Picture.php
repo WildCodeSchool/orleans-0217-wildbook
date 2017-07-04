@@ -73,7 +73,7 @@ class Picture
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="pictures")
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="pictures", cascade = {"persist","remove"})
      */
     private $project;
 
