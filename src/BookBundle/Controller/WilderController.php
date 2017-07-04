@@ -40,7 +40,7 @@ class WilderController extends Controller
         $wilders = $em->getRepository('BookBundle:Wilder')->findAll();
       
         if ($form->isValid() && $form->isSubmitted()) {
-            $data = $form->getData();;
+            $data = $form->getData();
             $blocResult = true;
             $languages = $data['language'];
             $schools = $data['school'];
