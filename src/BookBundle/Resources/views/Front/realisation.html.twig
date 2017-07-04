@@ -6,6 +6,16 @@
 
         <h1>Project</h1>
 
+        <div class="jumbotron">
+            <div class="container">
+                {% for picture in project.pictures %}
+                    {% if picture.isPrincipal == true %}
+                        <img src="{{ asset('uploads/'~ picture.path|basename ) }}"/>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
         <table class="table table-condensed">
             <tbody>
             <tr>
@@ -62,20 +72,32 @@
                 </td>
             </tr>
 
+
+
             {#Affiche images liées au projet à retravailler#}
             {#<tr>#}
-                {#<th>Screenshots</th>#}
-                {#<td>#}
-                    {#{% for pictures in project.pictures %}#}
-                        {#<img src="{{ asset('uploads/'~ pictures.path|basename ) }}"#}
-                             {#alt="{{ pictures.path }}" width="150px">#}
-                    {#{% if not loop.last %} {% endif %}#}
-                    {#{% endfor %}#}
-                {#</td>#}
+            {#<th>Screenshots</th>#}
+            {#<td>#}
+            {#{% for pictures in project.pictures %}#}
+            {#<img src="{{ asset('uploads/'~ pictures.path|basename ) }}"#}
+            {#alt="{{ pictures.path }}" width="150px">#}
+            {#{% if not loop.last %} {% endif %}#}
+            {#{% endfor %}#}
+            {#</td>#}
             {#</tr>#}
 
             </tbody>
         </table>
+
+        {% for picture in project.pictures %}
+            {% if picture.isPrincipal == false %}
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <a href="#" class="thumbnail">
+                        <img src="{{ asset('uploads/'~ picture.path|basename ) }}"/>
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
 
     </div>
 

@@ -5,7 +5,12 @@
             {% for project in homeProjects %}
                 {% if loop.first %}
                     <div class="item projet-item active">
-                        <img src="{{ asset('images/slider01.jpg') }}" class="img_project_carousel" alt="slider01">
+                        {% for picture in project.pictures %}
+                            {% if picture.isPrincipal == true %}
+                                <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="img_project_carousel"
+                                     alt="slider01">
+                            {% endif %}
+                        {% endfor %}
                         <div class="carousel-caption">
                             <h3>{{ project.title }}</h3>
                             <p>{{ project.homeTextProject }}</p>
@@ -13,7 +18,12 @@
                     </div>
                 {% else %}
                     <div class="item projet-item">
-                        <img src="{{ asset('images/slider01.jpg') }}" class="img_project_carousel" alt="slider01">
+                        {% for picture in project.pictures %}
+                            {% if picture.isPrincipal == true %}
+                                <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="img_project_carousel"
+                                     alt="slider01">
+                            {% endif %}
+                        {% endfor %}
                         <div class="carousel-caption">
                             <h3>{{ project.title }}</h3>
                             <p>{{ project.homeTextProject }}</p>
