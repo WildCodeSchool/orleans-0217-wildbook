@@ -87,6 +87,7 @@ class ProjectController extends Controller
 
             $em->persist($project);
             $em->flush();
+            $this->addFlash('success', 'Nouveau projet '. $project->gettitle().' enregistré');
 
             return $this->redirectToRoute('project_index');
         }
@@ -127,7 +128,7 @@ class ProjectController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('warning', 'Projet '. $project->gettitle().' modifié');
             return $this->redirectToRoute('project_index');
         }
 
@@ -153,6 +154,7 @@ class ProjectController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($project);
             $em->flush();
+            $this->addFlash('danger', 'Projet '. $project->gettitle().' supprimé');
         }
 
         return $this->redirectToRoute('project_index');
