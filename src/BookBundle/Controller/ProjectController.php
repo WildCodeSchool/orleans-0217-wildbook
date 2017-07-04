@@ -8,6 +8,7 @@ use BookBundle\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -73,6 +74,7 @@ class ProjectController extends Controller
      *
      * @Route("/new", name="project_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function newAction(Request $request, FileUploader $fileUploader)
     {
@@ -106,10 +108,28 @@ class ProjectController extends Controller
     {
         $deleteForm = $this->createDeleteForm($project);
 
-        return $this->render('project/show.html.twig', array(
-            'project' => $project,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
+            return $this->render('project/show.html.twig', array(
+                'project' => $project,
+                'delete_form' => $deleteForm->createView(),
+            ));
+        } else {
+            $userId = $this->getUser()->getId();
+            $projectId = $project->getId();
+
+            $em = $this->getDoctrine()->getManager();
+            $projectsUser = $em->getRepository('BookBundle:Project')->projectsByWilder($userId);
+            $projectsUserId = [];
+            foreach ($projectsUser as $projectUser) {
+                $projectsUserId[] = $projectUser->getId();
+            }
+            if (in_array($projectId, $projectsUserId)) {
+                return $this->render('project/show.html.twig', array(
+                    'project' => $project,
+                    'delete_form' => $deleteForm->createView(),
+                ));
+            }
+        }
     }
 
     /**
@@ -144,20 +164,20 @@ class ProjectController extends Controller
             foreach ($projectsUser as $projectUser) {
                 $projectsUserId[] = $projectUser->getId();
             }
-                if (in_array($projectId,$projectsUserId)) {
-                    if ($editForm->isSubmitted() && $editForm->isValid()) {
-                        $this->getDoctrine()->getManager()->flush();
-                        return $this->redirectToRoute('project_one_wilder_index');
-                    }
-                    return $this->render('project/edit.html.twig', array(
-                        'project' => $project,
-                        'edit_form' => $editForm->createView(),
-                    ));
-                } else {
+            if (in_array($projectId, $projectsUserId)) {
+                if ($editForm->isSubmitted() && $editForm->isValid()) {
+                    $this->getDoctrine()->getManager()->flush();
                     return $this->redirectToRoute('project_one_wilder_index');
                 }
-
+                return $this->render('project/edit.html.twig', array(
+                    'project' => $project,
+                    'edit_form' => $editForm->createView(),
+                ));
+            } else {
+                return $this->redirectToRoute('project_one_wilder_index');
             }
+
+        }
 
     }
 
@@ -166,6 +186,7 @@ class ProjectController extends Controller
      *
      * @Route("/{id}", name="project_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteAction(Request $request, Project $project)
     {
@@ -187,6 +208,8 @@ class ProjectController extends Controller
      * @param Project $project The project entity
      *
      * @return \Symfony\Component\Form\Form The form
+     *
+     * @Security("has_role('ROLE_ADMIN')")
      */
     private function createDeleteForm(Project $project)
     {
