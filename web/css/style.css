@@ -105,3 +105,14 @@
     width: 650px;
     height: 200px;
 }
+
+.goback{
+    margin-top: 23%;
+    margin-left: 41%;
+    width: 80px;
+    height: 40px;
+    position: absolute;
+    display: inline;
+    float: left;
+    z-index: 1000;
+}
