@@ -45,7 +45,6 @@ class WilderController extends Controller
             $promotions = $data['promotion'];
 
             $wilders = $em->getRepository(wilder::class)->searchBy($schools, $languages, $promotions);
-           );
         }
         return $this->render('wilder/index.html.twig', array(
             'form' => $form->createView(),
