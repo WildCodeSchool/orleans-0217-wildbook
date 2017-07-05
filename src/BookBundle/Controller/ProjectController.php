@@ -40,34 +40,19 @@ class ProjectController extends Controller
         $input = $categories = $schools = $promotions = $projectsSearch = '';
 
         if ($form->isValid() && $form->isSubmitted()) {
-            $blocResult = true;
             $data = $form->getData();
             $schools = $data['school'];
             $categories = $data['category'];
             $promotions = $data['promotion'];
 
-            if ($schools[0] == null & $categories[0] == null) {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, null, $promotions);
-            } elseif ($schools[0] == null & $promotions[0] == null) {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, $categories, null);
-            } elseif ($categories[0] == null & $promotions[0] == null) {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, null, null);
-            } elseif ($schools[0] == null) {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, $categories, $promotions);
-            } elseif ($categories[0] == null) {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, null, $promotions);
-            } elseif ($promotions[0] == null) {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories, null);
-            } else {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories, $promotions);
-            }
+            $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories, $promotions);
+
         }
 
         return $this->render('project/index.html.twig', array(
             'form' => $form->createView(),
             'projects' => $projectsSearch,
         ));
-
     }
 
     /**
@@ -110,28 +95,26 @@ class ProjectController extends Controller
     {
         $deleteForm = $this->createDeleteForm($project);
 
-        if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
-            return $this->render('project/show.html.twig', array(
-                'project' => $project,
-                'delete_form' => $deleteForm->createView(),
-            ));
-        } else {
-            $userId = $this->getUser()->getId();
+        if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
             $projectId = $project->getId();
-
             $em = $this->getDoctrine()->getManager();
-            $projectsUser = $em->getRepository('BookBundle:Project')->projectsByWilder($userId);
+            $projects = $em->getRepository('BookBundle:Project')->projectsByWilder($this->getUser()->getId());
+
             $projectsUserId = [];
-            foreach ($projectsUser as $projectUser) {
+            foreach ($projects as $projectUser) {
                 $projectsUserId[] = $projectUser->getId();
             }
-            if (in_array($projectId, $projectsUserId)) {
-                return $this->render('project/show.html.twig', array(
-                    'project' => $project,
-                    'delete_form' => $deleteForm->createView(),
-                ));
+
+            if (!in_array($projectId, $projectsUserId)) {
+                $this->addFlash('danger','Tu n\'as pas accès à cette ressource' );
+                 return $this->redirectToRoute('home_admin');
             }
         }
+        return $this->render('project/show.html.twig', array(
+            'project' => $project,
+            'delete_form' => $deleteForm->createView(),
+        ));
+
     }
 
     /**
@@ -146,16 +129,20 @@ class ProjectController extends Controller
         $editForm = $this->createForm('BookBundle\Form\ProjectType', $project);
         $pictureForm = $this->createForm(PictureType::class);
         $editForm->handleRequest($request);
+        $pictures = $project->getPictures();
 
 
         if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
             if ($editForm->isSubmitted() && $editForm->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('danger','Tu n\'as pas accès à cette ressource' );
                 return $this->redirectToRoute('project_index');
             }
             return $this->render('project/edit.html.twig', array(
                 'project' => $project,
+                'pictures' => $pictures,
                 'edit_form' => $editForm->createView(),
+                'picture_form' => $pictureForm->createView(),
                 'delete_form' => $deleteForm->createView(),
             ));
         } else {
@@ -163,25 +150,31 @@ class ProjectController extends Controller
             $projectId = $project->getId();
 
             $em = $this->getDoctrine()->getManager();
-            $projectsUser = $em->getRepository('BookBundle:Project')->projectsByWilder($userId);
+            $projects = $em->getRepository('BookBundle:Project')->projectsByWilder($userId);
             $projectsUserId = [];
-            foreach ($projectsUser as $projectUser) {
+            foreach ($projects as $projectUser) {
                 $projectsUserId[] = $projectUser->getId();
             }
             if (in_array($projectId, $projectsUserId)) {
                 if ($editForm->isSubmitted() && $editForm->isValid()) {
                     $this->getDoctrine()->getManager()->flush();
+                    $this->addFlash('warning', 'Projet '. $project->gettitle().' modifié');
                     return $this->redirectToRoute('project_one_wilder_index');
                 }
                 return $this->render('project/edit.html.twig', array(
                     'project' => $project,
+                    'pictures' => $pictures,
                     'edit_form' => $editForm->createView(),
+                    'picture_form' => $pictureForm->createView(),
+                    'picture_form' => $pictureForm->createView(),
                 ));
             } else {
+                $this->addFlash('danger','Tu n\'as pas accès à cette ressource' );
                 return $this->redirectToRoute('project_one_wilder_index');
             }
 
         }
+
 
 
     }
@@ -223,6 +216,7 @@ class ProjectController extends Controller
             ->setAction($this->generateUrl('project_delete', array('id' => $project->getId())))
             ->setMethod('DELETE')
             ->getForm();
+
     }
 
     /**
@@ -263,6 +257,5 @@ class ProjectController extends Controller
             throw new HttpException('500', 'Invalid call');
         }
     }
-
 
 }

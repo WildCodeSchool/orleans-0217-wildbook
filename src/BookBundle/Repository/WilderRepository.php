@@ -12,21 +12,21 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->createQueryBuilder('w');
 
-        if ($schools) {
+        if (!$schools->isEmpty()) {
             $qb
                 ->leftJoin('w.promotion','pr')
                 ->leftJoin('pr.school','s','s.id = pr.school_id')
                 ->andWhere('s.id IN (:school)')
                     ->setParameter('school', $schools);
         }
-        if ($languages) {
+        if (!$languages->isEmpty()) {
             $qb
                 ->leftJoin('w.languages','l')
                 ->andWhere('l.id IN (:languages)')
                     ->setParameter('languages', $languages);
         }
 
-        if ($promotions) {
+        if (!$promotions->isEmpty()) {
             $qb
                 ->leftJoin('w.promotion','p')
                 ->andWhere('p.id IN (:promotion)')
@@ -71,15 +71,6 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameter('lastname', $input)
             ->orWhere('w.firstname LIKE :firstname')
                 ->setParameter('firstname', $input)
-            ->getQuery();
-        return $qb->getResult();
-    }
-
-    public function getWilderUser($input)
-    {
-        $qb = $this->createQueryBuilder('w')
-            ->where('w.user = :user')
-                ->setParameter('user', $input)
             ->getQuery();
         return $qb->getResult();
     }

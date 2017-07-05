@@ -51,7 +51,7 @@ class PictureController extends Controller
             $em->flush();
 
             return $this->redirectToRoute('project_edit', array('id' => $project->getId()));
-;
+
         }
 
         return $this->render('picture/new.html.twig', array(
@@ -102,6 +102,22 @@ class PictureController extends Controller
     }
 
     /**
+     * Displays a form to edit an existing availability entity.
+     *
+     * @Route("/{id}/delete", name="picture_indexdelete")
+     * @Method({"GET", "POST"})
+     *
+     */
+    public function indexDeleteAction( Picture $picture)
+    {
+        $deleteForm = $this->createDeleteForm($picture);
+
+        return $this->render('delete.html.twig', array(
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
      * Deletes a picture entity.
      *
      * @Route("/{id}", name="picture_delete")
@@ -111,14 +127,18 @@ class PictureController extends Controller
     {
         $form = $this->createDeleteForm($picture);
         $form->handleRequest($request);
+        $id = $picture->getProject()->getId();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $project = $picture->getProject();
+            $project->removePicture($picture);
+            $picture->setProject(null);
             $em->remove($picture);
             $em->flush();
         }
 
-        return $this->redirectToRoute('picture_index');
+        return $this->redirectToRoute('project_edit', array('id' => $id ));
     }
 
     /**
