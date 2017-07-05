@@ -144,15 +144,18 @@ class ProjectController extends Controller
         $editForm = $this->createForm('BookBundle\Form\ProjectType', $project);
         $pictureForm = $this->createForm(PictureType::class);
         $editForm->handleRequest($request);
+        $pictures = $project->getPictures();
 
 
         if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
             if ($editForm->isSubmitted() && $editForm->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('danger','Tu n\'as pas accès à cette ressource' );
                 return $this->redirectToRoute('project_index');
             }
             return $this->render('project/edit.html.twig', array(
                 'project' => $project,
+                'pictures' => $pictures,
                 'edit_form' => $editForm->createView(),
                 'picture_form' => $pictureForm->createView(),
                 'delete_form' => $deleteForm->createView(),
@@ -170,11 +173,14 @@ class ProjectController extends Controller
             if (in_array($projectId, $projectsUserId)) {
                 if ($editForm->isSubmitted() && $editForm->isValid()) {
                     $this->getDoctrine()->getManager()->flush();
+                    $this->addFlash('warning', 'Projet '. $project->gettitle().' modifié');
                     return $this->redirectToRoute('project_one_wilder_index');
                 }
                 return $this->render('project/edit.html.twig', array(
                     'project' => $project,
+                    'pictures' => $pictures,
                     'edit_form' => $editForm->createView(),
+                    'picture_form' => $pictureForm->createView(),
                     'picture_form' => $pictureForm->createView(),
                 ));
             } else {
@@ -183,6 +189,7 @@ class ProjectController extends Controller
             }
 
         }
+
 
 
     }

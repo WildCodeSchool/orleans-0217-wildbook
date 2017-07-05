@@ -63,8 +63,6 @@ class WilderController extends Controller
                 $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, $languages, $promotions);
             }
 
-
-
             return $this->render('wilder/index.html.twig', array(
                 'blocResult' => $blocResult,
 
@@ -120,18 +118,13 @@ class WilderController extends Controller
      */
     public function showAction(Wilder $wilder)
     {
-        $deleteForm = $this->createDeleteForm($wilder);
-
         $idWilder = $wilder->getUser()->getId();
         $idUser = $this->getUser()->getId();
 
-
         if ($idWilder === $idUser or in_array('ROLE_ADMIN',$this->getUser()->getRoles())) {
-
 
             return $this->render('wilder/show.html.twig', array(
                 'wilder' => $wilder,
-                'delete_form' => $deleteForm->createView(),
             ));
         } else {
             throw new Exception('chemin interdit');
@@ -148,7 +141,6 @@ class WilderController extends Controller
      */
     public function editAction(Request $request, Wilder $wilder, FileUploader $fileUploader, ConvertCity $convert)
     {
-        $deleteForm = $this->createDeleteForm($wilder);
         $editForm = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $editForm->handleRequest($request);
 
@@ -171,49 +163,10 @@ class WilderController extends Controller
         return $this->render('wilder/edit.html.twig', array(
             'wilder' => $wilder,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
         }
     }
-
-    /**
-     * Deletes a wilder entity.
-     *
-     * @Route("/{id}", name="wilder_delete")
-     * @Method("DELETE")
-     * @Security("has_role('ROLE_ADMIN')")
-     */
-    public function deleteAction(Request $request, Wilder $wilder)
-    {
-        $form = $this->createDeleteForm($wilder);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($wilder);
-            $em->flush();
-            $this->addFlash('danger', 'Wilder supprimé');
-        }
-
-        return $this->redirectToRoute('wilder_index');
-    }
-
-    /**
-     * Creates a form to delete a wilder entity.
-     *
-     * @param Wilder $wilder The wilder entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Wilder $wilder)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('wilder_delete', array('id' => $wilder->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
-
+    
     /**
      * @Route("/ajax/{input}")
      * @Method("POST")

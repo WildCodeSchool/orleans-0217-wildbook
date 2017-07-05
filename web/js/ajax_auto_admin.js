@@ -40,8 +40,6 @@ $( document ).ready(function() {
                             "<a href=\"/wilder/"+ wilders[i].id +"/edit\" class='btn btn-success'> <span" +
 
                             " class='glyphicon glyphicon-pencil'></span> Modifier </a> " +
-                            "<a href=\"/wilder/"+ wilders[i].id +"\" class='btn btn-default'> " +
-                            "<span class='glyphicon glyphicon-trash'></span> Delete </a> </td>"+
                             "</tr>"
                     }
                     $('#wild-list').html(html);
