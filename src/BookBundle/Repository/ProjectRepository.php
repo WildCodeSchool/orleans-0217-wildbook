@@ -71,4 +71,16 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getResult();
     }
 
+    public function projectsByWilder($input)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->leftJoin('p.projectWilders','pw')
+            ->leftJoin('pw.wilder','w')
+            ->leftJoin('w.user','u')
+            ->where('u.id = :id')
+            ->setParameter('id',$input)
+            ->getQuery();
+        return $qb->getResult();
+    }
+
 }
