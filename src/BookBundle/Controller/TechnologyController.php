@@ -64,23 +64,6 @@ class TechnologyController extends Controller
     }
 
     /**
-     * Finds and displays a technology entity.
-     *
-     * @Route("/{id}", name="technology_show")
-     * @Method("GET")
-     *
-     */
-    public function showAction(Technology $technology)
-    {
-        $deleteForm = $this->createDeleteForm($technology);
-
-        return $this->render('technology/show.html.twig', array(
-            'technology' => $technology,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
      * Displays a form to edit an existing technology entity.
      *
      * @Route("/{id}/edit", name="technology_edit")

@@ -81,23 +81,6 @@ class PromotionController extends Controller
     }
 
     /**
-     * Finds and displays a promotion entity.
-     *
-     * @Route("/{id}", name="promotion_show")
-     * @Method("GET")
-     *
-     */
-    public function showAction(Promotion $promotion)
-    {
-        $deleteForm = $this->createDeleteForm($promotion);
-
-        return $this->render('promotion/show.html.twig', array(
-            'promotion' => $promotion,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
      * Displays a form to edit an existing promotion entity.
      *
      * @Route("/{id}/edit", name="promotion_edit")

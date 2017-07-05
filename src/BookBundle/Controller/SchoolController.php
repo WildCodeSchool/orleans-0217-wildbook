@@ -65,23 +65,6 @@ class SchoolController extends Controller
     }
 
     /**
-     * Finds and displays a school entity.
-     *
-     * @Route("/{id}", name="school_show")
-     * @Method("GET")
-     * @Security("has_role('ROLE_ADMIN')")
-     */
-    public function showAction(School $school)
-    {
-        $deleteForm = $this->createDeleteForm($school);
-
-        return $this->render('school/show.html.twig', array(
-            'school' => $school,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
      * Displays a form to edit an existing school entity.
      *
      * @Route("/{id}/edit", name="school_edit")

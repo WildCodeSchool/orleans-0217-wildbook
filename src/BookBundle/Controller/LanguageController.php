@@ -64,23 +64,6 @@ class LanguageController extends Controller
     }
 
     /**
-     * Finds and displays a language entity.
-     *
-     * @Route("/{id}", name="language_show")
-     * @Method("GET")
-     *
-     */
-    public function showAction(Language $language)
-    {
-        $deleteForm = $this->createDeleteForm($language);
-
-        return $this->render('language/show.html.twig', array(
-            'language' => $language,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
      * Displays a form to edit an existing language entity.
      *
      * @Route("/{id}/edit", name="language_edit")

@@ -64,23 +64,6 @@ class AvailabilityController extends Controller
     }
 
     /**
-     * Finds and displays a availability entity.
-     *
-     * @Route("/{id}", name="availability_show")
-     * @Method("GET")
-     *
-     */
-    public function showAction(Availability $availability)
-    {
-        $deleteForm = $this->createDeleteForm($availability);
-
-        return $this->render('availability/show.html.twig', array(
-            'availability' => $availability,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
      * Displays a form to edit an existing availability entity.
      *
      * @Route("/{id}/edit", name="availability_edit")

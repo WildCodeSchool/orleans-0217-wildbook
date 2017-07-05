@@ -63,23 +63,6 @@ class TagController extends Controller
     }
 
     /**
-     * Finds and displays a tag entity.
-     *
-     * @Route("/{id}", name="tag_show")
-     * @Method("GET")
-     *
-     */
-    public function showAction(Tag $tag)
-    {
-        $deleteForm = $this->createDeleteForm($tag);
-
-        return $this->render('tag/show.html.twig', array(
-            'tag' => $tag,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
      * Displays a form to edit an existing tag entity.
      *
      * @Route("/{id}/edit", name="tag_edit")
