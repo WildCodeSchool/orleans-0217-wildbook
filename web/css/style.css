@@ -107,10 +107,11 @@
 }
 
 .goback{
-    margin-top: 430px;
-    margin-left: 765px;
+    margin-top: 23%;
+    margin-left: 41%;
     width: 80px;
     height: 40px;
+    background-color: #00ABE3;
     position: absolute;
     display: inline;
     float: left;
