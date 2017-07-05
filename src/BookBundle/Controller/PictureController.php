@@ -6,7 +6,8 @@ use BookBundle\Entity\Picture;
 use BookBundle\Entity\Project;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Picture controller.
@@ -45,6 +46,12 @@ class PictureController extends Controller
         $pictureForm->handleRequest($request);
 
         if ($pictureForm->isSubmitted() && $pictureForm->isValid()) {
+            if ($picture->getIsPrincipal()) {
+                $pictures = $project->getPictures();
+                foreach ($pictures as $pictureOld) {
+                    $pictureOld->setIsPrincipal(false);
+                }
+            }
             $picture->setProject($project);
             $em = $this->getDoctrine()->getManager();
             $em->persist($picture);
@@ -108,7 +115,7 @@ class PictureController extends Controller
      * @Method({"GET", "POST"})
      *
      */
-    public function indexDeleteAction( Picture $picture)
+    public function indexDeleteAction(Picture $picture)
     {
         $deleteForm = $this->createDeleteForm($picture);
 
@@ -138,7 +145,7 @@ class PictureController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('project_edit', array('id' => $id ));
+        return $this->redirectToRoute('project_edit', array('id' => $id));
     }
 
     /**
@@ -153,7 +160,6 @@ class PictureController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('picture_delete', array('id' => $picture->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }
