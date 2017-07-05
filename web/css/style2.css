@@ -19,8 +19,31 @@ a:hover {
     margin: 0;
 }
 
+.row {
+    padding: 0;
+    margin: 0;
+}
+
 .shadow {
     box-shadow: 2.5px 4.33px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- Home ---------- */
+
+.homeIllustration {
+    margin-top: 90px;
+    height: 400px; /* hauteur maximale de l'image d'entête */
+    overflow: hidden; /* les dépassements de l'image contenue seront masqués */
+    background-color: rgba(128, 203, 196, 0.5);
+}
+
+.homePicture {
+    width: 100%;
+    height: auto;
+}
+
+.homeText {
+    margin-top: 0 70px 0 0;
 }
 
 /* ---------- Footer ---------- */
@@ -49,7 +72,7 @@ footer {
 }
 
 .footerSocial {
-    display:flex;
+    display: flex;
     justify-content: center;
 }
 
@@ -59,7 +82,7 @@ footer {
     color: #FFF;
     background-color: #35383a;
     font-size: 20px;
-    text-align:center;
+    text-align: center;
     margin-right: 10px;
     padding-top: 15px;
     border-radius: 50%;
@@ -105,13 +128,13 @@ footer {
 
 .footerSocialIcon .fa-instagram:hover {
     background: radial-gradient(circle farthest-corner at 35% 100%,
-    #fec564,transparent 50%),radial-gradient(circle farthest-corner at 10% 140%,#feda7e,transparent 50%),
-    radial-gradient(ellipse farthest-corner at 0 -25%,#5258cf,transparent 50%),
-    radial-gradient(ellipse farthest-corner at 20% -50%,#5258cf,transparent 50%),
-    radial-gradient(ellipse farthest-corner at 100% 0,#893dc2,transparent 50%),
-    radial-gradient(ellipse farthest-corner at 60% -20%,#893dc2,transparent 50%),
-    radial-gradient(ellipse farthest-corner at 100% 100%,#d9317a,transparent),
-    linear-gradient(#6559ca,#bc318f 30%,#e42e66 50%,#fa5332 70%,#ffdc80 100%);
+    #fec564, transparent 50%), radial-gradient(circle farthest-corner at 10% 140%, #feda7e, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent),
+    linear-gradient(#6559ca, #bc318f 30%, #e42e66 50%, #fa5332 70%, #ffdc80 100%);
 }
 
 .footerCopyrights {

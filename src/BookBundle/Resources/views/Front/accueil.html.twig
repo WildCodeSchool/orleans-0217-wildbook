@@ -13,7 +13,7 @@
 
     <!-- Header picture-->
     <div class="homeHeadera container-fluid">
-        <img class="homeHeaderaPic" src="{{ asset('images/WCS_HEADER6.jpg') }}" alt="..."/>
+        <img class="homePicture" src="{{ asset('images/WCS_HEADER6.jpg') }}" alt="..."/>
     </div>
 
     <!-- Buttons Wilders/Projects pages -->
@@ -34,8 +34,8 @@
     </div>
 
     <!-- Section 'Le Wildbook' -->
-    <section id="wildbook" class="intro-section container-fluid">
-        <div class="homeText row">
+    <section id="wildbook" class="intro-section">
+        <div class="homeText row container-fluid">
             <div class="col-lg-offset-3 col-lg-6 noPadding">
                 <h2 class="homeTextTitle">Le Wildbook</h2>
                 <p class="homeTextParagraph">
@@ -50,12 +50,12 @@
 
     <!-- Body picture -->
     <div class="homeIllustration container-fluid">
-        <img class="homeIllustrationPic" src="{{ asset('images/WCS_HEADER7.jpg') }}" alt="..."/>
+        <img class="homePicture" src="{{ asset('images/WCS_HEADER7.jpg') }}" alt="..."/>
     </div>
 
     <!-- Section 'Les Wilders' -->
-    <section id="wilders" class="intro-section container-fluid">
-        <div class="homeText row">
+    <section id="wilders" class="intro-section">
+        <div class="homeText row container-fluid">
             <div class="col-lg-offset-3 col-lg-6 noPadding">
                 <h2 class="homeTextTitle">Les Wilders</h2>
                 <p class="homeTextParagraph">
@@ -69,7 +69,7 @@
         </div>
 
         <!-- Wilder star -->
-        <div class="row">
+        <div class="row container-fluid">
             {{ render(controller('BookBundle:HomeWilder:viewHomeWilder')) }}
             <hr class="homeLine col-lg-offset-3 col-lg-6">
         </div>
@@ -77,8 +77,8 @@
     </section>
 
     <!-- Section 'Notre réseau de Wilders' -->
-    <section id="network" class="intro-section container-fluid">
-        <div class="homeText row">
+    <section id="network" class="intro-section">
+        <div class="homeText row container-fluid">
             <div class="col-lg-offset-3 col-lg-6 noPadding">
                 <h2 class="homeTextTitle">Notre réseau de Wilders</h2>
                 <p class="homeTextParagraph">
@@ -89,14 +89,14 @@
             </div>
         </div>
         <!-- API geolocation -->
-        <div class="row">
+        <div class="row container-fluid">
             <div class="col-lg-offset-2 col-lg-8 noPadding" id="mapid"></div>
         </div>
     </section>
 
     <!-- Section 'Les réalisations' -->
-    <section id="projects" class="intro-section container-fluid">
-        <div class="homeText row">
+    <section id="projects" class="intro-section">
+        <div class="homeText row container-fluid">
             <div class="col-lg-offset-3 col-lg-6 noPadding">
                 <h2 class="homeTextTitle">Les réalisations</h2>
                 <p class="homeTextParagraph">
@@ -116,7 +116,7 @@
 
     <!-- Footer picture -->
     <div class="homeIllustration container-fluid">
-        <img class="homeIllustrationPic" src="{{ asset('images/WCS_HEADER8.jpg') }}" alt="..."/>
+        <img class="homePicture" src="{{ asset('images/WCS_HEADER7.jpg') }}" alt="..."/>
     </div>
 
 {% endblock container %}
