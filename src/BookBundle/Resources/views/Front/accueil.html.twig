@@ -101,6 +101,7 @@
     <script>
 
         var mymap = L.map('mapid').setView([47.0833, 2.4], 6);
+
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
             maxZoom: 18,
@@ -115,17 +116,23 @@
             popupAnchor:  [-3, -20] // point from which the popup should open relative to the iconAnchor
         });
 
+        {% for school in schools %}
+
+        var pop = "<b>Wild code school</b><br>{{ school.school }}";
+        var marker = L.marker([{{ school.location }}],{icon: wildIcon}).addTo(mymap);
+        marker.bindPopup(pop);
+        {% endfor %}
+
         {% for wilder in wilders %}
         {% if wilder.location is not empty %}
-        var marker = L.marker([{{ wilder.location }}]).addTo(mymap);
-        marker.bindPopup("<b{{ wilder.firstname }}</b>").openPopup();
+        var marker2 =L.marker([{{ wilder.location }}+0.000{{ loop.index0}}]).addTo(mymap);
+        marker2.bindPopup("<img class='geolocationPicture' src=\"{{ asset('uploads/'~ wilder.profilPicture )
+        }}\"/><p><a href=\"{{ path
+        ('profile_wilder', { 'id': wilder.id }) }}\"></p> {{
+        wilder.lastname }} {{ wilder.firstname }} ");
         {% endif %}
         {% endfor %}
 
-        {% for school in schools %}
-        var marker = L.marker([{{ school.location }}],{icon: wildIcon}).addTo(mymap);
-        marker.bindPopup("<b>Wild code school</b><br>{{ school.school }}").openPopup();
-        {% endfor %}
 
     </script>
 {% endblock javascripts %}
