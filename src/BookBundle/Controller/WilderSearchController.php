@@ -41,27 +41,12 @@ class WilderSearchController extends Controller
 
 
         if ($form->isValid() && $form->isSubmitted()) {
-            $blocResult = true;
             $data = $form->getData();
             $languages = $data['language'];
             $schools = $data['school'];
             $promotions = $data['promotion'];
 
-            if ($schools[0] == null & $languages[0] == null ) {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, null, $promotions);
-            } elseif ($schools[0] == null & $promotions[0] == null ) {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, $languages, null);
-            } elseif ($promotions[0] == null & $languages[0] == null ) {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, null, null);
-            } elseif ($languages[0] == null) {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, null, $promotions);
-            } elseif ($promotions[0] == null) {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, $languages, null);
-            }elseif ($schools[0] == null) {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy(null, $languages, $promotions);
-            }else {
-                $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, $languages, $promotions);
-            }
+            $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, $languages, $promotions);
         }
 
         return $this->render('BookBundle:Front:wilder_search.html.twig', array(
