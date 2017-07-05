@@ -70,8 +70,6 @@ class ProjectController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-
             $em->persist($project);
             $em->flush();
             $this->addFlash('success', 'Nouveau projet '. $project->getTitle().' enregistré');
@@ -135,7 +133,6 @@ class ProjectController extends Controller
         if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
             if ($editForm->isSubmitted() && $editForm->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
-                $this->addFlash('danger','Tu n\'as pas accès à cette ressource' );
                 return $this->redirectToRoute('project_index');
             }
             return $this->render('project/edit.html.twig', array(
@@ -165,7 +162,6 @@ class ProjectController extends Controller
                     'project' => $project,
                     'pictures' => $pictures,
                     'edit_form' => $editForm->createView(),
-                    'picture_form' => $pictureForm->createView(),
                     'picture_form' => $pictureForm->createView(),
                 ));
             } else {
