@@ -63,16 +63,12 @@
                                 <a href="{{ path('wilder_edit', { 'id': wilder.id }) }}" class="btn btn-success">
                                     <span class="glyphicon glyphicon-pencil"></span> Modifier
                                 </a>
-                                <a href="{{ path('wilder_delete', { 'id': wilder.id }) }}" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-trash"></span> Delete
-                                </a>
                             </td>
                         </tr>
                     {% endfor %}
                 {% endif %}
                 </tbody>
             </table>
-            <a class="btn btn-default" href="{{ path('wilder_new') }}" role="button">Crée un nouveau wilder</a>
         </div>
     </div>
 {% endblock %}
