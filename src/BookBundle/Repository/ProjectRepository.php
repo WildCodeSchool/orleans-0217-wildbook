@@ -10,23 +10,23 @@ namespace BookBundle\Repository;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function searchBy($schools = null, $categories = null, $promotions = null)
+    public function searchBy($schools, $categories, $promotions)
     {
         $qb = $this->createQueryBuilder('p');
 
-        if ($schools) {
+        if (!$schools->isEmpty()) {
             $qb
                 ->andWhere('p.school IN (:school)')
                     ->setParameter('school', $schools);
         }
 
-        if ($categories) {
+        if (!$categories->isEmpty()) {
             $qb
                 ->andWhere('p.category IN (:category)')
                     ->setParameter('category', $categories);
         }
 
-        if ($promotions) {
+        if (!$promotions->isEmpty()) {
             $qb
                 ->leftJoin('p.school','s')
                 ->leftJoin('s.promotions','pr', 'pr.school_id = s.id')
@@ -61,12 +61,24 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
-  
+
     public function homeProject()
     {
         $qb = $this->createQueryBuilder('p')
             ->where('p.homeProject = :homeProject')
-            ->setParameter('homeProject', true)
+                ->setParameter('homeProject', true)
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    public function projectsByWilder($input)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->leftJoin('p.projectWilders','pw')
+            ->leftJoin('pw.wilder','w')
+            ->leftJoin('w.user','u')
+            ->where('u.id = :id')
+            ->setParameter('id',$input)
             ->getQuery();
         return $qb->getResult();
     }

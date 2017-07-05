@@ -44,10 +44,14 @@
         </div>
 
         <div class="list_realisations row" id="project-list">
-            {% for projectSearch in projectsSearch%}
+            {% for projectSearch in projectsSearch %}
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 imageShearchProject">
                     <a href="{{ path('detail_project', { 'id': projectSearch.id }) }}" class="thumbnail">
-                        <img src="{{ asset('images/LOGO_COLO.png') }}" alt="">
+                        {% for picture in projectSearch.pictures %}
+                            {% if picture.isPrincipal == true %}
+                                <img src="{{ asset('uploads/'~ picture.path|basename ) }}"/>
+                            {% endif %}
+                        {% endfor %}
                         <h4>{{ projectSearch.title }}</h4>
                     </a>
                 </div>
