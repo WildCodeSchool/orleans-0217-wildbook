@@ -49,15 +49,20 @@ class WilderType extends AbstractType
                 ->add('languages', EntityType::class, [
                     'class'=>Language::class,
                     'choice_label'=>'language',
-                    'multiple' => true,
-                    'expanded'=>true
+                    'expanded'=>false,
+                    'required'=>false,
+                    'multiple'=>true,
+                    'attr'=> ['class'=>'selectpicker multiple']
+
 
                 ])
                 ->add('technologies', EntityType::class, [
                     'class'=>Technology::class,
                     'choice_label'=>'technology',
-                    'multiple' => true,
-                    'expanded'=>true
+                    'expanded'=>false,
+                    'required'=>false,
+                    'multiple'=>true,
+                    'attr'=> ['class'=>'selectpicker multiple']
                 ])
                 ->add('availability', EntityType::class, [
                     'class'=>Availability::class,
