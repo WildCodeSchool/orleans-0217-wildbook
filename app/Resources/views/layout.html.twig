@@ -429,6 +429,7 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script type="text/javascript">
         if (window.$us === undefined) window.$us = {};
         $us.canvasOptions = ($us.canvasOptions || {});
