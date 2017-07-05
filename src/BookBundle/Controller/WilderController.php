@@ -115,6 +115,7 @@ class WilderController extends Controller
      */
     public function editAction(Request $request, Wilder $wilder, FileUploader $fileUploader, ConvertCity $convert)
     {
+        $deleteForm = $this->createDeleteForm($wilder);
         $editForm = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $editForm->handleRequest($request);
 
