@@ -76,6 +76,8 @@ class UserController extends Controller
                 $user->setRoles(['ROLE_USER']);
                 $user->setConfirmationToken(md5(uniqid()));
 
+//                $this->redirectToRoute('fos_user_resetting_send_email');
+
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('registration')
