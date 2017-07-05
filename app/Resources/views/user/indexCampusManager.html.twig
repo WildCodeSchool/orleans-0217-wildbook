@@ -1,0 +1,40 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block content %}
+
+    <div class="container-fluid">
+
+        <h1>Campus Manager</h1>
+
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Username</th>
+                <th>Ecole</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="{{ path('campusmanager_show', { 'id': campusManager.id }) }}">{{ campusManager.id }}</a></td>
+                    <td>{{ campusManager.firstname }}</td>
+                    <td>{{ campusManager.lastname }}</td>
+                    <td>{{ campusManager.user}}</td>
+                    <td>{{ campusManager.school.school}}</td>
+                    <td>
+                        <a href="{{ path('campusmanager_edit', { 'id': campusManager.id }) }}" class="btn btn-success">
+                            <span class="glyphicon glyphicon-pencil"></span> edit
+                        </a>
+                    </td>
+                    <td>
+                        {{ render(controller('BookBundle:CampusManager:indexDelete', {'id': campusManager.id})) }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}
