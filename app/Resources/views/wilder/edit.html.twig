@@ -12,7 +12,7 @@
         <h4>Username: {{ wilder.user.username }}</h4>
         <ul>Projets réalisés : {% for projectWilders in wilder.projectWilders %}
                 <li> {{ projectWilders.project.title }}</li>
-            {% endfor %}</ul>>
+            {% endfor %}</ul>
         <div class="form-group">
             {{ form_start(edit_form) }}
 
