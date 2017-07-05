@@ -201,4 +201,24 @@ class UserController extends Controller
 
     }
 
+    /**
+     *
+     * @Route("/campus-one-index", name="one_campus_index")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function indexCampusAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $campusManager = $em->getRepository('BookBundle:CampusManager')->findOneByUser($this->getUser());
+        if (!isset($campusManager)) {
+            return $this->redirectToRoute('campusmanager_new');
+        } else {
+            return $this->render('user/indexCampusManager.html.twig', [
+                'campusManager' => $campusManager
+            ]);
+        }
+
+    }
+
 }

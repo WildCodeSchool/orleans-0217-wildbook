@@ -7,85 +7,145 @@
     {% endblock %}
 
     {% block body %}
-        <div class="wrap">
-            <nav class="nav-bar navbar-inverse" role="navigation">
-                <div id="top-menu" class="container-fluid active">
-                    <a href="https://wildcodeschool.fr/" target="_blank">
-                        <img class="navbar-brand" src="{{ asset('images/LOGO_COLO.svg') }}" alt="aller à wildcodechool.fr">
+<div class="wrap">
+    <nav class="nav-bar navbar-inverse" role="navigation">
+        <div id="top-menu" class="container-fluid active">
+            <a href="https://wildcodeschool.fr/" target="_blank">
+                <img class="navbar-brand" src="{{ asset('images/LOGO_COLO.svg') }}" alt="aller à wildcodechool.fr">
+            </a>
+            <div class="navbar-right conex">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                    <a href="{{ path('fos_user_security_logout') }}">
+                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                     </a>
-                    <div class="navbar-right conex">
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                            <a href="{{ path('fos_user_security_logout') }}">
-                                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                            </a>
-                        {% else %}
-                            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-                        {% endif %}
-                    </div>
-                </div>
-            </nav>
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
 
-            {% if is_granted('ROLE_ADMIN') %}
-                <aside id="side-menu" class="aside" role="navigation">
-                    <ul class="nav nav-list accordion">
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <aside id="side-menu" class="aside" role="navigation">
+        <ul class="nav nav-list accordion">
 
-                        <li class="nav-header">
-                            <div class="link">Mon Profil<i class="fa fa-chevron-down"></i></div>
-                            <ul class="submenu">
-                                <li><a href="{{ path('fos_user_change_password') }}">Changer mon mot de passe</a></li>
-                                <li><a href="{{ path('fos_user_profile_edit') }}">Edition du profil</a></li>
-                            </ul>
-                        </li>
+            <li class="nav-header">
+                <div class="link">Mon Profil<i class="fa fa-chevron-down"></i></div>
+                <ul class="submenu">
+                    <li><a href="{{ path('fos_user_change_password') }}">Changer mon mot de passe</a></li>
+                    <li><a href="{{ path('fos_user_profile_edit') }}">Edition du profil</a></li>
+                </ul>
+            </li>
 
-                        <li class="nav-header">
-                            <div class="link">Profil Utilisateur<i class="fa fa-chevron-down"></i></div>
-                            <ul class="submenu">
-                                <li><a href="{{ path('user_new') }}">Création d'un wilder</a></li>
-                                <li><a href="{{ path('user_admin_new') }}">Création d'un campus manager</a></li>
-                                <li><a href="{{ path('user_index') }}">Liste des Users</a></li>
-                            </ul>
-                        </li>
+            <li class="nav-header">
+                <div class="link">Profil Utilisateur<i class="fa fa-chevron-down"></i></div>
+                <ul class="submenu">
+                    <li><a href="{{ path('user_new') }}">Création d'un wilder</a></li>
+                    <li><a href="{{ path('user_admin_new') }}">Création d'un campus manager</a></li>
+                </ul>
+            </li>
 
-                        <li class="nav-header">
-                            <div class="link">Écoles<i class="fa fa-chevron-down"></i></div>
-                            <ul class="submenu">
-                                <li><a href="{{ path('school_index') }}">Liste</a></li>
-                                <li><a href="{{ path('campusmanager_index') }}">Campus Managers</a></li>
-                                <li><a href="{{ path('promotion_index') }}">Promotions</a></li>
-                                <li><a href="{{ path('language_index') }}">Langages</a></li>
-                                <li><a href="{{ path('technology_index') }}">Technologies</a></li>
-                            </ul>
-                        </li>
+            <li class="nav-header">
+                <div class="link">Écoles<i class="fa fa-chevron-down"></i></div>
+                <ul class="submenu">
+                    <li><a href="{{ path('school_index') }}">Liste</a></li>
+                    <li><a href="{{ path('campusmanager_index') }}">Campus Managers</a></li>
+                    <li><a href="{{ path('promotion_index') }}">Promotions</a></li>
+                    <li><a href="{{ path('language_index') }}">Langages</a></li>
+                    <li><a href="{{ path('technology_index') }}">Technologies</a></li>
+                </ul>
+            </li>
 
-                        <li class="nav-header">
-                            <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
-                            <ul class="submenu">
-                                <li><a href="{{ path('wilder_index') }}">Profils</a></li>
-                                <li><a href="{{ path('availability_index') }}">Disponibilités</a></li>
-                            </ul>
-                        </li>
+            <li class="nav-header">
+                <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
+                <ul class="submenu">
+                    <li><a href="{{ path('wilder_index') }}">Profils</a></li>
+                    <li><a href="{{ path('availability_index') }}">Disponibilités</a></li>
+                </ul>
+            </li>
 
-                        <li class="nav-header">
-                            <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
-                            <ul class="submenu">
-                                <li><a href="{{ path('project_index') }}">Projets</a></li>
-                                <li><a href="{{ path('projectwilder_index') }}">Association Projet-Wilders</a></li>
-                                <li><a href="{{ path('tag_index') }}">Tags</a></li>
-                            </ul>
-                        </li>
+            <li class="nav-header">
+                <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
+                <ul class="submenu">
+                    <li><a href="{{ path('project_index') }}">Projets</a></li>
+                    <li><a href="{{ path('projectwilder_index') }}">Association Projet-Wilders</a></li>
+                    <li><a href="{{ path('tag_index') }}">Tags</a></li>
+                </ul>
+            </li>
 
-                        
-                        <li class="nav-header">
-                            <div class="link">Mise en avant<i class="fa fa-chevron-down"></i></div>
-                            <ul class="submenu">
-                                <li><a href="{{ path('wilder_accueil') }}">Wilder - HomePage</a></li>
-                                <li><a href="{{ path('project_accueil') }}">Projets - Mettre en avant </a></li>
-                                <li><a href="{{ path('project_reset') }}">Projets - Supprimer les sélections </a></li>
-                            </ul>
-                        </li>
-                        </ul>
-                        </aside>
+
+            <li class="nav-header">
+                <div class="link">Mise en avant<i class="fa fa-chevron-down"></i></div>
+                <ul class="submenu">
+                    <li><a href="{{ path('wilder_accueil') }}">Wilder - HomePage</a></li>
+                    <li><a href="{{ path('project_accueil') }}">Projets - Mettre en avant </a></li>
+                    <li><a href="{{ path('project_reset') }}">Projets - Supprimer les sélections </a></li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
+
+
+    {% elseif is_granted('ROLE_ADMIN') %}
+        <aside id="side-menu" class="aside" role="navigation">
+            <ul class="nav nav-list accordion">
+
+                <li class="nav-header">
+                    <div class="link">Mon Profil<i class="fa fa-chevron-down"></i></div>
+                    <ul class="submenu">
+                        <li><a href="{{ path('fos_user_change_password') }}">Changer mon mot de passe</a></li>
+                        <li><a href="{{ path('fos_user_profile_edit') }}">Edition du profil</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-header">
+                    <div class="link">Profil Utilisateur<i class="fa fa-chevron-down"></i></div>
+                    <ul class="submenu">
+                        <li><a href="{{ path('user_new') }}">Création d'un wilder</a></li>
+                        <li><a href="{{ path('user_admin_new') }}">Création d'un campus manager</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-header">
+                    <div class="link">Écoles<i class="fa fa-chevron-down"></i></div>
+                    <ul class="submenu">
+                        <li><a href="{{ path('school_index') }}">Liste</a></li>
+                        <li><a href="{{ path('one_campus_index') }}">Campus Manager</a></li>
+                        <li><a href="{{ path('promotion_index') }}">Promotions</a></li>
+                        <li><a href="{{ path('language_index') }}">Langages</a></li>
+                        <li><a href="{{ path('technology_index') }}">Technologies</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-header">
+                    <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
+                    <ul class="submenu">
+                        <li><a href="{{ path('wilder_index') }}">Profils</a></li>
+                        <li><a href="{{ path('availability_index') }}">Disponibilités</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-header">
+                    <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
+                    <ul class="submenu">
+                        <li><a href="{{ path('project_index') }}">Projets</a></li>
+                        <li><a href="{{ path('projectwilder_index') }}">Association Projet-Wilders</a></li>
+                        <li><a href="{{ path('tag_index') }}">Tags</a></li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-header">
+                    <div class="link">Mise en avant<i class="fa fa-chevron-down"></i></div>
+                    <ul class="submenu">
+                        <li><a href="{{ path('wilder_accueil') }}">Wilder - HomePage</a></li>
+                        <li><a href="{{ path('project_accueil') }}">Projets - Mettre en avant </a></li>
+                        <li><a href="{{ path('project_reset') }}">Projets - Supprimer les sélections </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
 
 
 
@@ -115,67 +175,56 @@
                         <li><a href="{{ path('project_one_wilder_index') }}">Projets</a></li>
 
                     </ul>
-                </aside>
+                </li>
+            </ul>
+        </aside>
 
-            {% elseif is_granted('ROLE_USER') %}
-                <aside id="side-menu" class="aside" role="navigation">
-                    <ul class="nav nav-list accordion">
-                        <li class="nav-header">
-                            <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
-                            <ul class="submenu">
-                                <li><a href="{{ path('one_wilder_index') }}">Profils</a></li>
-                            </ul>
-                        </li>
+    {% else %}
 
-                    </ul>
-                </aside>
+        <aside id="side-menu" class="aside" role="navigation">
+            <ul class="nav nav-list accordion">
+                <li class="nav-header">
+                    <div class="link">Mon profil<i class="fa fa-chevron-down"></i></div>
+                </li>
+                <li class="nav-header">
+                    <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
+                </li>
+                <li class="nav-header">
+                    <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
+                </li>
+            </ul>
+        </aside>
 
-            {% else %}
+    {% endif %}
 
-                <aside id="side-menu" class="aside" role="navigation">
-                    <ul class="nav nav-list accordion">
-                        <li class="nav-header">
-                            <div class="link">Mon profil<i class="fa fa-chevron-down"></i></div>
-                        </li>
-                        <li class="nav-header">
-                            <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
-                        </li>
-                        <li class="nav-header">
-                            <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
-                        </li>
-                    </ul>
-                </aside>
-
-            {% endif %}
-
-            <!--Body content-->
-            <div class="content">
-                <div class="top-bar">
-                    <a href="#menu" class="side-menu-link burger">
-                        <span class='burger_inside' id='bgrOne'></span>
-                        <span class='burger_inside' id='bgrTwo'></span>
-                        <span class='burger_inside' id='bgrThree'></span>
-                    </a>
-                </div>
-                <section class="content-inner row">
-                    <div class="col-md-offset-1 col-md-10 crud">
-                        {% for label, messages in app.flashes %}
-                            {% for message in messages %}
-                                <div class="alert alert-{{ label }} alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                                aria-hidden="true">&times;</span></button>
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
-
-                        {% block content %}
-                        {% endblock %}
-                    </div>
-                </section>
-            </div>
+    <!--Body content-->
+    <div class="content">
+        <div class="top-bar">
+            <a href="#menu" class="side-menu-link burger">
+                <span class='burger_inside' id='bgrOne'></span>
+                <span class='burger_inside' id='bgrTwo'></span>
+                <span class='burger_inside' id='bgrThree'></span>
+            </a>
         </div>
-    {% endblock %}
+        <section class="content-inner row">
+            <div class="col-md-offset-1 col-md-10 crud">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }} alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+                {% block content %}
+                {% endblock %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
 
 {% block javascripts %}
     <script src="{{ asset('js/jquery.js') }}"></script>
