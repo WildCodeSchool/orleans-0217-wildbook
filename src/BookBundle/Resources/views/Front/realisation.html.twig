@@ -62,18 +62,6 @@
                 </td>
             </tr>
 
-            {#Affiche images liées au projet à retravailler#}
-            {#<tr>#}
-                {#<th>Screenshots</th>#}
-                {#<td>#}
-                    {#{% for pictures in project.pictures %}#}
-                        {#<img src="{{ asset('uploads/'~ pictures.path|basename ) }}"#}
-                             {#alt="{{ pictures.path }}" width="150px">#}
-                    {#{% if not loop.last %} {% endif %}#}
-                    {#{% endfor %}#}
-                {#</td>#}
-            {#</tr>#}
-
             </tbody>
         </table>
 
