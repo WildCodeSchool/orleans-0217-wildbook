@@ -58,8 +58,8 @@
                             <td>{{ wilder.lastname }}</td>
                             <td>{{ wilder.city }}</td>
                             <td>{{ wilder.promotion.promotion }}</td>
-                            <td>{% if wilder.userActivation ? 'Yes' : 'No' %}</td>{% endif %}
-                            <td>{% if wilder.managerActivation? 'Yes' : 'No' %}</td>{% endif %}
+                            <td> {{ wilder.userActivation ? 'Yes' : 'No' }} </td>
+                            <td>{{ wilder.managerActivation ? 'Yes' : 'No'}}</td>
                             <td>
                                 <a href="{{ path('wilder_edit', { 'id': wilder.id }) }}" class="btn btn-success">
                                     <span class="glyphicon glyphicon-pencil"></span> Modifier
