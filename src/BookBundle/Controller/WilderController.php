@@ -136,7 +136,6 @@ class WilderController extends Controller
             return $this->render('wilder/edit.html.twig', array(
                 'wilder' => $wilder,
                 'edit_form' => $editForm->createView(),
-                'delete_form' => $deleteForm->createView(),
             ));
         }
     }
