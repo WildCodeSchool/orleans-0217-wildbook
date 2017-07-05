@@ -63,6 +63,22 @@
             {{ form_widget(edit_form.school) }}
             {{ form_errors(edit_form.school) }}
 
+            {% for picture in project.pictures %}
+                {% if picture.isPrincipal == true %}
+                    <div class="image_projet_principale">
+                        <h5>image principale</h5>
+                        <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imageWilderAdmin"/>
+                        <p><a href="{{ path('picture_indexdelete', { 'id': picture.id }) }}">supprimer l'image</a></p>
+                    </div>
+                {% else %}
+                    <div class="image_projet">
+                        <h5>image secondaire</h5>
+                        <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imageWilderAdmin"/>
+                        <p><a href="{{ path('picture_indexdelete', { 'id': picture.id }) }}">supprimer l'image</a></p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
             {{ form_widget(edit_form) }}
         </div>
         <div class="form-group">
@@ -106,7 +122,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="form-group">
             <a href="{{ path('project_index') }}" class="btn btn-primary">Retour à la liste</a>
