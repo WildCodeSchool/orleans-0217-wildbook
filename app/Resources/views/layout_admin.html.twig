@@ -83,10 +83,16 @@
                         <li class="nav-header">
                             <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
                             <ul class="submenu">
-                                <li><a href="{{ path('wilder_index') }}">Profils</a></li>
+                                <li><a href="{{ path('one_wilder_index') }}">Profils</a></li>
                             </ul>
                         </li>
 
+                        <li class="nav-header">
+                            <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
+                            <ul class="submenu">
+                                <li><a href="{{ path('project_index') }}">Projets</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </aside>
 
@@ -121,7 +127,6 @@
                 </div>
                 <section class="content-inner row">
                     <div class="col-md-offset-1 col-md-10 crud">
-
                         {% for label, messages in app.flashes %}
                             {% for message in messages %}
                                 <div class="alert alert-{{ label }} alert-dismissible">
