@@ -70,4 +70,5 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+
 }
