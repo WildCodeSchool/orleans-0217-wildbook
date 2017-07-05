@@ -31,7 +31,9 @@
                     <td><a href="{{ path('wilder_show', { 'id': wilder.id }) }}">{{ wilder.id }}</a></td>
                     <td><img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}"
                              alt="{{ wilder.firstname }} {{ wilder.lastname }}"
+
                              class="imageShearchWilderAdmin"></td>
+
                     <td>{{ wilder.firstname }}</td>
                     <td>{{ wilder.lastname }}</td>
                     <td>{{ wilder.city }}</td>

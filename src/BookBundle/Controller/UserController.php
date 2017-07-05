@@ -175,6 +175,28 @@ class UserController extends Controller
                 'wilder' => $wilder
             ]);
         }
+
+    }
+
+    /**
+     * @Route("/project-wilder-one-index", name="project_one_wilder_index")
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function indexProjectWilderAction()
+    {
+        $userId = $this->getUser()->getId();
+
+        $em = $this->getDoctrine()->getManager();
+        $projects = $em->getRepository('BookBundle:Project')->projectsByWilder($userId);
+        if (!isset($projects)) {
+            return $this->redirectToRoute('home_admin');
+        } else {
+            return $this->render('user/indexProject.html.twig', [
+                'projects' => $projects
+            ]);
+        }
+
     }
 
 }

@@ -956,4 +956,9 @@ class Wilder
         return $this->location;
     }
 
+    public function getFullName()
+    {
+        return $this->getFirstname().' '.$this->getLastname();
+    }
+
 }

@@ -40,6 +40,7 @@ class WilderController extends Controller
 
         if ($form->isValid() && $form->isSubmitted()) {
             $data = $form->getData();
+            $blocResult = true;
             $languages = $data['language'];
             $schools = $data['school'];
             $promotions = $data['promotion'];

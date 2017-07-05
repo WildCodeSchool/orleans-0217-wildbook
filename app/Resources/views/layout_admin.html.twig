@@ -65,7 +65,7 @@
                                 <li><a href="{{ path('tag_index') }}">Tags</a></li>
                             </ul>
                         </li>
-
+                        
                         <li class="nav-header">
                             <div class="link">Mise en avant<i class="fa fa-chevron-down"></i></div>
                             <ul class="submenu">
@@ -74,6 +74,26 @@
                                 <li><a href="{{ path('project_reset') }}">Projets - Supprimer les sélections </a></li>
                             </ul>
                         </li>
+                        </ul>
+                        </aside>
+
+
+
+    {% elseif is_granted('ROLE_USER') %}
+        <aside id="side-menu" class="aside" role="navigation">
+            <ul class="nav nav-list accordion">
+                <li class="nav-header">
+                    <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
+                    <ul class="submenu">
+                        <li><a href="{{ path('one_wilder_index') }}">Profil</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-header">
+                    <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
+                    <ul class="submenu">
+                        <li><a href="{{ path('project_one_wilder_index') }}">Projets</a></li>
+
                     </ul>
                 </aside>
 
@@ -87,12 +107,6 @@
                             </ul>
                         </li>
 
-                        <li class="nav-header">
-                            <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
-                            <ul class="submenu">
-                                <li><a href="{{ path('project_index') }}">Projets</a></li>
-                            </ul>
-                        </li>
                     </ul>
                 </aside>
 
@@ -103,11 +117,9 @@
                         <li class="nav-header">
                             <div class="link">Mon profil<i class="fa fa-chevron-down"></i></div>
                         </li>
-
                         <li class="nav-header">
                             <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
                         </li>
-
                         <li class="nav-header">
                             <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
                         </li>
