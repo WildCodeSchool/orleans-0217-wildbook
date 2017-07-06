@@ -26,7 +26,14 @@ class ProjectType extends AbstractType
     {
         $builder->add('title', TextType::class)
                 ->add('projectWilders',CollectionType::class,[
-                  'entry_type'=> ProjectWilderType::class,
+                    'entry_type'=> ProjectWilderType::class,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'prototype' => true,
+                    'by_reference' => false,
+                    'attr' => array(
+                        'class' => 'my-wilder',
+                    ),
                 ])
                 ->add('customer')
                 ->add('date')

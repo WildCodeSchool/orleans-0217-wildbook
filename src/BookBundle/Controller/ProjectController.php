@@ -4,6 +4,7 @@ namespace BookBundle\Controller;
 
 use BookBundle\Entity\Picture;
 use BookBundle\Entity\Project;
+use BookBundle\Entity\ProjectWilder;
 use BookBundle\Form\PictureType;
 use BookBundle\Form\ProjectSearchType;
 use BookBundle\Repository\ProjectRepository;
@@ -64,12 +65,15 @@ class ProjectController extends Controller
      */
     public function newAction(Request $request, FileUploader $fileUploader)
     {
+
         $project = new Project();
+        $projectWilder = new ProjectWilder();
         $form = $this->createForm('BookBundle\Form\ProjectType', $project);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $projectWilder->setProject($project);
             $em->persist($project);
             $em->flush();
             $this->addFlash('success', 'Nouveau projet '. $project->getTitle().' enregistré');
