@@ -1,453 +1,52 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="icon" type="image/png" href="{{ asset('images/LOGO_WCS_ORANGE-BLANC_PASTILLE.png') }}"/>
 
-    <link rel='stylesheet' id='cff-font-awesome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css?ver=4.5.0' type='text/css' media='all' />
-    <link rel='stylesheet' id='material-icons-css'  href='https://fonts.googleapis.com/icon?family=Material+Icons&#038;ver=4.7.5' type='text/css' media='all' />
-    <link rel='stylesheet' id='us-base-css'  href='//wildcodeschool.fr/wp-content/themes/Zephyr/framework/css/us-base.min.css?ver=4.0.2' type='text/css' media='all' />
-    <link rel='stylesheet' id='us-style-css'  href='//wildcodeschool.fr/wp-content/themes/Zephyr/css/style.min.css?ver=4.0.2' type='text/css' media='all' />
-    <link rel='stylesheet' id='us-responsive-css'  href='//wildcodeschool.fr/wp-content/themes/Zephyr/css/responsive.min.css?ver=4.0.2' type='text/css' media='all' />
-
-    <link rel='stylesheet' id='us-theme-options-css' href="{{ asset('css/vc_shortcodes-custom_nav.min.css') }}"
-          type="text/css"/>
-
-    <script type='text/javascript' src='https://wildcodeschool.fr/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
-    <script type="text/javascript">
-        if ( ! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            var root = document.getElementsByTagName( 'html' )[0];
-            root.className += " no-touch";
-        }
-    </script>
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/styleHome.css') }}">
-{% endblock %}
+    <!-- Navbar CSS -->
+    <link rel="stylesheet" href="{{ asset('css/scrolling-nav.css') }}">
+
+{% endblock stylesheets %}
 
 {% block nav %}
-    <div class='l-preloader'>
-        <div class='l-preloader-spinner'>
-            <div class='g-preloader  type_1'>
-                <div class='g-preloader-h'>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="l-canvas sidebar_none type_wide titlebar_none">
-
-        <header class="l-header pos_fixed bg_transparent shadow_thin" itemscope="itemscope">
-            <div class="l-subheader at_top width_full">
-                <div class="l-subheader-h">
-                    <div class="l-subheader-cell at_left">
-                        <div class="w-socials color_text hover_default ush_socials_2">
-                            <div class="w-socials-list">
-                                <div class="w-socials-item custom">
-                                    <a class="w-socials-item-link" target="_blank" href="mailto:contact@wildcodeschool.fr">
-                                        <span class="w-socials-item-link-hover"></span><i class="fa fa-envelope-o"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="l-subheader-cell at_center"></div>
-                    <div class="l-subheader-cell at_right">
-                        <div class="w-socials color_text hover_default ush_socials_1">
-                            <div class="w-socials-list">
-
-                                <div class="w-socials-item facebook">
-                                    <a class="w-socials-item-link" target="_blank" href="https://www.facebook.com/wildcodeschool/">
-                                        <span class="w-socials-item-link-hover"></span>
-                                    </a>
-                                    <div class="w-socials-item-popup">
-                                        <span>Facebook</span>
-                                    </div>
-                                </div>
-
-                                <div class="w-socials-item twitter">
-                                    <a class="w-socials-item-link" target="_blank" href="https://twitter.com/wildcodeschool">
-                                        <span class="w-socials-item-link-hover"></span>
-                                    </a>
-                                    <div class="w-socials-item-popup">
-                                        <span>Twitter</span>
-                                    </div>
-                                </div>
-
-                                <div class="w-socials-item linkedin">
-                                    <a class="w-socials-item-link" target="_blank" href="https://www.linkedin.com/school/10387519?pathWildcard=10387519">
-                                        <span class="w-socials-item-link-hover"></span>
-                                    </a>
-                                    <div class="w-socials-item-popup">
-                                        <span>LinkedIn</span>
-                                    </div>
-                                </div>
-
-                                <div class="w-socials-item youtube">
-                                    <a class="w-socials-item-link" target="_blank" href="https://www.youtube.com/channel/UCi99G_0QPx5sYsK8zdvQzfw">
-                                        <span class="w-socials-item-link-hover"></span>
-                                    </a>
-                                    <div class="w-socials-item-popup">
-                                        <span>YouTube</span>
-                                    </div>
-                                </div>
-
-                                <div class="w-socials-item instagram">
-                                    <a class="w-socials-item-link" target="_blank" href="https://www.instagram.com/wildcodeschool/">
-                                        <span class="w-socials-item-link-hover"></span>
-                                    </a>
-                                    <div class="w-socials-item-popup">
-                                        <span>Instagram</span>
-                                    </div>
-                                </div>
-
-                                <div class="w-socials-item github">
-                                    <a class="w-socials-item-link" target="_blank" href="https://github.com/WildCodeSchool">
-                                        <span class="w-socials-item-link-hover"></span>
-                                    </a>
-                                    <div class="w-socials-item-popup">
-                                        <span>GitHub</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="l-subheader at_middle width_full">
-                <div class="l-subheader-h">
-                    <div class="l-subheader-cell at_left">
-                        <div class="w-img ush_image_1">
-                            <a class="w-img-h" href="https://wildcodeschool.fr">
-                                <img class="for_default" src="https://wildcodeschool.fr/wp-content/uploads/2017/01/logo_orange_pastille.png"
-                                     width="1000" height="997" alt="" />
-                            </a>
-                        </div>
-                    </div>
-                    <div class="l-subheader-cell at_center"></div>
-                    <div class="l-subheader-cell at_right">
-                        <nav class="w-nav type_desktop animation_height height_full ush_menu_1" itemscope="itemscope">
-                            <a class="w-nav-control" href="javascript:void(0);"></a>
-                            <ul class="w-nav-list level_1 hover_simple hidden">
-                                <li id="menu-item-4222" class="menu-item menu-item-type-custom menu-item-object-custom
-                            menu-item-has-children w-nav-item level_1 menu-item-4222">
-                                    <a class="w-nav-anchor level_1" >
-                                        <span class="w-nav-title">Nos campus</span>
-                                        <span class="w-nav-arrow"></span>
-                                    </a>
-                                    <ul class="w-nav-list level_2">
-                                        <li id="menu-item-4221" class="menu-item menu-item-type-post_type
-                                    menu-item-object-page w-nav-item level_2 menu-item-4221">
-                                            <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/bordeaux/">
-                                                <span class="w-nav-title">BORDEAUX</span>
-                                                <span class="w-nav-arrow"></span>
-                                            </a>
-                                        </li>
-                                        <li id="menu-item-4223" class="menu-item menu-item-type-post_type
-                                    menu-item-object-page w-nav-item level_2 menu-item-4223">
-                                            <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/fontainebleau/">
-                                                <span class="w-nav-title">FONTAINEBLEAU</span>
-                                                <span class="w-nav-arrow"></span>
-                                            </a>
-                                        </li>
-                                        <li id="menu-item-4224" class="menu-item menu-item-type-post_type
-                                    menu-item-object-page w-nav-item level_2 menu-item-4224">
-                                            <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/la-loupe/">
-                                                <span class="w-nav-title">LA LOUPE</span>
-                                                <span class="w-nav-arrow"></span>
-                                            </a>
-                                        </li>
-                                        <li id="menu-item-4225" class="menu-item menu-item-type-post_type
-                                    menu-item-object-page w-nav-item level_2 menu-item-4225">
-                                            <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/lille/">
-                                                <span class="w-nav-title">LILLE</span>
-                                                <span class="w-nav-arrow"></span>
-                                            </a>
-                                        </li>
-                                        <li id="menu-item-4226" class="menu-item menu-item-type-post_type
-                                    menu-item-object-page w-nav-item level_2 menu-item-4226">
-                                            <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/lyon/">
-                                                <span class="w-nav-title">LYON</span>
-                                                <span class="w-nav-arrow"></span>
-                                            </a>
-                                        </li>
-                                        <li id="menu-item-4227" class="menu-item menu-item-type-post_type
-                                    menu-item-object-page w-nav-item level_2 menu-item-4227">
-                                            <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/orleans/">
-                                                <span class="w-nav-title">ORLÉANS</span>
-                                                <span class="w-nav-arrow"></span>
-                                            </a>
-                                        </li>
-                                        <li id="menu-item-4228" class="menu-item menu-item-type-post_type
-                                    menu-item-object-page w-nav-item level_2 menu-item-4228">
-                                            <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/paris/">
-                                                <span class="w-nav-title">PARIS</span>
-                                                <span class="w-nav-arrow"></span>
-                                            </a>
-                                        </li>
-                                        <li id="menu-item-4229" class="menu-item menu-item-type-post_type
-                                    menu-item-object-page w-nav-item level_2 menu-item-4229">
-                                            <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/strasbourg/">
-                                                <span class="w-nav-title">STRASBOURG</span>
-                                                <span class="w-nav-arrow"></span>
-                                            </a>
-                                        </li>
-                                        <li id="menu-item-4230" class="menu-item menu-item-type-post_type
-                                    menu-item-object-page w-nav-item level_2 menu-item-4230">
-                                            <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/toulouse/">
-                                                <span class="w-nav-title">TOULOUSE</span>
-                                                <span class="w-nav-arrow"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li id="menu-item-4376" class="menu-item menu-item-type-custom
-                            menu-item-object-custom w-nav-item level_1 menu-item-4376">
-                                    <a class="w-nav-anchor level_1"  href="https://wildcodeschool.fr/formation-developpeur-en-5-mois/">
-                                        <span class="w-nav-title">Notre formation</span>
-                                        <span class="w-nav-arrow"></span>
-                                    </a>
-                                </li>
-                                <li id="menu-item-50" class="menu-item menu-item-type-post_type
-                            menu-item-object-page w-nav-item level_1 menu-item-50">
-                                    <a class="w-nav-anchor level_1"  href="https://wildcodeschool.fr/faq/">
-                                        <span class="w-nav-title">FAQ</span>
-                                        <span class="w-nav-arrow"></span>
-                                    </a>
-                                </li>
-                                <li id="menu-item-35" class="menu-item menu-item-type-post_type
-                            menu-item-object-page w-nav-item level_1 menu-item-35">
-                                    <a class="w-nav-anchor level_1"  href="https://wildcodeschool.fr/equipe/">
-                                        <span class="w-nav-title">Notre équipe</span>
-                                        <span class="w-nav-arrow"></span>
-                                    </a>
-                                </li>
-                                <li id="menu-item-59" class="menu-item menu-item-type-custom menu-item-object-custom
-                            menu-item-has-children w-nav-item level_1 menu-item-59">
-                                    <a class="w-nav-anchor level_1"  href="https://wildcodeschool.fr/recruter-un-developpeur/">
-                                        <span class="w-nav-title">Entreprises</span>
-                                        <span class="w-nav-arrow"></span>
-                                    </a>
-                                    <ul class="w-nav-list level_2">
-                                        <li id="menu-item-34" class="menu-item menu-item-type-post_type menu-item-object-page
-                                    w-nav-item level_2 menu-item-34">
-                                            <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/recruter-un-developpeur/">
-                                                <span class="w-nav-title">Recruter un développeur</span>
-                                                <span class="w-nav-arrow"></span>
-                                            </a>
-                                        </li>
-                                        <li id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-page
-                                    w-nav-item level_2 menu-item-33">
-                                            <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/developper-un-projet/">
-                                                <span class="w-nav-title">Développer un projet</span>
-                                                <span class="w-nav-arrow"></span>
-                                            </a>
-                                        </li>
-                                        <li id="menu-item-32" class="menu-item menu-item-type-post_type menu-item-object-page
-                                    w-nav-item level_2 menu-item-32">
-                                            <a class="w-nav-anchor level_2"  href="https://wildcodeschool.fr/nous-soutenir/">
-                                                <span class="w-nav-title">Nous soutenir</span>
-                                                <span class="w-nav-arrow"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li id="menu-item-320" class="menu-item menu-item-type-post_type menu-item-object-page
-                                current-menu-item page_item page-item-15 current_page_item w-nav-item level_1 menu-item-320">
-                                    <a class="w-nav-anchor level_1"  href="https://wildcodeschool.fr/wild-book/">
-                                        <span class="w-nav-title">Le Wild-Book</span>
-                                        <span class="w-nav-arrow"></span>
-                                    </a>
-                                </li>
-                                <li id="menu-item-31" class="menu-item menu-item-type-post_type menu-item-object-page
-                            w-nav-item level_1 menu-item-31">
-                                    <a class="w-nav-anchor level_1"  href="https://wildcodeschool.fr/contact/">
-                                        <span class="w-nav-title">Contact</span><span class="w-nav-arrow">
-                                    </span>
-                                    </a>
-                                </li>
-                                <li id="menu-item-61" class="menu-item menu-item-type-custom menu-item-object-custom
-                            w-nav-item level_1 menu-item-61">
-                                    <a class="w-nav-anchor level_1"  href="https://wildcodeschool.fr/blog/">
-                                        <span class="w-nav-title">/ Blog</span>
-                                        <span class="w-nav-arrow"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="w-nav-options hidden"
-                                 onclick='return {&quot;mobileWidth&quot;:1000,&quot;mobileBehavior&quot;:1}'>
-                            </div>
-                        </nav><div class="w-btn-wrapper ush_btn_1">
-                            <a class="w-btn style_solid color_custom icon_none" href="https://odyssey.wildcodeschool.fr">
-                                <span class="w-btn-label">JE CANDIDATE</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="l-subheader at_bottom">
-                <div class="l-subheader-h">
-                    <div class="l-subheader-cell at_left"></div>
-                    <div class="l-subheader-cell at_center"></div>
-                    <div class="l-subheader-cell at_right"></div>
-                </div>
-            </div>
-            <div class="l-subheader for_hidden hidden"></div>
-        </header>
-    </div>
-
-    <a class="w-header-show" href="javascript:void(0);"></a>
-    <a class="w-toplink" href="#" title="Retour vers le haut"></a>
-{% endblock nav %}
-
-{% block body %}
-{% endblock body %}
-
-{% block container %}
-{% endblock container %}
-
-{% block footer %}
-    <footer class="container-fluid homeFooter">
-
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top container-fluid" role="navigation">
         <div class="container">
-
-            {#LOGO + INVITATION NEWSLETTER#}
-            <div class="horizontalCenter">
-                <img class="homeFooterLogo shadow" src="{{ asset('images/LOGO_WCS_ORANGE-BLANC_PASTILLE.png') }}"
-                     alt="..."/>
-
-                <h4 class="homeFooterH4">
-                    Des News Tech et Wild dans votre inbox - Abonnez vous à notre newsletter
-                </h4>
+            <div class="navbar-header page-scroll container-fluid">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Wild Code School</a>
             </div>
 
-            {#FORMULAIRE NEWSLETTER#}
-            <form class="form-inline homeFooterNewsLetterForm">
-                <div class="form-group row">
-                    <input class="form-control shadow homeFooterNewsLetterField"
-                           type="email"
-                           id="Email"
-                           placeholder="Renseigner votre e-mail">
-                </div>
-                <button type="submit" class="btn btn-default shadow homeFooterNewsLetterButton">GO WILD</button>
-            </form>
-
-            {#ICÔNES RÉSEAUX SOCIAUX#}
-            <div class="socialbloc">
-
-                <h4 class="homeFooterH4">Suivez nous sur vos réseaux favoris</h4>
-
-                <div class="homeFooterSocial">
-                    <div class="homeFooterIconSocial">
-                        <a href=""><i class=" fa fa-facebook shadow"></i></a>
-                    </div>
-                    <div class="homeFooterIconSocial">
-                        <a href=""><i class=" fa fa-twitter shadow"></i></a>
-                    </div>
-                    <div class="homeFooterIconSocial">
-                        <a href=""><i class=" fa fa-linkedin shadow"></i></a>
-                    </div>
-                    <div class="homeFooterIconSocial">
-                        <a href=""><i class=" fa fa-youtube shadow"></i></a>
-                    </div>
-                    <div class="homeFooterIconSocial">
-                        <a href=""><i class=" fa fa-instagram shadow"></i></a>
-                    </div>
-                    <div class="homeFooterIconSocial">
-                        <a href=""><i class=" fa fa-github shadow"></i></a>
-                    </div>
-                </div>
+            <!-- Nav links for toggling to the sections -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse container-fluid">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#wildbook">Le Wildbook</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#wilders">Les Wilders</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#network">Notre réseau</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#projects">Les réalisations</a>
+                    </li>
+                </ul>
             </div>
-
-            <div class="row links">
-
-                <div class="col-xs-3 wildcodeschool">
-                    <h4 class="homeFooterH4List"><a href="https://wildcodeschool.fr/">La Wild Code School</a></h4>
-                    <ul class="homeFooterListe1">
-                        <li><a href="https://wildcodeschool.fr/questcequela-wildcodeschool/">Le concept</a></li>
-                        <li>
-                            <a href="https://wildcodeschool.fr/nos-formations-initiation-approfondissement-developpeur/">Notre
-                                programme</a></li>
-                        <li><a href="https://wildcodeschool.fr/candidat/">Comment candidater</a></li>
-                        <li><a href="https://wildcodeschool.fr/faq/">FAQ</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-xs-3 nosecoles">
-                    <h4 class="homeFooterH4List"><a href="https://wildcodeschool.fr/nos-sites/">Nos Écoles</a></h4>
-                    <ul class="homeFooterListe1">
-                        <li><a href="https://wildcodeschool.fr/la-loupe/">La Loupe</a></li>
-                        <li><a href="https://wildcodeschool.fr/fontainebleau/">Fontainebleau</a></li>
-                        <li><a href="https://wildcodeschool.fr/orleans/">Orléans</a></li>
-                        <li><a href="https://wildcodeschool.fr/bordeaux/">Bordeaux</a></li>
-                        <li><a href="https://wildcodeschool.fr/lyon/">Lyon</a></li>
-                        <li><a href="https://wildcodeschool.fr/toulouse/">Toulouse</a></li>
-                        <li><a href="https://wildcodeschool.fr/lille/">Lille</a></li>
-                        <li><a href="https://wildcodeschool.fr/strasbourg/">Strasbourg</a></li>
-                        <li><a href="https://wildcodeschool.fr/paris/">Paris</a></li>
-                    </ul>
-
-                </div>
-
-                <div class="col-xs-3 a propos">
-                    <h4 class="homeFooterH4List">À propos</h4>
-                    <ul class="homeFooterListe1">
-                        <li><a href="https://wildcodeschool.fr/contact/">Nous contacter</a></li>
-                        <li><a href="https://wildcodeschool.fr/equipe/">Notre équipe</a></li>
-                        <li><a href="https://wildcodeschool.fr/offres-emplois/">Offres d'emploi</a></li>
-                        <li><a href="https://wildcodeschool.fr/recruter-un-developpeur/">Recruter un développeur</a></li>
-                        <li><a href="https://wildcodeschool.fr/developper-un-projet/">Développer un projet</a></li>
-                        <li><a href="https://wildcodeschool.fr/nous-soutenir/">Nous soutenir</a></li>
-                    </ul>
-
-                </div>
-
-                <div class="col-xs-3 notreblog">
-                    <h4 class="homeFooterH4List">Notre Blog</h4>
-                    <ul class="homeFooterListe2">
-                        <li>
-                            <a href="https://wildcodeschool.fr/blog/futur-en-seine-2017/">Futur en Seine, le festival du
-                                numérique où l&rsquo;on parle innovation</a><br>
-                            <span class="post-date">juin 2, 2017</span>
-                        </li>
-                        <li>
-                            <a href="https://wildcodeschool.fr/blog/portrait-nicolas-developpeur/">De chef d’entreprise
-                                à développeur, découvrez le parcours de Nicolas</a><br>
-                            <span class="post-date">juin 1, 2017</span>
-                        </li>
-                        <li>
-                            <a href="https://wildcodeschool.fr/blog/portrait-jonathan-developpeur-web/">Passer du
-                                secteur industriel à la programmation, c’est possible</a><br>
-                            <span class="post-date">juin 1, 2017</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <!-- /.navbar-collapse -->
         </div>
-    </footer>
+        <!-- /.container -->
+    </nav>
 
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script type="text/javascript">
-        if (window.$us === undefined) window.$us = {};
-        $us.canvasOptions = ($us.canvasOptions || {});
-        $us.canvasOptions.disableEffectsWidth = 900;
-        $us.canvasOptions.responsive = true;
-
-        $us.langOptions = ($us.langOptions || {});
-        $us.langOptions.magnificPopup = ($us.langOptions.magnificPopup || {});
-        $us.langOptions.magnificPopup.tPrev = 'Précédent (clavier, flèche vers la gauche)'; // Alt text on left arrow
-        $us.langOptions.magnificPopup.tNext = 'Suivant (clavier, touche flèche vers la droite)'; // Alt text on right arrow
-        $us.langOptions.magnificPopup.tCounter = '%curr% de %total%'; // Markup for "1 of 7" counter
-
-        $us.navOptions = ($us.navOptions || {});
-        $us.navOptions.mobileWidth = 900;
-        $us.navOptions.togglable = true;
-        $us.ajaxLoadJs = true;
-        $us.templateDirectoryUri = '//wildcodeschool.fr/wp-content/themes/Zephyr';
-    </script>
-    <script type="text/javascript" src="{{ asset('js/js_nav.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/chat.tawk.js') }}" ></script>
-    <script type='text/javascript' src='//wildcodeschool.fr/wp-content/themes/Zephyr/framework/js/us.core.min.js?ver=4.0.2'></script>
-{% endblock javascripts %}
+{% endblock nav %}
