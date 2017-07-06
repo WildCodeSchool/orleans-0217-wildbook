@@ -8,14 +8,17 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class CvUploadListener
 {
     private $uploader;
+    private $oldCv;
 
-    public function __construct(FileUploader $uploader)
+    public function __construct(FileUploader $uploader, RequestStack $requestStack)
     {
         $this->uploader = $uploader;
+        $this->requestStack = $requestStack;
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -30,6 +33,10 @@ class CvUploadListener
         $entity = $args->getEntity();
 
         $this->uploadFile($entity);
+
+        if($this->oldCv){
+            $entity->setCv($this->oldCv);
+        }
     }
 
     public function postLoad(LifecycleEventArgs $args)
@@ -40,8 +47,12 @@ class CvUploadListener
             return;
         }
 
-        if ($fileName = $entity->getCv()) {
-            $entity->setCv(new File($this->uploader->getTargetDir().'/'.$fileName));
+        $masterRequest = $this->requestStack->getMasterRequest()->get('_route');
+        if ($masterRequest == "wilder_edit") {
+            $this->oldCv = $entity->getCv();
+            if ($fileName = $entity->getCv()) {
+                $entity->setCv(new File($this->uploader->getTargetDir().'/'.$fileName));
+            }
         }
     }
 

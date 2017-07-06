@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class WilderUploadListener
 {
     private $uploader;
+    private $oldImgProfile;
 
     public function __construct(FileUploader $uploader, RequestStack $requestStack)
     {
@@ -40,6 +41,10 @@ class WilderUploadListener
         $entity = $args->getEntity();
 
         $this->uploadFile($entity);
+
+        if($this->oldImgProfile){
+            $entity->setProfilPicture($this->oldImgProfile);
+        }
     }
 
     public function postLoad(LifecycleEventArgs $args)
@@ -52,6 +57,7 @@ class WilderUploadListener
 
         $masterRequest = $this->requestStack->getMasterRequest()->get('_route');
         if ($masterRequest == "wilder_edit") {
+            $this->oldImgProfile = $entity->getProfilPicture();
             if ($fileName = $entity->getProfilPicture()) {
                 $entity->setProfilPicture(new File($this->uploader->getTargetDir() . '/' . $fileName));
             }
