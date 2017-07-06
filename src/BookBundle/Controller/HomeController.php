@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\SearchType;
 class HomeController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="home")
      */
     public function indexAction()
     {
@@ -23,7 +23,7 @@ class HomeController extends Controller
         $wilders = $em->getRepository(Wilder::class)->findAll();
         return $this->render('BookBundle:Front:accueil.html.twig', array(
             'schools' => $schools,
-            'wilders' =>$wilders
+            'wilders' => $wilders
         ));
     }
 
@@ -32,14 +32,20 @@ class HomeController extends Controller
      *
      * @Route("/profile_wilder/{id}", name="profile_wilder")
      */
-    public function wilderProfileAction(CodeWarsApi $codewarsApi, Wilder $wilder )
+    public function wilderProfileAction(CodeWarsApi $codewarsApi, Wilder $wilder)
     {
         $score = $codewarsApi->codeWarsScore($wilder->getCodewarsUsername());
 
-        return $this->render('BookBundle:Front:wilder.html.twig',array(
-            'wilder'=>$wilder,
-            'codewars'=>$score
-        ));
+        if (($wilder->getUserActivation() == true) && ($wilder->getManagerActivation() == true)) {
+            return $this->render('BookBundle:Front:wilder.html.twig', array(
+                'wilder' => $wilder,
+                'codewars' => $score
+            ));
+        } else {
+            $this->addFlash('danger', 'Cette ressource n\'est pas disponible.');
+            return $this->redirectToRoute('search_wilder');
+        }
+
     }
 
     /**
@@ -54,8 +60,8 @@ class HomeController extends Controller
         $project = $em->getRepository('BookBundle:Project')
             ->findOneById($id);
 
-        return $this->render('BookBundle:Front:realisation.html.twig',array(
-            'project'=>$project
+        return $this->render('BookBundle:Front:realisation.html.twig', array(
+            'project' => $project
         ));
     }
 }
