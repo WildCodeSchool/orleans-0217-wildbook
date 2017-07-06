@@ -11,8 +11,8 @@
         <h4>Email User: {{ wilder.user.email }}</h4>
         <h4>Username: {{ wilder.user.username }}</h4>
         <ul>Projets réalisés : {% for projectWilders in wilder.projectWilders %}
-               <li> {{ projectWilders.project.title }}</li>
-            {% endfor %}</ul>>
+                <li> {{ projectWilders.project.title }}</li>
+            {% endfor %}</ul>
         <div class="form-group">
             {{ form_start(edit_form) }}
 
@@ -117,18 +117,17 @@
             {{ form_widget(edit_form.userActivation) }}
             {{ form_errors(edit_form.userActivation) }}
 
-
-            {{ form_label(edit_form.managerActivation,'Publication CampusManager') }}
-            {{ form_widget(edit_form.managerActivation) }}
-            {{ form_errors(edit_form.managerActivation) }}
-
+            {% if is_granted('ROLE_ADMIN') %}
+                {{ form_label(edit_form.managerActivation,'Publication CampusManager') }}
+                {{ form_widget(edit_form.managerActivation) }}
+                {{ form_errors(edit_form.managerActivation) }}
+            {% endif %}
 
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-success" value="Edit"/>
         </div>
-        {{ form_end(edit_form) }}
-
+        </form>
         <div class="form-group">
             <a href="{{ path('wilder_index') }}" class="btn btn-primary">Retour à la liste</a>
         </div>

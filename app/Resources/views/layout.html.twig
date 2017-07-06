@@ -1,5 +1,13 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+
+    {{ parent() }}
+    <!-- Navbar CSS -->
+    <link rel="stylesheet" href="{{ asset('css/scrolling-nav.css') }}">
+
+{% endblock stylesheets %}
+
 {% block nav %}
 
     <!-- Navigation -->

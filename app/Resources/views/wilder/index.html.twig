@@ -1,10 +1,5 @@
 {% extends 'layout_admin.html.twig' %}
 
-    {% block stylesheets %}
-        {{ parent() }}
-        <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
-    {% endblock %}
-
 {% block content %}
 
     <div class="container-fluid">
@@ -74,5 +69,4 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/ajax_auto_admin.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}" ></script>
 {% endblock javascripts %}
