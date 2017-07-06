@@ -260,6 +260,19 @@ footer {
     font-size: xx-small;
 }
 
+.footerImageContainer {
+    padding: 0;
+    margin-top: 0px;
+    height: 400px; /* hauteur maximale de l'image d'entête */
+    overflow: hidden; /* les dépassements de l'image contenue seront masqués */
+    background-color: rgba(128, 203, 196, 0.5);
+}
+
+.footerImage {
+    width: 100vw; /* la largeur de l'image prend 100% de la de la largeur de la fenêtre */
+    margin-top: -25%;
+}
+
 .footerLogo {
     border-radius: 50%;
     width: 80px;
