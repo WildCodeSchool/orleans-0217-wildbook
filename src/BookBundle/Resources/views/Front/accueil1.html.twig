@@ -1,0 +1,132 @@
+{% extends 'layout.html.twig' %}
+
+{% block container %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/leaflet.css') }}">
+    {% endblock %}
+    <!-- HEADER -->
+    <div class="homeHeadera container-fluid">
+         {#---------- IMAGE À DÉTERMINER ! ----------#}
+        <img class="homeHeaderaPic" src="{{ asset('images/WCS_HEADER6.jpg') }}" alt="..."/>
+    </div>
+
+    <!-- BOUTONS NAVGATION (WILDERS + RÉALISATIONS) -->
+    <div class="homeNavigation">
+
+        <a href="{{ path('search_wilder') }}">
+            <div class="homeNavigationButton shadow">
+                WILDERS
+            </div>
+        </a>
+
+        <a href="{{ path('search_realisation') }}">
+            <div class="homeNavigationButton shadow">
+                RÉALISATIONS
+            </div>
+        </a>
+
+    </div>
+
+    <!-- TEXTE ACCEUIL 1 -->
+    <div class="homeText row container-fluid">
+        <div class="col-lg-offset-3 col-lg-6 noPadding">
+            <h2 class="homeTextTitle">Pertem se inatum tanum</h2>
+            <p class="homeTextParagraph">
+                Entesserortis consunte, nos et, que pribuliam opopoente consulestra. Catur hoccives.<br>
+                Upimus et pro prio, con dentens ulumuni rmiliem atiquem noccisusquas caut C. more entelicivere rem
+                culia acii ium nit, ego et publicaeculi praventius, nonsus spimmov ereniricae iamdicae audam
+                sinente, queaucit, nos huiurs incere, es hoc, nium.<br>
+                <br>
+                Similic avoccios audemus ciamquodit, quam sulocressic fureo mediis conc in teribus laris, stratuspio
+                mo iam audam ego critique faucien atampotium ponc opori pertem se milic avoccios audemus ciamquodit
+                inatum tanum horessentrum publinem.
+            </p>
+        </div>
+    </div>
+
+    <!-- IMAGE 1 -->
+    <div class="homeIllustration">
+        {#---------- IMAGE À DÉTERMINER ! ----------#}
+        <img class="homeIllustrationPic" src="{{ asset('images/WCS_HEADER7.jpg') }}" alt="..."/>
+    </div>
+
+    <!-- TEXTE ACCEUIL 2 -->
+    <div class="homeText row container-fluid">
+        <div class="col-lg-offset-3 col-lg-6 noPadding">
+            <h2 class="homeTextTitle">Pertem se inatum tanum</h2>
+            <p class="homeTextParagraph">
+                Entesserortis consunte, nos et, que pribuliam opopoente consulestra. Catur hoccives.<br>
+                Upimus et pro prio, con dentens ulumuni rmiliem atiquem noccisusquas caut C. more entelicivere rem
+                culia acii ium nit, ego et publicaeculi praventius, nonsus spimmov ereniricae iamdicae audam
+                sinente, queaucit, nos huiurs incere, es hoc, nium.<br>
+                <br>
+                Similic avoccios audemus ciamquodit, quam sulocressic fureo mediis conc in teribus laris, stratuspio
+                mo iam audam ego critique faucien atampotium ponc opori pertem se milic avoccios audemus ciamquodit
+                inatum tanum horessentrum publinem.
+            </p>
+        </div>
+    </div>
+
+    <!-- ENCART 'PROFIL DU MOMENT' -->
+
+    <!-- FILET -->
+    <div class="row container-fluid">
+        {{ render(controller('BookBundle:HomeWilder:viewHomeWilder')) }}
+        <hr class="homeLine col-lg-offset-3 col-lg-6">
+    </div>
+
+        <!-- API GÉOLOCATION -->
+        <div class="homeText row container-fluid">
+            <div class="col-lg-offset-3 col-lg-6">
+                <h2 class="homeTextTitle">Notre réseau de Wilders</h2>
+            </div>
+        </div>
+        <div class="row container-fluid">
+            <div class="col-lg-offset-2 col-lg-8 noPadding" id="mapid"></div>
+        </div>
+
+
+    <!-- IMAGE 3 (FIN DE PAGE - COLLÉ AU FOOTER)-->
+    <div class="homeIllustration">
+        {#---------- IMAGE À DÉTERMINER ! ----------#}
+        <img class="homeIllustrationPic" src="{{ asset('images/WCS_HEADER8.jpg') }}" alt="..."/>
+    </div>
+{% endblock container %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/leaflet.js') }}"></script>
+    <script>
+
+        var mymap = L.map('mapid').setView([47.0833, 2.4], 6);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: '{{ TokenMap }}'
+        }).addTo(mymap);
+
+        var wildIcon = L.icon({
+            iconUrl: '{{ asset('css/images/LOGO_WCS_ORANGE-BLANC_PASTILLE.png') }}',
+            iconSize:     [30, 30], // size of the icon
+            iconAnchor:   [22, 20], // point of the icon which will correspond to marker's location
+            popupAnchor:  [-3, -20] // point from which the popup should open relative to the iconAnchor
+        });
+
+        {% for wilder in wilders %}
+        {% if wilder.location is not empty %}
+        var marker = L.marker([{{ wilder.location }}]).addTo(mymap);
+        marker.bindPopup("<b{{ wilder.firstname }}</b>").openPopup();
+        {% endif %}
+        {% endfor %}
+
+        {% for school in schools %}
+        var marker = L.marker([{{ school.location }}],{icon: wildIcon}).addTo(mymap);
+        marker.bindPopup("<b>Wild code school</b><br>{{ school.school }}").openPopup();
+        {% endfor %}
+
+    </script>
+{% endblock javascripts %}
+
