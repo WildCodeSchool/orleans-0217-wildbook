@@ -66,7 +66,7 @@
 
 .carousel-inner > .item > img {
     width:1140px;
-    height:640px;
+    height:460px;
 }
 
 .img_project_carousel {
@@ -344,3 +344,86 @@ footer {
 .footerCopyrights {
     margin: 45px 0;
 }
+
+/** PAGE RECHERCHE WILDERS **/
+
+.wilderAutocompletion {
+    margin-top: 40px;
+}
+
+.btn-searchWilder {
+    margin-top: 15px;
+}
+
+.carousel-inner > .item > img {
+    width:1140px;
+    height:460px;
+}
+
+.image-listWilders {
+    background-size: cover;
+    max-width: 100%;
+    height: 250px;
+}
+
+.img-listWilders {
+    display:none;
+}
+
+.vignetteWilder {
+    height: 325px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-top:35px;
+    margin-left:45px;
+    margin-right:45px;
+}
+
+.titreVignetteWilder {
+    margin-top:15px;
+}
+
+.titreVignetteWilder h4 {
+    margin-top:20px;
+}
+
+.titreVignetteWilder h5 {
+    margin-top:15px;
+}
+
+.modjoWilder {
+    margin-top:15px;
+}
+
+.modjoWilder h4 {
+    font-style: italic;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%)
+}
+
+/*.img-listWilders:hover .vignetteWilder {*/
+    /*opacity: 0.3;*/
+/*}*/
+
+.image-listWilders:hover .middle {
+    opacity: 1;
+}
+
+.hoverDispoWilder {
+    background-color: #f9a02e;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+}
+
+
+
+
