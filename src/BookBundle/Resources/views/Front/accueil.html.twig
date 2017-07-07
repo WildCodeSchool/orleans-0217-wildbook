@@ -1,9 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block container %}
+
     <a href="/login">
         <div class="goback"></div>
     </a>
+
     {% block stylesheets %}
 
         {{ parent() }}
@@ -13,9 +15,9 @@
 
     {% endblock stylesheets %}
 
-    <!-- Header picture-->
-    <div class="homeHeadera container-fluid">
-        <img class="homePicture" src="{{ asset('images/WCS_HEADER6.jpg') }}" alt="..."/>
+    <!-- Header picture -->
+    <div class="fullWidthPictureContainer">
+        <img class="fullWidthPicture" src="{{ asset('images/fullWidth3.jpg') }}" alt="Wild Code School Orléans"/>
     </div>
 
     <!-- Buttons Wilders/Projects pages -->
@@ -51,8 +53,8 @@
     </section>
 
     <!-- Body picture -->
-    <div class="homeIllustration container-fluid">
-        <img class="homePicture" src="{{ asset('images/WCS_HEADER7.jpg') }}" alt="..."/>
+    <div class="fullWidthPictureContainer">
+        <img class="fullWidthPicture" src="{{ asset('images/fullWidth2.jpg') }}" alt="Wild Code School Orléans"/>
     </div>
 
     <!-- Section 'Les Wilders' -->
@@ -91,7 +93,7 @@
             </div>
         </div>
         <!-- API geolocation -->
-        <div class="row container-fluid">
+        <div class="row container-fluid hidden-xs">
             <div class="col-lg-offset-2 col-lg-8 noPadding" id="mapid"></div>
         </div>
     </section>
@@ -116,6 +118,11 @@
         </div>
     </section>
 
+    <!-- Footer picture -->
+    <div class="fullWidthPictureContainer">
+        <img class="fullWidthPicture" src="{{ asset('images/fullWidth4.jpg') }}" alt="Wild Code School Orléans"/>
+    </div>
+
 {% endblock container %}
 
 {% block javascripts %}
@@ -134,7 +141,7 @@
             accessToken: '{{ TokenMap }}'
         }).addTo(mymap);
         var wildIcon = L.icon({
-            iconUrl: '{{ asset('css/images/LOGO_WCS_ORANGE-BLANC_PASTILLE.png') }}',
+            iconUrl: '{{ asset('css/images/logoOrangeBlanc.png') }}',
             iconSize: [30, 30], // size of the icon
             iconAnchor: [22, 20], // point of the icon which will correspond to marker's location
             popupAnchor: [-3, -20] // point from which the popup should open relative to the iconAnchor
