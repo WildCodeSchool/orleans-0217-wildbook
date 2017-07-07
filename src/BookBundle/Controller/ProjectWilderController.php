@@ -2,7 +2,9 @@
 
 namespace BookBundle\Controller;
 
+use BookBundle\Entity\Project;
 use BookBundle\Entity\ProjectWilder;
+use BookBundle\Entity\Wilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -41,7 +43,7 @@ class ProjectWilderController extends Controller
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_USER')")
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Project $project, Wilder $wilder)
     {
         $projectWilder = new Projectwilder();
         $form = $this->createForm('BookBundle\Form\ProjectWilderType', $projectWilder);
@@ -51,8 +53,7 @@ class ProjectWilderController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($projectWilder);
             $em->flush();
-
-            return $this->redirectToRoute('projectwilder_index');
+            $this->addFlash('success', $wilder->getFulName().' ajouter au projet '. $project->getTitle());
         }
 
         return $this->render('projectwilder/new.html.twig', array(

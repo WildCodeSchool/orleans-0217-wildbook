@@ -31,41 +31,23 @@ class ProjectSearchController extends Controller
     public function listRealisationsAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $form = $this->createForm(ProjectSearchType::class, ['csrf_protection'=>false]);
+        $form = $this->createForm(ProjectSearchType::class);
         $form->handleRequest($request);
 
         $input=$categories=$schools=$promotions='';
-        $blocResult=false;
         $projectsSearch='';
 
         if ($form->isValid() && $form->isSubmitted()) {
-            $blocResult=true;
             $data = $form->getData();
             $schools = $data['school'];
             $categories = $data['category'];
             $promotions = $data['promotion'];
 
-            if ($schools[0] == null & $categories[0] == null ) {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, null, $promotions);
-            } elseif ($schools[0] == null & $promotions[0] == null) {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, $categories, null );
-            } elseif ($categories[0] == null & $promotions[0] == null) {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, null, null);
-            } elseif ($schools[0] == null) {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy(null, $categories, $promotions);
-            } elseif ($categories[0] == null) {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, null, $promotions);
-            } elseif ($promotions[0] == null) {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories, null);
-            } else {
-                $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories, $promotions);
-            }
+            $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories, $promotions);
         }
 
         return $this->render('BookBundle:Front:realisation_search.html.twig' ,array(
             'form' => $form->createView(),
-            'blocResult' => $blocResult,
             'projectsSearch' => $projectsSearch,
         ));
     }

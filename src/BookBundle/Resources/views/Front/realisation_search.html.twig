@@ -17,7 +17,6 @@
             <h2>Trouver une réalisation</h2>
         </div>
 
-
         <div class="search-area">
 
             <div class="search">
@@ -34,8 +33,8 @@
                         {{ form_start(form) }}
                         {{ form_row(form.Recherche) }}
                         {{ form_end(form) }}
-                    </div><!-- /.col-lg-6 -->
-                </div><!-- /.row -->
+                    </div>
+                </div>
             </div>
 
             <div class="search-selectors">
@@ -45,11 +44,19 @@
         </div>
 
         <div class="list_realisations row" id="project-list">
-
+            {% for projectSearch in projectsSearch %}
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 imageShearchProject">
+                    <a href="{{ path('detail_project', { 'id': projectSearch.id }) }}" class="thumbnail">
+                        {% for picture in projectSearch.pictures %}
+                            {% if picture.isPrincipal == true %}
+                                <img src="{{ asset('uploads/'~ picture.path|basename ) }}"/>
+                            {% endif %}
+                        {% endfor %}
+                        <h4>{{ projectSearch.title }}</h4>
+                    </a>
+                </div>
+            {% endfor %}
         </div>
-
-
-        {% if blocResult=='' %}
 
         <div class="realisation-focus">
 
@@ -62,24 +69,8 @@
                     Aenean dignissim aliquet dui, eget ullamcorper enim laoreet nec.
                     Vestibulum fermentum mauris condimentum velit posuere, at fermentum libero malesuada</p>
             </div>
-
-                {{ render(controller('BookBundle:HomeProject:viewHomeProject')) }}
+            {{ render(controller('BookBundle:HomeProject:viewHomeProject')) }}
         </div>
-
-            {% else %}
-                <div class="list_realisations">
-                    {% for projectSearch in projectsSearch%}
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            <a href="{{ path('detail_project', { 'id': projectSearch.id }) }}" class="thumbnail">
-                                <img src="{{ asset('images/LOGO_COLO.png') }}" alt="">
-                            </a>
-                            <h4>{{ projectSearch.title }}</h4>
-                        </div>
-                    {% endfor %}
-                </div>
-
-            {% endif %}
-
     </div>
 
     <div class="container-fluid img2">

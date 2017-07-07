@@ -1,10 +1,5 @@
 {% extends 'layout_admin.html.twig' %}
 
-    {% block stylesheets %}
-        {{ parent() }}
-        <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
-    {% endblock %}
-
 {% block content %}
 
     <div class="container-fluid">
@@ -19,7 +14,6 @@
                         {{ form_row(form.promotion) }}
                         <button type="submit" class="btn btn-default btn-wcs">OK</button>
                         {{ form_row(form.Recherche) }}
-                    </form>
                     </div><!-- /.col-lg-6 -->
                 </div><!-- /.row -->
             </div>
@@ -33,7 +27,6 @@
 
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Photo De Profil</th>
                     <th>Nom</th>
                     <th>Prénom</th>
@@ -45,42 +38,30 @@
                 </tr>
                 </thead>
                 <tbody id="wild-list">
-
-                {% if blocResult=='' %}
-
-                {% else %}
-
                     {% for wilder in wilders %}
                         <tr>
-                            <td><a href="{{ path('wilder_show', { 'id': wilder.id }) }}">{{ wilder.id }}</a></td>
-                            <td><img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}"
-                                     alt="{{ wilder.firstname }} {{ wilder.lastname }}"
-                                     width="150px"></td>
+                            <td><a href="{{ path('wilder_show', { 'id': wilder.id }) }}"> <img src="{{ asset
+                                    ('uploads/'~ wilder.profilPicture|basename ) }}" alt="{{ wilder.firstname }} {{
+                                    wilder.lastname }}" class="imageShearchWilderAdmin"></a></td>
                             <td>{{ wilder.firstname }}</td>
                             <td>{{ wilder.lastname }}</td>
                             <td>{{ wilder.city }}</td>
                             <td>{{ wilder.promotion.promotion }}</td>
-                            <td>{% if wilder.userActivation %}Yes{% else %}No{% endif %}</td>
-                            <td>{% if wilder.managerActivation %}Yes{% else %}No{% endif %}</td>
+                            <td> {{ wilder.userActivation ? 'Yes' : 'No' }} </td>
+                            <td> {{ wilder.managerActivation ? 'Yes' : 'No'}} </td>
                             <td>
                                 <a href="{{ path('wilder_edit', { 'id': wilder.id }) }}" class="btn btn-success">
                                     <span class="glyphicon glyphicon-pencil"></span> Modifier
                                 </a>
-                                <a href="{{ path('wilder_delete', { 'id': wilder.id }) }}" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-trash"></span> Delete
-                                </a>
                             </td>
                         </tr>
                     {% endfor %}
-                {% endif %}
                 </tbody>
             </table>
-            <a class="btn btn-default" href="{{ path('wilder_new') }}" role="button">Crée un nouveau wilder</a>
         </div>
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('js/ajax_auto_admin.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}" ></script>
 {% endblock javascripts %}

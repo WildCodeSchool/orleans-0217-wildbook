@@ -85,7 +85,8 @@ class CampusManagerController extends Controller
                 'delete_form' => $deleteForm->createView(),
             ));
         } else {
-            throw new Exception('chemin interdit');
+            $this->addFlash('danger', 'Tu n\'as pas accès à cette ressource');
+            return $this->redirectToRoute('one_campus_index');
         }
     }
 
@@ -105,19 +106,20 @@ class CampusManagerController extends Controller
         $idCampusManager = $campusManager->getUser()->getId();
         $idUser = $this->getUser()->getId();
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('campusmanager_index');
-        }
-
         if ($idCampusManager === $idUser) {
 
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+                return $this->redirectToRoute('campusmanager_index');
+            }
             return $this->render('campusmanager/edit.html.twig', array(
                 'campusManager' => $campusManager,
                 'edit_form' => $editForm->createView(),
                 'delete_form' => $deleteForm->createView(),
             ));
+        } else {
+            $this->addFlash('danger', 'Tu n\'as pas accès à cette ressource');
+            return $this->redirectToRoute('one_campus_index');
         }
     }
 

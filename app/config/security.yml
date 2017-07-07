@@ -20,11 +20,10 @@ security:
               provider: fos_userbundle
               default_target_path: /admin/
               csrf_token_generator: security.csrf.token_manager
-#            form_login:
-#                provider: fos_userbundle
-#                csrf_token_generator: security.csrf.token_manager
-#                # if you are using Symfony < 2.8, use the following config instead:
-#                # csrf_provider: form.csrf_provider
+              failure_path:    /login
+              failure_forward: false
+              failure_path_parameter: _failure_path
+
 
             logout:       true
             anonymous:    true

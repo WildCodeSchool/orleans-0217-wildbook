@@ -16,8 +16,7 @@ $( document ).ready(function() {
                     for (i = 0; i < wilders.length; i++) {
 
                         html +=  "<tr>" +
-                            "<td><a href=\"/wilder/"+ wilders[i].id +"\">"+ wilders[i].id +"</a></td>"+
-                            "<td><img src=\"../uploads/" + wilders[i].profilPicture + "\" width='150px'></td>"+
+                            "<td><a href=\"/wilder/"+ wilders[i].id +"\"> <img src=\"../uploads/" + wilders[i].profilPicture + "\" class='imageShearchWilderAdmin'> </a></td>"+
                             "<td>" + wilders[i].firstname + "</td>"+
                             "<td>" + wilders[i].lastname + "</td>"+
                             "<td>" + wilders[i].city + "</td>"+
@@ -41,8 +40,6 @@ $( document ).ready(function() {
                             "<a href=\"/wilder/"+ wilders[i].id +"/edit\" class='btn btn-success'> <span" +
 
                             " class='glyphicon glyphicon-pencil'></span> Modifier </a> " +
-                            "<a href=\"/wilder/"+ wilders[i].id +"\" class='btn btn-default'> " +
-                            "<span class='glyphicon glyphicon-trash'></span> Delete </a> </td>"+
                             "</tr>"
                     }
                     $('#wild-list').html(html);
@@ -69,13 +66,15 @@ $( document ).ready(function() {
                     html = "";
                     for (i = 0; i < projects.length; i++) {
 
+                        date= new Date(projects[i].date.date);
+
                         html +=  "<tr>" +
                             "<td></td>"+
                             "<td><a href=\"/project/"+ projects[i].id +"\">" + projects[i].title + "</td>"+
                             "<td>" + projects[i].customer + "</td>"+
-                            "<td>" + projects[i].date.date + "</td>"+
+                            "<td>"+ date.getDate() +"/"+date.getMonth()+"/"+date.getFullYear()+"</td>"+
                             "<td>" + projects[i].status + "</td>"+
-                            "<td>" + projects[i].category + "</td>"+
+                            "<td>" + projects[i].label + "</td>"+
                             "<td>" + projects[i].school + "</td>"+
                             "<td>" + projects[i].path + "</td>"+
                             "<td><a href=\"/project/"+ projects[i].id +"/edit\" class='btn btn-success'> <span" +

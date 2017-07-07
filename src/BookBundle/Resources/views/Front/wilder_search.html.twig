@@ -20,30 +20,73 @@
         <div class="search-area">
             <div class="search">
                 <div class="row">
-                    <div class="col-lg-4 col-lg-offset-4 blocksearch">
+                    <div class="col-lg-12 blocksearch">
                         {{ form_start(form) }}
                         {{ form_errors(form) }}
-                        {{ form_row(form.school) }}
-                        {{ form_row(form.language) }}
-                        {{ form_row(form.promotion) }}
-                        <button type="submit" class="btn btn-default btn-wcs">OK</button>
+                        <div class="row">
+                            <div class="col-lg-2 col-lg-offset-1">
+                                {{ form_row(form.school) }}
+                            </div>
+                            <div class="col-lg-2 col-lg-offset-1">
+                                {{ form_row(form.language) }}
+                            </div>
+                            <div class="col-lg-2 col-lg-offset-1">
+                                {{ form_row(form.promotion) }}
+                            </div>
+                            <div class="col-lg-2 col-lg-offset-1">
+                                <button type="submit" class="btn btn-default btn-wcs btn-searchWilder">OK</button>
+                            </div>
+                        </div>
+                        <div class="row wilderAutocompletion">
+                            <div class="col-lg-5 col-lg-offset-2">
+                                {{ form_label(form.Recherche,'Rechercher un Wilder par son nom ') }}
+                                {{ form_widget(form.Recherche) }}
+                                {{ form_errors(form.Recherche) }}
+                            </div>
+                        </div>
                         {{ form_end(form) }}
 
-                        {{ form_start(form) }}
-                        {{ form_row(form) }}
-                        {{ form_end(form) }}
-                    </div><!-- /.col-lg-6 -->
-                </div><!-- /.row -->
+                    </div>
+                </div>
             </div>
         </div>
 
 
-    <div class="list_wilder row" id="wild-list">
+        <!--Wilders list -->
+        <div class="list_wilders row" id="wild-list">
+            <div class="row">
+                {% for wilder  in wilders %}
+                    {% if wilder.userActivation == true and wilder.managerActivation == true %}
 
-    </div>
+                        <div class="col-xs-6 col-md-5 vignetteWilder">
+                            <div class="col-md-7 image-listWilders"
+                                 style="background-image: url('../uploads/{{ wilder.profilPicture }}')">
+                                <img src="" alt="" class="image" style="width:100%">
+                                <div class="middle">
+                                        <div class="hoverDispoWilder">{{ wilder.availability.label }}</div>
+                                    </div>
+                                <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
+                                    <img class="img-listWilders" src="{{ asset('uploads/'~ wilder.profilPicture ) }}"
+                                         alt="{{ wilder.firstname }} {{ wilder.lastname }}">
+                                </a>
+                            </div>
+                            <div class="col-md-5 titreVignetteWilder">
+                                <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
+                                    <h3>{{ wilder.lastname }}</h3></a>
+                                <h3>{{ wilder.firstname }}</h3>
+                                <h4>Ecole : {{ wilder.promotion.school.school }}</h4>
+                                <h5>Promotion : {{ wilder.promotion.promotion }}</h5>
 
-
-        {% if blocResult=='' %}
+                            </div>
+                            <div class="modjoWilder col-md-12">
+                                <h4>{{ wilder.modjo }}</h4>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <!-- Wilders list -->
 
         <div class="realisation-focus">
             <div class="sub-title-slider">
@@ -51,9 +94,7 @@
             </div>
 
             <div class="sub-title-text">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id erat in est ultrices tempus.
-                    Aenean dignissim aliquet dui, eget ullamcorper enim laoreet nec.
-                    Vestibulum fermentum mauris condimentum velit posuere, at fermentum libero malesuada</p>
+
             </div>
 
             <div class="slider">
@@ -62,17 +103,18 @@
                     <ol class="carousel-indicators">
                         <li data-target="#carousel" data-slide-to="0" class="active"></li>
                         <li data-target="#carousel" data-slide-to="1"></li>
-                        <li data-target="#carousel" data-slide-to="2"></li>
                     </ol>
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <img src="{{ asset('images/slider01.jpg') }}" height="760px" alt="slider01">
+                            <img src="{{ asset('images/Nicolas-développeur-web.png') }}" class="img_project_carousel"
+                                 alt="slider01">
                             <div class="carousel-caption">
                             </div>
                         </div>
                         <div class="item">
-                            <img src="{{ asset('images/slider02.jpg') }}" height="760px" alt="slider02">
+                            <img src="{{ asset('images/Jonathan-développeur-web.png') }}" class="img_project_carousel"
+                                 alt="slider02">
                             <div class="carousel-caption">
                             </div>
                         </div>
@@ -90,20 +132,6 @@
             </div>
         </div>
 
-        {% else %}
-
-            <div class="list_wilders">
-                {% for wilderSearch  in wildersSearch%}
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        <a href="{{ path('profile_wilder', { 'id': wilderSearch.id }) }}" class="thumbnail">
-                            <img src="{{ asset('uploads/'~ wilderSearch.profilPicture|basename ) }}" alt="">
-                        </a>
-                        <h4>{{ wilderSearch.firstname }} {{ wilderSearch.lastname }}</h4>
-                    </div>
-                {% endfor %}
-            </div>
-
-        {% endif %}
 
     </div>
 

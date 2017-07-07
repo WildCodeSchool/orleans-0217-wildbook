@@ -24,21 +24,6 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title', TextType::class)
-                ->add('principalPicture', null, [
-                    'required'=> false,
-                ])
-                ->add('firstPicture', null, [
-                    'required'=> false,
-                ])
-                ->add('secondPicture', null, [
-                    'required'=> false,
-                ])
-                ->add('thirdPicture', null, [
-                    'required'=> false,
-                ])
-                ->add('fourthPicture', null, [
-                    'required'=> false,
-                ])
                 ->add('customer')
                 ->add('date')
                 ->add('status')
@@ -48,8 +33,10 @@ class ProjectType extends AbstractType
                 ->add('tags', EntityType::class, [
                     'class'=>Tag::class,
                     'choice_label'=>'tag',
-                    'expanded'=>true,
-                    'multiple'=>true
+                    'expanded'=>false,
+                    'required'=>false,
+                    'multiple'=>true,
+                    'attr'=> ['class'=>'selectpicker multiple']
                 ])
                 ->add('category', EntityType::class, [
                     'class'=>Category::class,
@@ -58,14 +45,18 @@ class ProjectType extends AbstractType
                 ->add('technologies', EntityType::class, [
                     'class'=>Technology::class,
                     'choice_label'=>'technology',
-                    'expanded'=>true,
-                    'multiple'=>true
+                    'expanded'=>false,
+                    'required'=>false,
+                    'multiple'=>true,
+                    'attr'=> ['class'=>'selectpicker multiple']
                 ])
                 ->add('languages', EntityType::class, [
                     'class'=>Language::class,
                     'choice_label'=>'language',
-                    'expanded'=>true,
-                    'multiple'=>true
+                    'expanded'=>false,
+                    'required'=>false,
+                    'multiple'=>true,
+                    'attr'=> ['class'=>'selectpicker multiple']
                 ])
                 ->add('school', EntityType::class, [
                 'class'=>School::class,
