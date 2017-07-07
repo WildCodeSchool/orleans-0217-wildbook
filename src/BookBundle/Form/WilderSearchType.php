@@ -18,7 +18,7 @@ class WilderSearchType extends AbstractType
         $builder
             ->add('Recherche', SearchType::class, [
         'required' => false,
-        'attr' => ['placeholder' => 'wilder',
+        'attr' => ['placeholder' => 'Julien Martin',
             'autocomplete' => 'off'
         ]
     ])
