@@ -40,7 +40,8 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
     {
         $input = "%" . $input . "%";
         $qb = $this->createQueryBuilder('w')
-            ->select('w.firstname','w.lastname','w.profilPicture','w.id','w.userActivation','w.managerActivation')
+            ->select('w.firstname','w.lastname','w.profilPicture','w.id','w.userActivation',
+                'w.managerActivation','w.availability','w.modjo','w.promotion')
             ->where('w.lastname LIKE :lastname')
                 ->setParameter('lastname',$input)
             ->orWhere('w.firstname LIKE :firstname')
