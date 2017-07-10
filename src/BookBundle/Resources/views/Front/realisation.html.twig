@@ -4,17 +4,100 @@
 
     <div class="container-fluid">
 
-        <h1>Project</h1>
+        <div class="container">
+
+        <div class="projectTitleDetail">
+        <h1>{{ project.title }}</h1>
+        </div>
+        <hr>
 
         <div class="jumbotron">
-            <div class="container">
+                <div class="imgPrincipaleProject">
                 {% for picture in project.pictures %}
                     {% if picture.isPrincipal == true %}
-                        <img src="{{ asset('uploads/'~ picture.path|basename ) }}"/>
+                        <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imagePrincipaleProject"/>
                     {% endif %}
                 {% endfor %}
-            </div>
+                </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                {{ project.customer }}
+                {{ project.category.label }}
+                {{ project.status }}
+
+            </div>
+            <div class="col-md-6">
+                {{ project.school.school }}
+            </div>
+
+        </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="langages">
+                    <h4>Langages</h4>
+                    <ul>{% for languages in project.languages %}
+                           <li>{{ languages.language }}</li>
+                        {% endfor %}
+                    </ul>
+                    </div>
+                    <div class="technologies">
+                        <h4>Technologies</h4>
+                        <ul>{% for technologies in project.technologies %}
+                                <li>{{ technologies.technology }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="wilders">
+                        <h4>Wilders</h4>
+                        <ul>{% for projectWilder in project.projectWilders %}
+                        <li><a href="{{ path('profile_wilder', { 'id': projectWilder.id }) }}" >
+                                {{ projectWilder.wilder.firstname }} {{ projectWilder.wilder.lastname }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="ecole">
+                        <h4>Ecole : {{ project.school.school }}</h4>
+                    </div>
+                    <div class="tags">
+                        <h4>Tags</h4>
+                        <ul>{% for tags in project.tags %}
+                                <li>{{ tags.tag }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="col-md-8">
+                    <div class="urlProject">
+                        {{ project.path }}
+                    </div>
+                    <hr>
+                    <div class="shortDescription">
+                        {{ project.summary }}
+                    </div>
+                    <div class="description">
+                        {{ project.description }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+            <hr>
+            </div>
+
+            <div class="row">
+                {% for picture in project.pictures %}
+                    <div class="col-xs-12 col-lg-6">
+                        <a href="#" class="thumbnail">
+                            <img src="{{ asset('uploads/'~ picture.path|basename ) }}"/>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
 
         <table class="table table-condensed">
             <tbody>
@@ -76,14 +159,14 @@
         </table>
 
         {% for picture in project.pictures %}
-            {% if picture.isPrincipal == false %}
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                     <a href="#" class="thumbnail">
                         <img src="{{ asset('uploads/'~ picture.path|basename ) }}"/>
                     </a>
                 </div>
-            {% endif %}
         {% endfor %}
+
+        </div>
 
     </div>
 

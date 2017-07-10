@@ -499,6 +499,21 @@ p.projectTitleCarousel {
     color : #0f0f0f;
 }
 
+/**Page Projet**/
+
+.imgPrincipaleProject {
+    height:500px;
+}
+
+.imagePrincipaleProject {
+    /*width:100%;*/
+    height:500px;
+}
+
+.projectTitleDetail {
+    height: 150px;
+}
+
 
 
 
