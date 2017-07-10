@@ -66,7 +66,7 @@
 
 .carousel-inner > .item > img {
     width:1140px;
-    height:640px;
+    height:460px;
 }
 
 .img_project_carousel {
@@ -106,6 +106,89 @@
     height: 200px;
 }
 
+/** PAGE ACCUEIL **/
+
+.homeHeadera {
+    z-index: -999;
+    position: relative;
+    height: 500px;
+    background-color: rgba(128, 203, 196, 0.5);
+    overflow: hidden; /* les dépassements de l'image contenue seront masqués */
+}
+
+.homeHeaderaPic {
+    position: absolute;
+    width: 100vw;
+    margin-top: -25%;
+}
+
+.homeNavigation {
+    text-align: center;
+}
+
+.homeNavigationButton {
+    margin: 90px 15px 0 15px;
+    display: inline-block; /* permet la juxtaposition verticale de deux blocks */
+    height: 60px;
+    width: 165px;
+    background-color: #fba858;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 16px;
+    color: #f1f1f1;
+}
+
+.homeTextTitle {
+    font-size: 25pt;
+    text-align: center;
+}
+
+.homeTextParagraph {
+    font-size: 16pt;
+    font-weight: 400;
+    line-height: 24pt;
+    text-align: center;
+    padding-top: 45px;
+}
+
+.homeIllustration {
+    padding: 0;
+    margin-top: 90px;
+    height: 400px; /* hauteur maximale de l'image d'entête */
+    overflow: hidden; /* les dépassements de l'image contenue seront masqués */
+    background-color: rgba(128, 203, 196, 0.5);
+}
+
+.homeIllustrationPic {
+    width: 100vw; /* la largeur de l'image prend 100% de la de la largeur de la fenêtre */
+    margin-top: -25%;
+}
+
+.homeHeaderTitle {
+    position: absolute;
+    font-size: 40px;
+    color: #fbfbfb;
+}
+
+.homeLine {
+    margin-top: 90px;
+    border-width: 1px;
+    border-color: #35383a;
+}
+
+.homeGeolocation {
+    margin-top: 90px;
+    background-color: #fba858;
+    height: 500px;
+    text-align: center;
+}
+
+.homeWilder {
+    width:400px;
+}
+
 .goback{
     margin-top: 23%;
     margin-left: 41%;
@@ -116,3 +199,231 @@
     float: left;
     z-index: 1000;
 }
+
+/* ------------------------------ PARTIE PROPRE & VÉRIFIÉE------------------------------ */
+
+/* ---------- Common ---------- */
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #fbfbfb;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #f9a02e;
+}
+
+.container-fluid {
+    padding: 0;
+    margin: 0;
+}
+
+.row {
+    padding: 0;
+    margin: 0;
+}
+
+.shadow {
+    box-shadow: 2.5px 4.33px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- Home ---------- */
+
+.homeIllustration {
+    margin-top: 90px;
+    height: 400px; /* hauteur maximale de l'image d'entête */
+    overflow: hidden; /* les dépassements de l'image contenue seront masqués */
+    background-color: rgba(128, 203, 196, 0.5);
+}
+
+.homePicture {
+    width: 100%;
+    height: auto;
+}
+
+.homeText {
+    margin-top: 0 70px 0 0;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+    z-index: 100;
+    background-color: #35383a;
+    color: #f1f1f1;
+    text-align: center;
+    font-size: xx-small;
+}
+
+.footerLogo {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-top: -40px;
+}
+
+.footerH4 {
+    font-size: medium;
+    color: #fbfbfb;
+    text-align: center;
+    margin-bottom: 45px;
+    margin-top: 45px;
+}
+
+.footerSocial {
+    display: flex;
+    justify-content: center;
+}
+
+.footerSocialIcon i {
+    width: 50px;
+    height: 50px;
+    color: #FFF;
+    background-color: #35383a;
+    font-size: 20px;
+    text-align: center;
+    margin-right: 10px;
+    padding-top: 15px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -webkit-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+}
+
+.footerSocialIcon i:hover {
+    color: #FFF;
+    text-decoration: none;
+    transition: all ease 0.3s;
+    -moz-transition: all ease 0.3s;
+    -webkit-transition: all ease 0.3s;
+    -o-transition: all ease 0.3s;
+    -ms-transition: all ease 0.3s;
+}
+
+.footerSocialIcon .fa-facebook:hover {
+    background: #4060A5;
+}
+
+.footerSocialIcon .fa-twitter:hover {
+    background: #00ABE3;
+}
+
+.footerSocialIcon .fa-linkedin:hover {
+    background: #0094BC;
+}
+
+.footerSocialIcon .fa-youtube:hover {
+    background: #FF1F25;
+}
+
+.footerSocialIcon .fa-github:hover {
+    background: #343434;
+}
+
+.footerSocialIcon .fa-instagram:hover {
+    background: radial-gradient(circle farthest-corner at 35% 100%,
+    #fec564, transparent 50%), radial-gradient(circle farthest-corner at 10% 140%, #feda7e, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%),
+    radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent),
+    linear-gradient(#6559ca, #bc318f 30%, #e42e66 50%, #fa5332 70%, #ffdc80 100%);
+}
+
+.footerCopyrights {
+    margin: 45px 0;
+}
+
+/** PAGE RECHERCHE WILDERS **/
+
+.wilderAutocompletion {
+    margin-top: 40px;
+}
+
+.btn-searchWilder {
+    margin-top: 15px;
+}
+
+.carousel-inner > .item > img {
+    width:1140px;
+    height:460px;
+}
+
+.image-listWilders {
+    background-size: cover;
+    max-width: 100%;
+    height: 250px;
+}
+
+.img-listWilders {
+    display:none;
+}
+
+.vignetteWilder {
+    height: 325px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    margin-top:35px;
+    margin-left:45px;
+    margin-right:45px;
+}
+
+.titreVignetteWilder {
+    margin-top:15px;
+}
+
+.titreVignetteWilder h4 {
+    margin-top:20px;
+}
+
+.titreVignetteWilder h5 {
+    margin-top:15px;
+}
+
+.modjoWilder {
+    margin-top:15px;
+}
+
+.modjoWilder h4 {
+    font-style: italic;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%)
+}
+
+/*.img-listWilders:hover .vignetteWilder {*/
+    /*opacity: 0.3;*/
+/*}*/
+
+.image-listWilders:hover .middle {
+    opacity: 1;
+}
+
+.hoverDispoWilder {
+    background-color: #f9a02e;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+}
+
+
+
+

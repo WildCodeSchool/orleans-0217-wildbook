@@ -16,11 +16,23 @@ $(document).ready(function () {
                     for (i = 0; i < wilders.length; i++) {
                         if ((wilders[i].userActivation == true) && (wilders[i].managerActivation == true)) {
 
-                            html += "<div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4 imageShearchWilder\"> <a" +
-                                " href=\"/profile_wilder/" + wilders[i].id +
-                                "\" class=\"thumbnail\">" +
-                                "<img src=\"../uploads/" + wilders[i].profilPicture + "\" alt=\"\">" +
-                                "<h4>" + wilders[i].lastname + " " + wilders[i].firstname + "</h4></a></div>";
+                            // html += "<div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4 imageShearchWilder\"> <a" +
+                            //     " href=\"/profile_wilder/" + wilders[i].id +
+                            //     "\" class=\"thumbnail\">" +
+                            //     "<img src=\"../uploads/" + wilders[i].profilPicture + "\" alt=\"\">" +
+                            //     "<h4>" + wilders[i].lastname + " " + wilders[i].firstname + "</h4></a></div>";
+
+                            html += '<div class="col-xs-6 col-md-5 vignetteWilder">' +
+                                '<div class="col-md-7 image-listWilders" style="background-image: url(\'../uploads/' + wilders[i].profilPicture +'\')">' +
+                                '<img src="" alt="" class="image" style="width:100%"><div class="middle">' +
+                                '<div class="hoverDispoWilder">' + wilders[i].lastname + '</div></div>' +
+                                '<a href="/profile_wilder/' + wilders[i].id + '">' +
+                                '<img class="img-listWilders" src="../uploads/' + wilders[i].profilPicture + ' " alt="{{ wilder.firstname }} {{ wilder.lastname }}"></a>' +
+                                '</div><div class="col-md-5 titreVignetteWilder"><a href="/profile_wilder/' + wilders[i].id + '"><h3>' + wilders[i].lastname + '</h3></a>' +
+                                    '<h3>' + wilders[i].firstname + '</h3><h4>Ecole : </h4><h5>Promotion : </h5></div><div class="modjoWilder col-md-12">' +
+                                    '<h4>modjo</h4></div></div>';
+
+
                         }
                     }
                     $('#wild-list').html(html);

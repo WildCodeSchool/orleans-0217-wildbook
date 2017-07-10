@@ -1,236 +1,239 @@
 {% extends 'base.html.twig' %}
 
-    {% block stylesheets %}
-        {{ parent() }}
-        <link rel="stylesheet" href="{{ asset('css/sidebar-admin.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/styleAdmin.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
-    {% endblock %}
+{% block stylesheets %}
 
-    {% block body %}
-<div class="wrap">
-    <nav class="nav-bar navbar-inverse" role="navigation">
-        <div id="top-menu" class="container-fluid active">
-            <a href="https://wildcodeschool.fr/" target="_blank">
-                <img class="navbar-brand" src="{{ asset('images/LOGO_COLO.svg') }}" alt="aller à wildcodechool.fr">
-            </a>
-            <div class="navbar-right conex">
+    {{ parent() }}
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/sb-admin.css') }}">
+
+{% endblock stylesheets %}
+
+{% block body %}
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+            <!-- Responsive -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Wild Code School</a>
+            </div>
+
+            <!-- Session -->
+            <div class="session">
+
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} ·
                     <a href="{{ path('fos_user_security_logout') }}">
                         {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                     </a>
                 {% else %}
                     <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
                 {% endif %}
+
+            </div>
+
+            <!-- Sidebar menu items -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+
+                    <!-- Super Admin interface -->
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+
+                        <!-- Paramètres -->
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#monProfil"> Paramètres
+                                <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="monProfil" class="collapse">
+                                <li><a href="{{ path('fos_user_profile_edit') }}"> Modifier mon identifiant </a></li>
+                                <li><a href="{{ path('fos_user_change_password') }}"> Modifier mon mot de passe </a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Créer un utilisateur -->
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#creerUnUtilisateur"> Créer un
+                                utilisateur
+                                <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="creerUnUtilisateur" class="collapse">
+                                <li><a href="{{ path('user_new') }}"> Wilder </a></li>
+                                <li><a href="{{ path('user_admin_new') }}"> Campus Manager </a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Écoles -->
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#ecole"> Écoles
+                                <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="ecole" class="collapse">
+                                <li><a href="{{ path('school_index') }}"> Liste </a></li>
+                                <li><a href="{{ path('campusmanager_index') }}"> Campus Managers </a></li>
+                                <li><a href="{{ path('promotion_index') }}"> Promotions </a></li>
+                                <li><a href="{{ path('language_index') }}"> Langages </a></li>
+                                <li><a href="{{ path('technology_index') }}"> Technologies </a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Wilders -->
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#wilder"> Wilders
+                                <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="wilder" class="collapse">
+                                <li><a href="{{ path('wilder_index') }}"> Profils </a></li>
+                                <li><a href="{{ path('availability_index') }}"> Disponibilités </a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Réalisations -->
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#realisations"> Réalisations
+                                <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="realisations" class="collapse">
+                                <li><a href="{{ path('project_index') }}"> Projets </a></li>
+                                <li><a href="{{ path('tag_index') }}"> Tags </a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Mises en avant -->
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#misesEnAvant"> Mises en avant
+                                <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="misesEnAvant" class="collapse">
+                                <li><a href="{{ path('wilder_accueil') }}"> Sélection Wilder </a></li>
+                                <li><a href="{{ path('project_accueil') }}"> Sélection projets </a></li>
+                                <li><a href="{{ path('project_reset') }}"> Annulation projets </a></li>
+                            </ul>
+                        </li>
+
+                    <!-- Admin interface -->
+                    {% elseif is_granted('ROLE_ADMIN') %}
+
+                        <!-- Paramètres -->
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#monProfil"> Paramètres
+                                <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="monProfil" class="collapse">
+                                <li><a href="{{ path('fos_user_profile_edit') }}"> Modifier mon identifiant </a></li>
+                                <li><a href="{{ path('fos_user_change_password') }}"> Modifier mon mot de passe </a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Créer un utilisateur -->
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#creerUnUtilisateur"> Créer un
+                                utilisateur
+                                <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="creerUnUtilisateur" class="collapse">
+                                <li><a href="{{ path('user_new') }}"> Wilder </a></li>
+                                <li><a href="{{ path('user_admin_new') }}"> Campus Manager </a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Écoles -->
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#ecole"> Écoles
+                                <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="ecole" class="collapse">
+                                <li><a href="{{ path('school_index') }}"> Liste </a></li>
+                                <li><a href="{{ path('one_campus_index') }}"> Campus Manager </a></li>
+                                <li><a href="{{ path('promotion_index') }}"> Promotions </a></li>
+                                <li><a href="{{ path('language_index') }}"> Langages </a></li>
+                                <li><a href="{{ path('technology_index') }}"> Technologies </a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Wilders -->
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#wilder"> Wilders
+                                <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="wilder" class="collapse">
+                                <li><a href="{{ path('wilder_index') }}"> Profils </a></li>
+                                <li><a href="{{ path('availability_index') }}"> Disponibilités </a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Réalisations -->
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#realisations"> Réalisations
+                                <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="realisations" class="collapse">
+                                <li><a href="{{ path('project_index') }}"> Projets </a></li>
+                                <li><a href="{{ path('tag_index') }}"> Tags </a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Mises en avant -->
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#misesEnAvant"> Mises en avant
+                                <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="misesEnAvant" class="collapse">
+                                <li><a href="{{ path('wilder_accueil') }}"> Sélection Wilder </a></li>
+                                <li><a href="{{ path('project_accueil') }}"> Sélection projets </a></li>
+                                <li><a href="{{ path('project_reset') }}"> Annulation projets </a></li>
+                            </ul>
+                        </li>
+
+                    <!-- User interface -->
+                    {% elseif is_granted('ROLE_USER') %}
+
+                        <!-- Paramètres -->
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#monProfil"> Paramètres
+                                <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="monProfil" class="collapse">
+                                <li><a href="{{ path('fos_user_profile_edit') }}"> Modifier mon identifiant </a></li>
+                                <li><a href="{{ path('fos_user_change_password') }}"> Modifier mon mot de passe </a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Mon profil -->
+                        <li><a href="{{ path('one_wilder_index') }}"> Mon profil </a></li>
+
+                        <!-- Mes réalisations -->
+                        <li><a href="{{ path('project_one_wilder_index') }}"> Mes réalisations </a></li>
+
+                    {% endif %}
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+        <div id="page-wrapper">
+
+            <!-- Content -->
+            <div class="container-fluid contentInner">
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-10">
+
+                        {% for label, messages in app.flashes %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ label }} alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
 
-    {% if is_granted('ROLE_SUPER_ADMIN') %}
-    <aside id="side-menu" class="aside" role="navigation">
-        <ul class="nav nav-list accordion">
-
-            <li class="nav-header">
-                <div class="link">Mon Profil<i class="fa fa-chevron-down"></i></div>
-                <ul class="submenu">
-                    <li><a href="{{ path('fos_user_change_password') }}">Changer mon mot de passe</a></li>
-                    <li><a href="{{ path('fos_user_profile_edit') }}">Edition du profil</a></li>
-                </ul>
-            </li>
-
-            <li class="nav-header">
-                <div class="link">Profil Utilisateur<i class="fa fa-chevron-down"></i></div>
-                <ul class="submenu">
-                    <li><a href="{{ path('user_new') }}">Création d'un wilder</a></li>
-                    <li><a href="{{ path('user_admin_new') }}">Création d'un campus manager</a></li>
-                </ul>
-            </li>
-
-            <li class="nav-header">
-                <div class="link">Écoles<i class="fa fa-chevron-down"></i></div>
-                <ul class="submenu">
-                    <li><a href="{{ path('school_index') }}">Liste</a></li>
-                    <li><a href="{{ path('campusmanager_index') }}">Campus Managers</a></li>
-                    <li><a href="{{ path('promotion_index') }}">Promotions</a></li>
-                    <li><a href="{{ path('language_index') }}">Langages</a></li>
-                    <li><a href="{{ path('technology_index') }}">Technologies</a></li>
-                </ul>
-            </li>
-
-            <li class="nav-header">
-                <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
-                <ul class="submenu">
-                    <li><a href="{{ path('wilder_index') }}">Profils</a></li>
-                    <li><a href="{{ path('availability_index') }}">Disponibilités</a></li>
-                </ul>
-            </li>
-
-            <li class="nav-header">
-                <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
-                <ul class="submenu">
-                    <li><a href="{{ path('project_index') }}">Projets</a></li>
-                    <li><a href="{{ path('projectwilder_index') }}">Association Projet-Wilders</a></li>
-                    <li><a href="{{ path('tag_index') }}">Tags</a></li>
-                </ul>
-            </li>
-
-
-            <li class="nav-header">
-                <div class="link">Mise en avant<i class="fa fa-chevron-down"></i></div>
-                <ul class="submenu">
-                    <li><a href="{{ path('wilder_accueil') }}">Wilder - HomePage</a></li>
-                    <li><a href="{{ path('project_accueil') }}">Projets - Mettre en avant </a></li>
-                    <li><a href="{{ path('project_reset') }}">Projets - Supprimer les sélections </a></li>
-                </ul>
-            </li>
-        </ul>
-    </aside>
-
-
-    {% elseif is_granted('ROLE_ADMIN') %}
-        <aside id="side-menu" class="aside" role="navigation">
-            <ul class="nav nav-list accordion">
-
-                <li class="nav-header">
-                    <div class="link">Mon Profil<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <li><a href="{{ path('fos_user_change_password') }}">Changer mon mot de passe</a></li>
-                        <li><a href="{{ path('fos_user_profile_edit') }}">Edition du profil</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-header">
-                    <div class="link">Profil Utilisateur<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <li><a href="{{ path('user_new') }}">Création d'un wilder</a></li>
-                        <li><a href="{{ path('user_admin_new') }}">Création d'un campus manager</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-header">
-                    <div class="link">Écoles<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <li><a href="{{ path('school_index') }}">Liste</a></li>
-                        <li><a href="{{ path('one_campus_index') }}">Campus Manager</a></li>
-                        <li><a href="{{ path('promotion_index') }}">Promotions</a></li>
-                        <li><a href="{{ path('language_index') }}">Langages</a></li>
-                        <li><a href="{{ path('technology_index') }}">Technologies</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-header">
-                    <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <li><a href="{{ path('wilder_index') }}">Profils</a></li>
-                        <li><a href="{{ path('availability_index') }}">Disponibilités</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-header">
-                    <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <li><a href="{{ path('project_index') }}">Projets</a></li>
-                        {#<li><a href="{{ path('projectwilder_index') }}">Association Projet-Wilders</a></li>#}
-                        <li><a href="{{ path('tag_index') }}">Tags</a></li>
-                    </ul>
-                </li>
-
-
-                <li class="nav-header">
-                    <div class="link">Mise en avant<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <li><a href="{{ path('wilder_accueil') }}">Wilder - HomePage</a></li>
-                        <li><a href="{{ path('project_accueil') }}">Projets - Mettre en avant </a></li>
-                        <li><a href="{{ path('project_reset') }}">Projets - Supprimer les sélections </a></li>
-                    </ul>
-                </li>
-            </ul>
-        </aside>
-
-
-
-
-    {% elseif is_granted('ROLE_USER') %}
-        <aside id="side-menu" class="aside" role="navigation">
-            <ul class="nav nav-list accordion">
-
-                <li class="nav-header">
-                    <div class="link">Mon Profil<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <li><a href="{{ path('fos_user_change_password') }}">Changer mon mot de passe</a></li>
-                        <li><a href="{{ path('fos_user_profile_edit') }}">Edition du profil</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-header">
-                    <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <li><a href="{{ path('one_wilder_index') }}">Profil</a></li>
-                    </ul>
-                </li>
-
-                <li class="nav-header">
-                    <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
-                    <ul class="submenu">
-                        <li><a href="{{ path('project_one_wilder_index') }}">Projets</a></li>
-
-                    </ul>
-                </li>
-            </ul>
-        </aside>
-
-    {% else %}
-
-        <aside id="side-menu" class="aside" role="navigation">
-            <ul class="nav nav-list accordion">
-                <li class="nav-header">
-                    <div class="link">Mon profil<i class="fa fa-chevron-down"></i></div>
-                </li>
-                <li class="nav-header">
-                    <div class="link">Wilders<i class="fa fa-chevron-down"></i></div>
-                </li>
-                <li class="nav-header">
-                    <div class="link">Projets<i class="fa fa-chevron-down"></i></div>
-                </li>
-            </ul>
-        </aside>
-
-    {% endif %}
-
-    <!--Body content-->
-    <div class="content">
-        <div class="top-bar">
-            <a href="#menu" class="side-menu-link burger">
-                <span class='burger_inside' id='bgrOne'></span>
-                <span class='burger_inside' id='bgrTwo'></span>
-                <span class='burger_inside' id='bgrThree'></span>
-            </a>
-        </div>
-        <section class="content-inner row">
-            <div class="col-md-offset-1 col-md-10 crud">
-                {% for label, messages in app.flashes %}
-                    {% for message in messages %}
-                        <div class="alert alert-{{ label }} alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endfor %}
-
-                {% block content %}
-                {% endblock %}
-            </div>
-        </section>
     </div>
-</div>
-{% endblock %}
 
-{% block javascripts %}
-    <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
-    <script src="{{ asset('js/sidebar-admin.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
-{% endblock %}
+{% endblock body %}
 
+{% block footer %}
+{% endblock footer %}
