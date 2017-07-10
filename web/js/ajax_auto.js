@@ -50,11 +50,6 @@ $(document).ready(function () {
                     var projects = JSON.parse(response.data);
                     html = "";
                     for (i = 0; i < projects.length; i++) {
-                        //
-                        // html += "<div class=\"col-xs-4 col-sm-4 col-md-4 col-lg-4 imageShearchProject\">" +
-                        //     "<a href=\"/detail_project/" + projects[i].id + "\" class=\"thumbnail\">" +
-                        //     "<img src=\"../images/LOGO_COLO.png\" alt=\"\">" +
-                        //     "<h4>" + projects[i].title + "</h4></a></div>";
 
                         html += '<div class="col-xs-6 col-md-5 vignetteProject">' +
                             '<div class="col-md-12 image-listProjects" style="background-image: url(\'../uploads/' + projects[i].path + '\')">' +
