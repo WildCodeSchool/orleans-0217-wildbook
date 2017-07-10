@@ -290,7 +290,7 @@ a:hover {
     .fullWidthPictureContainer {
         z-index: -100;
         position: relative;
-        width: 100vw;
+        /*width: 100vw;*/
         height: 50vh;
         overflow: hidden;
         background-color: rgb(128, 203, 196);
@@ -353,6 +353,27 @@ footer {
     -webkit-transition: all ease 0.3s;
     -o-transition: all ease 0.3s;
     -ms-transition: all ease 0.3s;
+}
+
+@media (max-width: 767px) {
+    .footerSocialIcon i {
+        width: 40px;
+        height: 40px;
+        color: #FFF;
+        background-color: #35383a;
+        font-size: 20px;
+        text-align: center;
+        margin-right: 10px;
+        padding-top: 15px;
+        border-radius: 50%;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -o-border-radius: 50%;
+        transition: all ease 0.3s;
+        -moz-transition: all ease 0.3s;
+        -webkit-transition: all ease 0.3s;
+        -o-transition: all ease 0.3s;
+        -ms-transition: all ease 0.3s;
 }
 
 .footerSocialIcon i:hover {
