@@ -135,8 +135,10 @@ class ProjectController extends Controller
 
 
         if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
+
             if ($editForm->isSubmitted() && $editForm->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('warning', 'Projet '. $project->gettitle().' modifié');
                 return $this->redirectToRoute('project_index');
             }
             return $this->render('project/edit.html.twig', array(
@@ -149,7 +151,6 @@ class ProjectController extends Controller
         } else {
             $userId = $this->getUser()->getId();
             $projectId = $project->getId();
-
             $em = $this->getDoctrine()->getManager();
             $projects = $em->getRepository('BookBundle:Project')->projectsByWilder($userId);
             $projectsUserId = [];
@@ -158,6 +159,7 @@ class ProjectController extends Controller
             }
             if (in_array($projectId, $projectsUserId)) {
                 if ($editForm->isSubmitted() && $editForm->isValid()) {
+
                     $this->getDoctrine()->getManager()->flush();
                     $this->addFlash('warning', 'Projet '. $project->gettitle().' modifié');
                     return $this->redirectToRoute('project_one_wilder_index');
