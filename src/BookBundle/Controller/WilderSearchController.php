@@ -12,6 +12,7 @@ use BookBundle\Entity\Promotion;
 use BookBundle\Entity\School;
 use BookBundle\Entity\Wilder;
 use BookBundle\Form\WilderSearchType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -44,9 +45,11 @@ class WilderSearchController extends Controller
             $data = $form->getData();
             $languages = $data['language'];
             $schools = $data['school'];
-            $promotions = $data['promotion'];
-
-            $wildersSearch = $em->getRepository(wilder::class)->searchBy($schools, $languages, $promotions);
+            $promotions = new ArrayCollection();
+            if (key_exists('promotion', $data)) {
+                $promotions = $data['promotion'];
+            }
+            $wildersSearch = $em->getRepository(Wilder::class)->searchBy($schools, $languages, $promotions);
         }
 
         return $this->render('BookBundle:Front:wilder_search.html.twig', array(
