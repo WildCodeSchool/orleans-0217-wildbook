@@ -69,11 +69,11 @@
                     <div class="col-xs-6 col-md-5 vignetteProject">
                         <div class="col-md-12 image-listProjects"
                                 {% for picture in projectSearch.pictures %}
-                            {% if picture.isPrincipal == true %}
-                                style="background-image: url('../uploads/{{ picture.path|basename }}')"
-                            {% else %}
-                                style="background-image: url('/images/LOGO_COLO.png')"
-                            {% endif %}
+                                    {% if picture.isPrincipal == true %}
+                                        style="background-image: url('../uploads/{{ picture.path|basename }}')"
+                                    {% else %}
+                                        style="background-image: url('/images/LOGO_COLO.png')"
+                                    {% endif %}
                                 {% endfor %}>
                             <img src="" alt="" class="image" style="width:100%">
                             <div class="middle">
@@ -87,15 +87,16 @@
                                 </div>
                             </div>
                             <a href="{{ path('detail_project', { 'id': projectSearch.id }) }}">
-                                <img class="img-listProjects" {% for picture in projectSearch.pictures %}
-                                    {% if picture.isPrincipal == true %}
-                                        src="{{ asset('uploads/'~ picture.path|basename ) }}"
-                                        alt="{{ projectSearch.title }}"
-                                    {% else %}
-                                        src="{{ asset('images/LOGO_COLO.png') }}"
-                                        alt="{{ projectSearch.title }}"
-                                    {% endif %}
-                                        {% endfor %}>
+                                <img class="img-listProjects"
+                                    {% for picture in projectSearch.pictures %}
+                                        {% if picture.isPrincipal == true %}
+                                            src="{{ asset('uploads/'~ picture.path|basename ) }}"
+                                             alt="{{ projectSearch.title }}"
+                                        {% else %}
+                                            src="{{ asset('images/LOGO_COLO.png') }}"
+                                            alt="{{ projectSearch.title }}"
+                                        {% endif %}
+                                    {% endfor %}>
                             </a>
                         </div>
                         <div class="col-md-12 titreVignetteProject">

@@ -204,6 +204,7 @@
 body {
     font-family: 'Source Sans Pro', sans-serif;
     background-color: #fbfbfb;
+    padding-top:100px;
 }
 
 a {
@@ -499,25 +500,31 @@ p.projectTitleCarousel {
     color : #0f0f0f;
 }
 
-/**Page Projet**/
+/** PAGE REALISATION **/
 
 .jumbotron {
-    margin-top:90px;
-    margin-bottom: 90px;
+    margin-top:50px;
+    margin-bottom: 50px;
+}
+
+.projectTitleDetail {
+    text-align: center;
 }
 
 .imgPrincipaleProject {
     height:500px;
+    width:150%;
 }
 
 .imagePrincipaleProject {
-    /*width:100%;*/
+    margin-left: 50px;
+    margin-right: 50px;
     height:500px;
 }
 
 .subtitleProject {
-    margin-top:90px;
-    margin-bottom:90px;
+    margin-top:50px;
+    margin-bottom:50px;
 }
 
 .subtitleProjectCustomer {
@@ -534,15 +541,21 @@ p.projectTitleCarousel {
 }
 
 .projectContent {
-    margin-top:90px;
-    margin-bottom:90px;
+    margin-top:10px;
+    margin-bottom:35px;
 }
 
 .projectContentLeft {
     text-align: end;
 }
 
-.projectType .projectStatut {
+.projectType p {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+
+.projectStatut p {
     font-size: 20px;
     line-height: 30px;
 }
@@ -554,11 +567,20 @@ p.projectTitleCarousel {
 
 .langages h4 {
     font-weight: bold;
-}
-
-.langages p {
     font-size: 20px;
     line-height: 30px;
+}
+
+.langages ul {
+    margin-top:5px;
+    margin-bottom: 5px;
+}
+
+.langages li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    list-style: none;
 }
 
 .technologies {
@@ -568,11 +590,20 @@ p.projectTitleCarousel {
 
 .technologies h4 {
     font-weight: bold;
-}
-
-.technologies p {
     font-size: 20px;
     line-height: 30px;
+}
+
+.technologies ul {
+    margin-top:5px;
+    margin-bottom: 5px;
+}
+
+.technologies li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    list-style: none;
 }
 
 .lienWilders {
@@ -590,6 +621,20 @@ p.projectTitleCarousel {
 
 .wilders h4 {
     font-weight: bold;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.wilders ul {
+    margin-top:5px;
+    margin-bottom: 5px;
+}
+
+.wilders li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    list-style: none;
 }
 
 .ecole {
@@ -599,6 +644,8 @@ p.projectTitleCarousel {
 
 .ecole h4 {
     font-weight: bold;
+    font-size: 20px;
+    line-height: 30px;
 }
 
 .tags {
@@ -608,13 +655,20 @@ p.projectTitleCarousel {
 
 .tags li {
     color: #7B7B7B;
+    font-size: 20px;
+    list-style: none;
+
 }
 
-.urlProject {
+.urlProject p {
     font-size: 20px;
     font-weight: bold;
     line-height: 30px;
     margin-bottom: 30px;
+}
+
+.urlProject a {
+    color:#000000;
 }
 
 .shortDescription {
@@ -623,21 +677,25 @@ p.projectTitleCarousel {
 }
 
 .shortDescription p {
+    font-size: 20px;
+    line-height: 30px;
     font-style: italic;
-    color: #7B7B7B;
+    color: #000000;
 }
 
 .description {
-    margin-bottom: 30px ;
+    margin-bottom: 0px ;
     margin-top:30px;
 }
 
 .description p {
-    color: #7B7B7B;
+    font-size: 20px;
+    line-height: 30px;
+    color: #000000;
 }
 
 .imgProject {
-    margin-top:90px;
+    margin-top:40px;
     margin-bottom: 90px;
 }
 
