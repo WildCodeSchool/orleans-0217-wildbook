@@ -4,6 +4,7 @@ namespace BookBundle\Controller;
 
 use BookBundle\Entity\Picture;
 use BookBundle\Entity\Project;
+use BookBundle\Entity\ProjectWilder;
 use BookBundle\Form\PictureType;
 use BookBundle\Form\ProjectSearchType;
 use BookBundle\Repository\ProjectRepository;
@@ -64,12 +65,15 @@ class ProjectController extends Controller
      */
     public function newAction(Request $request, FileUploader $fileUploader)
     {
+
         $project = new Project();
+        $projectWilder = new ProjectWilder();
         $form = $this->createForm('BookBundle\Form\ProjectType', $project);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $projectWilder->setProject($project);
             $em->persist($project);
             $em->flush();
             $this->addFlash('success', 'Nouveau projet '. $project->getTitle().' enregistré');
@@ -131,8 +135,10 @@ class ProjectController extends Controller
 
 
         if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
+
             if ($editForm->isSubmitted() && $editForm->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('warning', 'Projet '. $project->gettitle().' modifié');
                 return $this->redirectToRoute('project_index');
             }
             return $this->render('project/edit.html.twig', array(
@@ -145,7 +151,6 @@ class ProjectController extends Controller
         } else {
             $userId = $this->getUser()->getId();
             $projectId = $project->getId();
-
             $em = $this->getDoctrine()->getManager();
             $projects = $em->getRepository('BookBundle:Project')->projectsByWilder($userId);
             $projectsUserId = [];
@@ -154,6 +159,7 @@ class ProjectController extends Controller
             }
             if (in_array($projectId, $projectsUserId)) {
                 if ($editForm->isSubmitted() && $editForm->isValid()) {
+
                     $this->getDoctrine()->getManager()->flush();
                     $this->addFlash('warning', 'Projet '. $project->gettitle().' modifié');
                     return $this->redirectToRoute('project_one_wilder_index');
