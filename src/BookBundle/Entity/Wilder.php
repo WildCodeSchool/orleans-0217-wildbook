@@ -27,7 +27,7 @@ class Wilder
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthDate", type="date", nullable=true)
+     * @ORM\Column(name="birthDate", type="date")
      */
     private $birthDate;
 
@@ -48,14 +48,14 @@ class Wilder
     /**
      * @var int
      *
-     * @ORM\Column(name="postalCode", type="integer", nullable=true)
+     * @ORM\Column(name="postalCode", type="integer")
      */
     private $postalCode;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=60, nullable=true)
+     * @ORM\Column(name="city", type="string", length=60)
      */
     private $city;
 
@@ -76,7 +76,7 @@ class Wilder
     /**
      * @var string
      *
-     * @ORM\Column(name="modjo", type="string", length=100, nullable=true)
+     * @ORM\Column(name="modjo", type="string", length=100)
      */
     private $modjo;
 
@@ -97,7 +97,7 @@ class Wilder
     /**
      * @var string
      *
-     * @ORM\Column(name="profilPicture", type="string", length=255, nullable=true)
+     * @ORM\Column(name="profilPicture", type="string", length=255)
      *
      * @Assert\Image()
      */

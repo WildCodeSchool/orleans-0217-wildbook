@@ -80,7 +80,8 @@ class CampusManagerController extends Controller
         $idCampusManager = $campusManager->getUser()->getId();
         $idUser = $this->getUser()->getId();
 
-        if ($idCampusManager === $idUser) {
+
+        if ($idCampusManager === $idUser or in_array('ROLE_SUPER_ADMIN',$this->getUser()->getRoles())){
 
             if ($editForm->isSubmitted() && $editForm->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
@@ -95,6 +96,7 @@ class CampusManagerController extends Controller
             $this->addFlash('danger', 'Tu n\'as pas accès à cette ressource');
             return $this->redirectToRoute('one_campus_index');
         }
+
     }
 
     /**
