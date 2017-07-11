@@ -41,9 +41,12 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     {
         $input = "%" . $input . "%";
         $qb = $this->createQueryBuilder('p')
-            ->select('p.title','p.id')
+            ->select('p.title','p.id','pi.path')
             ->where('p.title LIKE :title')
                 ->setParameter('title', $input)
+            ->leftJoin('p.pictures','pi')
+            ->andWhere('pi.isPrincipal = :true')
+                ->setParameter('true', true)
             ->getQuery();
         return $qb->getResult();
     }
