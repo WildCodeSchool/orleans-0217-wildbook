@@ -22,11 +22,34 @@ class ProjectWilder
     private $id;
 
     /**
+     * @return mixed
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param mixed $position
+     * @return ProjectWilder
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+        return $this;
+    }
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="visibility", type="boolean")
      */
     private $visibility;
+
+    /**
+     * @ORM\Column(name="position", type="integer", nullable=true)
+     */
+    private $position;
 
     /**
      * @var
