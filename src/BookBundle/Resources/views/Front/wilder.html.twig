@@ -7,26 +7,27 @@
         <div class="container">
 
             <div class="row modjoProfilWilder">
-                {{ wilder.modjo }}
+                <p>{{ wilder.modjo }}</p>
             </div>
 
             <div class="row">
                 <hr/>
             </div>
 
-            <div class="row">
+            <div class="row profilWilder">
                 <div class="col-lg-6 imageProfilWilder">
                     <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}"
                          alt="{{ wilder.firstname }} {{ wilder.lastname }}">
                 </div>
-                <div class="col-lg-offset-1 col-lg-5">
+                <div class="col-lg-5">
                     <h3 class="firstnameWilder">{{ wilder.firstname }}</h3>
                     <h3 class="lastnameWilder">{{ wilder.lastname }}</h3>
                     <p class="promotionWilder">{{ wilder.promotion.school.school }}
                         / {{ wilder.promotion.promotion }}</p>
                     <p class="dispoWilder">{{ wilder.availability.label }}</p>
-                    <p class="freelanceWilder">{{ wilder.freelanceAvailability ? 'accepte missions freelance' }}</p>
-                    <p class="websiteWilder">{{ wilder.website }}</p>
+                    <p class="freelanceWilder">{{ wilder.freelanceAvailability ? 'Accepte des missions Freelance' }}</p>
+                    <p class="websiteWilder"><a class="websiteWilder"
+                                                href="{{ wilder.website }}">{{ wilder.website }}</a></p>
 
                     <div class="socialProWilder">
                         <div class="iconsocial">
@@ -36,14 +37,13 @@
                             <a href="{{ wilder.github }}"><i class=" fa fa-github"></i></a>
                         </div>
                         <div class="iconsocial">
-                            <a href="{{ asset('uploads/' ~ wilder.cv) }}"><i class=" fa fa-download"> Télécharger le
-                                    CV</i></a>
+                            <a href="{{ asset('uploads/' ~ wilder.cv) }}"><i class=" fa fa-download"></i></a>
                         </div>
                         <div class="iconsocial">
                             <a href="mailto:{{ wilder.contactEmail }}"><i class=" fa fa-envelope"></i></a>
                         </div>
                         <div class="iconsocial">
-                            <a href=""><i class="fa fa-codepen"></i> {{ codewars }} Points</a>
+                            <a href="" class="codewars"><i class="fa fa-codepen"></i> {{ codewars }} Points</a>
                         </div>
                     </div>
                     <div class="socialPersoWilder">
@@ -67,27 +67,27 @@
             <div class="row contentProfilWilder">
                 <div class="col-md-3 contentProfilWilderLeft">
                     <div class="langagesWilder">
-                        <h4>LANGAGES</h4>
-                        <ul>{% for languages in wilder.languages %}
-                                <li>{{ languages.language }}</li>
+                        <h4 class="langagesWilder">LANGAGES</h4>
+                        <ul class="langagesWilder">{% for languages in wilder.languages %}
+                                <li class="langagesWilder">{{ languages.language }}</li>
                             {% endfor %}
                         </ul>
                     </div>
-                    <div class="technologies">
-                        <h4>TECHNOLOGIES</h4>
-                        <ul>{% for technologies in wilder.technologies %}
-                                <li>{{ technologies.technology }}</li>
+                    <div class="technologiesWilder">
+                        <h4 class="technologiesWilder">TECHNOLOGIES</h4>
+                        <ul class="technologiesWilder">{% for technologies in wilder.technologies %}
+                                <li class="technologiesWilder">{{ technologies.technology }}</li>
                             {% endfor %}
                         </ul>
                     </div>
                     <div class="competences">
-                        <h4>COMPETENCES</h4>
-                        <p>{{ wilder.skill }}</p>
+                        <h4 class="competences">COMPETENCES</h4>
+                        <p class="competences">{{ wilder.skill }}</p>
                     </div>
                 </div>
                 <div class="col-md-8 col-md-offset-1 contentProfilWilderRight">
                     <div class="bio">
-                        <p>{{ wilder.biography }}</p>
+                        <p class="bio">{{ wilder.biography }}</p>
                     </div>
                 </div>
             </div>

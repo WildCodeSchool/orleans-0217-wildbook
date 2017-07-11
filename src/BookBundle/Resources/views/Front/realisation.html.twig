@@ -29,8 +29,11 @@
                 </div>
                 <div class="col-md-6">
                     <p class="subtitleProjectPromotion">
-                        {% for projectWilder in project.projectWilders %}
-                            {{ projectWilder.wilder.promotion.promotion }}
+                        {{ project.school.school }} /
+                        {% for projectWilder in project.projectWilders  %}
+                            {% if loop.index == 1 %}
+                                {{  projectWilder.wilder.promotion.promotion }}
+                            {% endif %}
                         {% endfor %}
                     </p>
                 </div>
@@ -44,24 +47,24 @@
             <div class="row projectContent">
                 <div class="col-md-3 projectContentLeft">
                     <div class="projectType">
-                        <p>{{ project.category.label }}</p>
+                        <p class="projectType">{{ project.category.label }}</p>
                     </div>
                     <div class="projectStatut">
-                        {{ project.status }}
+                       <p class="projectType">{{ project.status }}</p>
                     </div>
                     <div class="langages">
                         <h4>LANGAGES</h4>
-                        <ul>
+                        <ul class="langages">
                             {% for languages in project.languages %}
-                                <li>{{ languages.language }}</li>
+                                <li class="langages">{{ languages.language }}</li>
                             {% endfor %}
                         </ul>
                     </div>
                     <div class="technologies">
                         <h4>TECHNOLOGIES</h4>
-                        <ul>
+                        <ul class="technologies">
                             {% for technologies in project.technologies %}
-                                <li>{{ technologies.technology }}</li>
+                                <li class="technologies">{{ technologies.technology }}</li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -80,7 +83,6 @@
                         <h4>Ecole : {{ project.school.school }}</h4>
                     </div>
                     <div class="tags">
-                        {#<h4>Tags</h4>#}
                         <ul>
                             {% for tags in project.tags %}
                                 <li>#{{ tags.tag }}</li>
@@ -92,14 +94,15 @@
 
                 <div class="col-md-8 col-md-offset-1">
                     <div class="urlProject">
-                        <p>{{ project.path }}</p>
+                        <p class="urlProject">
+                            <a class="urlProject" href="{{ project.path }}" target="_blank">{{ project.path }}</a></p>
                     </div>
                     <hr/>
                     <div class="shortDescription">
-                        <p>{{ project.summary }}</p>
+                        <p class="shortDescription">{{ project.summary }}</p>
                     </div>
                     <div class="description">
-                        <p>{{ project.description }}</p>
+                        <p class="description">{{ project.description }}</p>
                     </div>
                 </div>
             </div>
@@ -117,7 +120,6 @@
                     </div>
                 {% endfor %}
             </div>
-
         </div>
 
     </div>
