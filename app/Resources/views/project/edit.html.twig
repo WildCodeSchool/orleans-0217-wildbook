@@ -1,6 +1,8 @@
 {% extends 'layout_admin.html.twig' %}
-{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+
 {% form_theme picture_form 'bootstrap_3_layout.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
+{% form_theme edit_form 'jquery.collection.html.twig' %}
 
 
 {% block content %}
@@ -12,6 +14,7 @@
         <ul>{% for projectWilders in project.projectWilders %}
                 <li>{{ projectWilders.wilder.firstname }}{{ projectWilders.wilder.lastname }}</li>
             {% endfor %}</ul>
+
         <div class="form-group">
             {{ form_start(edit_form) }}
 
@@ -81,6 +84,7 @@
 
             {{ form_widget(edit_form) }}
         </div>
+
         <div class="form-group">
             <input type="submit" class="btn btn-success" value="Valider"/>
         </div>
@@ -126,7 +130,18 @@
         <div class="form-group">
             <a href="{{ path('project_index') }}" class="btn btn-primary">Retour à la liste</a>
         </div>
-
-
     </div>
+
+
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/jquery.collection.js') }}"></script>
+
+    <script type="text/javascript">
+        $('.my-wilder').collection();
+        $ ( ' .my-selector ' ).  Collection ({
+            Position_field_selector : ' .my-position '
+        });
+    </script>
+{% endblock javascripts %}

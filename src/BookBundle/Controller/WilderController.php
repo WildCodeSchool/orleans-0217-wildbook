@@ -128,7 +128,6 @@ class WilderController extends Controller
             $idWilder = $wilder->getUser()->getId();
             $idUser = $this->getUser()->getId();
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('wilder_index');
         }
 
@@ -139,6 +138,7 @@ class WilderController extends Controller
                 'edit_form' => $editForm->createView(),
             ));
         }
+        return $this->redirectToRoute('home_admin');
     }
 
     /**

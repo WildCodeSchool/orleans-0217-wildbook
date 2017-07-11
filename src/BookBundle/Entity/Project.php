@@ -33,7 +33,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="path", type="string", length=255)
+     * @ORM\Column(name="path", type="string", length=255, nullable=true)
      */
     private $path;
 
@@ -98,7 +98,7 @@ class Project
 
     /**
      * @var
-     * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="project")
+     * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="project", cascade={"persist", "merge"})
      */
     private $projectWilders;
 
@@ -504,6 +504,7 @@ class Project
      */
     public function addProjectWilder(\BookBundle\Entity\ProjectWilder $projectWilder)
     {
+        $projectWilder->setProject($this);
         $this->projectWilders[] = $projectWilder;
 
         return $this;
