@@ -499,6 +499,218 @@ p.projectTitleCarousel {
     color : #0f0f0f;
 }
 
+/**Page Projet**/
+
+.jumbotron {
+    margin-top:90px;
+    margin-bottom: 90px;
+}
+
+.imgPrincipaleProject {
+    height:500px;
+}
+
+.imagePrincipaleProject {
+    /*width:100%;*/
+    height:500px;
+}
+
+.subtitleProject {
+    margin-top:90px;
+    margin-bottom:90px;
+}
+
+.subtitleProjectCustomer {
+    font-size: 34px;
+    font-weight: bold;
+    line-height: 24px;
+}
+
+.subtitleProjectPromotion {
+    font-size: 34px;
+    font-weight: normal;
+    line-height: 24px;
+    text-align: end;
+}
+
+.projectContent {
+    margin-top:90px;
+    margin-bottom:90px;
+}
+
+.projectContentLeft {
+    text-align: end;
+}
+
+.projectType .projectStatut {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.langages {
+    margin-top:30px;
+    margin-bottom: 30px;
+}
+
+.langages h4 {
+    font-weight: bold;
+}
+
+.langages p {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.technologies {
+    margin-top:30px;
+    margin-bottom: 30px;
+}
+
+.technologies h4 {
+    font-weight: bold;
+}
+
+.technologies p {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.lienWilders {
+    color:#000000;
+}
+
+.wilders h4 {
+    font-weight: bold;
+}
+
+.wilders {
+    margin-top:30px;
+    margin-bottom: 30px;
+}
+
+.wilders h4 {
+    font-weight: bold;
+}
+
+.ecole {
+    margin-top:30px;
+    margin-bottom: 30px;
+}
+
+.ecole h4 {
+    font-weight: bold;
+}
+
+.tags {
+    margin-top:30px;
+    margin-bottom: 30px;
+}
+
+.tags li {
+    color: #7B7B7B;
+}
+
+.urlProject {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 30px;
+    margin-bottom: 30px;
+}
+
+.shortDescription {
+    margin-bottom: 30px ;
+    margin-top:30px;
+}
+
+.shortDescription p {
+    font-style: italic;
+    color: #7B7B7B;
+}
+
+.description {
+    margin-bottom: 30px ;
+    margin-top:30px;
+}
+
+.description p {
+    color: #7B7B7B;
+}
+
+.imgProject {
+    margin-top:90px;
+    margin-bottom: 90px;
+}
+
+/** Profil Wilder **/
+
+.modjoProfilWilder {
+    margin-bottom: 90px;
+    margin-top: 90px;
+}
+
+.modjoProfilWilder p {
+
+}
+
+.contentProfilWilder {
+    margin-top: 90px;
+    margin-bottom: 90px;
+}
+
+.competences {
+    margin-top:30px;
+    margin-bottom: 30px;
+}
+
+.competences h4 {
+    font-weight: bold;
+}
+
+.competences p {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+h3.firstnameWilder {
+    margin-top: 0px;
+    line-height: 30px;
+}
+
+h3.lastnameWilder {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.socialProWilder {
+    display: flex;
+}
+
+.socialPersoWilder {
+    display: flex;
+}
+
+.iconsocial {
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.langagesWilder {
+    margin-bottom: 30px;
+}
+
+.langagesWilder h4 {
+    font-weight: bold;
+}
+
+.langagesWilder p {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+
+
+
 
 
 
