@@ -641,6 +641,77 @@ p.projectTitleCarousel {
     margin-bottom: 90px;
 }
 
+/** Profil Wilder **/
+
+.modjoProfilWilder {
+    margin-bottom: 90px;
+    margin-top: 90px;
+}
+
+.modjoProfilWilder p {
+
+}
+
+.contentProfilWilder {
+    margin-top: 90px;
+    margin-bottom: 90px;
+}
+
+.competences {
+    margin-top:30px;
+    margin-bottom: 30px;
+}
+
+.competences h4 {
+    font-weight: bold;
+}
+
+.competences p {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+h3.firstnameWilder {
+    margin-top: 0px;
+    line-height: 30px;
+}
+
+h3.lastnameWilder {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.socialProWilder {
+    display: flex;
+}
+
+.socialPersoWilder {
+    display: flex;
+}
+
+.iconsocial {
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.langagesWilder {
+    margin-bottom: 30px;
+}
+
+.langagesWilder h4 {
+    font-weight: bold;
+}
+
+.langagesWilder p {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+
+
+
+
 
 
 

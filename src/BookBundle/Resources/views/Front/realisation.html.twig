@@ -6,36 +6,36 @@
 
         <div class="container">
 
-        <div class="projectTitleDetail">
-        <h1>{{ project.title }}</h1>
-        </div>
-        <hr>
+            <div class="projectTitleDetail">
+                <h1>{{ project.title }}</h1>
+            </div>
+            <hr>
 
-        <div class="jumbotron">
+            <div class="jumbotron">
                 <div class="imgPrincipaleProject">
-                {% for picture in project.pictures %}
-                    {% if picture.isPrincipal == true %}
-                        <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imagePrincipaleProject"/>
-                    {% endif %}
-                {% endfor %}
-                </div>
-        </div>
-
-        <div class="row subtitleProject">
-            <div class="col-md-6">
-                <p class="subtitleProjectCustomer">
-                {{ project.customer }}
-                </p>
-            </div>
-            <div class="col-md-6">
-                <p class="subtitleProjectPromotion">
-                {% for projectWilder in project.projectWilders %}
-                    {{ projectWilder.wilder.promotion.promotion }}
+                    {% for picture in project.pictures %}
+                        {% if picture.isPrincipal == true %}
+                            <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imagePrincipaleProject"/>
+                        {% endif %}
                     {% endfor %}
-                </p>
+                </div>
             </div>
 
-        </div>
+            <div class="row subtitleProject">
+                <div class="col-md-6">
+                    <p class="subtitleProjectCustomer">
+                        {{ project.customer }}
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p class="subtitleProjectPromotion">
+                        {% for projectWilder in project.projectWilders %}
+                            {{ projectWilder.wilder.promotion.promotion }}
+                        {% endfor %}
+                    </p>
+                </div>
+
+            </div>
 
             <div class="row">
                 <hr>
@@ -50,25 +50,30 @@
                         {{ project.status }}
                     </div>
                     <div class="langages">
-                    <h4>LANGAGES</h4>
-                    <ul>{% for languages in project.languages %}
-                           <li>{{ languages.language }}</li>
-                        {% endfor %}
-                    </ul>
+                        <h4>LANGAGES</h4>
+                        <ul>
+                            {% for languages in project.languages %}
+                                <li>{{ languages.language }}</li>
+                            {% endfor %}
+                        </ul>
                     </div>
                     <div class="technologies">
                         <h4>TECHNOLOGIES</h4>
-                        <ul>{% for technologies in project.technologies %}
+                        <ul>
+                            {% for technologies in project.technologies %}
                                 <li>{{ technologies.technology }}</li>
                             {% endfor %}
                         </ul>
                     </div>
                     <div class="wilders">
                         <h4>Wilders</h4>
-                        <ul>{% for projectWilder in project.projectWilders %}
-                        <li><a class="lienWilders" href="{{ path('profile_wilder', { 'id': projectWilder.id }) }}" >
-                                {{ projectWilder.wilder.firstname }} {{ projectWilder.wilder.lastname }}</a></li>
-                        {% endfor %}
+                        <ul>
+                            {% for projectWilder in project.projectWilders %}
+                                <li><a class="lienWilders"
+                                       href="{{ path('profile_wilder', { 'id': projectWilder.id }) }}">
+                                        {{ projectWilder.wilder.firstname }} {{ projectWilder.wilder.lastname }}</a>
+                                </li>
+                            {% endfor %}
                         </ul>
                     </div>
                     <div class="ecole">
@@ -76,7 +81,8 @@
                     </div>
                     <div class="tags">
                         {#<h4>Tags</h4>#}
-                        <ul>{% for tags in project.tags %}
+                        <ul>
+                            {% for tags in project.tags %}
                                 <li>#{{ tags.tag }}</li>
                             {% endfor %}
                         </ul>
@@ -90,16 +96,16 @@
                     </div>
                     <hr>
                     <div class="shortDescription">
-                       <p>{{ project.summary }}</p>
+                        <p>{{ project.summary }}</p>
                     </div>
                     <div class="description">
-                       <p>{{ project.description }}</p>
+                        <p>{{ project.description }}</p>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-            <hr>
+                <hr>
             </div>
 
             <div class="row imgProject">
