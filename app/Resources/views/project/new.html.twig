@@ -1,6 +1,7 @@
 {% extends 'layout_admin.html.twig' %}
-{#{% form_theme form 'bootstrap_3_layout.html.twig' %}#}
+
 {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+{% form_theme form 'jquery.collection.html.twig' %}
 
 {% block content %}
     <div class="container-fluid">
@@ -9,7 +10,7 @@
 
         {{ form_start(form) }}
             {{ form_widget(form) }}
-            <input type="submit" value="Create" />
+        <input type="submit" value="Create" />
         {{ form_end(form) }}
 
         <a href="{{ path('project_index') }}" class="btn btn-primary">Retour à la liste</a>
@@ -17,3 +18,15 @@
     </div>
 
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/jquery.collection.js') }}"></script>
+
+    <script type="text/javascript">
+        $('.my-wilder').collection();
+        $ ( ' .my-selector ' ).  Collection ({
+            Position_field_selector : ' .my-position '
+        });
+    </script>
+{% endblock javascripts %}

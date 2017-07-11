@@ -6,6 +6,7 @@ use BookBundle\Entity\Project;
 use BookBundle\Entity\Wilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,15 +19,15 @@ class ProjectWilderType extends AbstractType
     {
         $builder
             ->add('visibility')
-            ->add('project', EntityType::class, [
-                'class'=>Project::class,
-                'choice_label'=>'id',
-                'multiple'=>false
-            ])
             ->add('wilder', EntityType::class, [
                 'class'=> Wilder::class,
                 'choice_label'=>'fullName',
                 'multiple'=>false,
+            ])
+            -> add ( 'position' , HiddenType :: class , [
+                    'attr' => [
+                        'class' => ' my-position ' ,
+                ],
             ]);
     }
     
