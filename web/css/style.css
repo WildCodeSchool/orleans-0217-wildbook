@@ -702,12 +702,14 @@ p.projectTitleCarousel {
 /** Profil Wilder **/
 
 .modjoProfilWilder {
-    margin-bottom: 90px;
-    margin-top: 90px;
+    margin-bottom: 40px;
+    margin-top: 40px;
 }
 
 .modjoProfilWilder p {
-
+    font-size: 34px;
+    font-style: italic;
+    text-align: center;
 }
 
 .contentProfilWilder {
