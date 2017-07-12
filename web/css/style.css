@@ -913,7 +913,10 @@ a.websiteWilder {
     border-bottom: 50px;
 }
 
-
+.wilderTransition {
+    margin-top:-32px;
+    background-color: #FBFBFB;
+}
 
 
 
