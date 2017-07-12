@@ -5,10 +5,13 @@ namespace BookBundle\Form;
 use BookBundle\Entity\Category;
 use BookBundle\Entity\Promotion;
 use BookBundle\Entity\School;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProjectSearchType extends AbstractType
@@ -37,14 +40,46 @@ class ProjectSearchType extends AbstractType
                 'attr'=> ['class'=>'selectpicker multiple']
             ])
             ->add('promotion', EntityType::class, [
-                'class'=>Promotion::class,
-                'choice_label'=>'promotion',
-                'expanded'=>false,
-                'required'=>false,
-                'multiple'=>true,
-                'attr'=> ['class'=>'selectpicker multiple']
+                'class'        => Promotion::class,
+                'choice_label' => 'promotionFullName',
+                'expanded'     => false,
+                'required'     => false,
+                'multiple'     => true,
+                'disabled'     => true,
+                'empty_data'   => 'Sélectionnez une ville',
+                'attr'         => [
+                    'class' => 'selectpicker multiple',
+                    'title' => 'Sélectionnez d\'abord une ville',
+                ],
             ])
-            ->getForm();
+            ->addEventListener(
+                FormEvents::PRE_SUBMIT,
+                array($this, 'onPreSubmit')
+            );
+    }
+
+
+    public function onPreSubmit(FormEvent $event)
+    {
+        $search = $event->getData();
+        $form = $event->getForm();
+        if (isset($search['school'])) {
+            $form->add('promotion', EntityType::class, [
+                'class'         => Promotion::class,
+                'choice_label'  => 'promotionFullName',
+                'expanded'      => false,
+                'required'      => false,
+                'multiple'      => true,
+                'query_builder' => function (EntityRepository $er) use ($search) {
+                    return $er->createQueryBuilder('p')
+                        ->where('p.school IN (:school)')
+                        ->setParameter('school', $search['school']);
+                },
+                'attr'          => [
+                    'class' => 'selectpicker multiple',
+                ],
+            ]);
+        }
 
 
     }

@@ -51,6 +51,7 @@ class WilderSearchType extends AbstractType
                 'empty_data'   => 'Sélectionnez une ville',
                 'attr'         => [
                     'class' => 'selectpicker multiple',
+                    'title' => 'Sélectionnez d\'abord une ville',
                 ],
             ])
             ->addEventListener(
