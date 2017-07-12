@@ -1,0 +1,27 @@
+<div class="col-xs-6 col-md-5 vignetteProject">
+    <div class="col-md-12 image-listProjects"
+        {% for picture in projectSearch.pictures %}
+        {% if picture.isPrincipal == true %}
+         style="background-image: url('../uploads/{{ picture.path|basename }}')"
+        {% else %}
+         style="background-image: url('/images/LOGO_COLO.png')"
+    {% endif %}
+    {% endfor %}
+
+
+    <div class="middle">
+        <div class="hoverDispoProject">
+            <a href="{{ path('detail_project', { 'id': projectSearch.id }) }}">
+                <button type="button" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true">
+                    </span>
+                </button>
+            </a>
+        </div>
+    </div>
+    <a href="{{ path('detail_project', { 'id': projectSearch.id }) }}"> </a>
+    <div class="col-md-12 titreVignetteProject">
+        <a href="{{ path('detail_project', { 'id': projectSearch.id }) }}">
+            <h3>{{ projectSearch.title }}</h3></a>
+    </div>
+</div>

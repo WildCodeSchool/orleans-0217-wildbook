@@ -919,9 +919,13 @@ a.websiteWilder {
 }
 
 
+.wilders_project_collection label.required {
+    display:none;
+}
 
-
-
+.collection-actions {
+    display:inline-block;
+}
 
 
 

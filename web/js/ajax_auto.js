@@ -43,26 +43,10 @@ $(document).ready(function () {
         if (input.length >= 2) {
             $.ajax({
                 type: "POST",
-                url: "/search_realisation/ajax/" + input,
-                dataType: 'json',
+                url: "/search_realisation/ajax-thumbnail/" + input,
+                // dataType: 'json',
                 // timeout: 3000,
-                success: function (response) {
-                    var projects = JSON.parse(response.data);
-                    html = "";
-                    for (i = 0; i < projects.length; i++) {
-
-                        html += '<div class="col-xs-6 col-md-5 vignetteProject">' +
-                            '<div class="col-md-12 image-listProjects" style="background-image: url(\'../uploads/' + projects[i].path + '\')">' +
-                            '<img src="" alt="" class="image" style="width:100%"><div class="middle"><div class="hoverDispoProject">' +
-                            '<a href="/detail_project/' + projects[i].id + '"><button type="button" class="btn btn-default btn-lg">' +
-                            '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></a></div></div>' +
-                            '<a href="/detail_project/' + projects[i].id + '"><img class="img-listProjects"></a></div>' +
-                            '<div class="col-md-12 titreVignetteProject"><a href="/detail_project/' + projects[i].id + '">' +
-                            '<h3>' + projects[i].title + '</h3></a></div></div></div></div>';
-
-                    }
-
-
+                success: function (html) {
                     $('#project-list').html(html);
                 },
                 error: function () {

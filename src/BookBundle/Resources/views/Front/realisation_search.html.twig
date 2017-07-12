@@ -68,61 +68,22 @@
         <div class="list_projects row" id="project-list">
             <div class="row">
                 {% for projectSearch in projectsSearch %}
-                    <div class="col-xs-6 col-md-5 vignetteProject">
-                        <div class="col-md-12 image-listProjects"
-
-                                {% for picture in projectSearch.pictures %}
-                                    {% if picture.isPrincipal == true %}
-                                        style="background-image: url('../uploads/{{ picture.path|basename }}')"
-                                    {% else %}
-                                        style="background-image: url('/images/LOGO_COLO.png')"
-                                    {% endif %}
-                                {% endfor %}>
-
-                            <img src="" alt="" class="image" style="width:100%">
-                            <div class="middle">
-                                <div class="hoverDispoProject">
-                                    <a href="{{ path('detail_project', { 'id': projectSearch.id }) }}">
-                                        <button type="button" class="btn btn-default btn-lg">
-                                        <span class="glyphicon glyphicon-plus" aria-hidden="true">
-                                        </span>
-                                        </button>
-                                    </a>
-                                </div>
-                            </div>
-                            <a href="{{ path('detail_project', { 'id': projectSearch.id }) }}">
-                                <img class="img-listProjects"
-                                        {% for picture in projectSearch.pictures %}
-                                            {% if picture.isPrincipal == true %}
-                                                src="{{ asset('uploads/'~ picture.path|basename ) }}"
-                                                alt="{{ projectSearch.title }}"
-                                            {% else %}
-                                                 src="{{ asset('images/LOGO_COLO.png') }}"
-                                                 alt="{{ projectSearch.title }}"
-                                            {% endif %}
-                                        {% endfor %}>
-                            </a>
-                        </div>
-                        <div class="col-md-12 titreVignetteProject">
-                            <a href="{{ path('detail_project', { 'id': projectSearch.id }) }}">
-                                <h3>{{ projectSearch.title }}</h3></a>
-                        </div>
-                    </div>
+                    {% include 'BookBundle:Front:thumbnail.html.twig' with {'projectSearch': projectSearch} %}
                 {% endfor %}
-            </div>
         </div>
+    </div>
 
-        <div class="container">
-            <div class="realisation-focus">
-                <div class="sub-title-slider">
-                    <h2>La réalisation du moment</h2>
-                </div>
-
-                <div class="sub-title-text">
-                </div>
-                {{ render(controller('BookBundle:HomeProject:viewHomeProject')) }}
+    <div class="container">
+        <div class="realisation-focus">
+            <div class="sub-title-slider">
+                <h2>La réalisation du moment</h2>
             </div>
+
+            <div class="sub-title-text">
+            </div>
+            {{ render(controller('BookBundle:HomeProject:viewHomeProject')) }}
         </div>
+    </div>
     </div>
 
 
