@@ -11,9 +11,6 @@
 
         <h3>{{ project.title }}</h3>
         <h4>Wilders ayant réalisé ce projet : </h4>
-        <ul>{% for projectWilders in project.projectWilders %}
-                <li>{{ projectWilders.wilder.firstname }}{{ projectWilders.wilder.lastname }}</li>
-            {% endfor %}</ul>
 
         <div class="form-group">
             {{ form_start(edit_form) }}
@@ -65,6 +62,21 @@
             {{ form_label(edit_form.school,'École') }}
             {{ form_widget(edit_form.school) }}
             {{ form_errors(edit_form.school) }}
+
+            {%  if is_granted('ROLE_ADMIN') %}
+            <div>
+                {{ form_label(edit_form.projectWilders, 'Wilders ayant participé au projet') }}
+                {{ form_widget(edit_form.projectWilders) }}
+                {{ form_errors(edit_form.projectWilders) }}
+            </div>
+            {% else %}
+                <ul>
+                    {% for projectWilders in project.projectWilders %}
+                        <li>{{ projectWilders.wilder.firstname }}{{ projectWilders.wilder.lastname }}</li>
+                    {% endfor %}
+                </ul>
+
+            {% endif %}
 
             {% for picture in project.pictures %}
                 {% if picture.isPrincipal == true %}
@@ -132,16 +144,20 @@
         </div>
     </div>
 
-
 {% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/jquery.collection.js') }}"></script>
 
     <script type="text/javascript">
-        $('.my-wilder').collection();
-        $ ( ' .my-selector ' ).  Collection ({
-            Position_field_selector : ' .my-position '
+        $('.wilders_project_collection').collection ({
+            add: ' <a class="btn btn-sm btn-warning href="#">Ajouter un wilder</a>',
+            remove: '<a href="#">Delete wilder</a>',
+            allow_up: false,
+            allow_down: false,
+            add_at_the_end: true,
+//            hide_useless_buttons: true
         });
     </script>
 {% endblock javascripts %}

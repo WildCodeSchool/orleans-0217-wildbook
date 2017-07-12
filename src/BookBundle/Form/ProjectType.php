@@ -32,7 +32,7 @@ class ProjectType extends AbstractType
                     'prototype' => true,
                     'by_reference' => false,
                     'attr' => array(
-                        'class' => 'my-wilder',
+                        'class' => 'wilders_project_collection',
                     ),
                 ])
                 ->add('customer')

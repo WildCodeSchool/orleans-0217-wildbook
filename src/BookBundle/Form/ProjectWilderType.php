@@ -26,7 +26,7 @@ class ProjectWilderType extends AbstractType
             ])
             -> add ( 'position' , HiddenType :: class , [
                     'attr' => [
-                        'class' => ' my-position ' ,
+                        'class' => 'my-wilder' ,
                 ],
             ]);
     }
