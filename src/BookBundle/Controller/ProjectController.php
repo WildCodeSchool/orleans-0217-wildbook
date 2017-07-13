@@ -4,9 +4,11 @@ namespace BookBundle\Controller;
 
 use BookBundle\Entity\Picture;
 use BookBundle\Entity\Project;
+use BookBundle\Entity\ProjectWilder;
 use BookBundle\Form\PictureType;
 use BookBundle\Form\ProjectSearchType;
 use BookBundle\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -64,12 +66,15 @@ class ProjectController extends Controller
      */
     public function newAction(Request $request, FileUploader $fileUploader)
     {
+
         $project = new Project();
+        $projectWilder = new ProjectWilder();
         $form = $this->createForm('BookBundle\Form\ProjectType', $project);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $projectWilder->setProject($project);
             $em->persist($project);
             $em->flush();
             $this->addFlash('success', 'Nouveau projet '. $project->getTitle().' enregistré');
@@ -124,16 +129,41 @@ class ProjectController extends Controller
     public function editAction(Request $request, Project $project, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($project);
+
+        $originalProjectWilders = new ArrayCollection();
+        foreach ($project->getProjectWilders() as $projectWilder) {
+            $originalProjectWilders->add($projectWilder);
+        }
+
         $editForm = $this->createForm('BookBundle\Form\ProjectType', $project);
         $pictureForm = $this->createForm(PictureType::class);
         $editForm->handleRequest($request);
         $pictures = $project->getPictures();
 
+        $userId = $this->getUser()->getId();
+        $projectId = $project->getId();
+        $em = $this->getDoctrine()->getManager();
 
-        if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
+        $projects = $em->getRepository('BookBundle:Project')->projectsByWilder($userId);
+        $projectsUserId = [];
+        foreach ($projects as $projectUser) {
+            $projectsUserId[] = $projectUser->getId();
+        }
+
+        if (in_array('ROLE_ADMIN', $this->getUser()->getRoles()) || in_array($projectId, $projectsUserId)) {
             if ($editForm->isSubmitted() && $editForm->isValid()) {
-                $this->getDoctrine()->getManager()->flush();
-                return $this->redirectToRoute('project_index');
+                // gestion du delete
+                foreach ($originalProjectWilders as $projectWilder) {
+                    if (false === $project->getProjectWilders()->contains($projectWilder)) {
+                        $em->remove($projectWilder);
+                    }
+                }
+
+                $em->persist($project);
+
+                $em->flush();
+                $this->addFlash('warning', 'Projet '. $project->gettitle().' modifié');
+                return $this->redirectToRoute('project_edit', ['id'=>$project->getId()]);
             }
             return $this->render('project/edit.html.twig', array(
                 'project' => $project,
@@ -142,34 +172,15 @@ class ProjectController extends Controller
                 'picture_form' => $pictureForm->createView(),
                 'delete_form' => $deleteForm->createView(),
             ));
+
         } else {
-            $userId = $this->getUser()->getId();
-            $projectId = $project->getId();
+            $this->addFlash('danger', 'Tu n\'as pas accès à cette ressource');
 
-            $em = $this->getDoctrine()->getManager();
-            $projects = $em->getRepository('BookBundle:Project')->projectsByWilder($userId);
-            $projectsUserId = [];
-            foreach ($projects as $projectUser) {
-                $projectsUserId[] = $projectUser->getId();
-            }
-            if (in_array($projectId, $projectsUserId)) {
-                if ($editForm->isSubmitted() && $editForm->isValid()) {
-                    $this->getDoctrine()->getManager()->flush();
-                    $this->addFlash('warning', 'Projet '. $project->gettitle().' modifié');
-                    return $this->redirectToRoute('project_one_wilder_index');
-                }
-                return $this->render('project/edit.html.twig', array(
-                    'project' => $project,
-                    'pictures' => $pictures,
-                    'edit_form' => $editForm->createView(),
-                    'picture_form' => $pictureForm->createView(),
-                ));
-            } else {
-                $this->addFlash('danger','Tu n\'as pas accès à cette ressource' );
-                return $this->redirectToRoute('project_one_wilder_index');
-            }
-
+            return $this->redirectToRoute('project_one_wilder_index');
         }
+
+
+
 
 
 

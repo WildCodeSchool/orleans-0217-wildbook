@@ -80,6 +80,16 @@ class Promotion
     {
         return $this->promotion;
     }
+
+    /**
+     * Get promotion full name
+     *
+     * @return string
+     */
+    public function getPromotionFullName()
+    {
+        return $this->getSchool()->getSchool().' '.$this->promotion;
+    }
     /**
      * Constructor
      */
