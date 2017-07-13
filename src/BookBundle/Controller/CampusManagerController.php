@@ -65,32 +65,6 @@ class CampusManagerController extends Controller
     }
 
     /**
-     * Finds and displays a campusManager entity.
-     *
-     * @Route("/{id}", name="campusmanager_show")
-     * @Method("GET")
-     *
-     */
-    public function showAction(CampusManager $campusManager)
-    {
-        $deleteForm = $this->createDeleteForm($campusManager);
-
-        $idCampusManager = $campusManager->getUser()->getId();
-        $idUser = $this->getUser()->getId();
-
-        if ($idCampusManager === $idUser) {
-
-            return $this->render('campusmanager/show.html.twig', array(
-                'campusManager' => $campusManager,
-                'delete_form' => $deleteForm->createView(),
-            ));
-        } else {
-            $this->addFlash('danger', 'Tu n\'as pas accès à cette ressource');
-            return $this->redirectToRoute('one_campus_index');
-        }
-    }
-
-    /**
      * Displays a form to edit an existing campusManager entity.
      *
      * @Route("/{id}/edit", name="campusmanager_edit")
@@ -106,7 +80,8 @@ class CampusManagerController extends Controller
         $idCampusManager = $campusManager->getUser()->getId();
         $idUser = $this->getUser()->getId();
 
-        if ($idCampusManager === $idUser) {
+
+        if ($idCampusManager === $idUser or in_array('ROLE_SUPER_ADMIN',$this->getUser()->getRoles())){
 
             if ($editForm->isSubmitted() && $editForm->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
@@ -121,6 +96,7 @@ class CampusManagerController extends Controller
             $this->addFlash('danger', 'Tu n\'as pas accès à cette ressource');
             return $this->redirectToRoute('one_campus_index');
         }
+
     }
 
     /**

@@ -89,7 +89,8 @@ class UserController extends Controller
                         'text/html'
                     );
                 $this->get('mailer')->send($message);
-
+//                dump($user);
+//                die();
                 $userManager->updateUser($user);
                 $em->persist($user);
                 $em->flush();
