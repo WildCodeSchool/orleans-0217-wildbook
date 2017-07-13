@@ -2,6 +2,7 @@
 
 namespace BookBundle\Form;
 
+use BookBundle\Entity\Promotion;
 use BookBundle\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -17,8 +18,12 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('email')
-            ->add('username');
-//            ->add('password', PasswordType::class);
+            ->add('username')
+            ->add('promotion', EntityType::class, [
+                'class'=>Promotion::class,
+                'choice_label'=>'promotion'
+            ]);
+
 
     }
 

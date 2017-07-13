@@ -128,7 +128,7 @@ class WilderController extends Controller
             $idWilder = $wilder->getUser()->getId();
             $idUser = $this->getUser()->getId();
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('wilder_index');
+            return $this->redirectToRoute('one_wilder_index');
         }
 
         if ($idWilder === $idUser or in_array('ROLE_ADMIN',$this->getUser()->getRoles())){
