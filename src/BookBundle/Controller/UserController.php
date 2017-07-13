@@ -67,7 +67,8 @@ class UserController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $email_exist = $userManager->findUserByEmail($user->getEmail());
             if ($email_exist) {
-                return $this->redirectToRoute('user_index');
+                return $this->redirectToRoute('admin');
+                $this->addFlash('success', 'wilder déjà enregistré ');
             } else {
                 $em = $this->getDoctrine()->getManager();
 
@@ -89,8 +90,6 @@ class UserController extends Controller
                         'text/html'
                     );
                 $this->get('mailer')->send($message);
-//                dump($user);
-//                die();
                 $userManager->updateUser($user);
                 $em->persist($user);
                 $em->flush();
