@@ -98,10 +98,11 @@
 
             <div class="row imgProjectWilder">
 
-                {{ dump(wilder.projectWilders) }}
-                {#{% for projectsWilder in wilder.projectWilders.project %}#}
-                    {#{% include 'BookBundle:Front:thumbnail.html.twig' with {'projectSearch': projectsWilder} %}#}
-                {#{% endfor %}#}
+
+                {% for projectsWilder in wilder.projectWilders %}
+                    {% include 'BookBundle:Front:thumbnail_wilder_projects.html.twig' with {'projectSearch': projectsWilder} %}
+                {% endfor %}
+
 
                 {#{% for projectsWilder in wilder.projectWilders %}#}
                     {#{% for picture in projectsWilder.project.pictures %}#}
