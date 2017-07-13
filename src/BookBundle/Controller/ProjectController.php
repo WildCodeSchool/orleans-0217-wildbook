@@ -150,7 +150,7 @@ class ProjectController extends Controller
             $projectsUserId[] = $projectUser->getId();
         }
 
-        if (in_array('ROLE_ADMIN', $this->getUser()->getRoles()) || in_array($projectId, $projectsUserId)) {
+        if (in_array('ROLE_ADMIN', $this->getUser()->getRoles()) || in_array($projectId, $projectsUserId)) {
             if ($editForm->isSubmitted() && $editForm->isValid()) {
                 // gestion du delete
                 foreach ($originalProjectWilders as $projectWilder) {

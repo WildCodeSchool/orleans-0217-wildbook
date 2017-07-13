@@ -73,7 +73,7 @@
                         <ul>
                             {% for projectWilder in project.projectWilders %}
                                 <li><a class="lienWilders"
-                                       href="{{ path('profile_wilder', { 'id': projectWilder.id }) }}">
+                                       href="{{ path('profile_wilder', { 'id': projectWilder.wilder.id }) }}">
                                         {{ projectWilder.wilder.firstname }} {{ projectWilder.wilder.lastname }}</a>
                                 </li>
                             {% endfor %}
