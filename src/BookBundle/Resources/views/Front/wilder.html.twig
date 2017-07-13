@@ -98,19 +98,10 @@
 
             <div class="row imgProjectWilder">
 
-
                 {% for projectsWilder in wilder.projectWilders %}
                     {% include 'BookBundle:Front:thumbnail_wilder_projects.html.twig' with {'projectSearch': projectsWilder} %}
                 {% endfor %}
 
-
-                {#{% for projectsWilder in wilder.projectWilders %}#}
-                    {#{% for picture in projectsWilder.project.pictures %}#}
-                        {#{% if picture.isPrincipal == true %}#}
-                            {#<img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imagePrincipaleProject"/>#}
-                        {#{% endif %}#}
-                    {#{% endfor %}#}
-                {#{% endfor %}#}
             </div>
         </div>
     </div>
