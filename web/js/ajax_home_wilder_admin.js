@@ -11,7 +11,9 @@ $( document ).ready(function() {
                     var wilder = JSON.parse(response.data);
                     html = "";
                     for (i = 0; i < wilder.length; i++) {
+
                         html += '<li><span class="firstname">' + wilder[i].firstname + '<span>' + ' ' + '<span class="lastname">' + wilder[i].lastname + '</span></li>';
+
                     }
                     $('#wilderList').html(html);
                     $('#wilderList .lastname').on('click', function () {

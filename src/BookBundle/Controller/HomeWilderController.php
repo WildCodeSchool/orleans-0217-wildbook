@@ -49,6 +49,8 @@ class HomeWilderController extends Controller
         if ($form->isValid() && $form->isSubmitted()) {
             $data = $form->getData();
             $wild = $em->getRepository(Wilder::class)->getLikeHomeWilder($data['wilder']);
+            var_dump($wild);
+            die();
             $wilder->setWilder($wild[0]);
             $wilder->setDescription($data['description']);
             $em->persist($wilder);
