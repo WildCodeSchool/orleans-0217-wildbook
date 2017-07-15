@@ -11,10 +11,10 @@ $( document ).ready(function() {
                     var wilder = JSON.parse(response.data);
                     html = "";
                     for (i = 0; i < wilder.length; i++) {
-                        html += "<li>" + wilder[i].lastname + "</li>"
+                        html += '<li><span class="firstname">' + wilder[i].firstname + '<span>' + ' ' + '<span class="lastname">' + wilder[i].lastname + '</span></li>';
                     }
                     $('#wilderList').html(html);
-                    $('#wilderList li').on('click', function () {
+                    $('#wilderList .lastname').on('click', function () {
                         $('#bookbundle_homewilder_wilder').val($(this).text());
                         $('#wilderList').html('');
                     });
