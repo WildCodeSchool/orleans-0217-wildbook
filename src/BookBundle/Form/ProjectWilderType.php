@@ -4,6 +4,7 @@ namespace BookBundle\Form;
 
 use BookBundle\Entity\Project;
 use BookBundle\Entity\Wilder;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -23,6 +24,11 @@ class ProjectWilderType extends AbstractType
                 'class'=> Wilder::class,
                 'choice_label'=>'fullName',
                 'multiple'=>false,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('w')
+                        ->orderBy('w.firstname', 'ASC')
+                        ->addOrderBy('w.lastname', 'ASC');
+                },
             ])
             -> add ( 'position' , HiddenType :: class , [
                     'attr' => [

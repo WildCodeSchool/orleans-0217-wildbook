@@ -9,8 +9,32 @@
 
     <div class="container-fluid">
 
-        <h3>{{ project.title }}</h3>
-        <h4>Wilders ayant réalisé ce projet : </h4>
+        <h1>{{ project.title }}</h1>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="well">
+                    {% for projectWilder in project.projectWilders if projectWilder.wilder.user.id == app.user.id %}
+                        <a class="pull-right btn btn-danger" href="{{ path('project_wilder_visibility', {'id':projectWilder.id}) }}">
+                            {{ projectWilder.visibility ? 'Masquer ma participation au projet' : 'Afficher ma participation au projet' }}
+                        </a>
+                    {% endfor %}
+                    <h2>Wilders ayant participés au projet : </h2>
+                    <ul>
+                        {% for projectWilder in project.projectWilders %}
+                            <li>
+                                <a class="lienWilders {{ projectWilder.visibility == 0 ? 'text-danger' }}"
+                                   href="{{ path('profile_wilder', { 'id': projectWilder.id }) }}">
+                                    {{ projectWilder.wilder.firstname }} {{ projectWilder.wilder.lastname }}
+                                </a>
+                                {% if projectWilder.visibility == 0 %}
+                                    <span class="label label-danger">Non visible</span>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <div class="form-group">
             {{ form_start(edit_form) }}
@@ -191,7 +215,6 @@
             allow_up: false,
             allow_down: false,
             add_at_the_end: true,
-//            hide_useless_buttons: true
         });
     </script>
 {% endblock javascripts %}
