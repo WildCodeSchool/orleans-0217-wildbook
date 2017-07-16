@@ -31,7 +31,7 @@
                     <p class="subtitleProjectPromotion">
                         {{ project.school.school }} /
                         {% for projectWilder in project.projectWilders  %}
-                            {% if loop.index == 1 %}
+                            {% if loop.first %}
                                 {{  projectWilder.wilder.promotion.promotion }}
                             {% endif %}
                         {% endfor %}
@@ -71,7 +71,7 @@
                     <div class="wilders">
                         <h4>Wilders</h4>
                         <ul>
-                            {% for projectWilder in project.projectWilders %}
+                            {% for projectWilder in project.projectWilders if projectWilder.visibility %}
                                 <li><a class="lienWilders"
                                        href="{{ path('profile_wilder', { 'id': projectWilder.id }) }}">
                                         {{ projectWilder.wilder.firstname }} {{ projectWilder.wilder.lastname }}</a>
