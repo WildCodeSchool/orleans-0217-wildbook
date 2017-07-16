@@ -20,12 +20,8 @@ class WilderType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('firstname', null, [
-            'disabled' => true
-            ])
-            ->add('lastname', null, [
-                'disabled' => true
-            ])
+        $builder->add('firstname')
+            ->add('lastname')
             ->add('birthDate', BirthdayType::class)
             ->add('address')
             ->add('postalCode')

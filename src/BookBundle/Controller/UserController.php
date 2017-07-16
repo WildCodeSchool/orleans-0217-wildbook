@@ -68,9 +68,13 @@ class UserController extends Controller
             $email_exist = $userManager->findUserByEmail($user->getEmail());
             if ($email_exist) {
                 return $this->redirectToRoute('admin');
-                $this->addFlash('success', 'wilder déjà enregistré ');
+                $this->addFlash('warning', 'wilder déjà enregistré ');
             } else {
                 $em = $this->getDoctrine()->getManager();
+
+//                $user->setPlainPassword('wilder');
+//                $user->setEnabled(true);
+//                $user->setRoles(['ROLE_USER']);
 
                 $user->setPlainPassword(md5(uniqid()));
                 $user->setEnabled(false);
@@ -129,6 +133,11 @@ class UserController extends Controller
                 return $this->redirectToRoute('user_index');
             } else {
                 $em = $this->getDoctrine()->getManager();
+
+//                $user->setPromotion($data['promotion']);
+//                $user->setPlainPassword('admin');
+//                $user->setEnabled(true);
+//                $user->setRoles(['ROLE_ADMIN']);
 
                 $user->setPlainPassword(md5(uniqid()));
                 $user->setEnabled(false);

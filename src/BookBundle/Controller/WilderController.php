@@ -2,6 +2,7 @@
 
 namespace BookBundle\Controller;
 
+use BookBundle\Entity\Promotion;
 use BookBundle\Entity\User;
 use BookBundle\Entity\Wilder;
 use BookBundle\Form\WilderSearchType;
@@ -63,14 +64,18 @@ class WilderController extends Controller
     public function newAction(Request $request, FileUploader $fileUploader, ConvertCity $convert)
     {
         $wilder = new Wilder();
+        $promotion = new Promotion();
         $form = $this->createForm('BookBundle\Form\WilderType', $wilder);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $promotion->setPromotion($this->getUser()->getPromotion());
             $address = $form['postalCode']->getData() .' '. $form['city']->getData();
             $wilder->setLocation($convert->convertGps($address));
             $em = $this->getDoctrine()->getManager();
             $wilder->setUser($this->getUser());
+            $wilder->setPromotion($promotion);
             $em->persist($wilder);
             $em->flush();
 

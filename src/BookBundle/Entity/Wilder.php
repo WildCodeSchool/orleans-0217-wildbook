@@ -194,7 +194,7 @@ class Wilder
 
     /**
      * @var
-     * @ORM\ManyToOne (targetEntity="Promotion", inversedBy="wilders")
+     * @ORM\ManyToOne (targetEntity="Promotion", inversedBy="wilders" , cascade={"persist", "merge"})
      */
     private $promotion;
 
