@@ -49,12 +49,11 @@ class HomeWilderController extends Controller
         if ($form->isValid() && $form->isSubmitted()) {
             $data = $form->getData();
             $wild = $em->getRepository(Wilder::class)->getLikeHomeWilder($data['wilder']);
-            var_dump($wild);
-            die();
             $wilder->setWilder($wild[0]);
             $wilder->setDescription($data['description']);
             $em->persist($wilder);
             $em->flush();
+            $this->addFlash('success', 'Le wilder est mis en avant sur le site');
         }
         return $this->render('wilder/wilderHome.html.twig', array(
             'form' => $form->createView()

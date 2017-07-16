@@ -163,7 +163,7 @@ class ProjectController extends Controller
 
                 $em->flush();
                 $this->addFlash('warning', 'Projet '. $project->gettitle().' modifié');
-                return $this->redirectToRoute('project_edit', ['id'=>$project->getId()]);
+                return $this->redirectToRoute('project_index');
             }
             return $this->render('project/edit.html.twig', array(
                 'project' => $project,

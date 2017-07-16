@@ -61,7 +61,7 @@
             {{ form_errors(edit_form.contactEmail) }}
 
             {{ form_label(edit_form.profilPicture,'Photo Profil') }}
-            <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" class ="imageWilderAdmin"/>
+            <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" class ="imgEditWilder"/>
             {{ form_widget(edit_form.profilPicture) }}
             {{ form_errors(edit_form.profilPicture) }}
 
