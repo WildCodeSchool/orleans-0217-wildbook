@@ -10,7 +10,7 @@
     <div class="container-fluid">
 
         <h3>{{ project.title }}</h3>
-        <h4>Wilders ayant réalisé ce projet : </h4>
+
 
         <div class="form-group">
             {{ form_start(edit_form) }}
@@ -88,6 +88,8 @@
             </div>
 
             <div class="container">
+                <h4>Wilders ayant réalisé ce projet : </h4>
+
                 {% if is_granted('ROLE_ADMIN') %}
                     <div>
                         {{ form_label(edit_form.projectWilders, 'Wilders ayant participé au projet') }}
@@ -97,7 +99,7 @@
                 {% else %}
                     <ul>
                         {% for projectWilders in project.projectWilders %}
-                            <li>{{ projectWilders.wilder.firstname }}{{ projectWilders.wilder.lastname }}</li>
+                            <li>{{ projectWilders.wilder.fullname }}</li>
                         {% endfor %}
                     </ul>
 
