@@ -3,6 +3,7 @@
 namespace BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Availability
@@ -25,6 +26,11 @@ class Availability
      * @var string
      *
      * @ORM\Column(name="label", type="string", length=45)
+     * @Assert\Length(min = 2,
+     *      max = 45,
+     *      minMessage = "le champ label doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ label ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      */
     private $label;
 
