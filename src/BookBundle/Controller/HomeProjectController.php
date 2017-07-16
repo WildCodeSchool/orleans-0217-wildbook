@@ -116,7 +116,7 @@ class HomeProjectController extends Controller
              * @var $repository ProjectRepository
              */
             $repository = $this->getDoctrine()->getRepository('BookBundle:Project');
-            $data = $repository->getLike($input);
+            $data = $repository->getLikeAdmin($input);
             return new JsonResponse(array("data" => json_encode($data)));
         } else {
             throw new HttpException('500', 'Invalid call');

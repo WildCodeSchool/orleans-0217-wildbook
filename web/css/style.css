@@ -517,6 +517,13 @@ footer {
     opacity: 1;
 }
 
+.hoverDispoProject {
+    background-color: #f9a02e;
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+}
+
 .blocksearch {
     margin-top: 30px;
 }
@@ -939,15 +946,13 @@ a.websiteWilder {
 }
 
 .imgProjectWilder {
-    border-top: 50px;
-    border-bottom: 50px;
+    margin-bottom: 90px;
 }
 
 .wilderTransition {
     margin-top:-32px;
     background-color: #FBFBFB;
 }
-
 
 .wilders_project_collection label.required {
     display:none;
