@@ -1,17 +1,41 @@
 {% extends 'layout_admin.html.twig' %}
-{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+
 {% form_theme picture_form 'bootstrap_3_layout.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
+{% form_theme edit_form 'jquery.collection.html.twig' %}
 
 
 {% block content %}
 
     <div class="container-fluid">
 
-        <h3>{{ project.title }}</h3>
-        <h4>Wilders ayant réalisé ce projet : </h4>
-        <ul>{% for projectWilders in project.projectWilders %}
-                <li>{{ projectWilders.wilder.firstname }}{{ projectWilders.wilder.lastname }}</li>
-            {% endfor %}</ul>
+        <h1>{{ project.title }}</h1>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="well">
+                    {% for projectWilder in project.projectWilders if projectWilder.wilder.user.id == app.user.id %}
+                        <a class="pull-right btn btn-danger" href="{{ path('project_wilder_visibility', {'id':projectWilder.id}) }}">
+                            {{ projectWilder.visibility ? 'Masquer ma participation au projet' : 'Afficher ma participation au projet' }}
+                        </a>
+                    {% endfor %}
+                    <h2>Wilders ayant participés au projet : </h2>
+                    <ul>
+                        {% for projectWilder in project.projectWilders %}
+                            <li>
+                                <a class="lienWilders {{ projectWilder.visibility == 0 ? 'text-danger' }}"
+                                   href="{{ path('profile_wilder', { 'id': projectWilder.id }) }}">
+                                    {{ projectWilder.wilder.firstname }} {{ projectWilder.wilder.lastname }}
+                                </a>
+                                {% if projectWilder.visibility == 0 %}
+                                    <span class="label label-danger">Non visible</span>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <div class="form-group">
             {{ form_start(edit_form) }}
 
@@ -63,6 +87,21 @@
             {{ form_widget(edit_form.school) }}
             {{ form_errors(edit_form.school) }}
 
+            {%  if is_granted('ROLE_ADMIN') %}
+            <div>
+                {{ form_label(edit_form.projectWilders, 'Wilders ayant participé au projet') }}
+                {{ form_widget(edit_form.projectWilders) }}
+                {{ form_errors(edit_form.projectWilders) }}
+            </div>
+            {% else %}
+                <ul>
+                    {% for projectWilders in project.projectWilders %}
+                        <li>{{ projectWilders.wilder.firstname }}{{ projectWilders.wilder.lastname }}</li>
+                    {% endfor %}
+                </ul>
+
+            {% endif %}
+
             {% for picture in project.pictures %}
                 {% if picture.isPrincipal == true %}
                     <div class="image_projet_principale">
@@ -81,6 +120,7 @@
 
             {{ form_widget(edit_form) }}
         </div>
+
         <div class="form-group">
             <input type="submit" class="btn btn-success" value="Valider"/>
         </div>
@@ -126,7 +166,21 @@
         <div class="form-group">
             <a href="{{ path('project_index') }}" class="btn btn-primary">Retour à la liste</a>
         </div>
-
-
     </div>
+
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/jquery.collection.js') }}"></script>
+
+    <script type="text/javascript">
+        $('.wilders_project_collection').collection ({
+            add: ' <a class="btn btn-sm btn-warning href="#">Ajouter un wilder</a>',
+            remove: '<a href="#">Delete wilder</a>',
+            allow_up: false,
+            allow_down: false,
+            add_at_the_end: true,
+        });
+    </script>
+{% endblock javascripts %}

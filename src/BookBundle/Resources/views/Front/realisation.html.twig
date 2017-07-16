@@ -4,86 +4,123 @@
 
     <div class="container-fluid">
 
-        <h1>Project</h1>
+        <div class="container">
 
-        <div class="jumbotron">
-            <div class="container">
+            <div class="projectTitleDetail">
+                <h1>{{ project.title }}</h1>
+            </div>
+            <hr/>
+
+            <div class="jumbotron">
+                <div class="imgPrincipaleProject">
+                    {% for picture in project.pictures %}
+                        {% if picture.isPrincipal == true %}
+                            <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imagePrincipaleProject"/>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="row subtitleProject">
+                <div class="col-md-6">
+                    <p class="subtitleProjectCustomer">
+                        {{ project.customer }}
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p class="subtitleProjectPromotion">
+                        {{ project.school.school }} /
+                        {% for projectWilder in project.projectWilders  %}
+                            {% if loop.first %}
+                                {{  projectWilder.wilder.promotion.promotion }}
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <hr/>
+            </div>
+
+            <div class="row projectContent">
+                <div class="col-md-3 projectContentLeft">
+                    <div class="projectType">
+                        <p class="projectType">{{ project.category.label }}</p>
+                    </div>
+                    <div class="projectStatut">
+                       <p class="projectType">{{ project.status }}</p>
+                    </div>
+                    <div class="langages">
+                        <h4>LANGAGES</h4>
+                        <ul class="langages">
+                            {% for languages in project.languages %}
+                                <li class="langages">{{ languages.language }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="technologies">
+                        <h4>TECHNOLOGIES</h4>
+                        <ul class="technologies">
+                            {% for technologies in project.technologies %}
+                                <li class="technologies">{{ technologies.technology }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="wilders">
+                        <h4>Wilders</h4>
+                        <ul>
+                            {% for projectWilder in project.projectWilders if projectWilder.visibility %}
+                                <li><a class="lienWilders"
+                                       href="{{ path('profile_wilder', { 'id': projectWilder.id }) }}">
+                                        {{ projectWilder.wilder.firstname }} {{ projectWilder.wilder.lastname }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="ecole">
+                        <h4>Ecole : {{ project.school.school }}</h4>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                            {% for tags in project.tags %}
+                                <li>#{{ tags.tag }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="col-md-8 col-md-offset-1">
+                    <div class="urlProject">
+                        <p class="urlProject">
+                            <a class="urlProject" href="{{ project.path }}" target="_blank">{{ project.path }}</a></p>
+                    </div>
+                    <hr/>
+                    <div class="shortDescription">
+                        <p class="shortDescription">{{ project.summary }}</p>
+                    </div>
+                    <div class="description">
+                        <p class="description">{{ project.description }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <hr/>
+            </div>
+
+            <div class="row imgProject">
                 {% for picture in project.pictures %}
-                    {% if picture.isPrincipal == true %}
-                        <img src="{{ asset('uploads/'~ picture.path|basename ) }}"/>
-                    {% endif %}
+                    <div class="col-xs-12 col-lg-6">
+                        <a href="#" class="thumbnail">
+                            <img src="{{ asset('uploads/'~ picture.path|basename ) }}"/>
+                        </a>
+                    </div>
                 {% endfor %}
             </div>
         </div>
-
-        <table class="table table-condensed">
-            <tbody>
-            <tr>
-                <th>Titre</th>
-                <td>{{ project.title }}</td>
-            </tr>
-            <tr>
-                <th>Lien</th>
-                <td>{{ project.path }}</td>
-            </tr>
-            <tr>
-                <th>Client</th>
-                <td>{{ project.customer }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{% if project.date %}{{ project.date|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Statut</th>
-                <td>{{ project.status }}</td>
-            </tr>
-            <tr>
-                <th>Résumé</th>
-                <td>{{ project.summary }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ project.description }}</td>
-            </tr>
-            <tr>
-                <th>Tags</th>
-                <td>{% for tags in project.tags %}
-                        {{ tags.tag }}{% if not loop.last %}, {% endif %}
-                    {% endfor %}
-                </td>
-            </tr>
-            <tr>
-                <th>Catégorie</th>
-                <td>{{ project.category.label }}</td>
-            </tr>
-            <tr>
-                <th>Langages</th>
-                <td>{% for languages in project.languages %}
-                        {{ languages.language }}{% if not loop.last %}, {% endif %}
-                    {% endfor %}
-                </td>
-            </tr>
-            <tr>
-                <th>Technologies</th>
-                <td>{% for technologies in project.technologies %}
-                        {{ technologies.technology }}{% if not loop.last %}, {% endif %}
-                    {% endfor %}
-                </td>
-            </tr>
-
-            </tbody>
-        </table>
-
-        {% for picture in project.pictures %}
-            {% if picture.isPrincipal == false %}
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    <a href="#" class="thumbnail">
-                        <img src="{{ asset('uploads/'~ picture.path|basename ) }}"/>
-                    </a>
-                </div>
-            {% endif %}
-        {% endfor %}
 
     </div>
 
