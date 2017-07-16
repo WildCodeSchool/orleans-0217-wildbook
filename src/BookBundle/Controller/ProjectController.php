@@ -16,8 +16,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use BookBundle\Service\FileUploader;
 
 
 /**
@@ -52,7 +52,7 @@ class ProjectController extends Controller
         }
 
         return $this->render('project/index.html.twig', array(
-            'form' => $form->createView(),
+            'form'     => $form->createView(),
             'projects' => $projectsSearch,
         ));
     }
@@ -64,7 +64,7 @@ class ProjectController extends Controller
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_ADMIN')")
      */
-    public function newAction(Request $request, FileUploader $fileUploader)
+    public function newAction(Request $request)
     {
 
         $project = new Project();
@@ -77,14 +77,14 @@ class ProjectController extends Controller
             $projectWilder->setProject($project);
             $em->persist($project);
             $em->flush();
-            $this->addFlash('success', 'Nouveau projet '. $project->getTitle().' enregistré');
+            $this->addFlash('success', 'Nouveau projet ' . $project->getTitle() . ' enregistré');
 
             return $this->redirectToRoute('project_index');
         }
 
         return $this->render('project/new.html.twig', array(
             'project' => $project,
-            'form' => $form->createView(),
+            'form'    => $form->createView(),
         ));
     }
 
@@ -109,14 +109,34 @@ class ProjectController extends Controller
             }
 
             if (!in_array($projectId, $projectsUserId)) {
-                $this->addFlash('danger','Tu n\'as pas accès à cette ressource' );
-                 return $this->redirectToRoute('home_admin');
+                $this->addFlash('danger', 'Tu n\'as pas accès à cette ressource');
+
+                return $this->redirectToRoute('home_admin');
             }
         }
+
         return $this->render('project/show.html.twig', array(
-            'project' => $project,
+            'project'     => $project,
             'delete_form' => $deleteForm->createView(),
         ));
+
+    }
+
+    /**
+     * Creates a form to delete a project entity.
+     *
+     * @param Project $project The project entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     *
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    private function createDeleteForm(Project $project)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('project_delete', array('id' => $project->getId())))
+            ->setMethod('DELETE')
+            ->getForm();
 
     }
 
@@ -126,7 +146,7 @@ class ProjectController extends Controller
      * @Route("/{id}/edit", name="project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project, FileUploader $fileUploader)
+    public function editAction(Request $request, Project $project)
     {
         $deleteForm = $this->createDeleteForm($project);
 
@@ -162,15 +182,19 @@ class ProjectController extends Controller
                 $em->persist($project);
 
                 $em->flush();
-                $this->addFlash('warning', 'Projet '. $project->gettitle().' modifié');
-                return $this->redirectToRoute('project_index');
+
+                $this->addFlash('warning', 'Projet ' . $project->gettitle() . ' modifié');
+
+                return $this->redirectToRoute('project_edit', ['id' => $project->getId()]);
+
             }
+
             return $this->render('project/edit.html.twig', array(
-                'project' => $project,
-                'pictures' => $pictures,
-                'edit_form' => $editForm->createView(),
+                'project'      => $project,
+                'pictures'     => $pictures,
+                'edit_form'    => $editForm->createView(),
                 'picture_form' => $pictureForm->createView(),
-                'delete_form' => $deleteForm->createView(),
+                'delete_form'  => $deleteForm->createView(),
             ));
 
         } else {
@@ -178,10 +202,6 @@ class ProjectController extends Controller
 
             return $this->redirectToRoute('project_one_wilder_index');
         }
-
-
-
-
 
 
     }
@@ -202,28 +222,10 @@ class ProjectController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($project);
             $em->flush();
-            $this->addFlash('danger', 'Projet '. $project->gettitle().' supprimé');
+            $this->addFlash('danger', 'Projet ' . $project->gettitle() . ' supprimé');
         }
 
         return $this->redirectToRoute('project_index');
-    }
-
-    /**
-     * Creates a form to delete a project entity.
-     *
-     * @param Project $project The project entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     *
-     * @Security("has_role('ROLE_ADMIN')")
-     */
-    private function createDeleteForm(Project $project)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('project_delete', array('id' => $project->getId())))
-            ->setMethod('DELETE')
-            ->getForm();
-
     }
 
     /**
@@ -258,6 +260,7 @@ class ProjectController extends Controller
              */
             $repository = $this->getDoctrine()->getRepository('BookBundle:Project');
             $data = $repository->getLikeAdmin($input);
+
             return new JsonResponse(array("data" => json_encode($data)));
 
         } else {
@@ -265,4 +268,24 @@ class ProjectController extends Controller
         }
     }
 
+    /**
+     * @Route("/hide-visibility/{id}", name="project_wilder_visibility")
+     */
+    public function hideVisibilityAction(ProjectWilder $projectWilder)
+    {
+        if ($projectWilder->getWilder()->getUser() === $this->getUser()) {
+            $em = $this->getDoctrine()->getManager();
+            $this->addFlash('success', 'Visibilité modifiée pour ce projet');
+            $projectWilder->setVisibility(!$projectWilder->getVisibility());
+            $em->flush();
+        } else {
+            throw new AccessDeniedHttpException('Vous n\avez pas l\'autorisation d\effectuer cette action');
+
+        }
+
+        return $this->redirectToRoute('project_edit', [
+            'id'=>$projectWilder->getProject()->getId(),
+        ]);
+
+    }
 }
