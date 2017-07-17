@@ -49,6 +49,7 @@ class HomeProjectController extends Controller
             $homeProject->sethomeTextProject($data->gethomeTextProject());
             $em->persist($homeProject);
             $em->flush();
+            $this->addFlash('success', 'Le projet est mis en avant sur le site');
         }
 
         return $this->render('project/projectHome.html.twig', array(
@@ -90,9 +91,10 @@ class HomeProjectController extends Controller
                         $homeProject->setHomeProject(false);
                         $homeProject->sethomeTextProject(null);
                         $em->persist($homeProject);
-                        $em->flush();}
+                        $em->flush();
+                        }
                     }
-
+            $this->addFlash('success', 'Il n\'y a plus de projet mis en avant sur le site');
                 }
 
         return $this->render('project/resetHomeProject.html.twig', array(
@@ -116,7 +118,7 @@ class HomeProjectController extends Controller
              * @var $repository ProjectRepository
              */
             $repository = $this->getDoctrine()->getRepository('BookBundle:Project');
-            $data = $repository->getLike($input);
+            $data = $repository->getLikeAdmin($input);
             return new JsonResponse(array("data" => json_encode($data)));
         } else {
             throw new HttpException('500', 'Invalid call');

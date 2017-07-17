@@ -41,13 +41,15 @@ class Wilder
     /**
      * @var string
      *
-     * @ORM\Column(name="location", type="string", length=45, nullable=true)
+     * @ORM\Column(name="location", type="string", length=100, nullable=true)
      */
     private $location;
 
     /**
      * @var int
      *
+     
+    /**
      * @ORM\Column(name="postalCode", type="integer")
      */
     private $postalCode;

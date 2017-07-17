@@ -3,6 +3,7 @@
 namespace BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Promotion
@@ -23,6 +24,13 @@ class Promotion
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "le champ promotion doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ promotion ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
+     *
      *
      * @ORM\Column(name="promotion", type="string", length=45)
      */

@@ -5,6 +5,7 @@ namespace BookBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Language
@@ -25,6 +26,12 @@ class Language
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 30,
+     *      minMessage = "le champ langage doit contenir au moins 2 caractères",
+     *      maxMessage = "le champ langage ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      *
      * @ORM\Column(name="language", type="string", length=30)
      */
