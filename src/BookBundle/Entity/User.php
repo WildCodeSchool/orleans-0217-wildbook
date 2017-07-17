@@ -36,6 +36,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="promotion", type="string", length=45)
+     * @ORM\ManyToOne (targetEntity="Promotion", inversedBy="users" , cascade={"persist", "merge"})
      */
     private $promotion;
 

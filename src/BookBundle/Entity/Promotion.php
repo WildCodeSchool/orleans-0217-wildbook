@@ -46,6 +46,12 @@ class Promotion
      */
     private $school;
 
+    /**
+     * @var
+     * @ORM\OneToMany (targetEntity="User", mappedBy="promotion")
+     */
+    private $users;
+
 
     /**
      * Get id
@@ -202,5 +208,39 @@ class Promotion
 
     public function __toString() {
         return $this->promotion;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \BookBundle\Entity\User $user
+     *
+     * @return Promotion
+     */
+    public function addUser(\BookBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \BookBundle\Entity\User $user
+     */
+    public function removeUser(\BookBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

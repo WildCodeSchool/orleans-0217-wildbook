@@ -138,7 +138,6 @@ class UserController extends Controller
 //                $user->setPlainPassword('admin');
 //                $user->setEnabled(true);
 //                $user->setRoles(['ROLE_ADMIN']);
-
                 $user->setPlainPassword(md5(uniqid()));
                 $user->setEnabled(false);
                 $user->setRoles(['ROLE_ADMIN']);
