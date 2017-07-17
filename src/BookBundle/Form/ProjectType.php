@@ -40,9 +40,9 @@ class ProjectType extends AbstractType
                 ->add('date')
                 ->add('status', ChoiceType::class , [
                     'choices'=> [
-                        'Mis en production'=>'mis en production',
-                        'En cours'=>'en cours',
-                        'Projet fictif'=>'projet fictif'
+                        'Mis en production'=>'Mis en production',
+                        'En cours'=>'En cours',
+                        'Projet fictif'=>'Projet fictif'
                     ]
                 ])
                 ->add('summary', TextType::class)
