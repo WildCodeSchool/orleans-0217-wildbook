@@ -27,6 +27,7 @@ class LoadUserData  extends AbstractFixture implements OrderedFixtureInterface
         $superadmin1 -> setPassword ('$2y$13$fF1EE0x0h7nu9Jqmqi23ke8w8T/dYb9cw.NS4lFWaxjuV0bfLFqhS');
         $superadmin1 -> setLastLogin(new \DateTime('2017-06-01 12:32:52'));
         $superadmin1 -> setRoles([0 =>'ROLE_ADMIN', 1 =>'ROLE_SUPER_ADMIN']);
+        $superadmin1 -> setPromotion('wcs');
         $manager -> persist ( $superadmin1 );
 
         $superadmin2 = new User ();
@@ -38,6 +39,7 @@ class LoadUserData  extends AbstractFixture implements OrderedFixtureInterface
         $superadmin2 -> setPassword ('$2y$13$fF1EE0x0h7nu9Jqmqi23ke8w8T/dYb9cw.NS4lFWaxjuV0bfLFqhS');
         $superadmin2 -> setLastLogin(new \DateTime('2017-06-01 12:32:52'));
         $superadmin2 -> setRoles([0 =>'ROLE_ADMIN', 1 =>'ROLE_SUPER_ADMIN']);
+        $superadmin2 -> setPromotion('wcs');
         $manager -> persist ( $superadmin2 );
 
         $admin1 = new User ();
@@ -49,6 +51,7 @@ class LoadUserData  extends AbstractFixture implements OrderedFixtureInterface
         $admin1 -> setPassword ('$2y$13$jlRKwEk8Ud5aUCaiqUZ4IePGFzWfqwaFDg.G8X2hZmmwexBNoX/Su');
         $admin1 -> setLastLogin(new \DateTime('2017-06-01 12:32:52'));
         $admin1 -> setRoles([0 =>'ROLE_ADMIN']);
+        $admin1 -> setPromotion('wcs');
         $manager -> persist ( $admin1 );
         $this->addReference('admin1', $admin1 );
 
@@ -61,6 +64,7 @@ class LoadUserData  extends AbstractFixture implements OrderedFixtureInterface
         $admin2 -> setPassword ('$2y$13$jlRKwEk8Ud5aUCaiqUZ4IePGFzWfqwaFDg.G8X2hZmmwexBNoX/Su');
         $admin2 -> setLastLogin(new \DateTime('2017-06-01 12:32:52'));
         $admin2 -> setRoles([0 =>'ROLE_ADMIN']);
+        $admin2 -> setPromotion('wcs');
         $manager -> persist ( $admin2 );
         $this->addReference('admin2', $admin2 );
 
@@ -73,6 +77,7 @@ class LoadUserData  extends AbstractFixture implements OrderedFixtureInterface
         $admin3 -> setPassword ('$2y$13$jlRKwEk8Ud5aUCaiqUZ4IePGFzWfqwaFDg.G8X2hZmmwexBNoX/Su');
         $admin3 -> setLastLogin(new \DateTime('2017-06-01 12:32:52'));
         $admin3 -> setRoles([0 =>'ROLE_ADMIN']);
+        $admin3 -> setPromotion('wcs');
         $manager -> persist ( $admin3 );
         $this->addReference('admin3', $admin3 );
 
@@ -697,6 +702,6 @@ class LoadUserData  extends AbstractFixture implements OrderedFixtureInterface
     public function getOrder ()
     {
 
-        return 13 ;
+        return 14 ;
     }
 }
