@@ -4,6 +4,8 @@
     {{ parent() }}
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/sb-admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
+
 {% endblock stylesheets %}
 
 {% block body %}
@@ -234,3 +236,8 @@
 
 {% block footer %}
 {% endblock footer %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+{% endblock javascripts %}

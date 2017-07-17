@@ -9,14 +9,14 @@
     display: flex;
     justify-content: center;
     margin-top: 170px;
-    color : #ffffff;
+    color: #ffffff;
     font-weight: 400;
 }
 
 .sub-title h2 {
-    margin-top:100px;
+    margin-top: 100px;
     margin-bottom: 100px;
-    display:flex;
+    display: flex;
     justify-content: center;
 }
 
@@ -30,13 +30,13 @@
 }
 
 .btn-wcs {
-    padding : 12px;
+    padding: 12px;
     border-radius: 50% !important;
     background-color: #f9a02e;
-    color:#80cbc4;
+    color: #80cbc4;
     -webkit-box-shadow: 0px 0px 3px 1px #f9a02e;
-    -moz-box-shadow:    0px 0px 3px 1px #f9a02e;
-    box-shadow:         0px 0px 3px 1px #f9a02e;
+    -moz-box-shadow: 0px 0px 3px 1px #f9a02e;
+    box-shadow: 0px 0px 3px 1px #f9a02e;
 }
 
 .search-selectors {
@@ -56,7 +56,7 @@
 
 .sub-title-slider h2 {
     margin-bottom: 20px;
-    display:flex;
+    display: flex;
     justify-content: center;
 }
 
@@ -69,13 +69,12 @@
     height:530px;
 }
 
-
 .list_realisations h4 {
-    color : #0f0f0f;
+    color: #0f0f0f;
 }
 
 .list_wilders h4 {
-    color : #0f0f0f;
+    color: #0f0f0f;
 }
 
 .img2 {
@@ -83,21 +82,21 @@
     height: 365px;
 }
 
-#mapid{
+#mapid {
     height: 580px;
 }
 
-.imageShearchWilder{
+.imageShearchWilder {
     width: 300px;
     height: 300px;
 }
 
-.imageShearchProject{
+.imageShearchProject {
     width: 300px;
     height: 300px;
 }
 
-.error{
+.error {
     margin-top: 200px;
     width: 650px;
     height: 200px;
@@ -105,74 +104,10 @@
 
 /** PAGE ACCUEIL **/
 
-.homeHeadera {
-    z-index: -999;
-    position: relative;
-    height: 500px;
-    background-color: rgba(128, 203, 196, 0.5);
-    overflow: hidden; /* les dépassements de l'image contenue seront masqués */
-}
-
-.homeHeaderaPic {
-    position: absolute;
-    width: 100vw;
-    margin-top: -25%;
-}
-
-.homeNavigation {
-    text-align: center;
-}
-
-.homeNavigationButton {
-    margin: 90px 15px 0 15px;
-    display: inline-block; /* permet la juxtaposition verticale de deux blocks */
-    height: 60px;
-    width: 165px;
-    background-color: #fba858;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 400;
-    font-size: 20px;
-    text-align: center;
-    padding-top: 16px;
-    color: #f1f1f1;
-}
-
-.homeTextTitle {
-    font-size: 25pt;
-    text-align: center;
-}
-
-.homeTextParagraph {
-    font-size: 16pt;
-    font-weight: 400;
-    line-height: 24pt;
-    text-align: center;
-    padding-top: 45px;
-}
-
-.homeIllustration {
-    padding: 0;
-    margin-top: 90px;
-    height: 400px; /* hauteur maximale de l'image d'entête */
-    overflow: hidden; /* les dépassements de l'image contenue seront masqués */
-    background-color: rgba(128, 203, 196, 0.5);
-}
-
-.homeIllustrationPic {
-    width: 100vw; /* la largeur de l'image prend 100% de la de la largeur de la fenêtre */
-    margin-top: -25%;
-}
-
 .homeHeaderTitle {
     position: absolute;
     font-size: 40px;
     color: #fbfbfb;
-}
-
-.homeLine {
-    margin-top: 90px;
-    border-width: 1px;
-    border-color: #35383a;
 }
 
 .homeGeolocation {
@@ -183,10 +118,10 @@
 }
 
 .homeWilder {
-    width:400px;
+    width: 400px;
 }
 
-.goback{
+.goback {
     margin-top: 23%;
     margin-left: 41%;
     width: 80px;
@@ -230,25 +165,81 @@ a:hover {
     box-shadow: 2.5px 4.33px 5px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* ---------- Home ---------- */
-
-.homeIllustration {
-    margin-top: 90px;
-    height: 400px; /* hauteur maximale de l'image d'entête */
-    overflow: hidden; /* les dépassements de l'image contenue seront masqués */
-    background-color: rgba(128, 203, 196, 0.5);
+@media (min-width: 767px) {
+    .paragraphTitle {
+        font-size: 26pt;
+        text-align: center;
+    }
 }
 
-.homePicture {
+@media (max-width: 767px) {
+    .paragraphText {
+        font-size: 18pt;
+        font-weight: 400;
+        line-height: 24pt;
+    }
+}
+
+.separatorLine {
+    border-width: 1px;
+    border-color: #35383a;
+}
+
+/* ---------- Navbar  ---------- */
+
+.navbar-toggle {
+    border: none;
+}
+
+.navbar {
+    background-color: rgba(251, 245, 251, .95);
+}
+
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover {
+    color: #f9a02e;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #7b7b7b;
+    padding-left: 30px;
+}
+
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+    color: #7b7b7b;
+    background-color: transparent;
+}
+
+/* ---------- Home ---------- */
+.homeText {
+    margin: 0 70px 0 0;
+}
+
+.fullWidthPictureContainer {
+    z-index: -100;
+    position: relative;
+    width: 100%;
+    height: 33vh;
+    overflow: hidden;
+    background-color: rgb(128, 203, 196);
+}
+
+.fullWidthPicture {
+    position: absolute;
+    top: 50%; /* poussé de la moitié de hauteur du référent */
+    transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
     width: 100%;
     height: auto;
 }
-
-.homeText {
-    margin-top: 0 70px 0 0;
-}
-
-/* ---------- Footer ---------- */
 
 footer {
     z-index: 100;
@@ -258,44 +249,83 @@ footer {
     font-size: xx-small;
 }
 
-.footerLogo {
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    margin-top: -40px;
+@media (min-width: 767px) {
+    .footerLogo {
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        margin-top: -40px;
+    }
+
+    .footerH4 {
+        font-size: 16pt;
+        color: #fbfbfb;
+        text-align: center;
+        margin-bottom: 45px;
+        margin-top: 45px;
+    }
+
+    .footerSocialIcon i {
+        width: 50px;
+        height: 50px;
+        color: #FFF;
+        background-color: #35383a;
+        font-size: 20px;
+        text-align: center;
+        margin-right: 10px;
+        padding-top: 15px;
+        border-radius: 50%;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -o-border-radius: 50%;
+        transition: all ease 0.3s;
+        -moz-transition: all ease 0.3s;
+        -webkit-transition: all ease 0.3s;
+        -o-transition: all ease 0.3s;
+        -ms-transition: all ease 0.3s;
+    }
 }
 
-.footerH4 {
-    font-size: medium;
-    color: #fbfbfb;
-    text-align: center;
-    margin-bottom: 45px;
-    margin-top: 45px;
+@media (max-width: 767px) {
+    .footerLogo {
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        margin-top: -30px;
+    }
+
+    .footerH4 {
+        font-size: small;
+        color: #fbfbfb;
+        text-align: center;
+        margin-bottom: 45px;
+        margin-top: 45px;
+    }
+
+    .footerSocialIcon i {
+        width: 40px;
+        height: 40px;
+        color: #FFF;
+        background-color: #35383a;
+        font-size: 20px;
+        text-align: center;
+        margin-right: 10px;
+        padding-top: 10px;
+        border-radius: 50%;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -o-border-radius: 50%;
+        transition: all ease 0.3s;
+        -moz-transition: all ease 0.3s;
+        -webkit-transition: all ease 0.3s;
+        -o-transition: all ease 0.3s;
+        -ms-transition: all ease 0.3s;
+    }
 }
 
 .footerSocial {
     display: flex;
     justify-content: center;
-}
-
-.footerSocialIcon i {
-    width: 50px;
-    height: 50px;
-    color: #FFF;
-    background-color: #35383a;
-    font-size: 20px;
-    text-align: center;
-    margin-right: 10px;
-    padding-top: 15px;
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -o-border-radius: 50%;
-    transition: all ease 0.3s;
-    -moz-transition: all ease 0.3s;
-    -webkit-transition: all ease 0.3s;
-    -o-transition: all ease 0.3s;
-    -ms-transition: all ease 0.3s;
 }
 
 .footerSocialIcon i:hover {
@@ -325,7 +355,7 @@ footer {
 }
 
 .footerSocialIcon .fa-github:hover {
-    background: #343434;
+    background: black;
 }
 
 .footerSocialIcon .fa-instagram:hover {
@@ -355,8 +385,8 @@ footer {
 }
 
 .carousel-inner > .item > img {
-    width:1140px;
-    height:460px;
+    width: 1140px;
+    height: 460px;
 }
 
 .image-listWilders {
@@ -366,32 +396,32 @@ footer {
 }
 
 .img-listWilders {
-    display:none;
+    display: none;
 }
 
 .vignetteWilder {
     height: 325px;
     border: 1px solid #ddd;
     border-radius: 2px;
-    margin-top:35px;
-    margin-left:45px;
-    margin-right:45px;
+    margin-top: 35px;
+    margin-left: 45px;
+    margin-right: 45px;
 }
 
 .titreVignetteWilder {
-    margin-top:15px;
+    margin-top: 15px;
 }
 
 .titreVignetteWilder h4 {
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 .titreVignetteWilder h5 {
-    margin-top:15px;
+    margin-top: 15px;
 }
 
 .modjoWilder {
-    margin-top:15px;
+    margin-top: 15px;
 }
 
 .modjoWilder h4 {
@@ -935,7 +965,4 @@ a.websiteWilder {
 .imgProjectWilder {
     margin-bottom: 90px;
 }
-
-
-
 

@@ -3,6 +3,7 @@
 namespace BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * CampusManager
@@ -35,6 +36,7 @@ class CampusManager
 
     /**
      * @var string
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="firsname", type="string", length=50)
      */
@@ -42,6 +44,7 @@ class CampusManager
 
     /**
      * @var string
+     * @Assert\NotBlank()
      *
      * @ORM\Column(name="lastname", type="string", length=50)
      */
