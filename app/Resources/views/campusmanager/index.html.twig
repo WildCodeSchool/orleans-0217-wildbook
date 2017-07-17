@@ -9,7 +9,6 @@
     <table class="table table-condensed">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Username</th>
@@ -20,7 +19,6 @@
         <tbody>
         {% for campusManager in campusManagers %}
             <tr>
-                <td><a href="{{ path('campusmanager_show', { 'id': campusManager.id }) }}">{{ campusManager.id }}</a></td>
                 <td>{{ campusManager.firstname }}</td>
                 <td>{{ campusManager.lastname }}</td>
                 <td>{{ campusManager.user}}</td>
@@ -30,16 +28,14 @@
                         <span class="glyphicon glyphicon-pencil"></span> edit
                     </a>
                 </td>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <td>
                     {{ render(controller('BookBundle:CampusManager:indexDelete', {'id': campusManager.id})) }}
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a class="btn btn-default" href="{{ path('campusmanager_new') }}" role="button">Créer un nouveau Campus Manager</a>
-
-
 </div>
 {% endblock %}

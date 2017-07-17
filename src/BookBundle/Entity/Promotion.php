@@ -207,4 +207,8 @@ class Promotion
     {
         return $this->school;
     }
+
+    public function __toString() {
+        return $this->promotion;
+    }
 }
