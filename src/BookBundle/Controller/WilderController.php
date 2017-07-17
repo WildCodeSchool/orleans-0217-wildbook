@@ -2,6 +2,7 @@
 
 namespace BookBundle\Controller;
 
+use BookBundle\Entity\Promotion;
 use BookBundle\Entity\User;
 use BookBundle\Entity\Wilder;
 use BookBundle\Form\WilderSearchType;
@@ -67,14 +68,16 @@ class WilderController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $address = $form['postalCode']->getData() .' '. $form['city']->getData();
             $wilder->setLocation($convert->convertGps($address));
             $em = $this->getDoctrine()->getManager();
             $wilder->setUser($this->getUser());
+            $wilder->setPromotion($this->getUser()->getPromotion());
             $em->persist($wilder);
             $em->flush();
 
-            return $this->redirectToRoute('wilder_index');
+            return $this->redirectToRoute('one_wilder_index');
         }
 
         return $this->render('wilder/new.html.twig', array(
@@ -128,7 +131,7 @@ class WilderController extends Controller
             $idWilder = $wilder->getUser()->getId();
             $idUser = $this->getUser()->getId();
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('wilder_index');
+            return $this->redirectToRoute('one_wilder_index');
         }
 
         if ($idWilder === $idUser or in_array('ROLE_ADMIN',$this->getUser()->getRoles())){

@@ -640,4 +640,18 @@ class Project
     {
         return $this->pictures;
     }
+
+    /**
+     * Add picture
+     *
+     * @param \BookBundle\Entity\Picture $picture
+     *
+     * @return Project
+     */
+    public function addPicture(\BookBundle\Entity\Picture $picture)
+    {
+        $this->pictures[] = $picture;
+
+        return $this;
+    }
 }

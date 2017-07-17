@@ -28,7 +28,7 @@ class Wilder
      * @var \DateTime
      * @Assert\Date()
      *
-     * @ORM\Column(name="birthDate", type="date", nullable=true)
+     * @ORM\Column(name="birthDate", type="date")
      */
     private $birthDate;
 
@@ -85,7 +85,7 @@ class Wilder
      *      maxMessage = "le champ modjo ne doit pas contenir plus de {{ limit }} caractères"
      *      )
      *
-     * @ORM\Column(name="modjo", type="string", length=100, nullable=true)
+     * @ORM\Column(name="modjo", type="string", length=100)
      */
     private $modjo;
 
@@ -110,7 +110,7 @@ class Wilder
     /**
      * @var string
      *
-     * @ORM\Column(name="profilPicture", type="string", length=255, nullable=true)
+     * @ORM\Column(name="profilPicture", type="string", length=255)
      *
      * @Assert\Image( maxSize = "1024k",
      *     mimeTypes = {"profilPicture/jpg,profilPicture/jpeg,profilPicture/png"},
@@ -230,7 +230,7 @@ class Wilder
 
     /**
      * @var
-     * @ORM\ManyToOne (targetEntity="Promotion", inversedBy="wilders")
+     * @ORM\ManyToOne (targetEntity="Promotion", inversedBy="wilders" , cascade={"persist", "merge"})
      */
     private $promotion;
 
