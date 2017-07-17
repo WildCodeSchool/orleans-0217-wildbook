@@ -2,158 +2,132 @@
 
 {% block stylesheets %}
 
-    {{ parent() }}
-
     <!-- Geolocation CSS -->
     <link rel="stylesheet" href="{{ asset('css/leaflet.css') }}">
+    {{ parent() }}
+
+
 
 {% endblock stylesheets %}
 
-{% block nav %}
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top container-fluid" role="navigation">
-        <div class="container">
-            <div class="navbar-header page-scroll container-fluid">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <a class="page-scroll" href="https://wildcodeschool.fr" target="_blank">
-                    <img class="navbar-brand page-scroll" src="{{ asset('images/logoOrangeBlanc.png') }}"
-                         alt="La Wild"/>
-                </a>
-                <a class="navbar-brand page-scroll" href="#page-top">Wildbook</a>
-            </div>
-
-            <!-- Nav links for toggling to the sections -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse container-fluid">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a class="page-scroll" href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#network"><i class="fa fa-map-marker" aria-hidden="true"></i> Notre
-                            réseau</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#wilders"><i class="fa fa-search" aria-hidden="true"></i> Les
-                            Wilders</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#projects"><i class="fa fa-search" aria-hidden="true"></i> Les
-                            réalisations</a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-
-    </nav>
-
-{% endblock nav %}
-
 {% block container %}
 
-    <!-- Section 'Le Wildbook' -->
-    <section id="wildbook" class="intro-section row">
+    {% block headerPicture %}
 
-        <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
-            <h2 class="paragraphTitle">Le Wildbook</h2>
-            <p class="paragraphText">
-                Depuis 2014, un peu plus de 400 Wilders ont été formés sur l’ensemble de nos campus.
-                Le Wild Book se veut un outil pour savoir qui ils sont et découvrir ce sur quoi
-                ils ont pu travailler dans le cadre de leurs formations.
-            </p>
+        <!-- Header picture -->
+        <div class="fullWidthPictureContainer headerPicture">
+            <h1 class="headerTitle">LE WILDBOOK</h1>
+            <img class="fullWidthPicture" src="{{ asset('images/fullWidth4.jpg') }}" alt="Wild Code School Orléans"/>
+        </div>
+
+    {% endblock headerPicture %}
+
+    <!-- Section 'Le Wildbook' -->
+    <section id="wildbook">
+
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                <p class="paragraphText">
+                    Depuis 2014, un peu plus de 400 Wilders ont été formés sur l’ensemble de nos campus. Le Wild Book se
+                    veut un outil pour savoir qui ils sont et découvrir ce sur quoi ils ont pu travailler dans le cadre
+                    de leurs formations.
+                </p>
+            </div>
+        </div>
+
+        <!-- Buttons Wilders/Projects pages -->
+            <div class="navigation row text-center">
+                <div class="col-xs-offset-1 col-xs-5 col-md-offset-4 col-md-2">
+                    <a href="{{ path('search_wilder') }}">
+                        <div class="homeButton shadow">
+                            <i class="fa fa-search" aria-hidden="true"></i>&nbsp;
+                            WILDERS
+                        </div>
+                    </a>
+                </div>
+
+                <div class=" col-xs-5 col-md-2">
+                    <a href="{{ path('search_realisation') }}">
+                        <div class="homeButton shadow">
+                            <i class="fa fa-search" aria-hidden="true"></i>&nbsp;
+                            RÉALISATIONS
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        <div class="row">
+            <hr class="sectionDivider col-xs-offset-1 col-xs-10 col-md-6 col-md-offset-3">
         </div>
 
     </section>
 
-    <!-- Buttons Wilders/Projects pages -->
-    <div class="navigation row hidden-xs">
-        <div class="col-md-2">
-            <a href="{{ path('search_wilder') }}">
-                <div class="navigationButton shadow">
-                    <i class="fa fa-search" aria-hidden="true"></i> WILDERS
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-2">
-            <a href="{{ path('search_realisation') }}">
-                <div class="navigationButton shadow">
-                    <i class="fa fa-search" aria-hidden="true"></i> RÉALISATIONS
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <!-- Separator line -->
-    <hr class="separatorLine ">
-
     <!-- Section 'Notre réseau de Wilders' -->
-    <section id="network" class="intro-section row">
+    <section id="network">
 
-        <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
-            <h2 class="paragraphTitle">Notre réseau de Wilders</h2>
-            <p class="paragraphText">
-                Avec notre réseau de 9 écoles (Lille, Strasbourg, Paris, Fontainebleau, La Loupe, Orléans,
-                Bordeaux, Toulouse & Lyon), les Wilders sont partout en France.
-                Vous avez donc la possibilité de faire des recherches par ville
-                pour trouver le collaborateur donc vous avez besoin.
-            </p>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                <h2 class="paragraphTitle">Notre réseau</h2>
+                <p class="paragraphText">
+                    Avec notre réseau de 9 écoles (Lille, Strasbourg, Paris, Fontainebleau, La Loupe, Orléans, Bordeaux,
+                    Toulouse & Lyon), les Wilders sont partout en France. Vous avez donc la possibilité de faire des
+                    recherches par ville pour trouver le collaborateur dont vous avez besoin.
+                </p>
+            </div>
         </div>
 
         <!-- API geolocation -->
         <div class="row">
-            <div id="mapid" class="hidden-xs col-md-offset-3 col-md-6"></div>
-        </div>
-
-    </section>
-
-    <!-- Separator line -->
-    <hr class="separatorLine">
-
-    <!-- Section 'Les Wilders' -->
-    <section id="wilders" class="intro-section row">
-
-        <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
-            <h2 class="paragraphTitle">Les Wilders</h2>
-            <p class="paragraphText">
-                La partie “Wilders” propose des pages profils pour l’ensemble des élèves inscrits
-                avec un certain nombre d’informations sur les compétences de chacun dont leur disponibilité
-                pour un contrat de travail ou des missions en freelance.
-            </p>
+            <div id="mapid" class="hidden-xs col-md-6 col-md-offset-3"></div>
         </div>
 
         <div class="row">
-            <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
-                <!-- Wilder star -->
-                {{ render(controller('BookBundle:HomeWilder:viewHomeWilder')) }}
-            </div>
-
+            <hr class="sectionDivider col-xs-offset-1 col-xs-10 col-md-6 col-md-offset-3">
         </div>
 
     </section>
 
-    <!-- Separator line -->
-    <hr class="separatorLine">
+    <!-- Section 'Les Wilders' -->
+    <section id="wilders">
+
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                <h2 class="paragraphTitle">Les Wilders</h2>
+                <p class="paragraphText">
+                    La partie “Wilders” propose des pages profils pour l’ensemble des élèves inscrits avec un certain
+                    nombre d’informations sur les compétences de chacun dont leur disponibilité pour un contrat de
+                    travail ou des missions en freelance.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                <!-- Wilder star -->
+                {{ render(controller('BookBundle:HomeWilder:viewHomeWilder')) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <hr class="sectionDivider col-xs-offset-1 col-xs-10 col-md-6 col-md-offset-3">
+        </div>
+
+    </section>
 
     <!-- Section 'Les réalisations' -->
-    <section id="projects" class="row">
+    <section id="projects">
 
-        <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
-            <h2 class="paragraphTitle">Les réalisations</h2>
-            <p class="paragraphText">
-                À la Wild Code School la pratique est au coeur de notre idée de l'apprentissage.
-                Les élèves sont donc amenés à réaliser des projets de sites web ou d’applications,
-                tout au long de leur formation, dont la plupart sont des commandes de vrais clients.
-                Pour cela ils travaillent en groupe, se familiarisant avec les méthodes agiles,
-                pour se préparer dans les meilleures conditions à leur prochaine vie de développeur web ou mobile.
-            </p>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                <h2 class="paragraphTitle">Les réalisations</h2>
+                <p class="paragraphText">
+                    À la Wild Code School la pratique est au coeur de notre idée de l'apprentissage. Les élèves sont
+                    donc amenés à réaliser des projets de sites web ou d’applications, tout au long de leur formation,
+                    dont la plupart sont des commandes de vrais clients. Pour cela ils travaillent en groupe, se
+                    familiarisant avec les méthodes agiles, pour se préparer dans les meilleures conditions à leur
+                    prochaine vie de développeur web ou mobile.
+                </p>
+            </div>
         </div>
 
     </section>
