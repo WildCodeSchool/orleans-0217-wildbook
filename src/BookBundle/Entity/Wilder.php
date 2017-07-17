@@ -26,6 +26,7 @@ class Wilder
 
     /**
      * @var \DateTime
+     * @Assert\Date()
      *
      * @ORM\Column(name="birthDate", type="date")
      */
@@ -47,8 +48,10 @@ class Wilder
 
     /**
      * @var int
+     * @Assert\Length(max="5", min="5", minMessage="Code postal invalide", maxMessage="Code postal invalide")
+     * @Assert\Regex("/[0-9]{2}[0-9]{3}/", message="Code postal invalide")
      *
-     * @ORM\Column(name="postalCode", type="integer")
+     * @ORM\Column(name="postalCode", type="integer", nullable=true)
      */
     private $postalCode;
 
@@ -75,6 +78,12 @@ class Wilder
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 0,
+     *      max = 100,
+     *      minMessage = "le champ modjo doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ modjo ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      *
      * @ORM\Column(name="modjo", type="string", length=100)
      */
@@ -89,6 +98,10 @@ class Wilder
 
     /**
      * @var string
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
      *
      * @ORM\Column(name="contactEmail", type="string", length=100, nullable=true)
      */
@@ -99,7 +112,13 @@ class Wilder
      *
      * @ORM\Column(name="profilPicture", type="string", length=255)
      *
-     * @Assert\Image()
+     * @Assert\Image( maxSize = "1024k",
+     *     mimeTypes = {"profilPicture/jpg,profilPicture/jpeg,profilPicture/png"},
+     *     minHeight = 400  ,
+     *     maxHeight = 600,
+     *     allowLandscape = false,
+     *     allowPortrait = false
+     * )
      */
     private $profilPicture;
 
@@ -108,12 +127,17 @@ class Wilder
      *
      * @ORM\Column(name="cv", type="string", length=255, nullable=true)
      *
-     * @Assert\File(mimeTypes={ "application/pdf" })
+     * @Assert\File(maxSize = "1024k",
+     *     mimeTypes = {"cv/pdf"},
+     *     mimeTypesMessage = "Merci de charger un fichier PDF valide")
      */
     private $cv;
 
     /**
      * @var string
+     * @Assert\Url(
+     *     message = "The url '{{ value }}' is not a valid url",
+     * )
      *
      * @ORM\Column(name="website", type="text", nullable=true)
      */
@@ -121,6 +145,9 @@ class Wilder
 
     /**
      * @var string
+     * @Assert\Url(
+     *     message = "The url '{{ value }}' is not a valid url",
+     * )
      *
      * @ORM\Column(name="github", type="string", length=255, nullable=true)
      */
@@ -128,6 +155,9 @@ class Wilder
 
     /**
      * @var string
+     * @Assert\Url(
+     *     message = "The url '{{ value }}' is not a valid url",
+     * )
      *
      * @ORM\Column(name="linkedin", type="string", length=255, nullable=true)
      */
@@ -135,6 +165,9 @@ class Wilder
 
     /**
      * @var string
+     * @Assert\Url(
+     *     message = "The url '{{ value }}' is not a valid url",
+     * )
      *
      * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
      */
@@ -142,6 +175,9 @@ class Wilder
 
     /**
      * @var string
+     * @Assert\Url(
+     *     message = "The url '{{ value }}' is not a valid url",
+     * )
      *
      * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
      */
@@ -203,8 +239,6 @@ class Wilder
      * @ORM\OneToOne (targetEntity="User", inversedBy="wilder")
      */
     private $user;
-
-
 
     /**
      * @var string

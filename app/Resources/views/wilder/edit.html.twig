@@ -59,7 +59,7 @@
             {{ form_errors(edit_form.contactEmail) }}
 
             {{ form_label(edit_form.profilPicture,'Photo Profil') }}
-            <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" class ="imgEditWilder"/>
+            <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" class="imgEditWilder"/>
             {{ form_widget(edit_form.profilPicture) }}
             {{ form_errors(edit_form.profilPicture) }}
 
@@ -107,14 +107,20 @@
             {{ form_widget(edit_form.availability) }}
             {{ form_errors(edit_form.availability) }}
 
-            {{ form_label(edit_form.userActivation,'Afficher le profil (wilder)') }}
-            {{ form_widget(edit_form.userActivation) }}
-            {{ form_errors(edit_form.userActivation) }}
+            <div class="form-group">
+                <p class="instruction">Afficher le profil (wilder)</p>
+                {{ form_label(edit_form.userActivation,'Afficher le profil (wilder)') }}
+                {{ form_widget(edit_form.userActivation) }}
+                {{ form_errors(edit_form.userActivation) }}
+            </div>
 
             {% if is_granted('ROLE_ADMIN') %}
+            <div class="form-group">
+                <p class="instruction">Afficher le profil (campus manager)</p>
                 {{ form_label(edit_form.managerActivation,'Afficher le profil (campus manager)') }}
                 {{ form_widget(edit_form.managerActivation) }}
                 {{ form_errors(edit_form.managerActivation) }}
+            </div>
             {% endif %}
 
         </div>

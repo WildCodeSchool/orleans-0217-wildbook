@@ -52,7 +52,7 @@ class ProjectController extends Controller
         }
 
         return $this->render('project/index.html.twig', array(
-            'form'     => $form->createView(),
+            'form' => $form->createView(),
             'projects' => $projectsSearch,
         ));
     }
@@ -84,7 +84,7 @@ class ProjectController extends Controller
 
         return $this->render('project/new.html.twig', array(
             'project' => $project,
-            'form'    => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -116,7 +116,7 @@ class ProjectController extends Controller
         }
 
         return $this->render('project/show.html.twig', array(
-            'project'     => $project,
+            'project' => $project,
             'delete_form' => $deleteForm->createView(),
         ));
 
@@ -178,23 +178,22 @@ class ProjectController extends Controller
                         $em->remove($projectWilder);
                     }
                 }
-
                 $em->persist($project);
-
                 $em->flush();
-
-                $this->addFlash('warning', 'Projet ' . $project->gettitle() . ' modifié');
-
-                return $this->redirectToRoute('project_edit', ['id' => $project->getId()]);
-
+                if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
+                    $this->addFlash('warning', 'Projet ' . $project->gettitle() . ' modifié');
+                    return $this->redirectToRoute('project_index');
+                } else {
+                    return $this->redirectToRoute('project_one_wilder_index');
+                }
             }
 
             return $this->render('project/edit.html.twig', array(
-                'project'      => $project,
-                'pictures'     => $pictures,
-                'edit_form'    => $editForm->createView(),
+                'project' => $project,
+                'pictures' => $pictures,
+                'edit_form' => $editForm->createView(),
                 'picture_form' => $pictureForm->createView(),
-                'delete_form'  => $deleteForm->createView(),
+                'delete_form' => $deleteForm->createView(),
             ));
 
         } else {
@@ -284,7 +283,7 @@ class ProjectController extends Controller
         }
 
         return $this->redirectToRoute('project_edit', [
-            'id'=>$projectWilder->getProject()->getId(),
+            'id' => $projectWilder->getProject()->getId(),
         ]);
 
     }

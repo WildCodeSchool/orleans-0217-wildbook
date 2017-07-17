@@ -26,7 +26,11 @@ class Picture
      * @var string
      *
      * @ORM\Column(name="path", type="string", length=255, nullable=true)
-     * @Assert\Image()
+     * @Assert\Image( maxSize = "1024k",
+     *     mimeTypes = {"path/jpg,path/jpeg,path/png"},
+     *     minHeight = 400,
+     *     maxHeight = 600
+     * )
      */
     private $path;
 

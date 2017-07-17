@@ -152,3 +152,9 @@ body {
 .imgEditWilder {
     width:150px;
 }
+
+.instruction {
+    font-style: italic;
+    font-weight: 500;
+    margin-top: 10px;
+}
