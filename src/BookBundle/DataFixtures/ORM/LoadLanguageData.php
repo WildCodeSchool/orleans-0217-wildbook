@@ -21,11 +21,10 @@ class LoadLanguageData  extends AbstractFixture implements OrderedFixtureInterfa
         $php = new Language ();
         $php -> setLanguage('PHP');
         $manager -> persist ( $php );
-        $this->addReference('Php', $php );
-
+        $this->addReference('PHP', $php );
 
         $js = new Language ();
-        $js -> setLanguage('Java Script');
+        $js -> setLanguage('JavaScript');
         $manager -> persist ( $js );
         $this->addReference('Js', $js );
 
@@ -49,30 +48,10 @@ class LoadLanguageData  extends AbstractFixture implements OrderedFixtureInterfa
         $manager -> persist ( $cplus );
         $this->addReference('C++', $cplus );
 
-        $csharp = new Language ();
-        $csharp -> setLanguage('C#');
-        $manager -> persist ( $csharp );
-        $this->addReference('C#', $csharp );
-
-        $dart = new Language ();
-        $dart -> setLanguage('Dart');
-        $manager -> persist ( $dart );
-        $this->addReference('Dart', $dart );
-
-        $go = new Language ();
-        $go -> setLanguage('Go');
-        $manager -> persist ( $go );
-        $this->addReference('Go', $go );
-
         $python = new Language ();
         $python -> setLanguage('Python');
         $manager -> persist ( $python );
         $this->addReference('Python', $python );
-
-        $rust = new Language ();
-        $rust -> setLanguage('Rust');
-        $manager -> persist ( $rust );
-        $this->addReference('Rust', $rust );
 
         $shell = new Language ();
         $shell -> setLanguage('Shell');
