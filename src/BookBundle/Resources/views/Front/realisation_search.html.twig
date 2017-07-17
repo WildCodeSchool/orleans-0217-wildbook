@@ -1,11 +1,16 @@
 {% extends 'layout.html.twig' %}
 
-    {% block stylesheets %}
-        {{ parent() }}
-        <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
-    {% endblock %}
+{% block container %}
 
-{% block body %}
+    {% block headerPicture %}
+
+        <!-- Header picture -->
+        <div class="fullWidthPictureContainer headerPicture">
+            <h1 class="headerTitle">LES RÉALISATIONS</h1>
+            <img class="fullWidthPicture" src="{{ asset('images/fullWidth2.jpg') }}" alt="Wild Code School Orléans"/>
+        </div>
+
+    {% endblock headerPicture %}
 
     <div class="container-fluid img1">
         <h1>NOS REALISATIONS</h1>
