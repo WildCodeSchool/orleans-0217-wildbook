@@ -77,7 +77,7 @@ class WilderController extends Controller
             $em->persist($wilder);
             $em->flush();
 
-            return $this->redirectToRoute('wilder_index');
+            return $this->redirectToRoute('one_wilder_index');
         }
 
         return $this->render('wilder/new.html.twig', array(

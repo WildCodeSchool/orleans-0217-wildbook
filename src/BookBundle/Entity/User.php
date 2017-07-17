@@ -35,7 +35,6 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="promotion", type="string", length=45)
      * @ORM\ManyToOne (targetEntity="Promotion", inversedBy="users" , cascade={"persist", "merge"})
      */
     private $promotion;
@@ -82,22 +81,8 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->promotion = new ArrayCollection();
     }
 
-    /**
-     * Add promotion
-     *
-     * @param \BookBundle\Entity\Promotion $promotion
-     *
-     * @return User
-     */
-    public function addPromotion(\BookBundle\Entity\Promotion $promotion)
-    {
-        $this->promotion[] = $promotion;
-
-        return $this;
-    }
 
     /**
      * Set campusManager

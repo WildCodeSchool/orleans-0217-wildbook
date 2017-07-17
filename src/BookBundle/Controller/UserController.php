@@ -72,10 +72,6 @@ class UserController extends Controller
             } else {
                 $em = $this->getDoctrine()->getManager();
 
-//                $user->setPlainPassword('wilder');
-//                $user->setEnabled(true);
-//                $user->setRoles(['ROLE_USER']);
-
                 $user->setPlainPassword(md5(uniqid()));
                 $user->setEnabled(false);
                 $user->setRoles(['ROLE_USER']);
@@ -134,10 +130,6 @@ class UserController extends Controller
             } else {
                 $em = $this->getDoctrine()->getManager();
 
-//                $user->setPromotion($data['promotion']);
-//                $user->setPlainPassword('admin');
-//                $user->setEnabled(true);
-//                $user->setRoles(['ROLE_ADMIN']);
                 $user->setPlainPassword(md5(uniqid()));
                 $user->setEnabled(false);
                 $user->setRoles(['ROLE_ADMIN']);

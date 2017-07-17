@@ -68,10 +68,6 @@ class WilderType extends AbstractType
                 'class'=>Availability::class,
                 'choice_label'=>'label'
             ]);
-//            ->add('promotion', EntityType::class, [
-//                'class'=>Promotion::class,
-//                'choice_label'=>'promotion'
-//            ]);
     }
 
     /**

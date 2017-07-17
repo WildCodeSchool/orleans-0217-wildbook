@@ -10,9 +10,7 @@
         <h3>Wilder: {{ wilder.firstname }} {{ wilder.lastname }}</h3>
         <h4>Email User: {{ wilder.user.email }}</h4>
         <h4>Username: {{ wilder.user.username }}</h4>
-        {#<ul>Projets réalisés : {% for projectWilders in wilder.projectWilders %}#}
-                {#<li> {{ projectWilders.project.title }}</li>#}
-            {#{% endfor %}</ul>#}
+        <h4>Promotion : {{ wilder.user.promotion.promotion }}</h4>
         <div class="form-group">
             {{ form_start(edit_form) }}
 
@@ -108,10 +106,6 @@
             {{ form_label(edit_form.availability,'Statut disponibilité') }}
             {{ form_widget(edit_form.availability) }}
             {{ form_errors(edit_form.availability) }}
-
-            {{ form_label(edit_form.promotion,'Promotion') }}
-            {{ form_widget(edit_form.promotion) }}
-            {{ form_errors(edit_form.promotion) }}
 
             {{ form_label(edit_form.userActivation,'Afficher le profil (wilder)') }}
             {{ form_widget(edit_form.userActivation) }}
