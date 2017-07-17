@@ -18,13 +18,7 @@ class LoadCampusManagerData  extends AbstractFixture implements OrderedFixtureIn
 {
     public function load ( ObjectManager $manager )
     {
-        $camp1 = new CampusManager();
-        $camp1 -> setFirstname('John');
-        $camp1 -> setLastname('Devos');
-        $camp1 -> setSchool($this->getReference('Orleans'));
-        $camp1 -> setUser($this->getReference('admin'));
-        $manager -> persist ( $camp1 );
-        $this->addReference('CampusManager1', $camp1 );
+
 
         $manager -> flush ();
     }
