@@ -52,10 +52,12 @@
         {{ form_widget(form.contactEmail) }}
         {{ form_errors(form.contactEmail) }}
 
+        <p class="instruction">Le format de l'image attendue est:</p>
         {{ form_label(form.profilPicture,'Photo Profil') }}
         {{ form_widget(form.profilPicture) }}
         {{ form_errors(form.profilPicture) }}
 
+        <p class="instruction">Le fichier doit être au format pdf et ne doit pas dépasser 1Mo</p>
         {{ form_label(form.cv,'CV') }}
         {{ form_widget(form.cv) }}
         {{ form_errors(form.cv) }}

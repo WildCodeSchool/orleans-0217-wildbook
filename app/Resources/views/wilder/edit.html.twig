@@ -60,11 +60,13 @@
             {{ form_widget(edit_form.contactEmail) }}
             {{ form_errors(edit_form.contactEmail) }}
 
+            <p class="instruction">Le format de l'image attendue est:</p>
             {{ form_label(edit_form.profilPicture,'Photo Profil') }}
             <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" class ="imgEditWilder"/>
             {{ form_widget(edit_form.profilPicture) }}
             {{ form_errors(edit_form.profilPicture) }}
 
+            <p class="instruction">Le fichier doit être au format pdf et ne doit pas dépasser 1Mo</p>
             {{ form_label(edit_form.cv,'CV') }}
             {% if wilder.cv =='' %}
             {% else %}
@@ -128,7 +130,8 @@
             <input type="submit" class="btn btn-success" value="Edit"/>
         </div>
 
-        {{ form_end(edit_form) }}
+        {{ form(edit_form._token) }}
+    </form>
 
     {% if is_granted('ROLE_ADMIN') %}
         <div class="form-group">
