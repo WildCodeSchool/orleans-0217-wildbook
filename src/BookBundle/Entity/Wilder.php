@@ -48,8 +48,6 @@ class Wilder
     /**
      * @var int
      *
-
-    /**
      * @ORM\Column(name="postalCode", type="integer")
      */
     private $postalCode;
