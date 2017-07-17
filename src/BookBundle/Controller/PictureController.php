@@ -63,6 +63,7 @@ class PictureController extends Controller
 
         return $this->render('picture/new.html.twig', array(
             'picture' => $picture,
+            'project' => $project,
             'form' => $pictureForm->createView(),
         ));
     }
