@@ -16,7 +16,7 @@ $( document ).ready(function() {
                     for (i = 0; i < wilders.length; i++) {
 
                         html +=  "<tr>" +
-                            "<td><a href=\"/wilder/"+ wilders[i].id +"\"> <img src=\"../uploads/" + wilders[i].profilPicture + "\" class='imageShearchWilderAdmin'> </a></td>"+
+                            "<td><a href=\"/wilder/"+ wilders[i].id +"\"> <img src=\"../uploads/" + wilders[i].profilPicture + "\" class='imgIndexWilder'> </a></td>"+
                             "<td>" + wilders[i].firstname + "</td>"+
                             "<td>" + wilders[i].lastname + "</td>"+
                             "<td>" + wilders[i].city + "</td>"+

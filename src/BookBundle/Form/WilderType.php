@@ -21,59 +21,55 @@ class WilderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('firstname')
-                ->add('lastname')
-                ->add('birthDate', BirthdayType::class)
-                ->add('address')
-                ->add('postalCode')
-                ->add('city')
-                ->add('skill')
-                ->add('freelanceAvailability')
-                ->add('modjo')
-                ->add('biography')
-                ->add('contactEmail')
-                ->add('profilPicture', null, [
-                    'required'=> false,
-                ])
-                ->add('cv', null , [
-                    'label'=>'CV (PDF file)',
-                    'required'=>false
-                ])
-                ->add('website')
-                ->add('github')
-                ->add('linkedin')
-                ->add('facebook')
-                ->add('twitter')
-                ->add('userActivation')
-                ->add('managerActivation')
-                ->add('codewarsUsername')
-                ->add('languages', EntityType::class, [
-                    'class'=>Language::class,
-                    'choice_label'=>'language',
-                    'expanded'=>false,
-                    'required'=>false,
-                    'multiple'=>true,
-                    'attr'=> ['class'=>'selectpicker multiple']
+            ->add('lastname')
+            ->add('birthDate', BirthdayType::class)
+            ->add('address')
+            ->add('postalCode')
+            ->add('city')
+            ->add('skill')
+            ->add('freelanceAvailability')
+            ->add('modjo')
+            ->add('biography')
+            ->add('contactEmail')
+            ->add('profilPicture', null, [
+                'required'=> false,
+            ])
+            ->add('cv', null , [
+                'label'=>'CV (PDF file)',
+                'required'=>false
+            ])
+            ->add('website')
+            ->add('github')
+            ->add('linkedin')
+            ->add('facebook')
+            ->add('twitter')
+            ->add('userActivation')
+            ->add('managerActivation')
+            ->add('codewarsUsername')
+            ->add('languages', EntityType::class, [
+                'class'=>Language::class,
+                'choice_label'=>'language',
+                'expanded'=>false,
+                'required'=>false,
+                'multiple'=>true,
+                'attr'=> ['class'=>'selectpicker multiple']
 
 
-                ])
-                ->add('technologies', EntityType::class, [
-                    'class'=>Technology::class,
-                    'choice_label'=>'technology',
-                    'expanded'=>false,
-                    'required'=>false,
-                    'multiple'=>true,
-                    'attr'=> ['class'=>'selectpicker multiple']
-                ])
-                ->add('availability', EntityType::class, [
-                    'class'=>Availability::class,
-                    'choice_label'=>'label'
-                ])
-                ->add('promotion', EntityType::class, [
-                    'class'=>Promotion::class,
-                    'choice_label'=>'promotion'
-                ]);
+            ])
+            ->add('technologies', EntityType::class, [
+                'class'=>Technology::class,
+                'choice_label'=>'technology',
+                'expanded'=>false,
+                'required'=>false,
+                'multiple'=>true,
+                'attr'=> ['class'=>'selectpicker multiple']
+            ])
+            ->add('availability', EntityType::class, [
+                'class'=>Availability::class,
+                'choice_label'=>'label'
+            ]);
     }
-    
+
     /**
      * {@inheritdoc}
      */
