@@ -312,7 +312,7 @@ a:hover {
         top: 52%; /* poussé de la moitié de hauteur du référent */
         transform: translateY(-48%); /* tiré de la moitié de sa propre hauteur */
         width: 100%;
-        font-size: 25pt;
+        font-size: 20pt;
         letter-spacing: 2px;
         font-weight: 500;
     }
