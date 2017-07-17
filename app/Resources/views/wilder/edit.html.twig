@@ -10,9 +10,7 @@
         <h3>Wilder: {{ wilder.firstname }} {{ wilder.lastname }}</h3>
         <h4>Email User: {{ wilder.user.email }}</h4>
         <h4>Username: {{ wilder.user.username }}</h4>
-        <ul>Projets réalisés : {% for projectWilders in wilder.projectWilders %}
-                <li> {{ projectWilders.project.title }}</li>
-            {% endfor %}</ul>
+        <h4>Promotion : {{ wilder.user.promotion.promotion }}</h4>
         <div class="form-group">
             {{ form_start(edit_form) }}
 
@@ -61,7 +59,7 @@
             {{ form_errors(edit_form.contactEmail) }}
 
             {{ form_label(edit_form.profilPicture,'Photo Profil') }}
-            <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" class ="imgEditWilder"/>
+            <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" class="imgEditWilder"/>
             {{ form_widget(edit_form.profilPicture) }}
             {{ form_errors(edit_form.profilPicture) }}
 
@@ -109,26 +107,28 @@
             {{ form_widget(edit_form.availability) }}
             {{ form_errors(edit_form.availability) }}
 
-            {{ form_label(edit_form.promotion,'Promotion') }}
-            {{ form_widget(edit_form.promotion) }}
-            {{ form_errors(edit_form.promotion) }}
-
-            {{ form_label(edit_form.userActivation,'Afficher le profil (wilder)') }}
-            {{ form_widget(edit_form.userActivation) }}
-            {{ form_errors(edit_form.userActivation) }}
+            <div class="form-group">
+                <p class="instruction">Afficher le profil (wilder)</p>
+                {{ form_label(edit_form.userActivation,'Afficher le profil (wilder)') }}
+                {{ form_widget(edit_form.userActivation) }}
+                {{ form_errors(edit_form.userActivation) }}
+            </div>
 
             {% if is_granted('ROLE_ADMIN') %}
+            <div class="form-group">
+                <p class="instruction">Afficher le profil (campus manager)</p>
                 {{ form_label(edit_form.managerActivation,'Afficher le profil (campus manager)') }}
                 {{ form_widget(edit_form.managerActivation) }}
                 {{ form_errors(edit_form.managerActivation) }}
+            </div>
             {% endif %}
 
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-success" value="Edit"/>
         </div>
-
-        {{ form_end(edit_form) }}
+        {{ form_widget(edit_form._token) }}
+        </form>
 
 
         <div class="form-group">

@@ -3,6 +3,7 @@
 
 namespace BookBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,12 +32,57 @@ class User extends BaseUser
      */
     private $wilder;
 
+    /**
+     * @var string
+     *
+     * @ORM\ManyToOne (targetEntity="Promotion", inversedBy="users" , cascade={"persist", "merge"})
+     */
+    private $promotion;
+
+    /**
+     * Get promotion
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPromotion()
+    {
+        return $this->promotion;
+    }
+
+    /**
+     * @param mixed $promotion
+     * @return User
+     */
+    public function setPromotion($promotion)
+    {
+        $this->promotion = $promotion;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param string $username
+     * @return User
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+        return $this;
+    }
+
 
     public function __construct()
     {
         parent::__construct();
-        // your own logic
     }
+
 
     /**
      * Set campusManager
