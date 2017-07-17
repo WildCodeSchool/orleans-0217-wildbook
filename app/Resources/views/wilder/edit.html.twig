@@ -130,10 +130,11 @@
 
         {{ form_end(edit_form) }}
 
-
+    {% if is_granted('ROLE_ADMIN') %}
         <div class="form-group">
             <a href="{{ path('wilder_index') }}" class="btn btn-primary">Retour à la liste</a>
         </div>
+    {% endif %}
 
 
     </div>
