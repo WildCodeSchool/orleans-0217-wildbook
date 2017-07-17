@@ -3,8 +3,6 @@
         {% for picture in projectSearch.pictures %}
             {% if picture.isPrincipal == true %}
              style="background-image: url('../uploads/{{ picture.path|basename }}')"
-            {#{% else %}#}
-             {#style="background-image: url('/images/LOGO_COLO.png')"#}
             {% endif %}
         {% endfor %}>
     </div>

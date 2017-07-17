@@ -10,6 +10,7 @@ namespace BookBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,7 +22,9 @@ class ResetProjectType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('homeProject',CheckboxType::class);
+        $builder->add('homeProject',HiddenType::class, [
+            'required'=>true,
+        ]);
     }
 
     /**

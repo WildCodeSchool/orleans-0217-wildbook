@@ -13,6 +13,7 @@ use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,8 +32,8 @@ class HomeProjectType extends AbstractType
             'attr' => ['placeholder' => 'nom du projet']
         ])
                 ->add('homeTextProject',TextType::class)
-                ->add('homeProject', CheckboxType::class,[
-                    'required' => false
+                ->add('homeProject', HiddenType::class , [
+                    'required' => true
                 ]);
     }
 
