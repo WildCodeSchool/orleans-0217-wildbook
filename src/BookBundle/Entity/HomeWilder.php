@@ -3,6 +3,7 @@
 namespace BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * HomeWilder
@@ -23,7 +24,14 @@ class HomeWilder
 
     /**
      * @var string
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 150,
+     *      minMessage = "le champ description doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ description ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
+     *
+     * @ORM\Column(name="description", type="text")
      */
     private $description;
 

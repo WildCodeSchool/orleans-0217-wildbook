@@ -25,6 +25,12 @@ class Project
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 60,
+     *      minMessage = "le champ titre doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ titre ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      *
      * @ORM\Column(name="title", type="string", length=60, nullable=true)
      */
@@ -32,6 +38,13 @@ class Project
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 255,
+     *      minMessage = "le champ url doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ url ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
+     *
      *
      * @ORM\Column(name="path", type="string", length=255, nullable=true)
      */
@@ -39,6 +52,13 @@ class Project
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 45,
+     *      minMessage = "le champ client doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ client ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
+     *
      *
      * @ORM\Column(name="customer", type="string", length=45, nullable=true)
      */
@@ -53,6 +73,12 @@ class Project
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 45,
+     *      minMessage = "le champ statut doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ statut ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      *
      * @ORM\Column(name="status", type="string", length=45, nullable=true)
      */
@@ -60,6 +86,12 @@ class Project
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 0,
+     *      max = 255,
+     *      minMessage = "le champ statut doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ statut ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      *
      * @ORM\Column(name="summary", type="string", length=255, nullable=true)
      */
@@ -67,6 +99,7 @@ class Project
 
     /**
      * @var string
+     *
      *
      * @ORM\Column(name="description", type="text", nullable=true)
      */
@@ -152,6 +185,13 @@ class Project
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 100,
+     *      minMessage = "le champ statut doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ statut ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
+     *
      * @ORM\Column(name="homeTextProject", type="text", nullable=true)
      */
     private $homeTextProject;
