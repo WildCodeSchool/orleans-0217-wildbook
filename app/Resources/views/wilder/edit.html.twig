@@ -38,10 +38,6 @@
             {{ form_widget(edit_form.city) }}
             {{ form_errors(edit_form.city) }}
 
-            {{ form_label(edit_form.skill,'Compétences') }}
-            {{ form_widget(edit_form.skill) }}
-            {{ form_errors(edit_form.skill) }}
-
             {{ form_label(edit_form.freelanceAvailability,'Freelance') }}
             {{ form_widget(edit_form.freelanceAvailability) }}
             {{ form_errors(edit_form.freelanceAvailability) }}
@@ -104,6 +100,10 @@
             {{ form_label(edit_form.technologies,'Technologies') }}
             {{ form_widget(edit_form.technologies) }}
             {{ form_errors(edit_form.technologies) }}
+
+            {{ form_label(edit_form.skill,'Compétences') }}
+            {{ form_widget(edit_form.skill) }}
+            {{ form_errors(edit_form.skill) }}
 
             {{ form_label(edit_form.availability,'Statut disponibilité') }}
             {{ form_widget(edit_form.availability) }}
