@@ -189,6 +189,21 @@ a:hover {
     font-size: 0px;
 }
 
+.leaflet-popup-content-wrapper {
+    text-align: center;
+    background-color: rgba(241, 241, 241, .85);
+    color: rgb(53, 56, 58);
+}
+
+.leaflet-container a {
+    /*text-decoration: none;*/
+    color: rgb(53, 56, 58);
+}
+
+.leaflet-marker-icon leaflet-zoom-animated leaflet-interactive {
+
+}
+
 .homeText {
     margin: 0 70px 0 0;
 }
@@ -283,13 +298,27 @@ a:hover {
     .homeButton {
         margin-top: 20px;
         margin-bottom: 20px;
-        padding-top: 2.3px;
+        padding-top: 8px;
         color: #f1f1f1;
         font-size: 18px;
         font-weight: 600;
         letter-spacing: 0.5px;
         background-color: #f9a02e;
-        height: 30px;
+        height: 40px;
+        border-radius: 3%;
+    }
+
+
+    .homeButton:hover {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding-top: 6px;
+        color: #f1f1f1;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        background-color: #f9a02e;
+        height: 40px;
         border-radius: 3%;
     }
 }
@@ -379,8 +408,14 @@ a:hover {
         letter-spacing: 0.5px;
         background-color: #f9a02e;
         height: 30px;
-        border-radius: 3%;
+        border-radius: 2%;
     }
+}
+
+.geolocationPicture {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
 }
 
 .headerPicture {
