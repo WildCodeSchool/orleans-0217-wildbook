@@ -58,7 +58,7 @@
             {{ form_widget(edit_form.contactEmail) }}
             {{ form_errors(edit_form.contactEmail) }}
 
-            <p class="instruction">Le format de l'image attendue est:</p>
+            <p class="instruction">Le format de l'image attendue doit être carrée:</p>
             {{ form_label(edit_form.profilPicture,'Photo Profil') }}
             <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" class="imgEditWilder"/>
             {{ form_widget(edit_form.profilPicture) }}

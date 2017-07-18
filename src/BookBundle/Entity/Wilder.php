@@ -112,10 +112,7 @@ class Wilder
      *
      * @ORM\Column(name="profilPicture", type="string", length=255)
      *
-     * @Assert\Image( maxSize = "1024k",
-     *     minHeight = 400,
-     *     maxHeight = 600
-     *     )
+     * @Assert\Image()
      *
      */
     private $profilPicture;

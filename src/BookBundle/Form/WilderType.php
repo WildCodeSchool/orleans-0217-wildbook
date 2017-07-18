@@ -35,12 +35,13 @@ class WilderType extends AbstractType
                 'required' => false,
                 'empty_data' => 'mon côté wild',
             ))
-            ->add('biography')
+            ->add('biography', null, array(
+                'required' => false,
+                'empty_data' => 'ma biographie',
+            ))
             ->add('contactEmail')
             ->add('profilPicture', null, [
-                'required'=> false,
-                'empty_data' => '/images/LOGO_WCS_ORANGE-BLANC_PASTILL.png',
-            ])
+                'required'=> false])
             ->add('cv', null , [
                 'label'=>'CV (PDF file)',
                 'required'=>false

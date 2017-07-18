@@ -178,8 +178,10 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $wilder = $em->getRepository('BookBundle:Wilder')->findOneByUser($this->getUser());
-        if (!isset($wilder)) {
+        if (!isset($wilder) && !$this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('wilder_new');
+        } elseif ($this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('wilder_index');
         } else {
             return $this->render('user/indexWilder.html.twig', [
                 'wilder' => $wilder
