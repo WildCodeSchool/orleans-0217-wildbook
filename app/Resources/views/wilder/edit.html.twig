@@ -6,7 +6,6 @@
 
     <div class="container-fluid">
 
-
         <h3>Wilder: {{ wilder.firstname }} {{ wilder.lastname }}</h3>
         <h4>Email User: {{ wilder.user.email }}</h4>
         <h4>Username: {{ wilder.user.username }}</h4>
@@ -130,17 +129,14 @@
             <input type="submit" class="btn btn-success" value="Edit"/>
         </div>
 
-
         {{ form(edit_form._token) }}
     </form>
-
 
     {% if is_granted('ROLE_ADMIN') %}
         <div class="form-group">
             <a href="{{ path('wilder_index') }}" class="btn btn-primary">Retour à la liste</a>
         </div>
     {% endif %}
-
 
     </div>
 {% endblock %}
