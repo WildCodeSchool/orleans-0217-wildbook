@@ -113,8 +113,21 @@
                 {% for picture in project.pictures %}
                     <div class="col-xs-12 col-lg-6">
                         <a href="#" class="thumbnail">
-                            <img src="{{ asset('uploads/'~ picture.path|basename ) }}"/>
+                            <img src="{{ asset('uploads/'~ picture.path|basename ) }}" id="{{ picture.id }}" data-toggle="modal" data-target="#picture{{ picture.id }}"/>
                         </a>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="picture{{ picture.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-lg modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <img src="{{ asset('uploads/'~ picture.path|basename ) }} " class="img-responsive"/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
