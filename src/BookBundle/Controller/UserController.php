@@ -72,24 +72,28 @@ class UserController extends Controller
             } else {
                 $em = $this->getDoctrine()->getManager();
 
-                $user->setPlainPassword(md5(uniqid()));
-                $user->setEnabled(false);
+                $user->setPlainPassword('pw');
+                $user->setEnabled(true);
                 $user->setRoles(['ROLE_USER']);
-                $user->setConfirmationToken(md5(uniqid()));
+
+//                $user->setPlainPassword(md5(uniqid()));
+//                $user->setEnabled(false);
+//                $user->setRoles(['ROLE_USER']);
+//                $user->setConfirmationToken(md5(uniqid()));
 
                 $this->redirectToRoute('fos_user_resetting_send_email');
 
-
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('registration')
-                    ->setFrom($this->getParameter('mailer_user'))
-                    ->setTo($user->getEmail())
-                    ->setBody(
-                        $this->renderView('BookBundle:FinishRegistration:registration_email.html.twig',
-                            ['token' => $user->getConfirmationToken()]),
-                        'text/html'
-                    );
-                $this->get('mailer')->send($message);
+//
+//                $message = \Swift_Message::newInstance()
+//                    ->setSubject('registration')
+//                    ->setFrom($this->getParameter('mailer_user'))
+//                    ->setTo($user->getEmail())
+//                    ->setBody(
+//                        $this->renderView('BookBundle:FinishRegistration:registration_email.html.twig',
+//                            ['token' => $user->getConfirmationToken()]),
+//                        'text/html'
+//                    );
+//                $this->get('mailer')->send($message);
                 $userManager->updateUser($user);
                 $em->persist($user);
                 $em->flush();
@@ -170,8 +174,10 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $wilder = $em->getRepository('BookBundle:Wilder')->findOneByUser($this->getUser());
-        if (!isset($wilder)) {
+        if (!isset($wilder) && !$this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('wilder_new');
+        } elseif ($this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('wilder_index');
         } else {
             return $this->render('user/indexWilder.html.twig', [
                 'wilder' => $wilder

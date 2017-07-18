@@ -42,7 +42,7 @@ class WilderUploadListener
 
         $this->uploadFile($entity);
 
-        if($this->oldImgProfile){
+        if($this->oldImgProfile && !$entity->getProfilPicture()){
             $entity->setProfilPicture($this->oldImgProfile);
         }
     }
@@ -87,7 +87,6 @@ class WilderUploadListener
         }
 
         $file = $entity->getProfilPicture();
-
         // only upload new files
         if (!$file instanceof UploadedFile) {
             return;

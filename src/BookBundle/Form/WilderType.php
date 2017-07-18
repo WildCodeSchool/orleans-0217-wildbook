@@ -24,15 +24,25 @@ class WilderType extends AbstractType
             ->add('lastname')
             ->add('birthDate', BirthdayType::class)
             ->add('address')
-            ->add('postalCode')
-            ->add('city')
-            ->add('skill')
+            ->add('postalCode', null, [
+                'required'=> true,
+            ])
+            ->add('city', null, [
+                'required'=> true,
+            ])
+            ->add('skill',null, array(
+                'required' => false,
+                'empty_data' => 'mes compétences',
+            ))
             ->add('freelanceAvailability')
-            ->add('modjo')
+            ->add('modjo', null, array(
+                'required' => false,
+                'empty_data' => 'mon côté wild',
+            ))
             ->add('biography')
             ->add('contactEmail')
             ->add('profilPicture', null, [
-                'required'=> false,
+                'required'=> true,
             ])
             ->add('cv', null , [
                 'label'=>'CV (PDF file)',
@@ -53,8 +63,6 @@ class WilderType extends AbstractType
                 'required'=>false,
                 'multiple'=>true,
                 'attr'=> ['class'=>'selectpicker multiple']
-
-
             ])
             ->add('technologies', EntityType::class, [
                 'class'=>Technology::class,

@@ -31,30 +31,43 @@
 
                     <div class="socialProWilder">
                         <div class="iconsocial">
-                            <a href="{{ wilder.linkedin }}"><i class=" fa fa-linkedin"></i></a>
+                            {% if wilder.linkedin is not null %}
+                                <a href="{{ wilder.linkedin }}"><i class=" fa fa-linkedin"></i></a>
+                            {% endif %}
                         </div>
                         <div class="iconsocial">
-                            <a href="{{ wilder.github }}"><i class=" fa fa-github"></i></a>
+                            {% if wilder.github is not null %}
+                                <a href="{{ wilder.github }}"><i class=" fa fa-github"></i></a>
+                            {% endif %}
                         </div>
                         <div class="iconsocial">
-                            <a href="{{ asset('uploads/' ~ wilder.cv) }}"><i class=" fa fa-download"></i></a>
+                            {% if wilder.cv is not null %}
+                                <a href="{{ asset('uploads/' ~ wilder.cv) }}"><i class=" fa fa-download" title="Télécharger le CV" data-toggle="tooltip" data-placement="top"></i></a>
+                            {% endif %}
                         </div>
                         <div class="iconsocial">
-                            <a href="mailto:{{ wilder.contactEmail }}"><i class=" fa fa-envelope"></i></a>
+                            {% if wilder.contactEmail is not null %}
+                                <a href="mailto:{{ wilder.contactEmail }}"><i class=" fa fa-envelope" title="Envoyer un email" data-toggle="tooltip" data-placement="top"></i></a>
+                            {% else %}
+                                <a href="mailto:{{ wilder.user.email }}"><i class=" fa fa-envelope" title="Envoyer un email" data-toggle="tooltip" data-placement="top"></i></a>
+                            {% endif %}
                         </div>
                         <div class="iconsocial">
-                            <a href="" class="codewars"><i class="fa fa-codepen"></i> {{ codewars }} Points</a>
+                            {% if codewars is not null %}
+                                <a href="" class="codewars"><i class="fa fa-codepen" title="Score Codewars : {{ codewars }} Points" data-toggle="tooltip" data-placement="top"></i></a>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="socialPersoWilder">
                         <div class="iconsocial">
-                            <a href="{{ wilder.twitter }}"><i class=" fa fa-twitter"></i></a>
+                            {% if wilder.twitter is not null %}
+                                <a href="{{ wilder.twitter }}"><i class=" fa fa-twitter"></i></a>
+                            {% endif %}
                         </div>
                         <div class="iconsocial">
-                            <a href="{{ wilder.facebook }}"><i class=" fa fa-facebook"></i></a>
-                        </div>
-                        <div class="iconsocial">
-                            <a href="mailto:{{ wilder.contactEmail }}"><i class=" fa fa-envelope"></i></a>
+                            {% if wilder.facebook is not null %}
+                                <a href="{{ wilder.facebook }}"><i class=" fa fa-facebook"></i></a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

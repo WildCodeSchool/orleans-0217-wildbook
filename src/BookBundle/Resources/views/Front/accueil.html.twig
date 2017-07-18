@@ -161,7 +161,7 @@
         marker.bindPopup(pop);
         {% endfor %}
         {% for wilder in wilders %}
-        {% if wilder.location is not empty %}
+        {% if wilder.userActivation == true and wilder.managerActivation == true and wilder.location is not empty %}
         var marker2 = L.marker([{{ wilder.location }}+0.000{{ loop.index0 }}]).addTo(mymap);
         marker2.bindPopup("<img class='geolocationPicture' src=\"{{ asset('uploads/'~ wilder.profilPicture ) }}\"/><p><a href=\"{{ path
         ('profile_wilder', { 'id': wilder.id }) }}\"></p> {{ wilder.lastname }} {{ wilder.firstname }} ");

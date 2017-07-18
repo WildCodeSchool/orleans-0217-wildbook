@@ -32,7 +32,7 @@ class Project
      *      maxMessage = "le champ titre ne doit pas contenir plus de {{ limit }} caractères"
      *      )
      *
-     * @ORM\Column(name="title", type="string", length=60, nullable=true)
+     * @ORM\Column(name="title", type="string", length=60)
      */
     private $title;
 
@@ -60,14 +60,14 @@ class Project
      *      )
      *
      *
-     * @ORM\Column(name="customer", type="string", length=45, nullable=true)
+     * @ORM\Column(name="customer", type="string", length=45)
      */
     private $customer;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=true)
+     * @ORM\Column(name="date", type="date")
      */
     private $date;
 
@@ -131,7 +131,7 @@ class Project
 
     /**
      * @var
-     * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="project", cascade={"persist", "merge"})
+     * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="project", cascade={"persist", "remove"})
      */
     private $projectWilders;
 
