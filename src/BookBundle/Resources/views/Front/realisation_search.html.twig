@@ -75,37 +75,36 @@
                 {% for projectSearch in projectsSearch %}
                     {% include 'BookBundle:Front:thumbnail.html.twig' with {'projectSearch': projectSearch} %}
                 {% endfor %}
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="realisation-focus">
+                <div class="sub-title-slider">
+                    <h2>La réalisation du moment</h2>
+                </div>
+
+                <div class="sub-title-text">
+                </div>
+                {{ render(controller('BookBundle:HomeProject:viewHomeProject')) }}
+            </div>
         </div>
     </div>
-
-    <div class="container">
-        <div class="realisation-focus">
-            <div class="sub-title-slider">
-                <h2>La réalisation du moment</h2>
-            </div>
-
-            <div class="sub-title-text">
-            </div>
-            {{ render(controller('BookBundle:HomeProject:viewHomeProject')) }}
-        </div>
-    </div>
-    </div>
-
 
     <div class="container-fluid img2">
     </div>
 
 {% endblock %}
 
-    {% block javascripts %}
-        {{ parent() }}
-        <script src="{{ asset('js/ajax_auto.js') }}"></script>
-        <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/ajax_auto.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
 
-        <script>
-            $('#book_bundle_project_search_type_school').on('hidden.bs.select', function (e) {
-                $('#form_search_project').submit();
-            });
-        </script>
+    <script>
+        $('#book_bundle_project_search_type_school').on('hidden.bs.select', function (e) {
+            $('#form_search_project').submit();
+        });
+    </script>
 
-    {% endblock javascripts %}
+{% endblock javascripts %}
