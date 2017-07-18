@@ -6,6 +6,7 @@ use BookBundle\Entity\Promotion;
 use BookBundle\Entity\User;
 use BookBundle\Entity\Wilder;
 use BookBundle\Form\WilderSearchType;
+use BookBundle\Form\WilderType;
 use BookBundle\Repository\WilderRepository;
 use BookBundle\Service\ConvertCity;
 use BookBundle\Service\FileUploader;
@@ -117,12 +118,10 @@ class WilderController extends Controller
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_USER')")
      */
-    public function editAction(Request $request, Wilder $wilder, FileUploader $fileUploader, ConvertCity $convert)
+    public function editAction(Request $request, Wilder $wilder, ConvertCity $convert)
     {
-        $deleteForm = $this->createDeleteForm($wilder);
         $previousActivation = $wilder->getManagerActivation();
-
-        $editForm = $this->createForm('BookBundle\Form\WilderType', $wilder);
+        $editForm = $this->createForm(WilderType::class, $wilder);
         $editForm->handleRequest($request);
 
         $idWilder = $wilder->getUser()->getId();
@@ -130,13 +129,17 @@ class WilderController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $address = $wilder->getPostalCode() .' '. $wilder->getCity();
+
             if (!$this->isGranted('ROLE_ADMIN')) {
                 $wilder->setManagerActivation($previousActivation);
             };
-                $wilder->setLocation($convert->convertGps($address));
-                $this->getDoctrine()->getManager()->flush();
-                return $this->redirectToRoute('one_wilder_index');
+               
+            $wilder->setLocation($convert->convertGps($address));
 
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $this->addFlash('success', 'Le profil a bien été édité');
+            return $this->redirectToRoute('wilder_show', ['id'=>$wilder->getId()]);
         }
 
         if ($idWilder === $idUser or in_array('ROLE_ADMIN',$this->getUser()->getRoles())){

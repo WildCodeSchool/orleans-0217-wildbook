@@ -63,6 +63,16 @@ class ProjectType extends AbstractType
                 'choice_label'=>'school'
                 ]);
 
+                ->add('projectWilders',CollectionType::class,[
+                    'entry_type'=> ProjectWilderType::class,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                   'prototype' => true,
+                    'by_reference' => false,
+                    'attr' => array(
+                        'class' => 'wilders_project_collection',
+                    ),
+                ])
     }
     
     /**

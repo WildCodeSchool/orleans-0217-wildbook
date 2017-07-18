@@ -128,25 +128,20 @@ class PictureController extends Controller
     /**
      * Deletes a picture entity.
      *
-     * @Route("/{id}", name="picture_delete")
-     * @Method("DELETE")
+     * @Route("/delete-image/{id}", name="picture_delete")
+     * @Method("GET")
      */
     public function deleteAction(Request $request, Picture $picture)
     {
         $form = $this->createDeleteForm($picture);
         $form->handleRequest($request);
-        $id = $picture->getProject()->getId();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $project = $picture->getProject();
-            $project->removePicture($picture);
-            $picture->setProject(null);
-            $em->remove($picture);
-            $em->flush();
-        }
+        $em = $this->getDoctrine()->getManager();
+        $project = $picture->getProject();
+        $em->remove($picture);
+        $em->flush();
 
-        return $this->redirectToRoute('project_edit', array('id' => $id));
+        return $this->redirectToRoute('project_edit', array('id' => $project->getId()));
     }
 
     /**
