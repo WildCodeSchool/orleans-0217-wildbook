@@ -112,7 +112,13 @@ class Wilder
      *
      * @ORM\Column(name="profilPicture", type="string", length=255)
      *
-     * @Assert\Image()
+     * @Assert\Image(maxSize = "1024k",
+     *     mimeTypes={"image/jpg","image/jpeg","image/png"},
+     *     minHeight = 400,
+     *     maxHeight = 600,
+     *     minRatio = 0.98 ,
+     *     maxRatio = 1.02 ,
+     * )
      *
      */
     private $profilPicture;
@@ -123,7 +129,7 @@ class Wilder
      * @ORM\Column(name="cv", type="string", length=255, nullable=true)
      *
      * @Assert\File(maxSize = "1024k",
-     *     mimeTypes = {"cv/pdf"},
+     *     mimeTypes={"file/pdf"},
      *     mimeTypesMessage = "Merci de charger un fichier PDF valide")
      */
     private $cv;
