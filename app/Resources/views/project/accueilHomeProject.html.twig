@@ -12,7 +12,8 @@
                             {% endif %}
                         {% endfor %}
                         <div class="carousel-caption">
-                            <h3 class="projectTitleCarousel">{{ project.title }}</h3>
+                            <a href="{{ path('detail_project', { 'id': project.id }) }}">
+                                <h3 class="projectTitleCarousel">{{ project.title }}</h3></a>
                             <p class="projectTitleCarousel">{{ project.homeTextProject }}</p>
                         </div>
                     </div>
@@ -25,8 +26,9 @@
                             {% endif %}
                         {% endfor %}
                         <div class="carousel-caption">
-                            <h3 class="projectTitleCarousel>{{ project.title }}</h3>
-                            <p class="projectTitleCarousel>{{ project.homeTextProject }}</p>
+                            <a href="{{ path('detail_project', { 'id': project.id }) }}">
+                                <h3 class="projectTitleCarousel">{{ project.title }}</h3></a>
+                            <p class="projectTitleCarousel">{{ project.homeTextProject }}</p>
                         </div>
                     </div>
                 {% endif %}
