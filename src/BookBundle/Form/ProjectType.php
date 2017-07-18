@@ -25,9 +25,7 @@ class ProjectType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', TextType::class, [
-            'disabled' => true
-            ])
+        $builder->add('title', TextType::class)
             ->add('projectWilders',CollectionType::class,[
                 'entry_type'=> ProjectWilderType::class,
                 'allow_add' => true,
@@ -38,9 +36,7 @@ class ProjectType extends AbstractType
                     'class' => 'wilders_project_collection',
                 ),
             ])
-            ->add('customer', null, [
-                'disabled' => true
-            ])
+            ->add('customer', null)
             ->add('date')
             ->add('status', ChoiceType::class , [
                 'choices'=> [
@@ -83,7 +79,6 @@ class ProjectType extends AbstractType
             ->add('school', EntityType::class, [
                 'class'=>School::class,
                 'choice_label'=>'school',
-                'disabled' => true
             ]);
 
     }

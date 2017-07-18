@@ -11,14 +11,12 @@
             </div>
             <hr/>
 
-            <div class="jumbotron">
-                <div class="imgPrincipaleProject">
-                    {% for picture in project.pictures %}
-                        {% if picture.isPrincipal == true %}
-                            <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imagePrincipaleProject"/>
-                        {% endif %}
-                    {% endfor %}
-                </div>
+            <div class="imgPrincipaleProject">
+                {% for picture in project.pictures %}
+                    {% if picture.isPrincipal == true %}
+                        <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imagePrincipaleProject"/>
+                    {% endif %}
+                {% endfor %}
             </div>
 
             <div class="row subtitleProject">
@@ -30,9 +28,9 @@
                 <div class="col-md-6">
                     <p class="subtitleProjectPromotion">
                         {{ project.school.school }} /
-                        {% for projectWilder in project.projectWilders  %}
+                        {% for projectWilder in project.projectWilders %}
                             {% if loop.first %}
-                                {{  projectWilder.wilder.promotion.promotion }}
+                                {{ projectWilder.wilder.promotion.promotion }}
                             {% endif %}
                         {% endfor %}
                     </p>
@@ -50,7 +48,7 @@
                         <p class="projectType">{{ project.category.label }}</p>
                     </div>
                     <div class="projectStatut">
-                       <p class="projectType">{{ project.status }}</p>
+                        <p class="projectType">{{ project.status }}</p>
                     </div>
                     <div class="langages">
                         <h4>LANGAGES</h4>
@@ -120,6 +118,8 @@
                     </div>
                 {% endfor %}
             </div>
+
+
         </div>
 
     </div>
