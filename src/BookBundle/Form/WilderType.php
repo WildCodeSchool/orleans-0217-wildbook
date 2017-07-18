@@ -20,20 +20,32 @@ class WilderType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('firstname')
-            ->add('lastname')
+        $builder->add('firstname', null, [
+            'disabled' => true
+        ])
+            ->add('lastname', null, [
+                'disabled' => true
+            ])
             ->add('birthDate', BirthdayType::class)
             ->add('address')
             ->add('postalCode')
             ->add('city')
-            ->add('skill')
+            ->add('skill',null, array(
+                'required' => false,
+                'empty_data' => 'mes compétences',
+            ))
             ->add('freelanceAvailability')
-            ->add('modjo')
-            ->add('biography')
+            ->add('modjo', null, array(
+                'required' => false,
+                'empty_data' => 'mon côté wild',
+            ))
+            ->add('biography', null, array(
+                'required' => false,
+                'empty_data' => 'ma biographie',
+            ))
             ->add('contactEmail')
             ->add('profilPicture', null, [
-                'required'=> false,
-            ])
+                'required'=> false])
             ->add('cv', null , [
                 'label'=>'CV (PDF file)',
                 'required'=>false
@@ -53,8 +65,6 @@ class WilderType extends AbstractType
                 'required'=>false,
                 'multiple'=>true,
                 'attr'=> ['class'=>'selectpicker multiple']
-
-
             ])
             ->add('technologies', EntityType::class, [
                 'class'=>Technology::class,

@@ -31,7 +31,9 @@
 
                     <div class="socialProWilder">
                         <div class="iconsocial">
+                            {% if wilder.linkedin is defined %}
                             <a href="{{ wilder.linkedin }}"><i class=" fa fa-linkedin"></i></a>
+                            {% endif %}
                         </div>
                         <div class="iconsocial">
                             <a href="{{ wilder.github }}"><i class=" fa fa-github"></i></a>
