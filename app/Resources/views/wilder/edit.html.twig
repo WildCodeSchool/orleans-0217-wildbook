@@ -10,7 +10,7 @@
         <h3>Wilder: {{ wilder.firstname }} {{ wilder.lastname }}</h3>
         <h4>Email User: {{ wilder.user.email }}</h4>
         <h4>Username: {{ wilder.user.username }}</h4>
-        <h4>Promotion : {{ wilder.user.promotion.promotion }}</h4>
+        <h4>Promotion : {{ wilder.promotion.promotion }}</h4>
         <div class="form-group">
             {{ form_start(edit_form) }}
 
@@ -38,10 +38,6 @@
             {{ form_widget(edit_form.city) }}
             {{ form_errors(edit_form.city) }}
 
-            {{ form_label(edit_form.skill,'Compétences') }}
-            {{ form_widget(edit_form.skill) }}
-            {{ form_errors(edit_form.skill) }}
-
             {{ form_label(edit_form.freelanceAvailability,'Freelance') }}
             {{ form_widget(edit_form.freelanceAvailability) }}
             {{ form_errors(edit_form.freelanceAvailability) }}
@@ -58,7 +54,7 @@
             {{ form_widget(edit_form.contactEmail) }}
             {{ form_errors(edit_form.contactEmail) }}
 
-            <p class="instruction">Le format de l'image attendue est:</p>
+            <p class="instruction">Le format de l'image attendue doit être carrée:</p>
             {{ form_label(edit_form.profilPicture,'Photo Profil') }}
             <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" class="imgEditWilder"/>
             {{ form_widget(edit_form.profilPicture) }}
@@ -104,6 +100,10 @@
             {{ form_label(edit_form.technologies,'Technologies') }}
             {{ form_widget(edit_form.technologies) }}
             {{ form_errors(edit_form.technologies) }}
+
+            {{ form_label(edit_form.skill,'Compétences') }}
+            {{ form_widget(edit_form.skill) }}
+            {{ form_errors(edit_form.skill) }}
 
             {{ form_label(edit_form.availability,'Statut disponibilité') }}
             {{ form_widget(edit_form.availability) }}

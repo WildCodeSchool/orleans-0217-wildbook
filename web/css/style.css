@@ -494,108 +494,69 @@ footer {
     color: #35383a;
 }
 
-.wilderTransition {
-    text-align: center;
-    color: #7b7b7b;
-    font-size: 8pt;
-    font-style: italic;
-    background-color: #fbfbfb;
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
 label {
-    font-weight: 600;
+    font-weight: 400;
     word-wrap: break-word;
     font-size: 14pt;
     margin-top: 20px;
-    margin-left: -18px;
     color: #35383a;
 }
 
-.bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:active, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover {
-    color: #7b7b7b;
-    font-size: 13px;
+input {
+    border-radius: 0;
+    margin: 0;
     border: solid 1px #f9a02e;
-    border-radius: 0;
-    height: 30px;
-    margin-left: -18px;
-    padding-bottom: 20px;
+    height: 32px;
+    padding-left: 15px;
+    width: 218px;
 }
 
-.btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default {
-    color: #333;
-    background-color: #e6e6e6;
-    border-color: #adadad;
-    border-radius: 0;
-    margin-left: -18px;
+.alternativeText {
+    color: rgba(123, 123, 123, .85);
+    font-style: italic;
+    font-size: 8pt;
+    padding-left: 30px;
 }
 
-.btn-group>.btn:first-child {
-     margin-left: -18px;
-}
-
-.btn, .dropdown-toggle, .btn-default {
-    color: #7b7b7b;
-    font-size: 13px;
-    border: solid 1px #f9a02e;
-    border-radius: 0;
-    height: 30px;
-    margin-left: -18px;
-    padding-bottom: 20px;
-}
-
-.btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default {
-    color: #7b7b7b;
-    font-size: 13px;
-    border: solid 1px #f9a02e;
-    border-radius: 0;
-    height: 30px;
-    margin-left: -18px;
-    padding-bottom: 20px;
-}
-
-.bootstrap-select.btn-group .dropdown-menu {
-    margin-left: -18px;
+.bootstrap-select {
     border-radius: 0;
     border: solid 1px #f9a02e;
+    margin: 0;
+    width: 100%;
 }
 
-li {
-    list-style: none;
+.dropdown-toggle {
+    border-radius: 0;
+    border: none;
+    width: 100%;
 }
 
-.buttonSubmit {
+.dropdown-menu {
+    border-radius: 0;
+    border: outset 1px #f9a02e;
+    width: 100%;
+}
+
+.submitButton {
+    border-radius: 50%;
+    border: none;
+    background-color: #f9a02e;
     height: 30px;
     width: 30px;
-    border: none;
-    background-color: transparent;
-    color: #f9a02e;
-    border-radius: 50%;
-    padding-top: 52px;
-    margin-left: 60px;
-}
-
-.buttonSubmit:hover {
-    height: 15px;
-    width: 15px;
-    border: none;
-    background-color: transparent;
-    color: #fba858;
-    border-radius: 50%;
-    padding-top: 52px;
-
-}
-
-input {
+    color: #fbfbfb;
+    font-size: 12pt;
     margin-top: 20px;
-    height: 30px;
-    border: solid 1px #f9a02e;
-    text-align: center;
 }
 
-.searchSelectors {
-    margin-bottom: 30px;
+.submitButton:hover {
+    border-radius: 50%;
+    border: none;
+    background-color: #f9a02e;
+    height: 30px;
+    width: 30px;
+    color: #fbfbfb;
+    font-size: 14pt;
+    margin-top: 20px;
 }
 
 /** PAGE RECHERCHE WILDERS **/

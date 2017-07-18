@@ -131,7 +131,7 @@ class Project
 
     /**
      * @var
-     * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="project", cascade={"persist", "merge"})
+     * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="project", cascade={"persist", "remove"})
      */
     private $projectWilders;
 

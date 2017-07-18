@@ -112,13 +112,8 @@ class Wilder
      *
      * @ORM\Column(name="profilPicture", type="string", length=255)
      *
-     * @Assert\Image( maxSize = "1024k",
-     *     mimeTypes = {"profilPicture/jpg,profilPicture/jpeg,profilPicture/png"},
-     *     minHeight = 400  ,
-     *     maxHeight = 600,
-     *     allowLandscape = false,
-     *     allowPortrait = false
-     * )
+     * @Assert\Image()
+     *
      */
     private $profilPicture;
 
@@ -218,7 +213,7 @@ class Wilder
 
     /**
      * @var
-     * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="wilder", cascade={"persist", "merge"})
+     * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="wilder", cascade={"persist", "remove"})
      */
     private $projectWilders;
 
