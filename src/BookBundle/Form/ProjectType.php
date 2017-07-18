@@ -9,6 +9,7 @@ use BookBundle\Entity\Tag;
 use BookBundle\Entity\Technology;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -61,7 +62,7 @@ class ProjectType extends AbstractType
                 ->add('school', EntityType::class, [
                 'class'=>School::class,
                 'choice_label'=>'school'
-                ]);
+                ])
 
                 ->add('projectWilders',CollectionType::class,[
                     'entry_type'=> ProjectWilderType::class,
@@ -72,7 +73,7 @@ class ProjectType extends AbstractType
                     'attr' => array(
                         'class' => 'wilders_project_collection',
                     ),
-                ])
+                ]);
     }
     
     /**
