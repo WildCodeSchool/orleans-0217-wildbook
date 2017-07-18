@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class ProjectType extends AbstractType
 {
@@ -25,12 +26,18 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title', TextType::class)
-                ->add('customer')
+                ->add('customer',TextType::class)
                 ->add('date')
                 ->add('status')
-                ->add('summary', TextType::class)
-                ->add('description', TextareaType::class)
-                ->add('path', UrlType::class )
+                ->add('summary', TextType::class, [
+                    'required'=>false,
+                ])
+                ->add('description', TextareaType::class, [
+                    'required'=>false,
+                ])
+                ->add('path', UrlType::class , [
+                    'required'=>false,
+                ])
                 ->add('tags', EntityType::class, [
                     'class'=>Tag::class,
                     'choice_label'=>'tag',
