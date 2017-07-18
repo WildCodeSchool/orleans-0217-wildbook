@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-
     {{ parent() }}
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/sb-admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
 
 {% endblock stylesheets %}
 
@@ -97,7 +97,6 @@
                                 <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="realisations" class="collapse">
                                 <li><a href="{{ path('project_index') }}"> Projets </a></li>
-                                <li><a href="{{ path('projectwilder_index') }}"> Association Projets/Wilders </a></li>
                                 <li><a href="{{ path('tag_index') }}"> Tags </a></li>
                             </ul>
                         </li>
@@ -142,7 +141,6 @@
                             <a href="javascript:;" data-toggle="collapse" data-target="#ecole"> Écoles
                                 <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="ecole" class="collapse">
-                                <li><a href="{{ path('school_index') }}"> Liste </a></li>
                                 <li><a href="{{ path('one_campus_index') }}"> Campus Manager </a></li>
                                 <li><a href="{{ path('promotion_index') }}"> Promotions </a></li>
                                 <li><a href="{{ path('language_index') }}"> Langages </a></li>
@@ -166,7 +164,6 @@
                                 <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="realisations" class="collapse">
                                 <li><a href="{{ path('project_index') }}"> Projets </a></li>
-                                <li><a href="{{ path('projectwilder_index') }}"> Association Projets/Wilders </a></li>
                                 <li><a href="{{ path('tag_index') }}"> Tags </a></li>
                             </ul>
                         </li>
@@ -231,7 +228,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
@@ -240,3 +236,8 @@
 
 {% block footer %}
 {% endblock footer %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+{% endblock javascripts %}

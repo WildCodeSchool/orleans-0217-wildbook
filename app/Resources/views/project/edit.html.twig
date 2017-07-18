@@ -1,5 +1,6 @@
 {% extends 'layout_admin.html.twig' %}
-{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' 'jquery.collection.html.twig' %}
 {% form_theme picture_form 'bootstrap_3_layout.html.twig' %}
 
 
@@ -7,89 +8,147 @@
 
     <div class="container-fluid">
 
-        <h3>{{ project.title }}</h3>
-        <h4>Wilders ayant réalisé ce projet : </h4>
-        <ul>{% for projectWilders in project.projectWilders %}
-                <li>{{ projectWilders.wilder.firstname }}{{ projectWilders.wilder.lastname }}</li>
-            {% endfor %}</ul>
+        <h1>{{ project.title }}</h1>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="well">
+                    {% for projectWilder in project.projectWilders if projectWilder.wilder.user.id == app.user.id %}
+                        <a class="pull-right btn btn-danger"
+                           href="{{ path('project_wilder_visibility', {'id':projectWilder.id}) }}">
+                            {{ projectWilder.visibility ? 'Masquer ma participation au projet' : 'Afficher ma participation au projet' }}
+                        </a>
+                    {% endfor %}
+                    <h2>Wilders ayant participés au projet : </h2>
+                    <ul>
+                        {% for projectWilder in project.projectWilders %}
+                            <li>
+                                <a class="lienWilders {{ projectWilder.visibility == 0 ? 'text-danger' }}"
+                                   href="{{ path('profile_wilder', { 'id': projectWilder.id }) }}">
+                                    {{ projectWilder.wilder.firstname }} {{ projectWilder.wilder.lastname }}
+                                </a>
+                                {% if projectWilder.visibility == 0 %}
+                                    <span class="label label-danger">Non visible</span>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
         <div class="form-group">
             {{ form_start(edit_form) }}
 
-            {{ form_label(edit_form.title,'Titre') }}
-            {{ form_widget(edit_form.title) }}
-            {{ form_errors(edit_form.title) }}
+            <div class="container">
 
-            {{ form_label(edit_form.customer,'Client') }}
-            {{ form_widget(edit_form.customer) }}
-            {{ form_errors(edit_form.customer) }}
+                <div class="form-group">
+                    {{ form_label(edit_form.title,'Titre') }}
+                    {{ form_widget(edit_form.title) }}
+                    {{ form_errors(edit_form.title) }}
+                </div>
 
-            {{ form_label(edit_form.date,'Date') }}
-            {{ form_widget(edit_form.date) }}
-            {{ form_errors(edit_form.date) }}
+                <div class="form-group">
+                    {{ form_label(edit_form.customer,'Client') }}
+                    {{ form_widget(edit_form.customer) }}
+                    {{ form_errors(edit_form.customer) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(edit_form.date,'Date') }}
+                    {{ form_widget(edit_form.date) }}
+                    {{ form_errors(edit_form.date) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(edit_form.status,'Statut') }}
+                    {{ form_widget(edit_form.status) }}
+                    {{ form_errors(edit_form.status) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(edit_form.description,'Description') }}
+                    {{ form_widget(edit_form.description) }}
+                    {{ form_errors(edit_form.description) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(edit_form.path,'Url') }}
+                    {{ form_widget(edit_form.path) }}
+                    {{ form_errors(edit_form.path) }}
+                </div>
 
-            {{ form_label(edit_form.status,'Statut') }}
-            {{ form_widget(edit_form.status) }}
-            {{ form_errors(edit_form.status) }}
+                <div class="form-group">
+                    {{ form_label(edit_form.tags,'Tags') }}
+                    {{ form_widget(edit_form.tags) }}
+                    {{ form_errors(edit_form.tags) }}
+                </div>
 
-            {{ form_label(edit_form.description,'Description') }}
-            {{ form_widget(edit_form.description) }}
-            {{ form_errors(edit_form.description) }}
+                <div class="form-group">
+                    {{ form_label(edit_form.summary,'Résumé') }}
+                    {{ form_widget(edit_form.summary) }}
+                    {{ form_errors(edit_form.summary) }}
+                </div>
 
-            {{ form_label(edit_form.path,'Url') }}
-            {{ form_widget(edit_form.path) }}
-            {{ form_errors(edit_form.path) }}
+                <div class="form-group">
+                    {{ form_label(edit_form.category,'Catégorie') }}
+                    {{ form_widget(edit_form.category) }}
+                    {{ form_errors(edit_form.category) }}
+                </div>
 
-            {{ form_label(edit_form.tags,'Tags') }}
-            {{ form_widget(edit_form.tags) }}
-            {{ form_errors(edit_form.tags) }}
+                <div class="form-group">
+                    {{ form_label(edit_form.technologies,'Technologies') }}
+                    {{ form_widget(edit_form.technologies) }}
+                    {{ form_errors(edit_form.technologies) }}
+                </div>
 
-            {{ form_label(edit_form.summary,'Résumé') }}
-            {{ form_widget(edit_form.summary) }}
-            {{ form_errors(edit_form.summary) }}
+                <div class="form-group">
+                    {{ form_label(edit_form.languages,'Langages') }}
+                    {{ form_widget(edit_form.languages) }}
+                    {{ form_errors(edit_form.languages) }}
+                </div>
 
-            {{ form_label(edit_form.category,'Catégorie') }}
-            {{ form_widget(edit_form.category) }}
-            {{ form_errors(edit_form.category) }}
+                <div class="form-group">
+                    {{ form_label(edit_form.school,'École') }}
+                    {{ form_widget(edit_form.school) }}
+                    {{ form_errors(edit_form.school) }}
+                </div>
 
-            {{ form_label(edit_form.technologies,'Technologies') }}
-            {{ form_widget(edit_form.technologies) }}
-            {{ form_errors(edit_form.technologies) }}
+                <h4>Wilders ayant réalisé ce projet : </h4>
 
-            {{ form_label(edit_form.languages,'Langages') }}
-            {{ form_widget(edit_form.languages) }}
-            {{ form_errors(edit_form.languages) }}
-
-            {{ form_label(edit_form.school,'École') }}
-            {{ form_widget(edit_form.school) }}
-            {{ form_errors(edit_form.school) }}
-
-            {% for picture in project.pictures %}
-                {% if picture.isPrincipal == true %}
-                    <div class="image_projet_principale">
-                        <h5>image principale</h5>
-                        <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imageWilderAdmin"/>
-                        <p><a href="{{ path('picture_indexdelete', { 'id': picture.id }) }}">supprimer l'image</a></p>
-                    </div>
-                {% else %}
-                    <div class="image_projet">
-                        <h5>image secondaire</h5>
-                        <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imageWilderAdmin"/>
-                        <p><a href="{{ path('picture_indexdelete', { 'id': picture.id }) }}">supprimer l'image</a></p>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div>
+                        {{ form_label(edit_form.projectWilders, 'Wilders ayant participé au projet') }}
+                        {{ form_widget(edit_form.projectWilders) }}
+                        {{ form_errors(edit_form.projectWilders) }}
                     </div>
                 {% endif %}
-            {% endfor %}
 
-            {{ form_widget(edit_form) }}
-        </div>
-        <div class="form-group">
-            <input type="submit" class="btn btn-success" value="Valider"/>
-        </div>
-        {{ form_end(edit_form) }}
+                <div class="row">
+                    <div class="col-sm-12">
+                        {% for picture in project.pictures %}
+                            <div class="image_projet">
+                                <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imgEditProjet"/>
+                                <span class="label label-info">{{ picture.isPrincipal ? 'Image principale' : 'Image secondaire' }}</span>
+                                <p><a href="{{ path('picture_delete', { 'id': picture.id }) }}">supprimer l'image</a>
+                                </p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {{ form_widget(edit_form._token) }}
+            </div>
 
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="Valider"/>
+            </div>
+
+            </form>
+
+        </div>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-            Charger une image
-        </button>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                Charger une image
+            </button>
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
@@ -107,9 +166,15 @@
                     <div class="modal-body">
                         {{ form_start(picture_form, {'action':path('picture_new', {'id':project.id})}) }}
 
-                        {{ form_label(picture_form) }}
-                        {{ form_widget(picture_form) }}
-                        {{ form_errors(picture_form) }}
+                        <p class="instruction">Le format de l'image attendue est:</p>
+                        {{ form_label(picture_form.path,'Image') }}
+                        {{ form_widget(picture_form.path) }}
+                        {{ form_errors(picture_form.path) }}
+
+                        <p class="instruction">Cocher si cette image est l'image principale</p>
+                        {{ form_label(picture_form.isPrincipal) }}
+                        {{ form_widget(picture_form.isPrincipal) }}
+                        {{ form_errors(picture_form.isPrincipal) }}
 
                     </div>
 
@@ -126,7 +191,21 @@
         <div class="form-group">
             <a href="{{ path('project_index') }}" class="btn btn-primary">Retour à la liste</a>
         </div>
-
-
     </div>
+
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/jquery.collection.js') }}"></script>
+
+    <script type="text/javascript">
+        $('.wilders_project_collection').collection({
+            add: '<a class="btn btn-sm btn-warning href="#">Ajouter un wilder</a>',
+            remove: '<a href="#">Delete wilder</a>',
+            allow_up: false,
+            allow_down: false,
+            add_at_the_end: true,
+        });
+    </script>
+{% endblock javascripts %}

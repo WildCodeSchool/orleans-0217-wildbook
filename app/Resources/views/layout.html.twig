@@ -5,6 +5,7 @@
     {{ parent() }}
     <!-- Navbar CSS -->
     <link rel="stylesheet" href="{{ asset('css/scrolling-nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 {% endblock stylesheets %}
 
@@ -15,12 +16,16 @@
         <div class="container">
             <div class="navbar-header page-scroll container-fluid">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Wild Code School</a>
+
+                <a class="page-scroll" href="https://wildcodeschool.fr" target="_blank">
+                    <img class="navbar-brand page-scroll" src="{{ asset('images/logoOrangeBlanc.png') }}"
+                         alt="La Wild"/>
+                </a>
+                <a class="navbar-brand page-scroll" href="#page-top">Wildbook</a>
             </div>
 
             <!-- Nav links for toggling to the sections -->
@@ -31,22 +36,90 @@
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#wildbook">Le Wildbook</a>
+                        <a class="page-scroll" href="{{ path('home') }}">
+                            <i class="fa fa-home" aria-hidden="true"></i>&nbsp;
+                            Accueil</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#wilders">Les Wilders</a>
+                        <a class="page-scroll" href="{{ path('search_wilder') }}">
+                            <i class="fa fa-search" aria-hidden="true"></i>&nbsp;
+                            Wilders</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#network">Notre réseau</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#projects">Les réalisations</a>
+                        <a class="page-scroll" href="{{ path('search_realisation') }}">
+                            <i class="fa fa-search" aria-hidden="true"></i>&nbsp;
+                            Réalisations</a>
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
+
         </div>
-        <!-- /.container -->
+
     </nav>
 
 {% endblock nav %}
+
+{% block headerPicture %}
+
+    <!-- Header picture -->
+    <div class="fullWidthPictureContainer">
+        <img class="fullWidthPicture" src="{{ asset('images/fullWidth3.jpg') }}" alt="Wild Code School Orléans"/>
+    </div>
+
+{% endblock headerPicture %}
+
+
+{% block footerPicture %}
+
+    <!-- Footer picture -->
+    <div class="fullWidthPictureContainer footerPicture">
+        <img class="fullWidthPicture" src="{{ asset('images/fullWidth3.jpg') }}" alt="Wild Code School Orléans"/>
+    </div>
+
+{% endblock footerPicture %}
+
+
+{% block footer %}
+
+    <footer class="container-fluid homeFooter">
+
+        <!-- Footer logo -->
+        <img class="footerLogo shadow" src="{{ asset('images/logoOrangeBlanc.png') }}"
+             alt="La Wild"/>
+
+        <!-- Social networks -->
+        <div class="socialbloc">
+
+            <h4 class="footerH4">Suivez la Wild Code School sur vos réseaux favoris</h4>
+
+            <div class="footerSocial">
+                <div class="footerSocialIcon">
+                    <a href=""><i class=" fa fa-facebook shadow"></i></a>
+                </div>
+                <div class="footerSocialIcon">
+                    <a href=""><i class=" fa fa-twitter shadow"></i></a>
+                </div>
+                <div class="footerSocialIcon">
+                    <a href=""><i class=" fa fa-linkedin shadow"></i></a>
+                </div>
+                <div class="footerSocialIcon">
+                    <a href=""><i class=" fa fa-youtube shadow"></i></a>
+                </div>
+                <div class="footerSocialIcon">
+                    <a href=""><i class=" fa fa-instagram shadow"></i></a>
+                </div>
+                <div class="footerSocialIcon">
+                    <a href=""><i class=" fa fa-github shadow"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Copyrights -->
+        <div class="footerCopyrights">
+            © 2017 — Wild Code School Orléans — Véro Ludo Camo
+        </div>
+
+    </footer>
+
+{% endblock footer %}

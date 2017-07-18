@@ -3,13 +3,21 @@
 
 {% block content %}
 
+    <div class="container">
+
+        <h1>Sélection des projets mis en avant sur le site</h1>
+        <p class="instruction">Choisissez le projet par son nom via l'autocomplétion,
+            cliquer ensuite sur son nom pour le sélectionner,
+            renseigner dans le champ description la phrase d'accroche qui sera mise en avant</p>
+
+
     {{ form_start(form) }}
     {{ form_widget(form) }}
     <ul id="projectList"></ul>
     <input type="submit" value="Create" />
     {{ form_end(form) }}
 
-
+    </div>
 
 {% endblock %}
 

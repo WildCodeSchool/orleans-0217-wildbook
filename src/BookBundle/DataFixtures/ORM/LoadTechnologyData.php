@@ -21,27 +21,22 @@ class LoadTechnologyData  extends AbstractFixture implements OrderedFixtureInter
         $symfony = new Technology ();
         $symfony -> setTechnology('Symfony');
         $manager -> persist ( $symfony );
-        $this->addReference('Symfo', $symfony );
+        $this->addReference('Symfony', $symfony );
 
         $storm = new Technology ();
-        $storm -> setTechnology('PHP Storm');
+        $storm -> setTechnology('PHPStorm');
         $manager -> persist ( $storm );
-        $this->addReference('Storm', $storm );
+        $this->addReference('PHPStorm', $storm );
 
         $boot = new Technology ();
         $boot -> setTechnology('Bootstrap');
         $manager -> persist ( $boot );
-        $this->addReference('Boot', $boot );
+        $this->addReference('Bootstrap', $boot );
 
         $workb = new Technology ();
         $workb -> setTechnology('WorkBench');
         $manager -> persist ( $workb );
-        $this->addReference('Workb', $workb );
-
-        $netBeans = new Technology ();
-        $netBeans -> setTechnology('NetBeans');
-        $manager -> persist ( $netBeans );
-        $this->addReference('NetBeans', $netBeans );
+        $this->addReference('WorkBench', $workb );
 
         $eclipse = new Technology ();
         $eclipse -> setTechnology('Eclipse');
@@ -52,36 +47,6 @@ class LoadTechnologyData  extends AbstractFixture implements OrderedFixtureInter
         $androidS -> setTechnology('AndroidS');
         $manager -> persist ( $androidS );
         $this->addReference('AndroidS', $androidS );
-
-        $atom = new Technology ();
-        $atom -> setTechnology('Atom');
-        $manager -> persist ( $atom );
-        $this->addReference('Atom', $atom );
-
-        $webStorm = new Technology ();
-        $webStorm -> setTechnology('WebStorm');
-        $manager -> persist ( $webStorm );
-        $this->addReference('WebStorm', $webStorm );
-
-        $rubyMine = new Technology ();
-        $rubyMine -> setTechnology('RubyMine');
-        $manager -> persist ( $rubyMine );
-        $this->addReference('RubyMine', $rubyMine );
-
-        $arcadia = new Technology ();
-        $arcadia -> setTechnology('Arcadia');
-        $manager -> persist ( $arcadia );
-        $this->addReference('Arcadia', $arcadia );
-
-        $wing = new Technology ();
-        $wing -> setTechnology('Wing');
-        $manager -> persist ( $wing );
-        $this->addReference('Wing', $wing );
-
-        $visualC = new Technology ();
-        $visualC -> setTechnology('VisualC');
-        $manager -> persist ( $visualC );
-        $this->addReference('VisualC', $visualC );
 
         $laravel = new Technology ();
         $laravel -> setTechnology('Laravel');

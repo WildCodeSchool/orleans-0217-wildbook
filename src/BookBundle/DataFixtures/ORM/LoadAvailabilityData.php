@@ -33,13 +33,8 @@ class LoadAvailabilityData  extends AbstractFixture implements OrderedFixtureInt
         $manager -> persist ( $stage );
         $this->addReference('Stage', $stage );
 
-        $vac = new Availability ();
-        $vac -> setlabel('En vacance');
-        $manager -> persist ( $vac );
-        $this->addReference('Vac', $vac );
-
         $rePoste = new Availability ();
-        $rePoste -> setlabel('En recherche de taf');
+        $rePoste -> setlabel('En recherche d\'un poste');
         $manager -> persist ( $rePoste );
         $this->addReference('RePoste', $rePoste );
 

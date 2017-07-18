@@ -128,3 +128,33 @@ body {
     float: right;
     padding: 15px 15px;
 }
+
+/** INDEX PROJETS **/
+
+.imgIndexProjet {
+    width:150px;
+}
+
+/** EDIT PROJET **/
+
+.imgEditProjet {
+    width: 150px;
+}
+
+/** INDEX WILDER **/
+
+.imgIndexWilder {
+    width:150px;
+}
+
+/** EDIT WILDER **/
+
+.imgEditWilder {
+    width:150px;
+}
+
+.instruction {
+    font-style: italic;
+    font-weight: 500;
+    margin-top: 10px;
+}

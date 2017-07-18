@@ -5,6 +5,7 @@ namespace BookBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Technology
@@ -25,6 +26,12 @@ class Technology
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "le champ technologie doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ technologie ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      *
      * @ORM\Column(name="technology", type="string", length=45)
      */

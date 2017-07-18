@@ -10,7 +10,7 @@
     <meta name="author" content="Wild Code School Orléans">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('images/LOGO_WCS_ORANGE-BLANC_PASTILLE.png') }}"/>
+    <link rel="icon" type="image/png" href="{{ asset('images/logoOrangeBlanc.png') }}"/>
 
     <title>{% block title %}Wild Book{% endblock %}</title>
 
@@ -23,10 +23,7 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-
-        <!-- Style -->
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -52,51 +49,16 @@
 {% endblock body %}
 
 {% block container %}
+
+    {% block headerPicture %}
+    {% endblock headerPicture %}
+
 {% endblock container %}
 
+{% block footerPicture %}
+{% endblock footerPicture %}
+
 {% block footer %}
-
-    <footer class="container-fluid homeFooter">
-
-            <!-- Logo footer -->
-            <img class="footerLogo shadow" src="{{ asset('images/LOGO_WCS_ORANGE-BLANC_PASTILLE.png') }}"
-                 alt="La Wild"/>
-
-            <!-- Social networks -->
-            <div class="socialbloc">
-
-                <h4 class="footerH4">Suivez la Wild Code School sur vos réseaux favoris</h4>
-
-                <div class="footerSocial">
-                    <div class="footerSocialIcon">
-                        <a href=""><i class=" fa fa-facebook shadow"></i></a>
-                    </div>
-                    <div class="footerSocialIcon">
-                        <a href=""><i class=" fa fa-twitter shadow"></i></a>
-                    </div>
-                    <div class="footerSocialIcon">
-                        <a href=""><i class=" fa fa-linkedin shadow"></i></a>
-                    </div>
-                    <div class="footerSocialIcon">
-                        <a href=""><i class=" fa fa-youtube shadow"></i></a>
-                    </div>
-                    <div class="footerSocialIcon">
-                        <a href=""><i class=" fa fa-instagram shadow"></i></a>
-                    </div>
-                    <div class="footerSocialIcon">
-                        <a href=""><i class=" fa fa-github shadow"></i></a>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Copyrights -->
-            <div class="footerCopyrights">
-                © 2017 — Wild Code School Orléans — Véro Ludo Camo
-            </div>
-
-    </footer>
-
 {% endblock footer %}
 
 {% block javascripts %}
@@ -105,6 +67,7 @@
     <script src="{{ asset('js/bootstrap.js') }}"></script>
 
     <!-- Scrolling Nav JavaScript -->
+    <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('js/scrolling-nav.js') }}"></script>
 
