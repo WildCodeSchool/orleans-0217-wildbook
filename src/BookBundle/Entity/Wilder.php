@@ -51,7 +51,7 @@ class Wilder
      * @Assert\Length(max="5", min="5", minMessage="Code postal invalide", maxMessage="Code postal invalide")
      * @Assert\Regex("/[0-9]{2}[0-9]{3}/", message="Code postal invalide")
      *
-     * @ORM\Column(name="postalCode", type="integer", nullable=true)
+     * @ORM\Column(name="postalCode", type="integer")
      */
     private $postalCode;
 
@@ -112,6 +112,7 @@ class Wilder
      *
      * @ORM\Column(name="profilPicture", type="string", length=255)
      *
+
      * @Assert\Image(maxSize = "1024k",
      *     mimeTypes={"image/jpg","image/jpeg","image/png"},
      *     minHeight = 400,
@@ -119,7 +120,6 @@ class Wilder
      *     minRatio = 0.98 ,
      *     maxRatio = 1.02 ,
      * )
-     *
      */
     private $profilPicture;
 
