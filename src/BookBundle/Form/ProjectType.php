@@ -28,7 +28,13 @@ class ProjectType extends AbstractType
         $builder->add('title', TextType::class)
                 ->add('customer',TextType::class)
                 ->add('date')
-                ->add('status')
+                ->add('status', ChoiceType::class , [
+                'choices'=> [
+                    'Mis en production'=>'Mis en production',
+                    'En cours'=>'En cours',
+                    'Projet fictif'=>'Projet fictif'
+                    ]
+                 ])
                 ->add('summary', TextType::class, [
                     'required'=>false,
                 ])

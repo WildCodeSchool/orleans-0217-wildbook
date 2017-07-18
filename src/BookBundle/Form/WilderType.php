@@ -39,7 +39,10 @@ class WilderType extends AbstractType
                 'required' => false,
                 'empty_data' => 'mon côté wild',
             ))
-            ->add('biography')
+            ->add('biography', null, array(
+                'required' => false,
+                'empty_data' => 'ma biographie',
+            ))
             ->add('contactEmail')
             ->add('profilPicture', null, [
                 'required'=> true,
