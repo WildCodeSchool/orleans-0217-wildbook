@@ -93,7 +93,6 @@ class WilderUploadListener
         }
 
         $fileName = $this->uploader->upload($file);
-        dump($fileName);
         $entity->setProfilPicture($fileName);
     }
 

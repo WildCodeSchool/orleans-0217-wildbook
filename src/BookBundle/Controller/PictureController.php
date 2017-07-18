@@ -138,8 +138,6 @@ class PictureController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $project = $picture->getProject();
-//        $project->removePicture($picture);
-//        $picture->setProject(null);
         $em->remove($picture);
         $em->flush();
 
