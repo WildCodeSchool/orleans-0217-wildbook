@@ -216,7 +216,7 @@ class Wilder
 
     /**
      * @var
-     * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="wilder", cascade={"persist", "merge"})
+     * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="wilder", cascade={"persist", "remove"})
      */
     private $projectWilders;
 

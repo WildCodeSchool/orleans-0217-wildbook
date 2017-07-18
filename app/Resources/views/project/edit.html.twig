@@ -145,16 +145,16 @@
                         </div>
                     {% endif %}
                 {% endfor %}
-
+                {{ form_widget(edit_form._token) }}
             </div>
-
-        </div>
 
         <div class="form-group">
             <input type="submit" class="btn btn-success" value="Valider"/>
         </div>
-        {{ form(edit_form._token) }}
+
         </form>
+
+        </div>
         <!-- Button trigger modal -->
         <div class="form-group">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
@@ -213,7 +213,7 @@
 
     <script type="text/javascript">
         $('.wilders_project_collection').collection({
-            add: ' <a class="btn btn-sm btn-warning href="#">Ajouter un wilder</a>',
+            add: '<a class="btn btn-sm btn-warning href="#">Ajouter un wilder</a>',
             remove: '<a href="#">Delete wilder</a>',
             allow_up: false,
             allow_down: false,

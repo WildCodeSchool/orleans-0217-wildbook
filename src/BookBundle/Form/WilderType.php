@@ -26,13 +26,20 @@ class WilderType extends AbstractType
             ->add('address')
             ->add('postalCode')
             ->add('city')
-            ->add('skill')
+            ->add('skill',null, array(
+                'required' => false,
+                'empty_data' => 'mes compétences',
+            ))
             ->add('freelanceAvailability')
-            ->add('modjo')
+            ->add('modjo', null, array(
+                'required' => false,
+                'empty_data' => 'mon côté wild',
+            ))
             ->add('biography')
             ->add('contactEmail')
             ->add('profilPicture', null, [
                 'required'=> false,
+                'empty_data' => '/images/LOGO_WCS_ORANGE-BLANC_PASTILL.png',
             ])
             ->add('cv', null , [
                 'label'=>'CV (PDF file)',
@@ -53,8 +60,6 @@ class WilderType extends AbstractType
                 'required'=>false,
                 'multiple'=>true,
                 'attr'=> ['class'=>'selectpicker multiple']
-
-
             ])
             ->add('technologies', EntityType::class, [
                 'class'=>Technology::class,
