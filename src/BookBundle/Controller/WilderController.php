@@ -127,6 +127,7 @@ class WilderController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $address = $wilder->getPostalCode() .' '. $wilder->getCity();
+//            $wilder->setManagerActivation($wilder->getManagerActivation());
             $wilder->setLocation($convert->convertGps($address));
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('one_wilder_index');

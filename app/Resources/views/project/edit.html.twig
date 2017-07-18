@@ -104,16 +104,18 @@
                     {{ form_widget(edit_form.languages) }}
                     {{ form_errors(edit_form.languages) }}
                 </div>
-
+                {% if is_granted('ROLE_ADMIN') %}
                 <div class="form-group">
                     {{ form_label(edit_form.school,'École') }}
                     {{ form_widget(edit_form.school) }}
                     {{ form_errors(edit_form.school) }}
                 </div>
+                {% endif %}
 
             </div>
 
             <div class="container">
+                <h4>Ecole : {{ project.school.school}} </h4>
                 <h4>Wilders ayant réalisé ce projet : </h4>
 
                 {% if is_granted('ROLE_ADMIN') %}
