@@ -47,14 +47,14 @@
                         </div>
                         <div class="iconsocial">
                             {% if wilder.contactEmail is not null %}
-                                <a href="mailto:{{ wilder.contactEmail }}"><i class=" fa fa-envelope" title="Lui envoyer un email" data-toggle="tooltip" data-placement="top"></i></a>
+                                <a href="mailto:{{ wilder.contactEmail }}"><i class=" fa fa-envelope" title="Envoyer un email" data-toggle="tooltip" data-placement="top"></i></a>
                             {% else %}
-                                <a href="mailto:{{ wilder.user.email }}"><i class=" fa fa-envelope" title="Lui envoyer un email" data-toggle="tooltip" data-placement="top"></i></a>
+                                <a href="mailto:{{ wilder.user.email }}"><i class=" fa fa-envelope" title="Envoyer un email" data-toggle="tooltip" data-placement="top"></i></a>
                             {% endif %}
                         </div>
                         <div class="iconsocial">
                             {% if codewars is not null %}
-                                <a href="" class="codewars"><i class="fa fa-codepen"></i> {{ codewars }} Points</a>
+                                <a href="" class="codewars"><i class="fa fa-codepen" title="Score Codewars : {{ codewars }} Points" data-toggle="tooltip" data-placement="top"></i></a>
                             {% endif %}
                         </div>
                     </div>

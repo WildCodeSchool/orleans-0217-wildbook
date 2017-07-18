@@ -123,8 +123,7 @@ class Wilder
      * @ORM\Column(name="cv", type="string", length=255, nullable=true)
      *
      * @Assert\File(maxSize = "1024k",
-     *     mimeTypes = {"cv/pdf"},
-     *     mimeTypesMessage = "Merci de charger un fichier PDF valide")
+ *          mimeTypesMessage = "Merci de charger un fichier PDF valide")
      */
     private $cv;
 
