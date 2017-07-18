@@ -20,8 +20,12 @@ class WilderType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('firstname')
-            ->add('lastname')
+        $builder->add('firstname', null, [
+            'disabled' => true
+        ])
+            ->add('lastname', null, [
+                'disabled' => true
+            ])
             ->add('birthDate', BirthdayType::class)
             ->add('address')
             ->add('postalCode')
@@ -39,7 +43,6 @@ class WilderType extends AbstractType
             ->add('contactEmail')
             ->add('profilPicture', null, [
                 'required'=> false,
-                'empty_data' => '/images/LOGO_WCS_ORANGE-BLANC_PASTILL.png',
             ])
             ->add('cv', null , [
                 'label'=>'CV (PDF file)',

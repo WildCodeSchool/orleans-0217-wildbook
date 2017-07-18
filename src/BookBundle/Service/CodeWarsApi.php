@@ -13,16 +13,20 @@ class CodeWarsApi
 {
     public function codeWarsScore($pseudo)
     {
-        $url = 'https://www.codewars.com/api/v1/users/{pseudo}';
+        if ($pseudo === null){
+            return $score = null;
+        }else{
 
-        $url = str_replace('{pseudo}',$pseudo,$url);
+            $url = 'https://www.codewars.com/api/v1/users/{pseudo}';
 
-        $result = file_get_contents($url);
+            $url = str_replace('{pseudo}',$pseudo,$url);
 
-        $json = json_decode($result, true);
+            $result = file_get_contents($url);
 
-        return $score = $json['ranks']['overall']['score'];
+            $json = json_decode($result, true);
 
+            return $score = $json['ranks']['overall']['score'];
+        }
     }
 
 }
