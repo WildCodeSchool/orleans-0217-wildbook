@@ -294,6 +294,25 @@ a:hover {
     }
 }
 
+.btn-wcs-classic {
+    background-color: #f9a02e;
+}
+
+.wilderHomeFirstName {
+    font-weight: 600;
+}
+
+.wilderHomeLastName {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.wilderHomeDescription {
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
 @media (max-width: 767px) {
     .fullWidthPictureContainer {
         z-index: -100;
