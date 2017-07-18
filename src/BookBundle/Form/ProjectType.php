@@ -9,6 +9,7 @@ use BookBundle\Entity\Tag;
 use BookBundle\Entity\Technology;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -28,7 +29,13 @@ class ProjectType extends AbstractType
         $builder->add('title', TextType::class)
                 ->add('customer',TextType::class)
                 ->add('date')
-                ->add('status')
+                ->add('status', ChoiceType::class , [
+                'choices'=> [
+                    'Mis en production'=>'Mis en production',
+                    'En cours'=>'En cours',
+                    'Projet fictif'=>'Projet fictif'
+                    ]
+                 ])
                 ->add('summary', TextType::class, [
                     'required'=>false,
                 ])
