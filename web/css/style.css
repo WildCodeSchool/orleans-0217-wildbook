@@ -104,12 +104,6 @@
     height: 200px;
 }
 
-/** PAGE ACCUEIL **/
-
-.homeWilder {
-    width: 400px;
-}
-
 /* ------------------------------ PARTIE PROPRE & VÉRIFIÉE------------------------------ */
 
 /* ---------- Common ---------- */
@@ -179,13 +173,7 @@ a:hover {
 
 /* ---------- Home ---------- */
 
-.sectionDivider {
-    border-width: 1px;
-    border-color: darkgrey;
-    padding: 0;
-}
-
-.leaflet-container .leaflet-control-attribution  {
+.leaflet-container .leaflet-control-attribution {
     font-size: 0px;
 }
 
@@ -202,6 +190,12 @@ a:hover {
 
 .leaflet-marker-icon leaflet-zoom-animated leaflet-interactive {
 
+}
+
+.sectionDivider {
+    border-width: 1px;
+    border-color: darkgrey;
+    padding: 0;
 }
 
 .homeText {
@@ -308,7 +302,6 @@ a:hover {
         border-radius: 3%;
     }
 
-
     .homeButton:hover {
         margin-top: 20px;
         margin-bottom: 20px;
@@ -412,6 +405,11 @@ a:hover {
     }
 }
 
+.wilderStar {
+    height: autof;
+    background-color: rgb(241, 241, 241);
+}
+
 .geolocationPicture {
     border-radius: 50%;
     height: 100px;
@@ -483,6 +481,121 @@ footer {
 
 .footerCopyrights {
     margin: 45px 0;
+}
+
+/* ---------- Search pages ---------- */
+
+.formTitle {
+    font-size: 26pt;
+    text-align: center;
+    padding: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #35383a;
+}
+
+.wilderTransition {
+    text-align: center;
+    color: #7b7b7b;
+    font-size: 8pt;
+    font-style: italic;
+    background-color: #fbfbfb;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: 600;
+    word-wrap: break-word;
+    font-size: 14pt;
+    margin-top: 20px;
+    margin-left: -18px;
+    color: #35383a;
+}
+
+.bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:active, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover {
+    color: #7b7b7b;
+    font-size: 13px;
+    border: solid 1px #f9a02e;
+    border-radius: 0;
+    height: 30px;
+    margin-left: -18px;
+    padding-bottom: 20px;
+}
+
+.btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+    border-radius: 0;
+    margin-left: -18px;
+}
+
+.btn-group>.btn:first-child {
+     margin-left: -18px;
+}
+
+.btn, .dropdown-toggle, .btn-default {
+    color: #7b7b7b;
+    font-size: 13px;
+    border: solid 1px #f9a02e;
+    border-radius: 0;
+    height: 30px;
+    margin-left: -18px;
+    padding-bottom: 20px;
+}
+
+.btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default {
+    color: #7b7b7b;
+    font-size: 13px;
+    border: solid 1px #f9a02e;
+    border-radius: 0;
+    height: 30px;
+    margin-left: -18px;
+    padding-bottom: 20px;
+}
+
+.bootstrap-select.btn-group .dropdown-menu {
+    margin-left: -18px;
+    border-radius: 0;
+    border: solid 1px #f9a02e;
+}
+
+li {
+    list-style: none;
+}
+
+.buttonSubmit {
+    height: 30px;
+    width: 30px;
+    border: none;
+    background-color: transparent;
+    color: #f9a02e;
+    border-radius: 50%;
+    padding-top: 52px;
+    margin-left: 60px;
+}
+
+.buttonSubmit:hover {
+    height: 15px;
+    width: 15px;
+    border: none;
+    background-color: transparent;
+    color: #fba858;
+    border-radius: 50%;
+    padding-top: 52px;
+
+}
+
+input {
+    margin-top: 20px;
+    height: 30px;
+    border: solid 1px #f9a02e;
+    text-align: center;
+}
+
+.searchSelectors {
+    margin-bottom: 30px;
 }
 
 /** PAGE RECHERCHE WILDERS **/
@@ -1058,11 +1171,6 @@ a.websiteWilder {
 
 .imgProjectWilder {
     margin-bottom: 90px;
-}
-
-.wilderTransition {
-    margin-top: -32px;
-    background-color: #FBFBFB;
 }
 
 .wilders_project_collection label.required {
