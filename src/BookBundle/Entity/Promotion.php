@@ -3,6 +3,7 @@
 namespace BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Promotion
@@ -23,6 +24,13 @@ class Promotion
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "le champ promotion doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ promotion ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
+     *
      *
      * @ORM\Column(name="promotion", type="string", length=45)
      */
@@ -45,6 +53,12 @@ class Promotion
      * @ORM\ManyToOne (targetEntity="School", inversedBy="promotions")
      */
     private $school;
+
+    /**
+     * @var
+     * @ORM\OneToMany (targetEntity="User", mappedBy="promotion")
+     */
+    private $users;
 
 
     /**
@@ -79,6 +93,16 @@ class Promotion
     public function getPromotion()
     {
         return $this->promotion;
+    }
+
+    /**
+     * Get promotion full name
+     *
+     * @return string
+     */
+    public function getPromotionFullName()
+    {
+        return $this->getSchool()->getSchool().' '.$this->promotion;
     }
     /**
      * Constructor
@@ -188,5 +212,40 @@ class Promotion
     public function getSchool()
     {
         return $this->school;
+    }
+
+
+    /**
+     * Add user
+     *
+     * @param \BookBundle\Entity\User $user
+     *
+     * @return Promotion
+     */
+    public function addUser(\BookBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \BookBundle\Entity\User $user
+     */
+    public function removeUser(\BookBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

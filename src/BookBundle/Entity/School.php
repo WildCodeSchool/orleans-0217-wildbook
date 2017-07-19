@@ -3,6 +3,7 @@
 namespace BookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * School
@@ -23,6 +24,13 @@ class School
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "le champ ecole doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ ecole ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
+     *
      *
      * @ORM\Column(name="location", type="string", length=45)
      */

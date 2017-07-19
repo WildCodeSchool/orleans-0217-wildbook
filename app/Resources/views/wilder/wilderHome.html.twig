@@ -3,11 +3,25 @@
 
 {% block content %}
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <ul id="wilderList"></ul>
-    <input type="submit" value="Create" />
-    {{ form_end(form) }}
+    <div class="container">
+
+        <h1>Sélection du wilder mis en avant sur la page d'accueil</h1>
+
+        <p class="instruction">Choisissez le wilder par son nom via l'autocomplétion,
+            cliquer sur son nom pour le sélectionner,
+            renseigner dans le champ description la phrase d'accroche qui sera mise en avant</p>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="wilderlist">
+            <h3>Wilders</h3>
+            <ul id="wilderList"></ul>
+        </div>
+        <input type="submit" value="Create" />
+        {{ form_end(form) }}
+
+    </div>
+
 
 {% endblock %}
 

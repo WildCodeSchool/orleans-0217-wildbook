@@ -1,15 +1,120 @@
 {% extends 'layout_admin.html.twig' %}
-{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 
 {% block content %}
     <div class="container-fluid">
-        <h1>Wilder creation</h1>
+        <h1>Création d'un nouveau Wilder</h1>
 
         {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-        {{ form_end(form) }}
+
+        {{ form_label(form.firstname,'Prénom') }}
+        {{ form_widget(form.firstname) }}
+        {{ form_errors(form.firstname) }}
+
+        {{ form_label(form.lastname,'Nom') }}
+        {{ form_widget(form.lastname) }}
+        {{ form_errors(form.lastname) }}
+
+        {{ form_label(form.birthDate,'Date de naissance') }}
+        {{ form_widget(form.birthDate) }}
+        {{ form_errors(form.birthDate) }}
+
+        {{ form_label(form.address,'Adresse') }}
+        {{ form_widget(form.address) }}
+        {{ form_errors(form.address) }}
+
+        {{ form_label(form.postalCode,'Code Postal') }}
+        {{ form_widget(form.postalCode) }}
+        {{ form_errors(form.postalCode) }}
+
+        {{ form_label(form.city,'Ville') }}
+        {{ form_widget(form.city) }}
+        {{ form_errors(form.city) }}
+
+        {{ form_label(form.freelanceAvailability,'Freelance') }}
+        {{ form_widget(form.freelanceAvailability) }}
+        {{ form_errors(form.freelanceAvailability) }}
+
+        {{ form_label(form.modjo,'Modjo') }}
+        {{ form_widget(form.modjo) }}
+        {{ form_errors(form.modjo) }}
+
+        {{ form_label(form.biography,'Biographie') }}
+        {{ form_widget(form.biography) }}
+        {{ form_errors(form.biography) }}
+
+        {{ form_label(form.contactEmail,'Email contact') }}
+        {{ form_widget(form.contactEmail) }}
+        {{ form_errors(form.contactEmail) }}
+
+        <p class="instruction">Le format de l'image attendue est:</p>
+        {{ form_label(form.profilPicture,'Photo Profil') }}
+        {{ form_widget(form.profilPicture) }}
+        {{ form_errors(form.profilPicture) }}
+
+        <p class="instruction">Le fichier doit être au format pdf et ne doit pas dépasser 1Mo</p>
+        {{ form_label(form.cv,'CV') }}
+        {{ form_widget(form.cv) }}
+        {{ form_errors(form.cv) }}
+
+        {{ form_label(form.website,'Site perso') }}
+        {{ form_widget(form.website) }}
+        {{ form_errors(form.website) }}
+
+        {{ form_label(form.github,'Github') }}
+        {{ form_widget(form.github) }}
+        {{ form_errors(form.github) }}
+
+        {{ form_label(form.linkedin,'Linkedin') }}
+        {{ form_widget(form.linkedin) }}
+        {{ form_errors(form.linkedin) }}
+
+        {{ form_label(form.facebook,'Facebook') }}
+        {{ form_widget(form.facebook) }}
+        {{ form_errors(form.facebook) }}
+
+        {{ form_label(form.twitter,'Twitter') }}
+        {{ form_widget(form.twitter) }}
+        {{ form_errors(form.twitter) }}
+
+        {{ form_label(form.codewarsUsername,'Identifiant Codewars') }}
+        {{ form_widget(form.codewarsUsername) }}
+        {{ form_errors(form.codewarsUsername) }}
+
+        {{ form_label(form.languages,'Langages') }}
+        {{ form_widget(form.languages) }}
+        {{ form_errors(form.languages) }}
+
+        {{ form_label(form.technologies,'Technologies') }}
+        {{ form_widget(form.technologies) }}
+        {{ form_errors(form.technologies) }}
+
+        {{ form_label(form.skill,'Compétences') }}
+        {{ form_widget(form.skill) }}
+        {{ form_errors(form.skill) }}
+
+        {{ form_label(form.availability,'Statut disponibilité') }}
+        {{ form_widget(form.availability) }}
+        {{ form_errors(form.availability) }}
+
+        {{ form_label(form.userActivation,'Afficher le profil (wilder)') }}
+        {{ form_widget(form.userActivation) }}
+        {{ form_errors(form.userActivation) }}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            {{ form_label(form.managerActivation,'Afficher le profil (campus manager)') }}
+            {{ form_widget(form.managerActivation) }}
+            {{ form_errors(form.managerActivation) }}
+        {% endif %}
+
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-success" value="Créer"/>
+    </div>
+
+    {{ form(form._token) }}
+    </form>
 
         <a href="{{ path('wilder_index') }}" class="btn btn-primary">Retour à la liste</a>
 

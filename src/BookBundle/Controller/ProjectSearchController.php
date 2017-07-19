@@ -8,6 +8,7 @@ use BookBundle\Entity\Promotion;
 use BookBundle\Entity\School;
 use BookBundle\Form\ProjectSearchType;
 use BookBundle\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -41,7 +42,10 @@ class ProjectSearchController extends Controller
             $data = $form->getData();
             $schools = $data['school'];
             $categories = $data['category'];
-            $promotions = $data['promotion'];
+            $promotions = new ArrayCollection();
+            if (key_exists('promotion', $data)) {
+                $promotions = $data['promotion'];
+            }
 
             $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories, $promotions);
         }
@@ -52,8 +56,9 @@ class ProjectSearchController extends Controller
         ));
     }
 
+
     /**
-     * @Route("/ajax/{input}")
+     * @Route("/ajax-thumbnail/{input}")
      * @Method("POST")
      *
      * @param Request $request
@@ -61,15 +66,18 @@ class ProjectSearchController extends Controller
      *
      * @return JsonResponse
      */
-    public function autocompleteAction(Request $request, $input)
+    public function autocompleteThumbnailAction(Request $request, $input)
     {
         if ($request->isXmlHttpRequest()){
             /**
              * @var $repository ProjectRepository
              */
-            $repository = $this->getDoctrine()->getRepository('BookBundle:Project');
-            $data = $repository->getLike($input);
-            return new JsonResponse(array("data" => json_encode($data)));
+            $em = $this->getDoctrine()->getManager();
+            $projects =  $em->getRepository('BookBundle:Project')->getLike($input);
+            return $this->render('BookBundle:Front:project_thumbnails.html.twig', [
+                'projects' => $projects,
+                ]
+            );
         } else {
             throw new HttpException('500', 'Invalid call');
         }

@@ -25,34 +25,60 @@ class Project
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 60,
+     *      minMessage = "le champ titre doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ titre ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      *
-     * @ORM\Column(name="title", type="string", length=60, nullable=true)
+     * @ORM\Column(name="title", type="string", length=60)
      */
     private $title;
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 255,
+     *      minMessage = "le champ url doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ url ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      *
-     * @ORM\Column(name="path", type="string", length=255)
+     *
+     * @ORM\Column(name="path", type="string", length=255, nullable=true)
      */
     private $path;
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 45,
+     *      minMessage = "le champ client doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ client ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      *
-     * @ORM\Column(name="customer", type="string", length=45, nullable=true)
+     *
+     * @ORM\Column(name="customer", type="string", length=45)
      */
     private $customer;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=true)
+     * @ORM\Column(name="date", type="date")
      */
     private $date;
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 45,
+     *      minMessage = "le champ statut doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ statut ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      *
      * @ORM\Column(name="status", type="string", length=45, nullable=true)
      */
@@ -60,6 +86,12 @@ class Project
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 0,
+     *      max = 255,
+     *      minMessage = "le champ statut doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ statut ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      *
      * @ORM\Column(name="summary", type="string", length=255, nullable=true)
      */
@@ -67,6 +99,7 @@ class Project
 
     /**
      * @var string
+     *
      *
      * @ORM\Column(name="description", type="text", nullable=true)
      */
@@ -98,7 +131,7 @@ class Project
 
     /**
      * @var
-     * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="project")
+     * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="project", cascade={"persist", "remove"})
      */
     private $projectWilders;
 
@@ -152,6 +185,13 @@ class Project
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 1,
+     *      max = 100,
+     *      minMessage = "le champ statut doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ statut ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
+     *
      * @ORM\Column(name="homeTextProject", type="text", nullable=true)
      */
     private $homeTextProject;
@@ -504,6 +544,7 @@ class Project
      */
     public function addProjectWilder(\BookBundle\Entity\ProjectWilder $projectWilder)
     {
+        $projectWilder->setProject($this);
         $this->projectWilders[] = $projectWilder;
 
         return $this;
@@ -598,5 +639,19 @@ class Project
     public function getPictures()
     {
         return $this->pictures;
+    }
+
+    /**
+     * Add picture
+     *
+     * @param \BookBundle\Entity\Picture $picture
+     *
+     * @return Project
+     */
+    public function addPicture(\BookBundle\Entity\Picture $picture)
+    {
+        $this->pictures[] = $picture;
+
+        return $this;
     }
 }

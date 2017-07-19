@@ -26,8 +26,9 @@ class Wilder
 
     /**
      * @var \DateTime
+     * @Assert\Date()
      *
-     * @ORM\Column(name="birthDate", type="date", nullable=true)
+     * @ORM\Column(name="birthDate", type="date")
      */
     private $birthDate;
 
@@ -41,21 +42,23 @@ class Wilder
     /**
      * @var string
      *
-     * @ORM\Column(name="location", type="string", length=45, nullable=true)
+     * @ORM\Column(name="location", type="string", length=100, nullable=true)
      */
     private $location;
 
     /**
      * @var int
+     * @Assert\Length(max="5", min="5", minMessage="Code postal invalide", maxMessage="Code postal invalide")
+     * @Assert\Regex("/[0-9]{2}[0-9]{3}/", message="Code postal invalide")
      *
-     * @ORM\Column(name="postalCode", type="integer", nullable=true)
+     * @ORM\Column(name="postalCode", type="integer")
      */
     private $postalCode;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=60, nullable=true)
+     * @ORM\Column(name="city", type="string", length=60)
      */
     private $city;
 
@@ -75,8 +78,14 @@ class Wilder
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 0,
+     *      max = 100,
+     *      minMessage = "le champ modjo doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "le champ modjo ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      *
-     * @ORM\Column(name="modjo", type="string", length=100, nullable=true)
+     * @ORM\Column(name="modjo", type="string", length=100)
      */
     private $modjo;
 
@@ -89,6 +98,10 @@ class Wilder
 
     /**
      * @var string
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
      *
      * @ORM\Column(name="contactEmail", type="string", length=100, nullable=true)
      */
@@ -97,9 +110,15 @@ class Wilder
     /**
      * @var string
      *
-     * @ORM\Column(name="profilPicture", type="string", length=255, nullable=true)
+     * @ORM\Column(name="profilPicture", type="string", length=255)
      *
-     * @Assert\Image()
+     * @Assert\Image(maxSize = "1024k",
+     *     mimeTypes={"image/jpg","image/jpeg","image/png"},
+     *     minHeight = 400,
+     *     maxHeight = 600,
+     *     minRatio = 0.98 ,
+     *     maxRatio = 1.02 ,
+     * )
      */
     private $profilPicture;
 
@@ -108,12 +127,17 @@ class Wilder
      *
      * @ORM\Column(name="cv", type="string", length=255, nullable=true)
      *
-     * @Assert\File(mimeTypes={ "application/pdf" })
+     * @Assert\File(maxSize = "1024k",
+     *     mimeTypes={"file/pdf"},
+     *     mimeTypesMessage = "Merci de charger un fichier PDF valide")
      */
     private $cv;
 
     /**
      * @var string
+     * @Assert\Url(
+     *     message = "The url '{{ value }}' is not a valid url",
+     * )
      *
      * @ORM\Column(name="website", type="text", nullable=true)
      */
@@ -121,6 +145,9 @@ class Wilder
 
     /**
      * @var string
+     * @Assert\Url(
+     *     message = "The url '{{ value }}' is not a valid url",
+     * )
      *
      * @ORM\Column(name="github", type="string", length=255, nullable=true)
      */
@@ -128,6 +155,9 @@ class Wilder
 
     /**
      * @var string
+     * @Assert\Url(
+     *     message = "The url '{{ value }}' is not a valid url",
+     * )
      *
      * @ORM\Column(name="linkedin", type="string", length=255, nullable=true)
      */
@@ -135,6 +165,9 @@ class Wilder
 
     /**
      * @var string
+     * @Assert\Url(
+     *     message = "The url '{{ value }}' is not a valid url",
+     * )
      *
      * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
      */
@@ -142,6 +175,9 @@ class Wilder
 
     /**
      * @var string
+     * @Assert\Url(
+     *     message = "The url '{{ value }}' is not a valid url",
+     * )
      *
      * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
      */
@@ -182,7 +218,7 @@ class Wilder
 
     /**
      * @var
-     * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="wilder")
+     * @ORM\OneToMany (targetEntity="ProjectWilder", mappedBy="wilder", cascade={"persist", "remove"})
      */
     private $projectWilders;
 
@@ -194,7 +230,7 @@ class Wilder
 
     /**
      * @var
-     * @ORM\ManyToOne (targetEntity="Promotion", inversedBy="wilders")
+     * @ORM\ManyToOne (targetEntity="Promotion", inversedBy="wilders" , cascade={"persist", "merge"})
      */
     private $promotion;
 
@@ -203,8 +239,6 @@ class Wilder
      * @ORM\OneToOne (targetEntity="User", inversedBy="wilder")
      */
     private $user;
-
-
 
     /**
      * @var string

@@ -20,18 +20,18 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
                     ->setParameter('school', $schools);
         }
 
-        if (!$categories->isEmpty()) {
-            $qb
-                ->andWhere('p.category IN (:category)')
-                    ->setParameter('category', $categories);
-        }
-
         if (!$promotions->isEmpty()) {
             $qb
                 ->leftJoin('p.school','s')
                 ->leftJoin('s.promotions','pr', 'pr.school_id = s.id')
-                ->where('pr.id IN (:promotion)')
-                    ->setParameter('promotion', $promotions);
+                ->andWhere('pr.id IN (:promotion)')
+                ->setParameter('promotion', $promotions);
+        }
+
+        if (!$categories->isEmpty()) {
+            $qb
+                ->andWhere('p.category IN (:category)')
+                    ->setParameter('category', $categories);
         }
 
         return $qb->getQuery()->getResult();
@@ -41,9 +41,11 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     {
         $input = "%" . $input . "%";
         $qb = $this->createQueryBuilder('p')
-            ->select('p.title','p.id')
             ->where('p.title LIKE :title')
                 ->setParameter('title', $input)
+            ->leftJoin('p.pictures','pi')
+            ->andWhere('pi.isPrincipal = :true')
+                ->setParameter('true', true)
             ->getQuery();
         return $qb->getResult();
     }

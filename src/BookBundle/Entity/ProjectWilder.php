@@ -22,6 +22,24 @@ class ProjectWilder
     private $id;
 
     /**
+     * @return mixed
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param mixed $position
+     * @return ProjectWilder
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+        return $this;
+    }
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="visibility", type="boolean")
@@ -29,15 +47,20 @@ class ProjectWilder
     private $visibility;
 
     /**
+     * @ORM\Column(name="position", type="integer", nullable=true)
+     */
+    private $position;
+
+    /**
      * @var
-     * @ORM\ManyToOne (targetEntity="Project", inversedBy="projectWilders" , cascade={"persist", "merge"})
+     * @ORM\ManyToOne (targetEntity="Project", inversedBy="projectWilders" , cascade={"persist", "remove"})
      */
     private $project;
 
 
     /**
      * @var
-     * @ORM\ManyToOne (targetEntity="Wilder", inversedBy="projectWilders", cascade={"persist", "merge"})
+     * @ORM\ManyToOne (targetEntity="Wilder", inversedBy="projectWilders", cascade={"persist", "remove"})
      */
     private $wilder;
 

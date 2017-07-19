@@ -38,55 +38,15 @@ class LoadTagData  extends AbstractFixture implements OrderedFixtureInterface
         $manager -> persist ( $festi );
         $this->addReference('Festi', $festi );
 
-        $chapeau = new Tag ();
-        $chapeau -> setTag('Chapeau');
-        $manager -> persist ( $chapeau );
-        $this->addReference('Chapeau', $chapeau );
-
-        $pizza = new Tag ();
-        $pizza -> setTag('Pizza');
-        $manager -> persist ( $pizza );
-        $this->addReference('Pizza', $pizza );
-
-        $food = new Tag ();
-        $food -> setTag('Food');
-        $manager -> persist ( $food );
-        $this->addReference('Food', $food );
-
         $orchestre = new Tag ();
         $orchestre -> setTag('Orchestre');
         $manager -> persist ( $orchestre );
         $this->addReference('Orchestre', $orchestre );
 
-        $event = new Tag ();
-        $event -> setTag('Event');
-        $manager -> persist ( $event );
-        $this->addReference('Event', $event );
-
-        $wilde = new Tag ();
-        $wilde -> setTag('Wilde');
-        $manager -> persist ( $wilde );
-        $this->addReference('Wilde', $wilde );
-
         $immo = new Tag ();
-        $immo -> setTag('Immo');
+        $immo -> setTag('Immobilier');
         $manager -> persist ( $immo );
-        $this->addReference('Immo', $immo );
-
-        $auto = new Tag ();
-        $auto -> setTag('Auto');
-        $manager -> persist ( $auto );
-        $this->addReference('Auto', $auto );
-
-        $meteo = new Tag ();
-        $meteo -> setTag('Meteo');
-        $manager -> persist ( $meteo );
-        $this->addReference('Meteo', $meteo );
-
-        $asso = new Tag ();
-        $asso -> setTag('Asso');
-        $manager -> persist ( $asso );
-        $this->addReference('Asso', $asso );
+        $this->addReference('Immobilier', $immo );
 
         $jardin = new Tag ();
         $jardin -> setTag('Jardin');
@@ -102,17 +62,6 @@ class LoadTagData  extends AbstractFixture implements OrderedFixtureInterface
         $nature -> setTag('Nature');
         $manager -> persist ( $nature );
         $this->addReference('Nature', $nature );
-
-        $ville = new Tag ();
-        $ville -> setTag('Ville');
-        $manager -> persist ( $ville );
-        $this->addReference('Ville', $ville );
-
-        $fun = new Tag ();
-        $fun -> setTag('Fun');
-        $manager -> persist ( $fun );
-        $this->addReference('Fun', $fun );
-
 
         $manager -> flush ();
     }

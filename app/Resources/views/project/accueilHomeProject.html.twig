@@ -12,8 +12,9 @@
                             {% endif %}
                         {% endfor %}
                         <div class="carousel-caption">
-                            <h3>{{ project.title }}</h3>
-                            <p>{{ project.homeTextProject }}</p>
+                            <a href="{{ path('detail_project', { 'id': project.id }) }}">
+                                <h3 class="projectTitleCarousel">{{ project.title }}</h3></a>
+                            <p class="projectTitleCarousel">{{ project.homeTextProject }}</p>
                         </div>
                     </div>
                 {% else %}
@@ -25,8 +26,9 @@
                             {% endif %}
                         {% endfor %}
                         <div class="carousel-caption">
-                            <h3>{{ project.title }}</h3>
-                            <p>{{ project.homeTextProject }}</p>
+                            <a href="{{ path('detail_project', { 'id': project.id }) }}">
+                                <h3 class="projectTitleCarousel">{{ project.title }}</h3></a>
+                            <p class="projectTitleCarousel">{{ project.homeTextProject }}</p>
                         </div>
                     </div>
                 {% endif %}
@@ -42,5 +44,6 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+</div>
 
 

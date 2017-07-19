@@ -4,86 +4,118 @@
 
     <div class="container-fluid">
 
-        <h1>Wilder</h1>
+        <div class="container">
 
-        <table class="table table-condensed">
+            <div class="row modjoProfilWilder">
+                <p>{{ wilder.modjo }}</p>
+            </div>
 
-            <tbody>
-            <tr>
-                <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}"
-                     alt="{{ wilder.firstname }} {{ wilder.lastname }}" width="150px">
-            </tr>
-            <tr>
-                <th>Prénom</th>
-                <td>{{ wilder.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ wilder.lastname }}</td>
-            </tr>
-            <tr>
-                <th>Date de naissance</th>
-                <td>{% if wilder.birthDate %}{{ wilder.birthDate|date('d-m-Y') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ wilder.address }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ wilder.city }}</td>
-            </tr>
-            <tr>
-                <th>Skills</th>
-                <td>{{ wilder.skill }}</td>
-            </tr>
-            <tr>
-                <th>Disponible pour une mission</th>
-                <td>{% if wilder.freelanceAvailability %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Modjo</th>
-                <td>{{ wilder.modjo }}</td>
-            </tr>
-            <tr>
-                <th>Biographie</th>
-                <td>{{ wilder.biography }}</td>
-            </tr>
-            <tr>
-                <th>Contact</th>
-                <td>{{ wilder.contactEmail }}</td>
-            </tr>
+            <div class="row">
+                <hr/>
+            </div>
 
-            <tr>
-                <th>Cv</th>
-                <td><a href="{{ asset('uploads/' ~ wilder.cv) }}">Voir le CV (PDF)</a>
-                </td>
-            </tr>
-            <tr>
-                <th>Website</th>
-                <td>{{ wilder.website }}</td>
-            </tr>
-            <tr>
-                <th>Github</th>
-                <td>{{ wilder.github }}</td>
-            </tr>
-            <tr>
-                <th>Linkedin</th>
-                <td>{{ wilder.linkedin }}</td>
-            </tr>
-            <tr>
-                <th>Facebook</th>
-                <td>{{ wilder.facebook }}</td>
-            </tr>
-            <tr>
-                <th>Twitter</th>
-                <td>{{ wilder.twitter }}</td>
-            </tr>
-            <tr>
-                <th>Codewar</th>
-                <td>{{ codewars }}</td>
-            </tr>
-            </tbody>
-        </table>
+            <div class="row profilWilder">
+                <div class="col-lg-6 imageProfilWilder">
+                    <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}"
+                         alt="{{ wilder.firstname }} {{ wilder.lastname }}">
+                </div>
+                <div class="col-lg-5">
+                    <h3 class="firstnameWilder">{{ wilder.firstname }}</h3>
+                    <h3 class="lastnameWilder">{{ wilder.lastname }}</h3>
+                    <p class="promotionWilder">{{ wilder.promotion.school.school }}
+                        / {{ wilder.promotion.promotion }}</p>
+                    <p class="dispoWilder">{{ wilder.availability.label }}</p>
+                    <p class="freelanceWilder">{{ wilder.freelanceAvailability ? 'Accepte des missions Freelance' }}</p>
+                    <p class="websiteWilder"><a class="websiteWilder"
+                                                href="{{ wilder.website }}">{{ wilder.website }}</a></p>
+
+                    <div class="socialProWilder">
+                        <div class="iconsocial">
+                            {% if wilder.linkedin is not null %}
+                                <a href="{{ wilder.linkedin }}"><i class=" fa fa-linkedin"></i></a>
+                            {% endif %}
+                        </div>
+                        <div class="iconsocial">
+                            {% if wilder.github is not null %}
+                                <a href="{{ wilder.github }}"><i class=" fa fa-github"></i></a>
+                            {% endif %}
+                        </div>
+                        <div class="iconsocial">
+                            {% if wilder.cv is not null %}
+                                <a href="{{ asset('uploads/' ~ wilder.cv) }}"><i class=" fa fa-download" title="Télécharger le CV" data-toggle="tooltip" data-placement="top"></i></a>
+                            {% endif %}
+                        </div>
+                        <div class="iconsocial">
+                            {% if wilder.contactEmail is not null %}
+                                <a href="mailto:{{ wilder.contactEmail }}"><i class=" fa fa-envelope" title="Envoyer un email" data-toggle="tooltip" data-placement="top"></i></a>
+                            {% else %}
+                                <a href="mailto:{{ wilder.user.email }}"><i class=" fa fa-envelope" title="Envoyer un email" data-toggle="tooltip" data-placement="top"></i></a>
+                            {% endif %}
+                        </div>
+                        <div class="iconsocial">
+                            {% if codewars is not null %}
+                                <a href="" class="codewars"><i class="fa fa-codepen" title="Score Codewars : {{ codewars }} Points" data-toggle="tooltip" data-placement="top"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="socialPersoWilder">
+                        <div class="iconsocial">
+                            {% if wilder.twitter is not null %}
+                                <a href="{{ wilder.twitter }}"><i class=" fa fa-twitter"></i></a>
+                            {% endif %}
+                        </div>
+                        <div class="iconsocial">
+                            {% if wilder.facebook is not null %}
+                                <a href="{{ wilder.facebook }}"><i class=" fa fa-facebook"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <hr/>
+            </div>
+
+            <div class="row contentProfilWilder">
+                <div class="col-md-3 contentProfilWilderLeft">
+                    <div class="langagesWilder">
+                        <h4 class="langagesWilder">LANGAGES</h4>
+                        <ul class="langagesWilder">{% for languages in wilder.languages %}
+                                <li class="langagesWilder">{{ languages.language }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="technologiesWilder">
+                        <h4 class="technologiesWilder">TECHNOLOGIES</h4>
+                        <ul class="technologiesWilder">{% for technologies in wilder.technologies %}
+                                <li class="technologiesWilder">{{ technologies.technology }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="competences">
+                        <h4 class="competences">COMPETENCES</h4>
+                        <p class="competences">{{ wilder.skill }}</p>
+                    </div>
+                </div>
+                <div class="col-md-8 col-md-offset-1 contentProfilWilderRight">
+                    <div class="bio">
+                        <p class="bio">{{ wilder.biography }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <hr/>
+            </div>
+
+            <div class="row imgProjectWilder">
+
+                {% for projectsWilder in wilder.projectWilders %}
+                    {% include 'BookBundle:Front:thumbnail_wilder_projects.html.twig' with {'projectSearch': projectsWilder} %}
+                {% endfor %}
+
+            </div>
+        </div>
     </div>
 {% endblock %}

@@ -26,7 +26,13 @@ class Picture
      * @var string
      *
      * @ORM\Column(name="path", type="string", length=255, nullable=true)
-     * @Assert\Image()
+     * @Assert\Image( maxSize = "1024k",
+     *     mimeTypes={"image/jpg","image/jpeg","image/png"},
+     *     minHeight = 400,
+     *     maxHeight = 600,
+     *     minRatio = 1.9 ,
+     *     maxRatio = 2.1 ,
+     * )
      */
     private $path;
 
@@ -73,7 +79,7 @@ class Picture
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="pictures", cascade = {"persist","remove"})
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="pictures", cascade = {"persist"})
      */
     private $project;
 
