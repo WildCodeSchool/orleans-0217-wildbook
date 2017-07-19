@@ -21,17 +21,17 @@ class LoadTechnologyData  extends AbstractFixture implements OrderedFixtureInter
         $symfony = new Technology ();
         $symfony -> setTechnology('Symfony');
         $manager -> persist ( $symfony );
-        $this->addReference('Symfony', $symfony );
+        $this->addReference('Symfo', $symfony );
 
         $storm = new Technology ();
         $storm -> setTechnology('PHPStorm');
         $manager -> persist ( $storm );
-        $this->addReference('PHPStorm', $storm );
+        $this->addReference('Storm', $storm );
 
         $boot = new Technology ();
         $boot -> setTechnology('Bootstrap');
         $manager -> persist ( $boot );
-        $this->addReference('Bootstrap', $boot );
+        $this->addReference('Boot', $boot );
 
         $workb = new Technology ();
         $workb -> setTechnology('WorkBench');
