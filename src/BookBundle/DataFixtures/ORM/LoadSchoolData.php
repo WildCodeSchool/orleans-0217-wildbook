@@ -23,7 +23,7 @@ class LoadSchoolData extends AbstractFixture implements OrderedFixtureInterface
         $orleans -> setAddress('45000 Orléans');
         $orleans -> setLocation('47.9108329, 1.9157977');
         $manager -> persist ( $orleans);
-        $this->addReference('Orléans', $orleans);
+        $this->addReference('Orleans', $orleans);
 
 
         $lyon = new School ();
@@ -81,7 +81,7 @@ class LoadSchoolData extends AbstractFixture implements OrderedFixtureInterface
         $fontainebleau -> setAddress('77300 Fontainebleau');
         $fontainebleau -> setLocation('48.3880879, 2.6613069');
         $manager -> persist ( $fontainebleau );
-        $this->addReference('Fontainebleau', $fontainebleau);
+        $this->addReference('Fontaine', $fontainebleau);
 
 
         $manager -> flush ();

@@ -21,7 +21,7 @@ class LoadLanguageData  extends AbstractFixture implements OrderedFixtureInterfa
         $php = new Language ();
         $php -> setLanguage('PHP');
         $manager -> persist ( $php );
-        $this->addReference('PHP', $php );
+        $this->addReference('Php', $php );
 
         $js = new Language ();
         $js -> setLanguage('JavaScript');
