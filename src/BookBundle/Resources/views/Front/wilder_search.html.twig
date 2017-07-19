@@ -115,7 +115,7 @@
             {% for wilder  in wilders %}
                 {% if wilder.userActivation == true and wilder.managerActivation == true %}
 
-                    <div class="col-xs-6 col-md-5 vignetteWilder">
+                    <div class="col-xs-6 vignetteWilder">
                         <div class="col-md-7 image-listWilders"
                              style="background-image: url('../uploads/{{ wilder.profilPicture }}')">
 
@@ -132,7 +132,7 @@
 
                         </div>
 
-                        <div class="col-md-5 titreVignetteWilder">
+                        <div class="col-xs-6 titreVignetteWilder">
 
                             <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
                                 <h3>{{ wilder.lastname }}</h3></a>
