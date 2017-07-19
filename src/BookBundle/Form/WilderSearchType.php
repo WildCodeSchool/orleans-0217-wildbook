@@ -21,7 +21,7 @@ class WilderSearchType extends AbstractType
         $builder
             ->add('Recherche', SearchType::class, [
                 'required' => false,
-                'attr'     => ['placeholder'  => 'Julien Martin',
+                'attr'     => ['placeholder'  => 'Entrez un nom...',
                                'autocomplete' => 'off',
                 ],
             ])
@@ -31,7 +31,10 @@ class WilderSearchType extends AbstractType
                 'expanded'     => false,
                 'required'     => false,
                 'multiple'     => true,
-                'attr'         => ['class' => 'selectpicker multiple'],
+                'attr'         => [
+                    'class' => 'selectpicker multiple',
+                    'title' => 'Sélectionnez une ville',
+        ],
             ])
             ->add('language', EntityType::class, [
                 'class'        => Language::class,
@@ -39,7 +42,10 @@ class WilderSearchType extends AbstractType
                 'expanded'     => false,
                 'required'     => false,
                 'multiple'     => true,
-                'attr'         => ['class' => 'selectpicker multiple'],
+                'attr'         => [
+                    'class' => 'selectpicker multiple',
+                    'title' => 'Sélectionnez un langage',
+                    ],
             ])
             ->add('promotion', EntityType::class, [
                 'class'        => Promotion::class,
@@ -48,10 +54,10 @@ class WilderSearchType extends AbstractType
                 'required'     => false,
                 'multiple'     => true,
                 'disabled'     => true,
-                'empty_data'   => 'Sélectionnez une ville',
+                'empty_data'   => 'Sélectionnez une école',
                 'attr'         => [
                     'class' => 'selectpicker multiple',
-                    'title' => 'Sélectionnez d\'abord une ville',
+                    'title' => 'Sélectionnez d\'abord une école',
                 ],
             ])
             ->addEventListener(

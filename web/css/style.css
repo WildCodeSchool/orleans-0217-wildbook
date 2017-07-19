@@ -50,8 +50,8 @@
 }
 
 .realisation-focus {
-    margin-top: 80px;
-    margin-bottom: 80px;
+    margin-top: 30px;
+    margin-bottom: 60px;
 }
 
 .sub-title-slider h2 {
@@ -79,6 +79,7 @@
 
 .list_wilders h4 {
     color: #0f0f0f;
+    margin-bottom: 60px;
 }
 
 .img2 {
@@ -106,12 +107,6 @@
     margin-top: 200px;
     width: 650px;
     height: 200px;
-}
-
-/** PAGE ACCUEIL **/
-
-.homeWilder {
-    width: 400px;
 }
 
 /* ------------------------------ PARTIE PROPRE & VÉRIFIÉE------------------------------ */
@@ -183,13 +178,7 @@ a:hover {
 
 /* ---------- Home ---------- */
 
-.sectionDivider {
-    border-width: 1px;
-    border-color: darkgrey;
-    padding: 0;
-}
-
-.leaflet-container .leaflet-control-attribution  {
+.leaflet-container .leaflet-control-attribution {
     font-size: 0px;
 }
 
@@ -206,6 +195,13 @@ a:hover {
 
 .leaflet-marker-icon leaflet-zoom-animated leaflet-interactive {
 
+}
+
+.sectionDivider {
+    border-width: 1px;
+    border-color: darkgrey;
+    padding: 0;
+    margin: 15;
 }
 
 .homeText {
@@ -285,8 +281,8 @@ a:hover {
         font-size: 26pt;
         text-align: center;
         padding: 0;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
 
     .paragraphText {
@@ -311,7 +307,6 @@ a:hover {
         height: 40px;
         border-radius: 3%;
     }
-
 
     .homeButton:hover {
         margin-top: 20px;
@@ -435,6 +430,11 @@ a:hover {
     }
 }
 
+.wilderStar {
+    height: autof;
+    background-color: rgb(241, 241, 241);
+}
+
 .geolocationPicture {
     border-radius: 50%;
     height: 100px;
@@ -506,6 +506,84 @@ footer {
 
 .footerCopyrights {
     margin: 45px 0;
+}
+
+/* ---------- Search pages ---------- */
+
+.formTitle {
+    font-size: 26pt;
+    text-align: center;
+    padding: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #35383a;
+}
+
+label {
+    font-weight: 400;
+    word-wrap: break-word;
+    font-size: 14pt;
+    margin-top: 20px;
+    color: #35383a;
+}
+
+input {
+    border-radius: 0;
+    margin: 0;
+    border: solid 1px #f9a02e;
+    height: 32px;
+    padding-left: 15px;
+    width: 218px;
+}
+
+.alternativeText {
+    color: rgba(123, 123, 123, .85);
+    font-style: italic;
+    font-size: 8pt;
+    padding-left: 30px;
+}
+
+.bootstrap-select {
+    border-radius: 0;
+    border: solid 1px #f9a02e;
+    margin: 0;
+    width: 100%;
+}
+
+.dropdown-toggle {
+    border-radius: 0;
+    border: none;
+    width: 100%;
+}
+
+.dropdown-menu {
+    border-radius: 0;
+    border: outset 1px #f9a02e;
+    width: 100%;
+}
+
+.submitButton {
+    border-radius: 50%;
+    border: none;
+    background-color: #f9a02e;
+    height: 30px;
+    width: 30px;
+    color: #fbfbfb;
+    font-size: 12pt;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.submitButton:hover {
+    border-radius: 50%;
+    border: none;
+    background-color: #f9a02e;
+    height: 30px;
+    width: 30px;
+    color: #fbfbfb;
+    font-size: 14pt;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 /** PAGE RECHERCHE WILDERS **/
@@ -1083,11 +1161,6 @@ a.websiteWilder {
 
 .imgProjectWilder {
     margin-bottom: 90px;
-}
-
-.wilderTransition {
-    margin-top: -32px;
-    background-color: #FBFBFB;
 }
 
 .wilders_project_collection label.required {

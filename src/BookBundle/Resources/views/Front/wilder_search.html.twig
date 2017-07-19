@@ -1,5 +1,10 @@
 {% extends 'layout.html.twig' %}
 
+    {% block stylesheets %}
+        {{ parent() }}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
+    {% endblock %}
+
 {% block container %}
 
     {% block headerPicture %}
@@ -12,148 +17,141 @@
 
     {% endblock headerPicture %}
 
-    <div class="container-fluid img1">
-        <h1>LES WILDERS</h1>
-    </div>
+    <h2 class="paragraphTitle text-center">Trouver un Wilder</h2>
 
-    <div class="container">
+    <!-- Wilder search form -->
+    <div class="text-center">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
 
-        <div class="sub-title">
-            <h2>Trouver un wilder</h2>
-        </div>
-
-        <div class="search-area">
-            <div class="search">
-                <div class="row">
-                    <div class="row wilderAutocompletion">
-                        <div class="col-lg-5 col-lg-offset-3">
-                            {{ form_label(form.Recherche,'Rechercher un Wilder par son nom ') }}
-                            {{ form_widget(form.Recherche) }}
-                            {{ form_errors(form.Recherche) }}
-                        </div>
-                    </div>
-                    <hr/>
-                    <div class="text-center col-sm-offset-4 col-sm-4 wilderTransition">
-                        <p>Ou sélectionner un ou plusieurs critères</p>
-                    </div>
-                    <div class="col-lg-12 blocksearch">
-                        {{ form_start(form, {'attr':{'id':'form_search_wilder'}}) }}
-                        {{ form_errors(form) }}
-                        <div class="row">
-                            <div class="col-lg-2 col-lg-offset-1">
-                                {{ form_label(form.school,'Ecole') }}
-                                {{ form_widget(form.school) }}
-                                {{ form_errors(form.school) }}
-                            </div>
-                            <div class="col-lg-2 col-lg-offset-1">
-                                {{ form_label(form.promotion,'Promotion') }}
-                                {{ form_widget(form.promotion) }}
-                                {{ form_errors(form.promotion) }}
-                            </div>
-                            <div class="col-lg-2 col-lg-offset-1">
-                                {{ form_label(form.language,'Langage') }}
-                                {{ form_widget(form.language) }}
-                                {{ form_errors(form.language) }}
-                            </div>
-
-
-                            <div class="col-lg-2 col-lg-offset-1">
-                                <button type="submit" class="btn btn-default btn-wcs btn-searchWilder">OK</button>
-                            </div>
-                        </div>
-
-                        {{ form_end(form) }}
-
-                    </div>
-                </div>
+        <!-- Autocompletion -->
+        <div class="row">
+            <div class="col-xs-12">
+                {{ form_widget(form.Recherche) }}
+                {{ form_errors(form.Recherche) }}
             </div>
         </div>
-
-
-        <!--Wilders list -->
-        <div class="list_wilders row" id="wild-list">
-            <div class="row">
-                {% for wilder  in wilders %}
-                    {% if wilder.userActivation == true and wilder.managerActivation == true %}
-
-                        <div class="col-xs-6 col-md-5 vignetteWilder">
-                            <div class="col-md-7 image-listWilders"
-                                 style="background-image: url('../uploads/{{ wilder.profilPicture }}')">
-                                <img src="" alt="" class="image" style="width:100%">
-                                <div class="middle">
-                                        <div class="hoverDispoWilder">{{ wilder.availability.label }}</div>
-                                    </div>
-                                <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
-                                    <img class="img-listWilders" src="{{ asset('uploads/'~ wilder.profilPicture ) }}"
-                                         alt="{{ wilder.firstname }} {{ wilder.lastname }}">
-                                </a>
-                            </div>
-                            <div class="col-md-5 titreVignetteWilder">
-                                <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
-                                    <h3>{{ wilder.lastname }}</h3></a>
-                                <h3>{{ wilder.firstname }}</h3>
-                                <h4>Ecole : {{ wilder.promotion.school.school }}</h4>
-                                <h5>Promotion : {{ wilder.promotion.promotion }}</h5>
-
-                            </div>
-                            <div class="modjoWilder col-md-12">
-                                <h4>{{ wilder.modjo }}</h4>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </div>
-        <!-- Wilders list -->
-
-        <div class="realisation-focus">
-            <div class="sub-title-slider">
-                <h2>L'article du moment</h2>
-            </div>
-
-            <div class="sub-title-text">
-
-            </div>
-
-            <div class="slider">
-                <div id="carousel" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel" data-slide-to="1"></li>
-                    </ol>
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <img src="{{ asset('images/Nicolas-développeur-web.png') }}" class="img_project_carousel"
-                                 alt="slider01">
-                            <div class="carousel-caption">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="{{ asset('images/Jonathan-développeur-web.png') }}" class="img_project_carousel"
-                                 alt="slider02">
-                            <div class="carousel-caption">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Controls -->
-                    <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
+        <div class="row">
+            <p class="col-xs-12 alternativeText">ou sélectionnez un ou plusieurs critères</p>
         </div>
 
+        <div>
+            <hr class="col-xs-10 col-xs-offset-1">
+        </div>
+
+        <!-- Select fields -->
+
+
+        <!-- École selector -->
+        <div class="col-xs-12">
+
+            <!-- Label -->
+            <div class="selectTitle">
+                {{ form_label(form.school,'ÉCOLES') }}
+            </div>
+            <!-- Select field -->
+            <div>
+                {{ form_widget(form.school) }}
+            </div>
+            <!-- Error -->
+            <div class="selectError">
+                {{ form_errors(form.school) }}
+            </div>
+
+        </div>
+
+        <!-- Langage selector -->
+        <div class="col-xs-12">
+
+            <!-- Label -->
+            <div class="selectTitle">
+                {{ form_label(form.language,'LANGAGES') }}
+            </div>
+            <!-- Select field -->
+            <div>
+                {{ form_widget(form.language) }}
+            </div>
+            <!-- Error -->
+            <div>
+                {{ form_errors(form.language) }}
+            </div>
+
+        </div>
+
+        <!-- Promotion selector -->
+        <div class="col-xs-12">
+
+            <!-- Label -->
+            <div class="selectTitle">
+                {{ form_label(form.promotion,'PROMOTION') }}
+            </div>
+            <!-- Select field -->
+            <div>
+                {{ form_widget(form.promotion) }}
+            </div>
+            <!-- Error -->
+            <div>
+                {{ form_errors(form.promotion) }}
+            </div>
+
+        </div>
+
+        <!-- Submit button -->
+        <div class="col-xs-12">
+            <button type="submit" class="submitButton shadow">
+                <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+        </div>
+
+
+        {{ form_end(form) }}
 
     </div>
 
-    <div class="container-fluid img2">
+
+    <!--Wilders list -->
+    <div class="list_wilders row" id="wild-list">
+        <div class="row">
+            {% for wilder  in wilders %}
+                {% if wilder.userActivation == true and wilder.managerActivation == true %}
+
+                    <div class="col-xs-6 col-md-5 vignetteWilder">
+                        <div class="col-md-7 image-listWilders"
+                             style="background-image: url('../uploads/{{ wilder.profilPicture }}')">
+
+                            <img src="" alt="" class="image" style="width:100%">
+
+                            <div class="middle">
+                                <div class="hoverDispoWilder">{{ wilder.availability.label }}</div>
+                            </div>
+
+                            <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
+                                <img class="img-listWilders" src="{{ asset('uploads/'~ wilder.profilPicture ) }}"
+                                     alt="{{ wilder.firstname }} {{ wilder.lastname }}">
+                            </a>
+
+                        </div>
+
+                        <div class="col-md-5 titreVignetteWilder">
+
+                            <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
+                                <h3>{{ wilder.lastname }}</h3></a>
+
+                            <h3>{{ wilder.firstname }}</h3>
+
+                            <h4>Ecole : {{ wilder.promotion.school.school }}</h4>
+
+                            <h5>Promotion : {{ wilder.promotion.promotion }}</h5>
+
+                        </div>
+
+                        <div class="modjoWilder col-md-12">
+                            <h4>{{ wilder.modjo }}</h4>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
 
 
@@ -162,11 +160,5 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/ajax_auto.js') }}"></script>
-        <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
-
-    <script>
-        $('#book_bundle_wilder_search_type_school').on('hidden.bs.select', function (e) {
-            $('#form_search_wilder').submit();
-        });
-    </script>
+    <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
 {% endblock javascripts %}
