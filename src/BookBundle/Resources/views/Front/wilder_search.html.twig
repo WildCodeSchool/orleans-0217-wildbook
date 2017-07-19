@@ -17,9 +17,7 @@
 
     {% endblock headerPicture %}
 
-    <div>
-        <h2 class="paragraphTitle text-center">Trouver un Wilder</h2>
-    </div>
+    <h2 class="paragraphTitle text-center">Trouver un Wilder</h2>
 
     <!-- Wilder search form -->
     <div class="text-center">
@@ -38,7 +36,7 @@
         </div>
 
         <div>
-            <hr class="col-xs-12">
+            <hr class="col-xs-10 col-xs-offset-1">
         </div>
 
         <!-- Select fields -->
@@ -120,23 +118,33 @@
                     <div class="col-xs-6 col-md-5 vignetteWilder">
                         <div class="col-md-7 image-listWilders"
                              style="background-image: url('../uploads/{{ wilder.profilPicture }}')">
+
                             <img src="" alt="" class="image" style="width:100%">
+
                             <div class="middle">
                                 <div class="hoverDispoWilder">{{ wilder.availability.label }}</div>
                             </div>
+
                             <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
                                 <img class="img-listWilders" src="{{ asset('uploads/'~ wilder.profilPicture ) }}"
                                      alt="{{ wilder.firstname }} {{ wilder.lastname }}">
                             </a>
+
                         </div>
+
                         <div class="col-md-5 titreVignetteWilder">
+
                             <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
                                 <h3>{{ wilder.lastname }}</h3></a>
+
                             <h3>{{ wilder.firstname }}</h3>
+
                             <h4>Ecole : {{ wilder.promotion.school.school }}</h4>
+
                             <h5>Promotion : {{ wilder.promotion.promotion }}</h5>
 
                         </div>
+
                         <div class="modjoWilder col-md-12">
                             <h4>{{ wilder.modjo }}</h4>
                         </div>
