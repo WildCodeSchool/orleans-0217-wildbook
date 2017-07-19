@@ -12,126 +12,89 @@
 
     {% endblock headerPicture %}
 
-    <h2 class="paragraphTitle text-center">Trouver une promotion</h2>
+    <div class="container">
 
-    <!-- Project search form -->
-    <div class="text-center">
-        {{ form_start(form) }}
-        {{ form_errors(form) }}
-
-        <!-- Autocompletion -->
-        <div class="row">
-            <div class="col-xs-12">
-                {{ form_widget(form.Recherche) }}
-                {{ form_errors(form.Recherche) }}
-            </div>
-        </div>
-        <div class="row">
-            <p class="col-xs-12 alternativeText">ou sélectionnez un ou plusieurs critères</p>
+        <div class="paragraphTitle">
+            <h2>Trouver une réalisation</h2>
         </div>
 
-        <div>
-            <hr class="col-xs-10 col-xs-offset-1">
-        </div>
+        <div class="search-area">
+            <div class="search">
+                <div class="row">
+                    <div class="row projectAutocompletion">
+                        <div class="text-center col-sm-offset-4 col-sm-4 wilderTransition">
+                            {{ form_widget(form.Recherche) }}
+                            {{ form_errors(form.Recherche) }}
+                        </div>
+                    </div>
 
-        <!-- Select fields -->
+                    <div class="text-center col-sm-offset-4 col-sm-4 wilderTransition">
+                        <p class="alternativeText text-center">ou sélectionnez un ou plusieurs critères</p>
+                    </div>
 
+                    <div>
+                        <hr class="col-xs-10 col-xs-offset-1">
+                    </div>
 
-        <!-- École selector -->
-        <div class="col-xs-12">
+                    <div class="col-lg-12 blocksearch">
+                        {{ form_start(form, {'attr':{'id':'form_search_project'}}) }}
 
-            <!-- Label -->
-            <div class="selectTitle">
-                {{ form_label(form.school,'ÉCOLES') }}
-            </div>
-            <!-- Select field -->
-            <div>
-                {{ form_widget(form.school) }}
-            </div>
-            <!-- Error -->
-            <div class="selectError">
-                {{ form_errors(form.school) }}
-            </div>
+                        {{ form_errors(form) }}
+                        <div class="row">
+                            <div class="col-lg-2 col-lg-offset-1">
+                                {{ form_label(form.school,'École') }}
+                                {{ form_widget(form.school) }}
+                                {{ form_errors(form.school) }}
+                            </div>
+                            <div class="col-lg-2 col-lg-offset-1">
+                                {{ form_label(form.promotion,'Promotion') }}
+                                {{ form_widget(form.promotion) }}
+                                {{ form_errors(form.promotion) }}
+                            </div>
+                            <div class="col-lg-2 col-lg-offset-1">
+                                {{ form_label(form.category,'Catégorie') }}
+                                {{ form_widget(form.category) }}
+                                {{ form_errors(form.category) }}
+                            </div>
 
-        </div>
+                            <div class="col-lg-2 col-lg-offset-1">
+                                <button type="submit" class="submitButton shadow">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
 
-        <!-- Promotion selector -->
-        <div class="col-xs-12">
+                        {{ form_end(form) }}
 
-            <!-- Label -->
-            <div class="selectTitle">
-                {{ form_label(form.promotion,'PROMOTION') }}
-            </div>
-            <!-- Select field -->
-            <div>
-                {{ form_widget(form.promotion) }}
-            </div>
-            <!-- Error -->
-            <div>
-                {{ form_errors(form.promotion) }}
-            </div>
-
-        </div>
-
-        <!-- Category selector -->
-        <div class="col-xs-12">
-
-            <!-- Label -->
-            <div class="selectTitle">
-                {{ form_label(form.category,'CATEGORIE') }}
-            </div>
-            <!-- Select field -->
-            <div>
-                {{ form_widget(form.category) }}
-            </div>
-            <!-- Error -->
-            <div>
-                {{ form_errors(form.category) }}
-            </div>
-
-        </div>
-
-        <!-- Submit button -->
-        <div class="col-xs-12">
-            <button type="submit" class="submitButton shadow">
-                <i class="fa fa-check" aria-hidden="true"></i>
-            </button>
-        </div>
-
-        {{ form_end(form) }}
-
-    </div>
-
-    <!--Projects list -->
-    <div class="list_projects row" id="project-list">
-        <div class="row">
-            {% for projectSearch in projectsSearch %}
-                {% include 'BookBundle:Front:thumbnail.html.twig' with {'projectSearch': projectSearch} %}
-            {% endfor %}
-        </div>
-    </div>
-
-    <div>
-        <hr class="col-xs-10 col-xs-offset-1">
-    </div>
-
-    <!-- Stared projects -->
-    <div class="">
-
-        <div class="row">
-            <div class="col-xs-10 col-xs-offset-1">
-                <h2 class="paragraphTitle text-center">La réalisation du moment</h2>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-xs-10 col-xs-offset-1">
+        <!--Projects list -->
+        <div class="list_projects row" id="project-list">
+            <div class="row">
+                {% for projectSearch in projectsSearch %}
+                    {% include 'BookBundle:Front:thumbnail.html.twig' with {'projectSearch': projectSearch} %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="container">
+
+            <div class="row">
+                <hr class="col-xs-10 col-xs-offset-1">
+            </div>
+
+            <div class="paragraphTitle">
+                <h2>La réalisation du moment</h2>
+            </div>
+
+            <div class="realisation-focus">
                 {{ render(controller('BookBundle:HomeProject:viewHomeProject')) }}
             </div>
         </div>
-
     </div>
-
 
 {% endblock %}
 

@@ -21,7 +21,7 @@ class ProjectSearchType extends AbstractType
         $builder->
                 add('Recherche', SearchType::class, [
                 'required' => false,
-                'attr' => ['placeholder' => 'nom du projet']
+                'attr' => ['placeholder' => 'Entrez un nom...']
             ])
             ->add('school', EntityType::class, [
                 'class'=>School::class,
