@@ -8,6 +8,7 @@ use BookBundle\Entity\Promotion;
 use BookBundle\Entity\School;
 use BookBundle\Form\ProjectSearchType;
 use BookBundle\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -41,7 +42,10 @@ class ProjectSearchController extends Controller
             $data = $form->getData();
             $schools = $data['school'];
             $categories = $data['category'];
-            $promotions = $data['promotion'];
+            $promotions = new ArrayCollection();
+            if (key_exists('promotion', $data)) {
+                $promotions = $data['promotion'];
+            }
 
             $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories, $promotions);
         }
