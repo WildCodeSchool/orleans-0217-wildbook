@@ -32,8 +32,8 @@ class HomeProjectType extends AbstractType
             'attr' => ['placeholder' => 'nom du projet']
         ])
                 ->add('homeTextProject',TextType::class)
-                ->add('homeProject', HiddenType::class , [
-                    'required' => true
+                ->add('homeProject', CheckboxType::class, [
+                    'required' => true,
                 ]);
     }
 

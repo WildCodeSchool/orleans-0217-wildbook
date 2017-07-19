@@ -44,9 +44,7 @@ class WilderType extends AbstractType
                 'empty_data' => 'ma biographie',
             ))
             ->add('contactEmail')
-            ->add('profilPicture', null, [
-                'required'=> true,
-            ])
+            ->add('profilPicture', null)
             ->add('cv', null , [
                 'label'=>'CV (PDF file)',
                 'required'=>false
