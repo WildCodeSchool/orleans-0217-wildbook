@@ -11,14 +11,12 @@
             </div>
             <hr/>
 
-            <div class="jumbotron">
-                <div class="imgPrincipaleProject">
-                    {% for picture in project.pictures %}
-                        {% if picture.isPrincipal == true %}
-                            <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imagePrincipaleProject"/>
-                        {% endif %}
-                    {% endfor %}
-                </div>
+            <div class="imgPrincipaleProject">
+                {% for picture in project.pictures %}
+                    {% if picture.isPrincipal == true %}
+                        <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imagePrincipaleProject"/>
+                    {% endif %}
+                {% endfor %}
             </div>
 
             <div class="row subtitleProject">
@@ -30,9 +28,9 @@
                 <div class="col-md-6">
                     <p class="subtitleProjectPromotion">
                         {{ project.school.school }} /
-                        {% for projectWilder in project.projectWilders  %}
+                        {% for projectWilder in project.projectWilders %}
                             {% if loop.first %}
-                                {{  projectWilder.wilder.promotion.promotion }}
+                                {{ projectWilder.wilder.promotion.promotion }}
                             {% endif %}
                         {% endfor %}
                     </p>
@@ -50,7 +48,7 @@
                         <p class="projectType">{{ project.category.label }}</p>
                     </div>
                     <div class="projectStatut">
-                       <p class="projectType">{{ project.status }}</p>
+                        <p class="projectType">{{ project.status }}</p>
                     </div>
                     <div class="langages">
                         <h4>LANGAGES</h4>
@@ -115,11 +113,26 @@
                 {% for picture in project.pictures %}
                     <div class="col-xs-12 col-lg-6">
                         <a href="#" class="thumbnail">
-                            <img src="{{ asset('uploads/'~ picture.path|basename ) }}"/>
+                            <img src="{{ asset('uploads/'~ picture.path|basename ) }}" id="{{ picture.id }}" data-toggle="modal" data-target="#picture{{ picture.id }}"/>
                         </a>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="picture{{ picture.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-lg modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <img src="{{ asset('uploads/'~ picture.path|basename ) }} " class="img-responsive"/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
+
+
         </div>
 
     </div>

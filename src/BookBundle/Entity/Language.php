@@ -27,9 +27,9 @@ class Language
     /**
      * @var string
      * @Assert\Length(
-     *      min = 2,
+     *      min = 1,
      *      max = 30,
-     *      minMessage = "le champ langage doit contenir au moins 2 caractères",
+     *      minMessage = "le champ langage doit contenir au moins 1 caractère",
      *      maxMessage = "le champ langage ne doit pas contenir plus de {{ limit }} caractères"
      *      )
      *

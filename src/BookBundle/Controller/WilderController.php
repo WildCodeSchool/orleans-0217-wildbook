@@ -10,6 +10,7 @@ use BookBundle\Form\WilderType;
 use BookBundle\Repository\WilderRepository;
 use BookBundle\Service\ConvertCity;
 use BookBundle\Service\FileUploader;
+use ClassesWithParents\D;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -119,6 +120,7 @@ class WilderController extends Controller
      */
     public function editAction(Request $request, Wilder $wilder, ConvertCity $convert)
     {
+        $previousActivation = $wilder->getManagerActivation();
         $editForm = $this->createForm(WilderType::class, $wilder);
         $editForm->handleRequest($request);
 
@@ -127,6 +129,11 @@ class WilderController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $address = $wilder->getPostalCode() .' '. $wilder->getCity();
+
+            if (!$this->isGranted('ROLE_ADMIN')) {
+                $wilder->setManagerActivation($previousActivation);
+            };
+               
             $wilder->setLocation($convert->convertGps($address));
 
             $em = $this->getDoctrine()->getManager();

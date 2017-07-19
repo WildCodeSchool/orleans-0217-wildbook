@@ -79,7 +79,6 @@ class UserController extends Controller
 
                 $this->redirectToRoute('fos_user_resetting_send_email');
 
-
                 $message = \Swift_Message::newInstance()
                     ->setSubject('registration')
                     ->setFrom($this->getParameter('mailer_user'))
