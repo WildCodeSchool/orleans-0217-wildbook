@@ -30,10 +30,11 @@
 }
 
 .btn-wcs {
+    text-decoration: none;
     padding: 12px;
     border-radius: 50% !important;
     background-color: #f9a02e;
-    color: #80cbc4;
+    color: #fbfbfb;
     -webkit-box-shadow: 0px 0px 3px 1px #f9a02e;
     -moz-box-shadow: 0px 0px 3px 1px #f9a02e;
     box-shadow: 0px 0px 3px 1px #f9a02e;
@@ -324,6 +325,8 @@ a:hover {
 
 .btn-wcs-classic {
     background-color: #f9a02e;
+    text-decoration: none;
+    color: #fbfbfb;
 }
 
 .wilderHomeFirstName {
@@ -520,7 +523,6 @@ footer {
 
 label {
     font-weight: 400;
-    word-wrap: break-word;
     font-size: 14pt;
     margin-top: 20px;
     color: #35383a;
@@ -539,7 +541,6 @@ input {
     color: rgba(123, 123, 123, .85);
     font-style: italic;
     font-size: 8pt;
-    padding-left: 30px;
 }
 
 .bootstrap-select {
@@ -569,7 +570,7 @@ input {
     width: 30px;
     color: #fbfbfb;
     font-size: 12pt;
-    margin-top: 30px;
+    margin-top: 50px;
     margin-bottom: 30px;
 }
 
@@ -581,7 +582,7 @@ input {
     width: 30px;
     color: #fbfbfb;
     font-size: 14pt;
-    margin-top: 30px;
+    margin-top: 50px;
     margin-bottom: 30px;
 }
 
