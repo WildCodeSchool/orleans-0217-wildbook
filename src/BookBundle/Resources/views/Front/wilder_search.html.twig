@@ -1,10 +1,5 @@
 {% extends 'layout.html.twig' %}
 
-    {% block stylesheets %}
-        {{ parent() }}
-        <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
-    {% endblock %}
-
 {% block container %}
 
     {% block headerPicture %}
@@ -17,143 +12,102 @@
 
     {% endblock headerPicture %}
 
-    <h2 class="paragraphTitle text-center">Trouver un Wilder</h2>
+    <div class="container">
 
-    <!-- Wilder search form -->
-    <div class="text-center">
-        {{ form_start(form) }}
-        {{ form_errors(form) }}
-
-        <!-- Autocompletion -->
-        <div class="row">
-            <div class="col-xs-12">
-                {{ form_widget(form.Recherche) }}
-                {{ form_errors(form.Recherche) }}
-            </div>
-        </div>
-        <div class="row">
-            <p class="col-xs-12 alternativeText">ou sélectionnez un ou plusieurs critères</p>
+        <div class="paragraphTitle">
+            <h2>Trouver un wilder</h2>
         </div>
 
-        <div>
-            <hr class="col-xs-10 col-xs-offset-1">
-        </div>
-
-        <!-- Select fields -->
-
-
-        <!-- École selector -->
-        <div class="col-xs-12">
-
-            <!-- Label -->
-            <div class="selectTitle">
-                {{ form_label(form.school,'ÉCOLES') }}
-            </div>
-            <!-- Select field -->
-            <div>
-                {{ form_widget(form.school) }}
-            </div>
-            <!-- Error -->
-            <div class="selectError">
-                {{ form_errors(form.school) }}
-            </div>
-
-        </div>
-
-        <!-- Langage selector -->
-        <div class="col-xs-12">
-
-            <!-- Label -->
-            <div class="selectTitle">
-                {{ form_label(form.language,'LANGAGES') }}
-            </div>
-            <!-- Select field -->
-            <div>
-                {{ form_widget(form.language) }}
-            </div>
-            <!-- Error -->
-            <div>
-                {{ form_errors(form.language) }}
-            </div>
-
-        </div>
-
-        <!-- Promotion selector -->
-        <div class="col-xs-12">
-
-            <!-- Label -->
-            <div class="selectTitle">
-                {{ form_label(form.promotion,'PROMOTION') }}
-            </div>
-            <!-- Select field -->
-            <div>
-                {{ form_widget(form.promotion) }}
-            </div>
-            <!-- Error -->
-            <div>
-                {{ form_errors(form.promotion) }}
-            </div>
-
-        </div>
-
-        <!-- Submit button -->
-        <div class="col-xs-12">
-            <button type="submit" class="submitButton shadow">
-                <i class="fa fa-check" aria-hidden="true"></i>
-            </button>
-        </div>
-
-
-        {{ form_end(form) }}
-
-    </div>
-
-
-    <!--Wilders list -->
-    <div class="list_wilders row" id="wild-list">
-        <div class="row">
-            {% for wilder  in wilders %}
-                {% if wilder.userActivation == true and wilder.managerActivation == true %}
-
-                    <div class="col-xs-6 vignetteWilder">
-                        <div class="col-md-7 image-listWilders"
-                             style="background-image: url('../uploads/{{ wilder.profilPicture }}')">
-
-                            <img src="" alt="" class="image" style="width:100%">
-
-                            <div class="middle">
-                                <div class="hoverDispoWilder">{{ wilder.availability.label }}</div>
-                            </div>
-
-                            <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
-                                <img class="img-listWilders" src="{{ asset('uploads/'~ wilder.profilPicture ) }}"
-                                     alt="{{ wilder.firstname }} {{ wilder.lastname }}">
-                            </a>
-
-                        </div>
-
-                        <div class="col-xs-6 titreVignetteWilder">
-
-                            <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
-                                <h3>{{ wilder.lastname }}</h3></a>
-
-                            <h3>{{ wilder.firstname }}</h3>
-
-                            <h4>Ecole : {{ wilder.promotion.school.school }}</h4>
-
-                            <h5>Promotion : {{ wilder.promotion.promotion }}</h5>
-
-                        </div>
-
-                        <div class="modjoWilder col-md-12">
-                            <h4>{{ wilder.modjo }}</h4>
+        <div class="search-area">
+            <div class="search">
+                <div class="row">
+                    <div class="row wilderAutocompletion">
+                        <div class="text-center col-sm-offset-4 col-sm-4 wilderTransition">
+                            {{ form_widget(form.Recherche) }}
+                            {{ form_errors(form.Recherche) }}
                         </div>
                     </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
 
+                    <div class="text-center col-sm-offset-4 col-sm-4 wilderTransition">
+                        <p class="alternativeText text-center">ou sélectionnez un ou plusieurs critères</p>
+                    </div>
+
+                    <div>
+                        <hr class="col-xs-10 col-xs-offset-1">
+                    </div>
+
+                    <div class="col-lg-12 blocksearch">
+                        {{ form_start(form, {'attr':{'id':'form_search_wilder'}}) }}
+                        {{ form_errors(form) }}
+                        <div class="row">
+                            <div class="col-lg-2 col-lg-offset-1">
+                                {{ form_label(form.school,'École') }}
+                                {{ form_widget(form.school) }}
+                                {{ form_errors(form.school) }}
+                            </div>
+                            <div class="col-lg-2 col-lg-offset-1">
+                                {{ form_label(form.promotion,'Promotion') }}
+                                {{ form_widget(form.promotion) }}
+                                {{ form_errors(form.promotion) }}
+                            </div>
+                            <div class="col-lg-2 col-lg-offset-1">
+                                {{ form_label(form.language,'Langage') }}
+                                {{ form_widget(form.language) }}
+                                {{ form_errors(form.language) }}
+                            </div>
+
+                            <div class="col-lg-2 col-lg-offset-1">
+                                <button type="submit" class="submitButton shadow">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        {{ form_end(form) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Wilders list -->
+        <div class="list_wilders row" id="wild-list">
+            <div class="row">
+                {% for wilder  in wilders %}
+                    {% if wilder.userActivation == true and wilder.managerActivation == true %}
+
+                        <div class="col-xs-6 col-md-5 vignetteWilder">
+                            <div class="col-md-7 image-listWilders"
+                                 style="background-image: url('../uploads/{{ wilder.profilPicture }}')">
+
+                                <div class="middle">
+                                    <div class="hoverDispoWilder">{{ wilder.availability.label }}</div>
+                                </div>
+                                <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
+                                    <img class="img-listWilders" src="{{ asset('uploads/'~ wilder.profilPicture ) }}"
+                                         alt="{{ wilder.firstname }} {{ wilder.lastname }}">
+                                </a>
+                            </div>
+                            <div class="col-md-5 titreVignetteWilder">
+                                <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
+                                    <h3>{{ wilder.lastname }}</h3></a>
+                                <h3>{{ wilder.firstname }}</h3>
+                                <h4>Ecole : {{ wilder.promotion.school.school }}</h4>
+                                <h5>Promotion : {{ wilder.promotion.promotion }}</h5>
+
+                            </div>
+                            <div class="modjoWilder col-md-12">
+                                <h4>{{ wilder.modjo }}</h4>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+
+    </div>
 
 {% endblock %}
 
@@ -161,4 +115,10 @@
     {{ parent() }}
     <script src="{{ asset('js/ajax_auto.js') }}"></script>
     <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+
+    <script>
+        $('#book_bundle_wilder_search_type_school').on('hidden.bs.select', function (e) {
+            $('#form_search_wilder').submit();
+        });
+    </script>
 {% endblock javascripts %}
