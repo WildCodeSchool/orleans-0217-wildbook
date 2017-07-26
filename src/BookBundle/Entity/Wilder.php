@@ -114,8 +114,8 @@ class Wilder
      *
      * @Assert\Image(maxSize = "1024k",
      *     mimeTypes={"image/jpg","image/jpeg","image/png"},
-     *     minHeight = 400,
-     *     maxHeight = 600,
+     *     minHeight = 300,
+     *     maxHeight = 1200,
      *     minRatio = 0.98 ,
      *     maxRatio = 1.02 ,
      * )
