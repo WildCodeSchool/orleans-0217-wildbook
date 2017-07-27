@@ -62,7 +62,7 @@ class WilderType extends AbstractType
             ->add('codewarsUsername')
             ->add('languages', EntityType::class, [
                 'class'=>Language::class,
-                'querybuilder' => function (EntityRepository $er) {
+                'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('l')
                         ->orderBy('l.language', 'ASC');
                 },
@@ -74,7 +74,7 @@ class WilderType extends AbstractType
             ])
             ->add('technologies', EntityType::class, [
                 'class'=>Technology::class,
-                'querybuider' => function (EntityRepository $er) {
+                'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('t')
                         ->orderBy('t.technology','ASC');
                 },
