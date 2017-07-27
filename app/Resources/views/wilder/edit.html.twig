@@ -53,13 +53,13 @@
             {{ form_widget(edit_form.contactEmail) }}
             {{ form_errors(edit_form.contactEmail) }}
 
-            <p class="instruction">Le format de l'image attendue doit être carrée:</p>
+            <p class="instruction">La photo doit être carrée, au format png ou jpg et ne pas dépasser 1Mo:</p>
             {{ form_label(edit_form.profilPicture,'Photo Profil') }}
             <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" class="imgEditWilder"/>
             {{ form_widget(edit_form.profilPicture) }}
             {{ form_errors(edit_form.profilPicture) }}
 
-            <p class="instruction">Le fichier doit être au format pdf et ne doit pas dépasser 1Mo</p>
+            <p class="instruction">Le CV doit être au format pdf et ne doit pas dépasser 1Mo</p>
             {{ form_label(edit_form.cv,'CV') }}
             {% if wilder.cv =='' %}
             {% else %}
