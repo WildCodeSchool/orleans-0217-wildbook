@@ -53,14 +53,14 @@ class ProjectWilder
 
     /**
      * @var
-     * @ORM\ManyToOne (targetEntity="Project", inversedBy="projectWilders" , cascade={"persist", "remove"})
+     * @ORM\ManyToOne (targetEntity="Project", inversedBy="projectWilders" , cascade={"persist"})
      */
     private $project;
 
 
     /**
      * @var
-     * @ORM\ManyToOne (targetEntity="Wilder", inversedBy="projectWilders", cascade={"persist", "remove"})
+     * @ORM\ManyToOne (targetEntity="Wilder", inversedBy="projectWilders", cascade={"persist"})
      */
     private $wilder;
 
