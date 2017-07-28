@@ -7,6 +7,7 @@ use BookBundle\Entity\Language;
 use BookBundle\Entity\School;
 use BookBundle\Entity\Tag;
 use BookBundle\Entity\Technology;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -59,6 +60,10 @@ class ProjectType extends AbstractType
                 ])
                 ->add('technologies', EntityType::class, [
                     'class'=>Technology::class,
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('t')
+                            ->orderBy('t.technology','ASC');
+                    },
                     'choice_label'=>'technology',
                     'expanded'=>false,
                     'required'=>false,
@@ -67,6 +72,10 @@ class ProjectType extends AbstractType
                 ])
                 ->add('languages', EntityType::class, [
                     'class'=>Language::class,
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('l')
+                            ->orderBy('l.language', 'ASC');
+                    },
                     'choice_label'=>'language',
                     'expanded'=>false,
                     'required'=>false,
