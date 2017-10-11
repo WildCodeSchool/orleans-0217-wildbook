@@ -18,3 +18,5 @@ Entity/*~
 .idea
 *.php~
 /web/uploads/
+.env
+.web-server-pid

@@ -66,7 +66,18 @@
                         {% endfor %}
                     </td>
                 </tr>
-
+                <tr>
+                    <th>Wilders</th>
+                    <td>
+                        <ul>
+                            {% for projectWilder in project.projectWilders %}
+                                <li> {{ projectWilder.wilder.fullName }} </li>
+                            {% else %}
+                                Il n'y a pas encore de wilder rattaché à ce projet
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
             </tbody>
     </table>
 
