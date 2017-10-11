@@ -19,3 +19,4 @@ Entity/*~
 *.php~
 /web/uploads/
 .env
+.web-server-pid
