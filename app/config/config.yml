@@ -1,5 +1,5 @@
 imports:
-    - { resource: parameters.yml }
+#    - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@BookBundle/Resources/config/services.yml" }
@@ -65,7 +65,7 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: '%env(MAILER_TRANSPORT)%'
+    transport: 'smtp'
     host: '%env(MAILER_HOST)%'
     username: '%env(MAILER_USER)%'
     password: '%env(MAILER_PASSWORD)%'
