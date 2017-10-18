@@ -8,7 +8,6 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
-    upload_directory: '%upload_directory%'
 
 framework:
     #esi: ~
@@ -78,14 +77,14 @@ fos_user:
     service:
         mailer: fos_user.mailer.twig_swift
     from_email:
-        address: "%mailer_user%"
-        sender_name: "%mailer_user%"
+        address: 'mailer_user%'
+        sender_name: '%mailer_user%'
     registration:
         confirmation:
             enabled: true
             from_email:
-                address:        "%mailer_user%"
-                sender_name:    "%mailer_user%"
+                address:        '%mailer_user%'
+                sender_name:    '%mailer_user%'
 #                template:   FOSUserBundle:Registration:email.txt.twig
     resetting:
         email:
