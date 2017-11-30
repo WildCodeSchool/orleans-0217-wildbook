@@ -56,7 +56,10 @@
             </tr>
             <tr>
                 <th>Cv</th>
-                <td><a href="{{ asset('uploads/' ~ wilder.cv) }}">Voir le CV (PDF)</a>
+                <td>
+                    {% if wilder.cv %}
+                    <a href="{{ asset('uploads/' ~ wilder.cv) }}">Voir le CV (PDF)</a>
+                    {% endif %}
                 </td>
             </tr>
             <tr>

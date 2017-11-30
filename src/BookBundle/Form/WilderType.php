@@ -61,7 +61,7 @@ class WilderType extends AbstractType
             ->add('linkedin')
             ->add('facebook')
             ->add('twitter')
-            ->add('userActivation')
+            ->add('userActivation', null, ['label'=>'Afficher le profil'])
             ->add('managerActivation')
             ->add('codewarsUsername')
             ->add('languages', EntityType::class, [

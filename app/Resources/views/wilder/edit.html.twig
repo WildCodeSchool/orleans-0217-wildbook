@@ -109,19 +109,17 @@
             {{ form_errors(edit_form.availability) }}
 
             <div class="form-group">
-                <p class="instruction">Afficher le profil (wilder)</p>
                 {{ form_label(edit_form.userActivation,'Afficher le profil (wilder)') }}
                 {{ form_widget(edit_form.userActivation) }}
                 {{ form_errors(edit_form.userActivation) }}
             </div>
 
             {% if is_granted('ROLE_ADMIN') %}
-            <div class="form-group">
-                <p class="instruction">Afficher le profil (campus manager)</p>
-                {{ form_label(edit_form.managerActivation,'Afficher le profil (campus manager)') }}
-                {{ form_widget(edit_form.managerActivation) }}
-                {{ form_errors(edit_form.managerActivation) }}
-            </div>
+                <div class="form-group">
+                    {{ form_label(edit_form.managerActivation,'Afficher le profil (campus manager)') }}
+                    {{ form_widget(edit_form.managerActivation) }}
+                    {{ form_errors(edit_form.managerActivation) }}
+                </div>
             {% endif %}
 
         </div>
@@ -130,13 +128,13 @@
         </div>
 
         {{ form(edit_form._token) }}
-    </form>
+        </form>
 
-    {% if is_granted('ROLE_ADMIN') %}
-        <div class="form-group">
-            <a href="{{ path('wilder_index') }}" class="btn btn-primary">Retour à la liste</a>
-        </div>
-    {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="form-group">
+                <a href="{{ path('wilder_index') }}" class="btn btn-primary">Retour à la liste</a>
+            </div>
+        {% endif %}
 
     </div>
 {% endblock %}
