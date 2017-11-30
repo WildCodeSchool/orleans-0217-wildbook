@@ -9,6 +9,7 @@ use BookBundle\Service\CodeWarsApi;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class HomeController extends Controller
@@ -64,4 +65,6 @@ class HomeController extends Controller
             'project' => $project
         ));
     }
+
+
 }

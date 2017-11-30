@@ -98,10 +98,11 @@
         {{ form_widget(form.availability) }}
         {{ form_errors(form.availability) }}
 
-        {{ form_label(form.userActivation,'Afficher le profil (wilder)') }}
-        {{ form_widget(form.userActivation) }}
-        {{ form_errors(form.userActivation) }}
-
+        <div class="form-group">
+            {{ form_label(form.userActivation,'Afficher le profil (wilder)') }}
+            {{ form_widget(form.userActivation) }}
+            {{ form_errors(form.userActivation) }}
+        </div>
         {% if is_granted('ROLE_ADMIN') %}
             {{ form_label(form.managerActivation,'Afficher le profil (campus manager)') }}
             {{ form_widget(form.managerActivation) }}
@@ -116,7 +117,7 @@
     {{ form(form._token) }}
     </form>
 
-        <a href="{{ path('wilder_index') }}" class="btn btn-primary">Retour à la liste</a>
+    <a href="{{ path('wilder_index') }}" class="btn btn-primary">Retour à la liste</a>
 
     </div>
 {% endblock %}

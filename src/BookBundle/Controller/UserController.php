@@ -67,7 +67,7 @@ class UserController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $email_exist = $userManager->findUserByEmail($user->getEmail());
             if ($email_exist) {
-                return $this->redirectToRoute('admin');
+                return $this->redirectToRoute('home_admin');
                 $this->addFlash('warning', 'wilder déjà enregistré ');
             } else {
                 $em = $this->getDoctrine()->getManager();
@@ -81,7 +81,7 @@ class UserController extends Controller
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('registration')
-                    ->setFrom($this->getParameter('mailer_user'))
+                    ->setFrom($this->getParameter('mailer_from'))
                     ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView('BookBundle:FinishRegistration:registration_email.html.twig',
@@ -136,7 +136,7 @@ class UserController extends Controller
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('registration')
-                    ->setFrom($this->getParameter('mailer_user'))
+                    ->setFrom($this->getParameter('mailer_from'))
                     ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView('BookBundle:FinishRegistration:registration_email.html.twig',
