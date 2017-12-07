@@ -9,6 +9,7 @@ use BookBundle\Service\CodeWarsApi;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class HomeController extends Controller
@@ -32,7 +33,7 @@ class HomeController extends Controller
      *
      * @Route("/profile_wilder/{id}", name="profile_wilder")
      */
-    public function wilderProfileAction(CodeWarsApi $codewarsApi, Wilder $wilder)
+    public function wilderProfileAction(Wilder $wilder, CodeWarsApi $codewarsApi)
     {
         $score = $codewarsApi->codeWarsScore($wilder->getCodewarsUsername());
 
@@ -64,4 +65,6 @@ class HomeController extends Controller
             'project' => $project
         ));
     }
+
+
 }

@@ -51,7 +51,6 @@ class WilderSearchController extends Controller
             }
             $wildersSearch = $em->getRepository(Wilder::class)->searchBy($schools, $languages, $promotions);
         }
-
         return $this->render('BookBundle:Front:wilder_search.html.twig', array(
             'form' => $form->createView(),
             'wilders' => $wildersSearch

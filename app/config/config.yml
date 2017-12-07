@@ -1,5 +1,5 @@
 imports:
-#    - { resource: parameters.yml }
+    - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@BookBundle/Resources/config/services.yml" }
@@ -8,12 +8,11 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
-    upload_directory: '%env(UPLOAD_DIRECTORY)%'
 
 framework:
     #esi: ~
     translator: { fallbacks: ['%locale%'] }
-    secret: '%env(SECRET)%'
+    secret: '%secret%'
     router:
         resource: '%kernel.root_dir%/config/routing.yml'
         strict_requirements: ~
@@ -39,17 +38,17 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     globals:
-      TokenMap: '%env(ACCESS_TOKEN_MAP)%'
+      TokenMap: '%accessTokenMap%'
 
 # Doctrine Configuration
 doctrine:
     dbal:
         driver: pdo_mysql
-        host: '%env(DATABASE_HOST)%'
-        port: null
-        dbname: '%env(DATABASE_NAME)%'
-        user: '%env(DATABASE_USER)%'
-        password: '%env(DATABASE_PASS)%'
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
         charset: UTF8
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
@@ -65,10 +64,12 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: 'smtp'
-    host: '%env(MAILER_HOST)%'
-    username: '%env(MAILER_USER)%'
-    password: '%env(MAILER_PASSWORD)%'
+    transport: '%mailer_transport%'
+    host: '%mailer_host%'
+    username: '%mailer_user%'
+    port:       '%mailer_port%' # different ports are available, see SES console
+    encryption: tls # TLS encryption is required
+    password: '%mailer_password%'
     spool: { type: memory }
 
 fos_user:
@@ -78,20 +79,20 @@ fos_user:
     service:
         mailer: fos_user.mailer.twig_swift
     from_email:
-        address: "%env(MAILER_USER)%"
-        sender_name: "%env(MAILER_USER)%"
+        address: 'mailer_user%'
+        sender_name: '%mailer_user%'
     registration:
         confirmation:
             enabled: true
             from_email:
-                address:        "%env(MAILER_USER)%"
-                sender_name:    "%env(MAILER_USER)%"
+                address:        '%mailer_from%'
+                sender_name:    '%mailer_from%'
 #                template:   FOSUserBundle:Registration:email.txt.twig
     resetting:
         email:
             from_email:
-                address:        "%env(MAILER_USER)%"
-                sender_name:    "%env(MAILER_USER)%"
+                address:        "%mailer_from%"
+                sender_name:    "%mailer_from%"
 #            template:   email/password_resetting.email.twig
 
 

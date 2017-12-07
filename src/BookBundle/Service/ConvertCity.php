@@ -16,7 +16,10 @@ class ConvertCity
 
         $url_gmap = 'http://maps.googleapis.com/maps/api/geocode/json?address=' . urlencode($address) . '&sensor=false';
         $json = json_decode(file_get_contents($url_gmap), true);
-        return $coord = $json['results']['0']['geometry']['location']['lat'].', '.$json['results']['0']['geometry']['location']['lng'];
+        $lat = $json['results']['0']['geometry']['location']['lat'] ?? '';
+        $lng = $json['results']['0']['geometry']['location']['lng'] ?? '';
+
+        return $lat . ', ' . $lng;
 
     }
 
