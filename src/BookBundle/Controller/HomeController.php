@@ -33,7 +33,7 @@ class HomeController extends Controller
      *
      * @Route("/profile_wilder/{id}", name="profile_wilder")
      */
-    public function wilderProfileAction(CodeWarsApi $codewarsApi, Wilder $wilder)
+    public function wilderProfileAction(Wilder $wilder, CodeWarsApi $codewarsApi)
     {
         $score = $codewarsApi->codeWarsScore($wilder->getCodewarsUsername());
 

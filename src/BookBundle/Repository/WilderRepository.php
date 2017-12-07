@@ -32,7 +32,7 @@ class WilderRepository extends \Doctrine\ORM\EntityRepository
                 ->andWhere('p.id IN (:promotion)')
                     ->setParameter('promotion', $promotions);
         }
-
+//dump($qb); exit();
         return $qb->getQuery()->getResult();
     }
 

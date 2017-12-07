@@ -24,7 +24,7 @@
                         {% for projectWilder in project.projectWilders %}
                             <li>
                                 <a class="lienWilders {{ projectWilder.visibility == 0 ? 'text-danger' }}"
-                                   href="{{ path('profile_wilder', { 'id': projectWilder.id }) }}">
+                                   href="{{ path('profile_wilder', { 'id': projectWilder.wilid }) }}">
                                     {{ projectWilder.wilder.firstname }} {{ projectWilder.wilder.lastname }}
                                 </a>
                                 {% if projectWilder.visibility == 0 %}
