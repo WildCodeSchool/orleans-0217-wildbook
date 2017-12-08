@@ -47,7 +47,7 @@
 }
 
 .search-area {
-    margin-bottom: 50px;
+    margin-bottom: 1em;
 }
 
 .realisation-focus {
@@ -80,7 +80,6 @@
 
 .list_wilders h4 {
     color: #0f0f0f;
-    margin-bottom: 60px;
 }
 
 .img2 {
@@ -282,8 +281,6 @@ a:hover {
         font-size: 26pt;
         text-align: center;
         padding: 0;
-        margin-top: 30px;
-        margin-bottom: 30px;
     }
 
     .paragraphText {
@@ -589,8 +586,8 @@ input {
 /** PAGE RECHERCHE WILDERS **/
 
 .wilderAutocompletion {
-    margin-top: 40px;
-    margin-bottom: 30px;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .btn-searchWilder {
@@ -602,58 +599,31 @@ input {
     height: 460px;
 }
 
-.image-listWilders {
-    background-size: cover;
-    max-width: 100%;
-    height: 250px;
-}
-
 .img-listWilders {
-    display: none;
+    max-width: 100%;
+    max-height: 240px;
+    margin-top:1em;
 }
 
-.vignetteWilder {
-    height: 325px;
-    border: 1px solid #ddd;
-    border-radius: 2px;
-    margin-top: 35px;
-    margin-left: 45px;
-    margin-right: 45px;
-}
+.thumbnail {
+    min-height: 325px;
+    margin-top: 1em;
 
-.titreVignetteWilder {
-    margin-top: 15px;
-}
-
-.titreVignetteWilder h4 {
-    margin-top: 20px;
-}
-
-.titreVignetteWilder h5 {
-    margin-top: 15px;
 }
 
 .modjoWilder {
-    margin-top: 15px;
+    margin-top: 0.5em;
+    font-style: italic;
+    font-size: 1.3em;
+    color:grey;
+    min-height:3em;
 }
 
-.modjoWilder h4 {
-    font-style: italic;
-}
 
 .middle {
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%)
+   font-size: 1.1em;
 }
 
-.image-listWilders:hover .middle {
-    opacity: 1;
-}
 
 .hoverDispoWilder {
     background-color: #f9a02e;
@@ -662,9 +632,6 @@ input {
     padding: 16px 32px;
 }
 
-.blocksearch {
-    margin-top: 30px;
-}
 
 /** PAGE RECHERCHE REALISATIONS **/
 
@@ -716,15 +683,6 @@ input {
     text-align: center;
 }
 
-.middle {
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%)
-}
 
 .image-listProjects:hover .middle {
     opacity: 1;
@@ -738,7 +696,7 @@ input {
 }
 
 .blocksearch {
-    margin-top: 30px;
+    margin-top: 0.5em;
 }
 
 h3.projectTitleCarousel {
