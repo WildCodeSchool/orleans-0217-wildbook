@@ -39,7 +39,10 @@ class WilderController extends Controller
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(WilderSearchType::class);
         $form->handleRequest($request);
-        $wilders='';
+        $wilders=$em->getRepository(wilder::class)->findBy(
+            [],
+            ['lastname'=>'ASC', 'firstname' => 'ASC']
+        );
 
         if ($form->isValid() && $form->isSubmitted()) {
             $data = $form->getData();

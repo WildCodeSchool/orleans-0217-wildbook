@@ -8,11 +8,11 @@ $( document ).ready(function() {
                 dataType: 'json',
                 // timeout: 3000,
                 success: function(response) {
-                    var wilder = JSON.parse(response.data);
+                    var wilders = JSON.parse(response.data);
                     html = "";
-                    for (i = 0; i < wilder.length; i++) {
+                    for (wilder in wilders) {
 
-                        html += '<li><span class="firstname">' + wilder[i].firstname + '<span>' + ' ' + '<span class="lastname">' + wilder[i].lastname + '</span></li>';
+                        html += '<li><span class="firstname">' + wilder.firstname + '<span>' + ' ' + '<span class="lastname">' + wilder.lastname + '</span></li>';
 
                     }
                     $('#wilderList').html(html);

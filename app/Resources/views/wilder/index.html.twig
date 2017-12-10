@@ -2,8 +2,8 @@
 
 {% block stylesheets %}
     {{ parent() }}
-<!-- Custom CSS -->
-<link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
 {% endblock stylesheets %}
 
 {% block content %}
@@ -50,8 +50,6 @@
         </div>
 
 
-
-
         <div class="row col-md-12">
 
             <h1>Wilders list</h1>
@@ -71,24 +69,31 @@
                 </tr>
                 </thead>
                 <tbody id="wild-list">
-                    {% for wilder in wilders %}
-                        <tr>
-                            <td><a href="{{ path('wilder_show', { 'id': wilder.id }) }}"> <img src="{{ asset
-                                    ('uploads/'~ wilder.profilPicture|basename ) }}" alt="{{ wilder.firstname }} {{
-                                    wilder.lastname }}" class="imgIndexWilder"></a></td>
-                            <td>{{ wilder.firstname }}</td>
-                            <td>{{ wilder.lastname }}</td>
-                            <td>{{ wilder.city }}</td>
-                            <td>{{ wilder.promotion.promotion }}</td>
-                            <td> {{ wilder.userActivation ? 'Yes' : 'No' }} </td>
-                            <td> {{ wilder.managerActivation ? 'Yes' : 'No'}} </td>
-                            <td>
-                                <a href="{{ path('wilder_edit', { 'id': wilder.id }) }}" class="btn btn-success">
-                                    <span class="glyphicon glyphicon-pencil"></span> Modifier
-                                </a>
-                            </td>
-                        </tr>
-                    {% endfor %}
+                {% for wilder in wilders %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('wilder_show', { 'id': wilder.id }) }}">
+                                <img class="imgIndexWilder" src="
+                                {{ wilder.profilPicture
+                                    ? asset('uploads/'~ wilder.profilPicture|basename)
+                                    : asset('images/placeholder_wilder.png')
+                                }}"
+                                     alt="{{ wilder.firstname }} {{ wilder.lastname }}">
+                            </a>
+                        </td>
+                        <td>{{ wilder.lastname }}</td>
+                        <td>{{ wilder.firstname }}</td>
+                        <td>{{ wilder.city }}</td>
+                        <td>{{ wilder.promotion.promotion }}</td>
+                        <td> {{ wilder.userActivation ? 'Yes' : 'No' }} </td>
+                        <td> {{ wilder.managerActivation ? 'Yes' : 'No' }} </td>
+                        <td>
+                            <a href="{{ path('wilder_edit', { 'id': wilder.id }) }}" class="btn btn-success">
+                                <span class="glyphicon glyphicon-pencil"></span> Modifier
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -96,6 +101,6 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('js/ajax_auto_admin.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('js/ajax_auto_admin.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}"></script>
 {% endblock javascripts %}

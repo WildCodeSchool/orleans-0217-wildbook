@@ -7,35 +7,53 @@
         <div class="container">
 
             <div class="projectTitleDetail">
-                <h1>{{ project.title }}</h1>
+                <h1>{{ project.title }}<small> - {{ project.customer }}</small>
+                </h1>
+                <h2 class=" subtitleProjectCustomer">
+                    <a class="text-muted" href="{{ project.path }}" target="_blank">{{ project.path }}</a></p>
+                </h2>
             </div>
             <hr/>
 
-            <div class="imgPrincipaleProject">
-                {% for picture in project.pictures %}
-                    {% if picture.isPrincipal == true %}
-                        <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imagePrincipaleProject"/>
-                    {% endif %}
-                {% endfor %}
+            <div class="imgPrincipaleProject text-center ">
+                <img class=""
+                        {% for picture in project.pictures %}
+                            {% if picture.isPrincipal == true %}
+                                src="{{ asset('uploads/'~ picture.path|basename ) }}"
+                                alt="{{ projectSearch.project.title }}"
+                            {% endif %}
+                        {% else %}
+                            src="{{ asset('images/LOGO_COLO.png') }}"
+                        {% endfor %}
+                >
             </div>
 
-            <div class="row subtitleProject">
-                <div class="col-md-6">
-                    <p class="subtitleProjectCustomer">
-                        {{ project.customer }}
-                    </p>
-                </div>
-                <div class="col-md-6">
-                    <p class="subtitleProjectPromotion">
-                        {{ project.school.school }} /
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="subtitleProjectPromotion">Réalisé par les wilders de
+                        {{ project.school.school }} -
                         {% for projectWilder in project.projectWilders %}
                             {% if loop.first %}
-                                {{ projectWilder.wilder.promotion.promotion }}
+                                <span class="text-muted">
+                                        {{ projectWilder.wilder.promotion.promotion }}
+                                    </span>
                             {% endif %}
                         {% endfor %}
-                    </p>
-                </div>
 
+                    <ul class="wilders text-center  ">
+                        {% for projectWilder in project.projectWilders if projectWilder.visibility %}
+                            <li><a class="lienWilders"
+                                   href="{{ path('profile_wilder', { 'id': projectWilder.wilder.id }) }}">
+                                    {{ projectWilder.wilder.firstname }} {{ projectWilder.wilder.lastname }}</a>
+                            </li>
+                            {% if  loop.index != loop.parent|length %}
+                                <span class="delim">|</span>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    </p>
+
+                </div>
             </div>
 
             <div class="row">
@@ -66,20 +84,7 @@
                             {% endfor %}
                         </ul>
                     </div>
-                    <div class="wilders">
-                        <h4>Wilders</h4>
-                        <ul>
-                            {% for projectWilder in project.projectWilders if projectWilder.visibility %}
-                                <li><a class="lienWilders"
-                                       href="{{ path('profile_wilder', { 'id': projectWilder.wilder.id }) }}">
-                                        {{ projectWilder.wilder.firstname }} {{ projectWilder.wilder.lastname }}</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="ecole">
-                        <h4>Ecole : {{ project.school.school }}</h4>
-                    </div>
+
                     <div class="tags">
                         <ul>
                             {% for tags in project.tags %}
@@ -91,11 +96,6 @@
 
 
                 <div class="col-md-8 col-md-offset-1">
-                    <div class="urlProject">
-                        <p class="urlProject">
-                            <a class="urlProject" href="{{ project.path }}" target="_blank">{{ project.path }}</a></p>
-                    </div>
-                    <hr/>
                     <div class="shortDescription">
                         <p class="shortDescription">{{ project.summary }}</p>
                     </div>
@@ -113,11 +113,13 @@
                 {% for picture in project.pictures %}
                     <div class="col-xs-12 col-lg-6">
                         <a href="#" class="thumbnail">
-                            <img src="{{ asset('uploads/'~ picture.path|basename ) }}" id="{{ picture.id }}" data-toggle="modal" data-target="#picture{{ picture.id }}"/>
+                            <img src="{{ asset('uploads/'~ picture.path|basename ) }}" id="{{ picture.id }}"
+                                 data-toggle="modal" data-target="#picture{{ picture.id }}"/>
                         </a>
                     </div>
                     <!-- Modal -->
-                    <div class="modal fade" id="picture{{ picture.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal fade" id="picture{{ picture.id }}" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel">
                         <div class="modal-lg modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-body">

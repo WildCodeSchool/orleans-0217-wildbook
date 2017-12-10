@@ -16,15 +16,18 @@
 
             <div class="row profilWilder">
                 <div class="col-lg-6 imageProfilWilder">
-                    <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}"
-                         alt="{{ wilder.firstname }} {{ wilder.lastname }}">
+                    <img class="img-listWilders" src="
+                                            {{ wilder.profilPicture
+                    ?  asset('uploads/'~ wilder.profilPicture )
+                    :  asset('images/placeholder_wilder.png' ) }}
+                                          " alt="{{ wilder.firstname }} {{ wilder.lastname }}"
+                    >
                 </div>
                 <div class="col-lg-5">
-                    <h3 class="firstnameWilder">{{ wilder.firstname }}</h3>
-                    <h3 class="lastnameWilder">{{ wilder.lastname }}</h3>
-                    <p class="promotionWilder">{{ wilder.promotion.school.school }}
-                        / {{ wilder.promotion.promotion }}</p>
-                    <p class="dispoWilder">{{ wilder.availability.label }}</p>
+                    <h3 class="firstnameWilder">{{ wilder.lastname|upper }} {{ wilder.firstname }}</h3>
+                    <p class="promotionWilder">{{ wilder.promotion.school.school }} - <span
+                                class="text-muted">{{ wilder.promotion.promotion }}</span></p>
+                    <span class="label label-warning dispoWilder">{{ wilder.availability.label }}</span>
                     <p class="freelanceWilder">{{ wilder.freelanceAvailability ? 'Accepte des missions Freelance' }}</p>
                     <p class="websiteWilder"><a class="websiteWilder"
                                                 href="{{ wilder.website }}">{{ wilder.website }}</a></p>
@@ -32,41 +35,77 @@
                     <div class="socialProWilder">
                         <div class="iconsocial">
                             {% if wilder.linkedin is not null %}
-                                <a href="{{ wilder.linkedin }}"><i class=" fa fa-linkedin"></i></a>
+                                <a href="{{ wilder.linkedin }}" title="Profil Linkedin">
+                                    <span class="fa-stack fa-lg">
+                                      <i class="fa fa-circle fa-stack-2x"></i>
+                                      <i class="fa fa-linkedin fa-stack-1x"></i>
+                                    </span>
+                                </a>
                             {% endif %}
                         </div>
                         <div class="iconsocial">
                             {% if wilder.github is not null %}
-                                <a href="{{ wilder.github }}"><i class=" fa fa-github"></i></a>
+                                <a href="{{ wilder.github }}" title="Profil Github">
+                                    <span class="fa-stack fa-lg">
+                                      <i class="fa fa-circle fa-stack-2x"></i>
+                                      <i class="fa fa-github fa-stack-1x"></i>
+                                    </span>
+                                </a>
                             {% endif %}
                         </div>
                         <div class="iconsocial">
                             {% if wilder.cv is not null %}
-                                <a href="{{ asset('uploads/' ~ wilder.cv) }}"><i class=" fa fa-download" title="Télécharger le CV" data-toggle="tooltip" data-placement="top"></i></a>
+                                <a href="{{ asset('uploads/' ~ wilder.cv) }}" title="Télécharger le CV">
+                                    <span class="fa-stack fa-lg">
+                                      <i class="fa fa-circle fa-stack-2x"></i>
+                                      <i class="fa fa-download fa-stack-1x"></i>
+                                    </span>
+                                </a>
                             {% endif %}
                         </div>
                         <div class="iconsocial">
                             {% if wilder.contactEmail is not null %}
-                                <a href="mailto:{{ wilder.contactEmail }}"><i class=" fa fa-envelope" title="Envoyer un email" data-toggle="tooltip" data-placement="top"></i></a>
-                            {% else %}
-                                <a href="mailto:{{ wilder.user.email }}"><i class=" fa fa-envelope" title="Envoyer un email" data-toggle="tooltip" data-placement="top"></i></a>
+                                <a href="mailto:{{ wilder.contactEmail }}" title="Envoyer un email">
+                                    <span class="fa-stack fa-lg">
+                                      <i class="fa fa-circle fa-stack-2x"></i>
+                                      <i class="fa fa-envelope fa-stack-1x"></i>
+                                    </span>
+
+                                </a>
                             {% endif %}
                         </div>
-                        <div class="iconsocial">
+                        <div class="inconsocial">
                             {% if codewars is not null %}
-                                <a href="" class="codewars"><i class="fa fa-codepen" title="Score Codewars : {{ codewars }} Points" data-toggle="tooltip" data-placement="top"></i></a>
+                                <a href="" class="codewars"
+                                   title="Score Codewars : {{ codewars }} Points" data-toggle="tooltip"
+                                   data-placement="top">
+                                    <span class="fa-stack fa-lg">
+                                      <i class="fa fa-circle fa-stack-2x"></i>
+                                      <i class="fa fa-gamepad fa-stack-1x"></i>
+                                    </span>
+                                </a>
                             {% endif %}
                         </div>
                     </div>
                     <div class="socialPersoWilder">
                         <div class="iconsocial">
                             {% if wilder.twitter is not null %}
-                                <a href="{{ wilder.twitter }}"><i class=" fa fa-twitter"></i></a>
+                                <a href="{{ wilder.twitter }}" title="Profil Twitter">
+                                    <span class="fa-stack fa-lg">
+                                      <i class="fa fa-circle fa-stack-2x"></i>
+                                      <i class="fa fa-twitter fa-stack-1x"></i>
+                                    </span>
+                                </a>
                             {% endif %}
                         </div>
                         <div class="iconsocial">
                             {% if wilder.facebook is not null %}
-                                <a href="{{ wilder.facebook }}"><i class=" fa fa-facebook"></i></a>
+                                <a href="{{ wilder.facebook }}" title="Profil Facebook">
+                                    <span class="fa-stack fa-lg">
+                                      <i class="fa fa-circle fa-stack-2x"></i>
+                                      <i class="fa fa-facebook fa-stack-1x"></i>
+                                    </span>
+                                </a>
                             {% endif %}
                         </div>
                     </div>
@@ -110,7 +149,7 @@
             </div>
 
             <div class="row imgProjectWilder">
-
+                <h2 class="text-center ">Projets</h2>
                 {% for projectsWilder in wilder.projectWilders %}
                     {% include 'BookBundle:Front:thumbnail_wilder_projects.html.twig' with {'projectSearch': projectsWilder} %}
                 {% endfor %}

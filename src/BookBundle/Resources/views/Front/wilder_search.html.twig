@@ -74,35 +74,7 @@
         <!--Wilders list -->
         <div class="list_wilders row" id="wild-list">
             <div class="row">
-                {% for wilder in wilders %}
-                    {% if wilder.userActivation == true and wilder.managerActivation == true %}
-
-                        <div class="col-xs-6 col-md-5 vignetteWilder">
-                            <div class="col-md-7 image-listWilders"
-                                 style="background-image: url('../uploads/{{ wilder.profilPicture }}')">
-
-                                <div class="middle">
-                                    <div class="hoverDispoWilder">{{ wilder.availability.label }}</div>
-                                </div>
-                                <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
-                                    <img class="img-listWilders" src="{{ asset('uploads/'~ wilder.profilPicture ) }}"
-                                         alt="{{ wilder.firstname }} {{ wilder.lastname }}">
-                                </a>
-                            </div>
-                            <div class="col-md-5 titreVignetteWilder">
-                                <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
-                                    <h3>{{ wilder.lastname }}</h3></a>
-                                <h3>{{ wilder.firstname }}</h3>
-                                <h4>Ecole : {{ wilder.promotion.school.school }}</h4>
-                                <h5>Promotion : {{ wilder.promotion.promotion }}</h5>
-
-                            </div>
-                            <div class="modjoWilder col-md-12">
-                                <h4>{{ wilder.modjo }}</h4>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                    {% include('@Book/Front/thumbnail.html.twig') %}
             </div>
         </div>
 

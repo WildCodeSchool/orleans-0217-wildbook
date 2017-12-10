@@ -1,15 +1,20 @@
 <div class="thumbnail col-xs-8 col-xs-offset-2">
     {% for homeWild in homeWilder %}
 
-    <div class="col-xs-12 col-md-8">
-        <img src="{{ asset('uploads/'~ homeWild.wilder.profilPicture|basename ) }}"
-             alt="{{ homeWild.wilder.firstname }} {{ homeWild.wilder.lastname }}" class="img-responsive">
+    <div class="col-xs-12 col-md-8 text-center  ">
+        <img class="img-listWilders" src="
+         {{ homeWild.wilder.profilPicture
+        ?  asset('uploads/'~ wilder.profilPicture )
+        :  asset('images/placeholder_wilder.png' ) }}
+          " alt="{{ homeWild.wilder.fullName }}"
+        >
     </div>
     <div class="col-xs-12 col-md-4">
         <h3 class="wilderHomeFirstName">{{ homeWild.wilder.firstname }}</h3>
         <h3 class="wilderHomeLastName">{{ homeWild.wilder.lastname }}</h3>
         <h3 class="wilderHomeDescription">{{ homeWild.description }}</h3>
-        <p><a href="{{ path('profile_wilder', {'id': homeWild.wilder.id}) }}" class="btn btn-wcs-classic">Découvrez ce wilder</a></p>
+        <p><a href="{{ path('profile_wilder', {'id': homeWild.wilder.id}) }}" class="btn btn-wcs-classic">Découvrez ce
+                wilder</a></p>
     </div>
 </div>
 {% endfor %}

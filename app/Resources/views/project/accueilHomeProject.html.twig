@@ -1,37 +1,24 @@
 <div class="slider">
     <div id="carousel" class="carousel slide" data-ride="carousel">
         {% set plimit = homeProjects|length %}
+
         <div class="carousel-inner">
             {% for project in homeProjects %}
-                {% if loop.first %}
-                    <div class="item projet-item active">
-                        {% for picture in project.pictures %}
-                            {% if picture.isPrincipal == true %}
-                                <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="img_project_carousel"
-                                     alt="slider01">
-                            {% endif %}
-                        {% endfor %}
-                        <div class="carousel-caption">
-                            <a href="{{ path('detail_project', { 'id': project.id }) }}">
-                                <h3 class="projectTitleCarousel">{{ project.title }}</h3></a>
-                            <p class="projectTitleCarousel">{{ project.homeTextProject }}</p>
-                        </div>
+                <div class="item projet-item {{ loop.first ? "active" }}">
+                    {% for picture in project.pictures %}
+                        {% if picture.isPrincipal == true %}
+                            <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="img_project_carousel"
+                                 alt="slider01">
+                        {% endif %}
+                        {% else %}
+                        <img src="http://via.placeholder.com/1140x530" />
+                    {% endfor %}
+                    <div class="carousel-caption">
+                        <a href="{{ path('detail_project', { 'id': project.id }) }}">
+                            <h3 class="projectTitleCarousel">{{ project.title }}</h3></a>
+                        <p class="projectTitleCarousel">{{ project.homeTextProject }}</p>
                     </div>
-                {% else %}
-                    <div class="item projet-item">
-                        {% for picture in project.pictures %}
-                            {% if picture.isPrincipal == true %}
-                                <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="img_project_carousel"
-                                     alt="slider01">
-                            {% endif %}
-                        {% endfor %}
-                        <div class="carousel-caption">
-                            <a href="{{ path('detail_project', { 'id': project.id }) }}">
-                                <h3 class="projectTitleCarousel">{{ project.title }}</h3></a>
-                            <p class="projectTitleCarousel">{{ project.homeTextProject }}</p>
-                        </div>
-                    </div>
-                {% endif %}
+                </div>
             {% endfor %}
         </div>
         <!-- Controls -->
