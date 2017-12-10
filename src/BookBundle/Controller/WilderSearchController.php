@@ -5,7 +5,9 @@
  * Date: 08/06/17
  * Time: 17:37
  */
+
 namespace BookBundle\Controller;
+
 use BookBundle\Entity\Language;
 use BookBundle\Entity\Project;
 use BookBundle\Entity\Promotion;
@@ -17,11 +19,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
-use Symfony\Component\HttpFoundation\JsonResponse;
+//use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use BookBundle\Repository\WilderRepository;
+
 /**
  * WilderSearch Controller.
  *
@@ -51,9 +55,10 @@ class WilderSearchController extends Controller
             }
             $wildersSearch = $em->getRepository(Wilder::class)->searchBy($schools, $languages, $promotions);
         }
+
         return $this->render('BookBundle:Front:wilder_search.html.twig', array(
-            'form' => $form->createView(),
-            'wilders' => $wildersSearch
+            'form'    => $form->createView(),
+            'wilders' => $wildersSearch,
         ));
     }
 
@@ -64,20 +69,21 @@ class WilderSearchController extends Controller
      * @param Request $request
      * @param $input
      *
-     * @return JsonResponse
+     * @return Response
      */
     public function autocompleteAction(Request $request, $input)
     {
         if ($request->isXmlHttpRequest()) {
-            /**
-             * @var $repository WilderRepository
-             */
-            $repository = $this->getDoctrine()->getRepository('BookBundle:Wilder');
-            $data = $repository->getLike($input);
-            return new JsonResponse(array("data" => json_encode($data)));
+            $em = $this->getDoctrine()->getManager();
+            $wilders = $em->getRepository(Wilder::class)->getLike($input);
+            return $this->render('BookBundle:Front:thumbnail.html.twig', [
+                    'wilders' => $wilders,
+                ]
+            );
 
         } else {
             throw new HttpException('500', 'Invalid call');
         }
     }
+
 }

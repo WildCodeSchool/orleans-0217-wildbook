@@ -53,7 +53,7 @@ class HomeProjectController extends Controller
         }
 
         return $this->render('project/projectHome.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ));
 
     }
@@ -68,7 +68,7 @@ class HomeProjectController extends Controller
         $homeProjects = $em->getRepository(Project::class)->homeProject();
 
         return $this->render('project/accueilHomeProject.html.twig', array(
-            'homeProjects' => $homeProjects
+            'homeProjects' => $homeProjects,
         ));
     }
 
@@ -86,19 +86,19 @@ class HomeProjectController extends Controller
         $homeProjects = $em->getRepository(Project::class)->homeProject();
         if ($form->isValid() && $form->isSubmitted()) {
             $data = $form->getData();
-                if ($data->gethomeProject() == true) {
-                    foreach ($homeProjects as $homeProject){
-                        $homeProject->setHomeProject(false);
-                        $homeProject->sethomeTextProject(null);
-                        $em->persist($homeProject);
-                        $em->flush();
-                        }
-                    }
-            $this->addFlash('success', 'Il n\'y a plus de projet mis en avant sur le site');
+            if ($data->gethomeProject() == true) {
+                foreach ($homeProjects as $homeProject) {
+                    $homeProject->setHomeProject(false);
+                    $homeProject->sethomeTextProject(null);
+                    $em->persist($homeProject);
+                    $em->flush();
                 }
+            }
+            $this->addFlash('success', 'Il n\'y a plus de projet mis en avant sur le site');
+        }
 
         return $this->render('project/resetHomeProject.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ));
     }
 
@@ -113,12 +113,13 @@ class HomeProjectController extends Controller
      */
     public function autocompleteAction(Request $request, $input)
     {
-        if ($request->isXmlHttpRequest()){
+        if ($request->isXmlHttpRequest()) {
             /**
              * @var $repository ProjectRepository
              */
             $repository = $this->getDoctrine()->getRepository('BookBundle:Project');
             $data = $repository->getLikeAdmin($input);
+
             return new JsonResponse(array("data" => json_encode($data)));
         } else {
             throw new HttpException('500', 'Invalid call');

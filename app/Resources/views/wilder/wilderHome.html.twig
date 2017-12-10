@@ -1,5 +1,5 @@
 {% extends 'layout_admin.html.twig' %}
-{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 
 {% block content %}
 
@@ -12,10 +12,18 @@
             renseigner dans le champ description la phrase d'accroche qui sera mise en avant</p>
 
         {{ form_start(form) }}
-        {{ form_widget(form) }}
+
+        <div class="form-group">
+
+        {{ form_label(form.wilder)}}
+        {{ form_widget(form.wilder, {'attr': {'class': 'ajax_wilder_search'}} ) }}
+        {{ form_errors(form.wilder) }}
+    </div>
+
+        {{ form_row(form.description) }}
         <div class="wilderlist">
             <h3>Wilders</h3>
-            <ul id="wilderList"></ul>
+            <ul id="wild-list"></ul>
         </div>
         <input type="submit" value="Create" />
         {{ form_end(form) }}
@@ -27,5 +35,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/ajax_home_wilder_admin.js') }}"></script>
+    <script src="{{ asset('js/ajax_auto.js') }}"></script>
+    {#<script src="{{ asset('js/ajax_home_wilder_admin.js') }}"></script>#}
 {% endblock javascripts %}

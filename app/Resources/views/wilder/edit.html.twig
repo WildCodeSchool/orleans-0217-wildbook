@@ -6,121 +6,149 @@
 
     <div class="container-fluid">
 
-        <h3>Wilder: {{ wilder.firstname }} {{ wilder.lastname }}</h3>
-        <h4>Email User: {{ wilder.user.email }}</h4>
-        <h4>Username: {{ wilder.user.username }}</h4>
-        <h4>Promotion : {{ wilder.promotion.promotion }}</h4>
+                <h1> {{ wilder.firstname }} {{ wilder.lastname }}
+
+                    <small>{{ wilder.promotion.school.school }} - {{ wilder.promotion.promotion }}</small>
+               </h1>
+                <div class="row">
+                    <div class="col-sm-7">
+
+                <div class="well">
+                    {{ form_label(edit_form.userActivation,'Afficher le profil (wilder)') }}
+                    {{ form_widget(edit_form.userActivation) }}
+                    {{ form_errors(edit_form.userActivation) }}
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="text-danger">
+                        {{ form_label(edit_form.managerActivation,'Afficher le profil (campus manager)') }}
+                        {{ form_widget(edit_form.managerActivation) }}
+                        {{ form_errors(edit_form.managerActivation) }}
+                    </div>
+                {% endif %}
+
+                {{ form_label(edit_form.availability,'Statut disponibilité') }}
+                {{ form_widget(edit_form.availability) }}
+                {{ form_errors(edit_form.availability) }}
+                </div>
+
+        </div>
+            <div class="col-sm-5 well">
+                        {{ form_label(edit_form.profilPicture,'Photo Profil') }}
+                <img class="imgIndexWilder " src="
+                  {{ wilder.profilPicture
+                ? asset('uploads/'~ wilder.profilPicture|basename)
+                : asset('images/placeholder_wilder.png') }}"
+                     alt="{{ wilder.firstname }} {{ wilder.lastname }}">
+                {{ form_widget(edit_form.profilPicture) }}
+                {{ form_errors(edit_form.profilPicture) }}
+                <p class="small">La photo doit être carrée, au format png ou jpg et ne pas dépasser 1Mo:</p>
+
+
+            </div>
+        </div>
+
         <div class="form-group">
             {{ form_start(edit_form) }}
 
-            {{ form_label(edit_form.firstname,'Prénom') }}
-            {{ form_widget(edit_form.firstname) }}
-            {{ form_errors(edit_form.firstname) }}
+            <fieldset>
+                <legend><i class="fa fa-id-card"></i> Mes informations personnelles</legend>
+                {{ form_label(edit_form.firstname,'Prénom') }}
+                {{ form_widget(edit_form.firstname) }}
+                {{ form_errors(edit_form.firstname) }}
 
-            {{ form_label(edit_form.lastname,'Nom') }}
-            {{ form_widget(edit_form.lastname) }}
-            {{ form_errors(edit_form.lastname) }}
+                {{ form_label(edit_form.lastname,'Nom') }}
+                {{ form_widget(edit_form.lastname) }}
+                {{ form_errors(edit_form.lastname) }}
 
-            {{ form_label(edit_form.birthDate,'Date de naissance') }}
-            {{ form_widget(edit_form.birthDate) }}
-            {{ form_errors(edit_form.birthDate) }}
+                {{ form_label(edit_form.birthDate,'Date de naissance') }}
+                {{ form_widget(edit_form.birthDate) }}
+                {{ form_errors(edit_form.birthDate) }}
 
-            {{ form_label(edit_form.address,'Adresse') }}
-            {{ form_widget(edit_form.address) }}
-            {{ form_errors(edit_form.address) }}
+                {{ form_label(edit_form.address,'Adresse') }}
+                {{ form_widget(edit_form.address) }}
+                {{ form_errors(edit_form.address) }}
 
-            {{ form_label(edit_form.postalCode,'Code Postal') }}
-            {{ form_widget(edit_form.postalCode) }}
-            {{ form_errors(edit_form.postalCode) }}
+                {{ form_label(edit_form.postalCode,'Code Postal') }}
+                {{ form_widget(edit_form.postalCode) }}
+                {{ form_errors(edit_form.postalCode) }}
 
-            {{ form_label(edit_form.city,'Ville') }}
-            {{ form_widget(edit_form.city) }}
-            {{ form_errors(edit_form.city) }}
-
-            {{ form_label(edit_form.freelanceAvailability,'Freelance') }}
-            {{ form_widget(edit_form.freelanceAvailability) }}
-            {{ form_errors(edit_form.freelanceAvailability) }}
-
-            {{ form_label(edit_form.modjo,'Modjo') }}
-            {{ form_widget(edit_form.modjo) }}
-            {{ form_errors(edit_form.modjo) }}
-
-            {{ form_label(edit_form.biography,'Biographie') }}
-            {{ form_widget(edit_form.biography) }}
-            {{ form_errors(edit_form.biography) }}
-
-            {{ form_label(edit_form.contactEmail,'Email contact') }}
-            {{ form_widget(edit_form.contactEmail) }}
-            {{ form_errors(edit_form.contactEmail) }}
-
-            <p class="instruction">La photo doit être carrée, au format png ou jpg et ne pas dépasser 1Mo:</p>
-            {{ form_label(edit_form.profilPicture,'Photo Profil') }}
-            <img src="{{ asset('uploads/'~ wilder.profilPicture|basename ) }}" class="imgEditWilder"/>
-            {{ form_widget(edit_form.profilPicture) }}
-            {{ form_errors(edit_form.profilPicture) }}
-
-            <p class="instruction">Le CV doit être au format pdf et ne doit pas dépasser 1Mo</p>
-            {{ form_label(edit_form.cv,'CV') }}
-            {% if wilder.cv =='' %}
-            {% else %}
-                <a href="{{ asset('uploads/' ~ wilder.cv) }}">voir le cv</a>
-            {% endif %}
-            {{ form_widget(edit_form.cv) }}
-            {{ form_errors(edit_form.cv) }}
-
-            {{ form_label(edit_form.website,'Site perso') }}
-            {{ form_widget(edit_form.website) }}
-            {{ form_errors(edit_form.website) }}
-
-            {{ form_label(edit_form.github,'Github') }}
-            {{ form_widget(edit_form.github) }}
-            {{ form_errors(edit_form.github) }}
-
-            {{ form_label(edit_form.linkedin,'Linkedin') }}
-            {{ form_widget(edit_form.linkedin) }}
-            {{ form_errors(edit_form.linkedin) }}
-
-            {{ form_label(edit_form.facebook,'Facebook') }}
-            {{ form_widget(edit_form.facebook) }}
-            {{ form_errors(edit_form.facebook) }}
-
-            {{ form_label(edit_form.twitter,'Twitter') }}
-            {{ form_widget(edit_form.twitter) }}
-            {{ form_errors(edit_form.twitter) }}
-
-            {{ form_label(edit_form.codewarsUsername,'Identifiant Codewars') }}
-            {{ form_widget(edit_form.codewarsUsername) }}
-            {{ form_errors(edit_form.codewarsUsername) }}
-
-            {{ form_label(edit_form.languages,'Langages') }}
-            {{ form_widget(edit_form.languages) }}
-            {{ form_errors(edit_form.languages) }}
-
-            {{ form_label(edit_form.technologies,'Technologies') }}
-            {{ form_widget(edit_form.technologies) }}
-            {{ form_errors(edit_form.technologies) }}
-
-            {{ form_label(edit_form.skill,'Compétences') }}
-            {{ form_widget(edit_form.skill) }}
-            {{ form_errors(edit_form.skill) }}
-
-            {{ form_label(edit_form.availability,'Statut disponibilité') }}
-            {{ form_widget(edit_form.availability) }}
-            {{ form_errors(edit_form.availability) }}
-
-            <div class="form-group">
-                {{ form_label(edit_form.userActivation,'Afficher le profil (wilder)') }}
-                {{ form_widget(edit_form.userActivation) }}
-                {{ form_errors(edit_form.userActivation) }}
-            </div>
-
-            {% if is_granted('ROLE_ADMIN') %}
-                <div class="form-group">
-                    {{ form_label(edit_form.managerActivation,'Afficher le profil (campus manager)') }}
-                    {{ form_widget(edit_form.managerActivation) }}
-                    {{ form_errors(edit_form.managerActivation) }}
+                {{ form_label(edit_form.city,'Ville') }}
+                {{ form_widget(edit_form.city) }}
+                {{ form_errors(edit_form.city) }}
+            </fieldset>
+            <fieldset>
+                <legend><i class="fa fa-user"></i> À propos de moi</legend>
+                <div class="well">
+                {{ form_label(edit_form.cv,'Upload CV') }}
+                {% if wilder.cv =='' %}
+                {% else %}
+                    <a href="{{ asset('uploads/' ~ wilder.cv) }}">voir le cv</a>
+                {% endif %}
+                {{ form_widget(edit_form.cv) }}
+                <p class="instruction">Le CV doit être au format pdf et ne doit pas dépasser 1Mo</p>
+                {{ form_errors(edit_form.cv) }}
                 </div>
-            {% endif %}
+
+                {{ form_label(edit_form.modjo,'Modjo') }}
+                {{ form_widget(edit_form.modjo) }}
+                {{ form_errors(edit_form.modjo) }}
+
+                {{ form_label(edit_form.biography,'Biographie') }}
+                {{ form_widget(edit_form.biography) }}
+                {{ form_errors(edit_form.biography) }}
+
+                {{ form_label(edit_form.contactEmail,'Email de contact (public)') }}
+                {{ form_widget(edit_form.contactEmail) }}
+                {{ form_errors(edit_form.contactEmail) }}
+
+                {{ form_label(edit_form.freelanceAvailability,'Freelance') }}
+                {{ form_widget(edit_form.freelanceAvailability) }}
+                {{ form_errors(edit_form.freelanceAvailability) }}
+
+            </fieldset>
+
+            <fieldset>
+                <legend><i class="fa fa-code"></i> Mes compétences</legend>
+                {{ form_label(edit_form.languages,'Langages') }}
+                {{ form_widget(edit_form.languages) }}
+                {{ form_errors(edit_form.languages) }}
+
+                {{ form_label(edit_form.technologies,'Technologies') }}
+                {{ form_widget(edit_form.technologies) }}
+                {{ form_errors(edit_form.technologies) }}
+
+                {{ form_label(edit_form.skill,'Compétences') }}
+                {{ form_widget(edit_form.skill) }}
+                {{ form_errors(edit_form.skill) }}
+            </fieldset>
+
+            <fieldset>
+                <legend><i class="fa fa-eye"></i> Visibilité (Site perso et réseaux sociaux)</legend>
+
+                <i class="fa fa-home"></i> {{ form_label(edit_form.website,'Site perso') }}
+                {{ form_widget(edit_form.website) }}
+                {{ form_errors(edit_form.website) }}
+
+                <i class="fa fa-github"></i> {{ form_label(edit_form.github,'Github') }}
+                {{ form_widget(edit_form.github) }}
+                {{ form_errors(edit_form.github) }}
+
+                <i class="fa fa-linkedin"></i> {{ form_label(edit_form.linkedin,'Linkedin') }}
+                {{ form_widget(edit_form.linkedin) }}
+                {{ form_errors(edit_form.linkedin) }}
+
+                <i class="fa fa-facebook"></i> {{ form_label(edit_form.facebook,'Facebook') }}
+                {{ form_widget(edit_form.facebook) }}
+                {{ form_errors(edit_form.facebook) }}
+
+                <i class="fa fa-twitter"></i> {{ form_label(edit_form.twitter,'Twitter') }}
+                {{ form_widget(edit_form.twitter) }}
+                {{ form_errors(edit_form.twitter) }}
+
+                <i class="fa fa-gamepad"></i> {{ form_label(edit_form.codewarsUsername,'Identifiant Codewars') }}
+                {{ form_widget(edit_form.codewarsUsername) }}
+                {{ form_errors(edit_form.codewarsUsername) }}
+            </fieldset>
 
         </div>
         <div class="form-group">
