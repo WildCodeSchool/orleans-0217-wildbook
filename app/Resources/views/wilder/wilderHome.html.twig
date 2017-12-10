@@ -6,7 +6,14 @@
     <div class="container">
 
         <h1>Sélection du wilder mis en avant sur la page d'accueil</h1>
-
+        <div class="row">
+            <div class="col-sm-12">
+                {% if homeWilder.wilder %}
+                    <h3>Wilder actuellement en page d'accueil : </h3>
+                    {% include '@Book/Front/thumbnail_one.html.twig' with {'wilder':homeWilder.wilder} %}
+                {% endif %}
+            </div>
+        </div>
         <p class="instruction">Choisissez le wilder par son nom via l'autocomplétion,
             cliquer sur son nom pour le sélectionner,
             renseigner dans le champ description la phrase d'accroche qui sera mise en avant</p>
@@ -15,17 +22,14 @@
 
         <div class="form-group">
 
-        {{ form_label(form.wilder)}}
-        {{ form_widget(form.wilder, {'attr': {'class': 'ajax_wilder_search'}} ) }}
-        {{ form_errors(form.wilder) }}
-    </div>
+            {{ form_label(form.wilder) }}
+            {{ form_widget(form.wilder, {'attr': {'class': 'ajax_wilder_search'}} ) }}
+            {{ form_errors(form.wilder) }}
+        </div>
 
         {{ form_row(form.description) }}
-        <div class="wilderlist">
-            <h3>Wilders</h3>
-            <ul id="wild-list"></ul>
-        </div>
-        <input type="submit" value="Create" />
+
+        <input class="btn btn-warning" type="submit" value="Create"/>
         {{ form_end(form) }}
 
     </div>

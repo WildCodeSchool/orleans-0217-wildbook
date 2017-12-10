@@ -167,3 +167,15 @@ fieldset {
 legend {
     color:#f9a02e;
 }
+
+.img-listWilders {
+    max-width: 100%;
+    max-height: 240px;
+    margin-top:1em;
+}
+
+.thumbnail {
+    min-height: 325px;
+    margin-top: 1em;
+
+}

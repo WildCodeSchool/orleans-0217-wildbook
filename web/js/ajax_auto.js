@@ -18,26 +18,6 @@ $(document).ready(function () {
         }
     });
 
-    $(".ajax_wild_list").keyup(function () {
-        var input = $(this).val();
-        if (input.length >= 2) {
-            $.ajax({
-                type: "POST",
-                url: "/search_wilder_simple/ajax/" + input,
-                success: function (html) {
-                    $('#wild-list').html(html);
-                    $('#wild-list .lastname').on('click', function () {
-                        $('#bookbundle_homewilder_wilder').val($(this).text());
-                        $('#wilderList').html('');
-                    });
-
-                },
-                error: function () {
-                    $('#wild-list').text('Ajax call error');
-                }
-            });
-        }
-    });
 
     $("#book_bundle_project_search_type_Recherche").keyup(function () {
         var input = $(this).val();

@@ -1,0 +1,35 @@
+{% if wilder.userActivation == true and wilder.managerActivation == true %}
+    <div class="col-sm-6">
+        <a href="{{ path('profile_wilder', { 'id': wilder.id }) }}">
+            <figure class="thumbnail vignetteWilder">
+                <div class="row">
+                    <div class="col-sm-6 text-center">
+                        <img class="img-listWilders" src="
+                                            {{ wilder.profilPicture
+                        ?  asset('uploads/'~ wilder.profilPicture )
+                        :  asset('images/placeholder_wilder.png' ) }}
+                                          " alt="{{ wilder.firstname }} {{ wilder.lastname }}"
+                        >
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="caption">
+                            <h3>{{ wilder.lastname|upper }} {{ wilder.firstname }}</h3>
+                            <h4>Ecole : {{ wilder.promotion.school.school }}</h4>
+                            <h5>Promotion : {{ wilder.promotion.promotion }}</h5>
+                            <div class="middle">
+                                <span class="label label-warning">{{ wilder.availability.label }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="modjoWilder col-sm-12">
+                        {{ wilder.modjo }}
+                    </p>
+                </div>
+            </figure>
+        </a>
+
+    </div>
+
+{% endif %}
