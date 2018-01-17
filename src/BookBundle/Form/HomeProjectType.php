@@ -10,6 +10,7 @@ namespace BookBundle\Form;
 
 use BookBundle\Entity\Project;
 use Doctrine\DBAL\Types\BooleanType;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -27,26 +28,23 @@ class HomeProjectType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', SearchType::class, [
-            'required' => false,
-            'attr' => ['placeholder' => 'nom du projet']
-        ])
-                ->add('homeTextProject',TextType::class)
-                ->add('homeProject', CheckboxType::class, [
-                    'required' => true,
-                ]);
+        $builder
+            ->add('title', EntityType::class, [
+                    'class'        => Project::class,
+                    'choice_label' => 'title',
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('p')
+                            ->orderBy('p.title', 'ASC');
+                    },
+                    'group_by' => function($project) {
+                        return $project->getSchool()->getSchool();
+                    },
+                    'placeholder'     => 'Select a project',
+                    'attr'         => ['placeholder' => 'nom du projet'],
+                ]
+            )
+            ->add('homeTextProject', TextType::class);
     }
-
-    /**
-     * @param OptionsResolver $resolver
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'BookBundle\Entity\Project'
-        ));
-    }
-
 
     /**
      * @return string
@@ -55,7 +53,6 @@ class HomeProjectType extends AbstractType
     {
         return 'bookbundle_homeproject';
     }
-
 
 
 }
