@@ -11,12 +11,39 @@
             renseigner dans le champ description la phrase d'accroche qui sera mise en avant</p>
 
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <ul id="projectList"></ul>
-    <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <ul id="projectList"></ul>
+        <input type="submit" class="btn btn-success " value="Create"/>
+        {{ form_end(form) }}
 
+        <hr/>
+        <h2>Projets actuellement mis en avant</h2>
+        {% if homeProjects %}
+        <table class="table table-condensed table-hover">
+            <thead>
+            <tr>
+                <th>Projet</th>
+                <th>École</th>
+                <th>Description</th>
+                <th>Retirer</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for homeProject in homeProjects %}
+                <tr>
+                    <td>{{ homeProject.title }}</td>
+                    <td>{{ homeProject.school.school }}</td>
+                    <td>{{ homeProject.homeTextProject }}</td>
+                    <td><a href="{{ path('project_reset', {'id': homeProject.id}) }}" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> Retirer</a></td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+            {% else %}
+                Aucun projet
+            {% endif %}
     </div>
 
 {% endblock %}

@@ -29,9 +29,6 @@ class Picture
      * @Assert\Image( maxSize = "1024k",
      *     mimeTypes={"image/jpg","image/jpeg","image/png"},
      *     minHeight = 400,
-     *     maxHeight = 600,
-     *     minRatio = 1.9 ,
-     *     maxRatio = 2.1 ,
      * )
      */
     private $path;

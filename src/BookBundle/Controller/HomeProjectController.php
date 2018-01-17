@@ -36,24 +36,24 @@ class HomeProjectController extends Controller
      */
     public function projectHomeAction(Request $request)
     {
-        $homeProject = new Project();
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(HomeProjectType::class);
         $form->handleRequest($request);
 
         if ($form->isValid() && $form->isSubmitted()) {
             $data = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $homeProject = $em->getRepository(Project::class)->findOneByTitle($data->getTitle());
-            $homeProject->sethomeProject($data->gethomeProject());
-            $homeProject->sethomeTextProject($data->gethomeTextProject());
+            $homeProject = $em->getRepository(Project::class)->find($data['title']->getId());
+            $homeProject->setHomeProject(true);
+            $homeProject->setHomeTextProject($data['homeTextProject']);
             $em->persist($homeProject);
             $em->flush();
             $this->addFlash('success', 'Le projet est mis en avant sur le site');
         }
 
+        $homeProjects = $em->getRepository(Project::class)->findByHomeProject(true);
         return $this->render('project/projectHome.html.twig', array(
             'form' => $form->createView(),
+            'homeProjects' => $homeProjects,
         ));
 
     }
@@ -65,7 +65,7 @@ class HomeProjectController extends Controller
     public function viewHomeProjectAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $homeProjects = $em->getRepository(Project::class)->homeProject();
+        $homeProjects = $em->getRepository(Project::class)->findByHomeProject(true);
 
         return $this->render('project/accueilHomeProject.html.twig', array(
             'homeProjects' => $homeProjects,
@@ -75,31 +75,16 @@ class HomeProjectController extends Controller
 
     /**
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route("/reset", name="project_reset")
+     * @Route("/reset/{id}", name="project_reset")
      */
-    public function resetHomeProject(Request $request)
+    public function resetHomeProject(Request $request, Project $project)
     {
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm(ResetProjectType::class);
-        $form->handleRequest($request);
+        $project->setHomeProject(false);
+        $em->flush();
+        $this->addFlash('success', 'Le projet '. $project->getTitle().' n\'est plus mis en avant');
 
-        $homeProjects = $em->getRepository(Project::class)->homeProject();
-        if ($form->isValid() && $form->isSubmitted()) {
-            $data = $form->getData();
-            if ($data->gethomeProject() == true) {
-                foreach ($homeProjects as $homeProject) {
-                    $homeProject->setHomeProject(false);
-                    $homeProject->sethomeTextProject(null);
-                    $em->persist($homeProject);
-                    $em->flush();
-                }
-            }
-            $this->addFlash('success', 'Il n\'y a plus de projet mis en avant sur le site');
-        }
-
-        return $this->render('project/resetHomeProject.html.twig', array(
-            'form' => $form->createView(),
-        ));
+        return $this->redirectToRoute('project_accueil');
     }
 
     /**
@@ -119,7 +104,6 @@ class HomeProjectController extends Controller
              */
             $repository = $this->getDoctrine()->getRepository('BookBundle:Project');
             $data = $repository->getLikeAdmin($input);
-
             return new JsonResponse(array("data" => json_encode($data)));
         } else {
             throw new HttpException('500', 'Invalid call');

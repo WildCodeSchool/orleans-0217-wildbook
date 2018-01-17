@@ -35,8 +35,7 @@ class ProjectSearchController extends Controller
         $form = $this->createForm(ProjectSearchType::class);
         $form->handleRequest($request);
 
-        $input=$categories=$schools=$promotions='';
-        $projectsSearch='';
+        $categories=$schools=$promotions=$projectsSearch='';
 
         if ($form->isValid() && $form->isSubmitted()) {
             $data = $form->getData();

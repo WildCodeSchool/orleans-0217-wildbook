@@ -4,7 +4,6 @@
     {{ parent() }}
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/sb-admin.css') }}">
-    {#<link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">#}
 
 {% endblock stylesheets %}
 
@@ -108,7 +107,6 @@
                             <ul id="misesEnAvant" class="collapse">
                                 <li><a href="{{ path('wilder_accueil') }}"> Sélection Wilder </a></li>
                                 <li><a href="{{ path('project_accueil') }}"> Sélection projets </a></li>
-                                <li><a href="{{ path('project_reset') }}"> Annulation projets </a></li>
                             </ul>
                         </li>
 
@@ -175,7 +173,6 @@
                             <ul id="misesEnAvant" class="collapse">
                                 <li><a href="{{ path('wilder_accueil') }}"> Sélection Wilder </a></li>
                                 <li><a href="{{ path('project_accueil') }}"> Sélection projets </a></li>
-                                <li><a href="{{ path('project_reset') }}"> Annulation projets </a></li>
                             </ul>
                         </li>
 

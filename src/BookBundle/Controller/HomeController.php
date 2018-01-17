@@ -54,12 +54,12 @@ class HomeController extends Controller
      *
      * @Route("/detail_project/{id}", name="detail_project")
      */
-    public function projectDeatailAction($id)
+    public function projectDetailAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
         $project = $em->getRepository('BookBundle:Project')
-            ->findOneById($id);
+            ->find($id);
 
         return $this->render('BookBundle:Front:realisation.html.twig', array(
             'project' => $project
