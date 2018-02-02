@@ -2,18 +2,19 @@
 
 namespace BookBundle\Controller;
 
-use BookBundle\Entity\Picture;
 use BookBundle\Entity\Project;
 use BookBundle\Entity\ProjectWilder;
+use BookBundle\Entity\Wilder;
 use BookBundle\Form\PictureType;
 use BookBundle\Form\ProjectSearchType;
+use BookBundle\Form\ProjectWilderType;
 use BookBundle\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -39,7 +40,7 @@ class ProjectController extends Controller
         $form = $this->createForm(ProjectSearchType::class);
         $form->handleRequest($request);
 
-        $input = $categories = $schools = $promotions = $projectsSearch = '';
+        $categories = $schools = $promotions = $projectsSearch = '';
 
         if ($form->isValid() && $form->isSubmitted()) {
             $data = $form->getData();
@@ -48,11 +49,10 @@ class ProjectController extends Controller
             $promotions = $data['promotion'];
 
             $projectsSearch = $em->getRepository(Project::class)->searchBy($schools, $categories, $promotions);
-
         }
 
         return $this->render('project/index.html.twig', array(
-            'form' => $form->createView(),
+            'form'     => $form->createView(),
             'projects' => $projectsSearch,
         ));
     }
@@ -84,7 +84,7 @@ class ProjectController extends Controller
 
         return $this->render('project/new.html.twig', array(
             'project' => $project,
-            'form' => $form->createView(),
+            'form'    => $form->createView(),
         ));
     }
 
@@ -116,7 +116,7 @@ class ProjectController extends Controller
         }
 
         return $this->render('project/show.html.twig', array(
-            'project' => $project,
+            'project'     => $project,
             'delete_form' => $deleteForm->createView(),
         ));
 
@@ -155,8 +155,8 @@ class ProjectController extends Controller
             $originalProjectWilders->add($projectWilder);
         }
 
-        $editForm = $this->createForm('BookBundle\Form\ProjectType', $project);
         $pictureForm = $this->createForm(PictureType::class);
+        $editForm = $this->createForm('BookBundle\Form\ProjectType', $project);
         $editForm->handleRequest($request);
         $pictures = $project->getPictures();
 
@@ -181,19 +181,20 @@ class ProjectController extends Controller
                 $em->persist($project);
                 $em->flush();
                 if (in_array('ROLE_ADMIN', $this->getUser()->getRoles())) {
-                    $this->addFlash('warning', 'Projet ' . $project->gettitle() . ' modifié');
-                    return $this->redirectToRoute('project_index');
+                    $this->addFlash('success', 'Projet ' . $project->gettitle() . ' modifié');
+
+                    return $this->redirectToRoute('project_edit', ['id' => $project->getId()]);
                 } else {
                     return $this->redirectToRoute('project_one_wilder_index');
                 }
             }
 
             return $this->render('project/edit.html.twig', array(
-                'project' => $project,
-                'pictures' => $pictures,
-                'edit_form' => $editForm->createView(),
+                'project'      => $project,
+                'pictures'     => $pictures,
+                'edit_form'    => $editForm->createView(),
                 'picture_form' => $pictureForm->createView(),
-                'delete_form' => $deleteForm->createView(),
+                'delete_form'  => $deleteForm->createView(),
             ));
 
         } else {
@@ -201,7 +202,87 @@ class ProjectController extends Controller
 
             return $this->redirectToRoute('project_one_wilder_index');
         }
+    }
 
+    /**
+     * Form to add a wilder to a project.
+     *
+     * @Route("/{id}/add-wilder", name="add_wilder_project")
+     * @Method({"POST"})
+     * @Security("has_role('ROLE_ADMIN')")
+     **/
+    public function addWilderAction(Request $request, Project $project)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $projectWilder = new ProjectWilder;
+        $wilderForm = $this->createForm(ProjectWilderType::class, $projectWilder);
+        $wilderForm->handleRequest($request);
+        if ($wilderForm->isSubmitted() && $wilderForm->isValid()) {
+            $existingProjectWilder = $em->getRepository(ProjectWilder::class)->findBy(['wilder'=>$projectWilder->getWilder(), 'project'=>$project]);
+            if (!$existingProjectWilder) {
+                $projectWilder->setVisibility(true);
+                $projectWilder->setProject($project);
+                $em->persist($projectWilder);
+                $em->flush();
+                $this->addFlash('succes', 'Le wilder a bien été ajouté au projet');
+            } else {
+                $this->addFlash('danger', 'Ce wilder est déjà associé au projet');
+            }
+            return $this->redirectToRoute('project_edit', ['id'=>$project->getId()]);
+        }
+
+        return $this->render('project/projectWilder.html.twig', array(
+            'form' => $wilderForm->createView(),
+            'project' => $project,
+        ));
+
+    }
+
+    /**
+     * Changer la visibilité d'un wilder.
+     *
+     * @Route("/{id}/wilder-visibility", name="visibility_wilder_project")
+     * @Method({"GET"})
+     * @Security("has_role('ROLE_ADMIN')")
+     **/
+    public function visibilityWilderAction(Request $request, ProjectWilder $projectWilder)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $projectWilder->setVisibility(!$projectWilder->getVisibility());
+        $em->flush();
+        $this->addFlash('success', 'La visibilité du wilder a bien été modifiée');
+
+        return $this->redirectToRoute('project_edit', ['id'=>$projectWilder->getProject()->getId()]);
+    }
+
+    /**
+     * Delete un wilder d'un projet.
+     *
+     * @Route("/{id}/wilder-delete", name="delete_wilder_project")
+     * @Method({"DELETE"})
+     * @Security("has_role('ROLE_ADMIN')")
+     **/
+    public function removeWilderAction(Request $request, ProjectWilder $projectWilder)
+    {
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('delete_wilder_project', array('id' => $projectWilder->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+            ;
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($projectWilder);
+            $em->flush();
+            $this->addFlash('success', 'Le wilder a bien été retiré du projet');
+
+            return $this->redirectToRoute('project_edit', ['id'=>$projectWilder->getProject()->getId()]);
+        }
+
+        return $this->render('project/deleteWilder.html.twig', array(
+            'form' => $form->createView(),
+        ));
 
     }
 
@@ -233,7 +314,8 @@ class ProjectController extends Controller
      * @Route("/{id}/delete", name="project_indexdelete")
      * @Method({"GET", "POST"})
      */
-    public function indexDeleteAction(Project $project)
+    public
+    function indexDeleteAction(Project $project)
     {
         $deleteForm = $this->createDeleteForm($project);
 
@@ -251,7 +333,8 @@ class ProjectController extends Controller
      *
      * @return JsonResponse
      */
-    public function autocompleteAction(Request $request, $input)
+    public
+    function autocompleteAction(Request $request, $input)
     {
         if ($request->isXmlHttpRequest()) {
             /**
@@ -270,7 +353,8 @@ class ProjectController extends Controller
     /**
      * @Route("/hide-visibility/{id}", name="project_wilder_visibility")
      */
-    public function hideVisibilityAction(ProjectWilder $projectWilder)
+    public
+    function hideVisibilityAction(ProjectWilder $projectWilder)
     {
         if ($projectWilder->getWilder()->getUser() === $this->getUser()) {
             $em = $this->getDoctrine()->getManager();

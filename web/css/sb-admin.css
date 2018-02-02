@@ -138,7 +138,11 @@ body {
 /** EDIT PROJET **/
 
 .imgEditProjet {
-    height: 150px;
+    height: 120px;
+}
+
+.main_image::after {
+    content:"main";
 }
 
 /** INDEX WILDER **/
@@ -178,4 +182,26 @@ legend {
     min-height: 325px;
     margin-top: 1em;
 
+}
+
+.deleteProjectWilderForm {
+    display: inline-block;
+    margin-bottom:0.5em;
+}
+
+.project-pictures h2 {
+    font-size: 1.3em;
+}
+
+.project-pictures {
+    padding:1em;
+}
+.project-wilders {
+    padding:1em;
+}
+.project-wilders h2 {
+    font-size: 1.3em;
+}
+.project-pictures button {
+    margin-top:0.5em;
 }
