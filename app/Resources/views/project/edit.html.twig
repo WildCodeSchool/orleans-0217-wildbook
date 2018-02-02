@@ -8,11 +8,11 @@
 
     <div class="container-fluid">
 
-        <h1>{{ project.title }}</h1>
+        <h1>{{ project.title }} <small> - pour {{ project.customer }}</small></h1>
 
         <div class="row">
-            <div class="col-sm-12">
-                <div class="well">
+            <div class="col-sm-7">
+                <div class="well project-wilders">
                     {% for projectWilder in project.projectWilders if projectWilder.wilder.user.id == app.user.id %}
                         <a class="pull-right btn btn-danger"
                            href="{{ path('project_wilder_visibility', {'id':projectWilder.id}) }}">
@@ -27,12 +27,43 @@
                                    href="{{ path('profile_wilder', { 'id': projectWilder.wilder.id }) }}">
                                     {{ projectWilder.wilder.firstname }} {{ projectWilder.wilder.lastname }}
                                 </a>
-                                {% if projectWilder.visibility == 0 %}
-                                    <span class="label label-danger">Non visible</span>
+                                {% if projectWilder.visibility  %}
+                                    <span class="text-success" title="visible"><i class="fa fa-eye"></i></span>
+                                {% else %}
+                                    <span class="text-danger" title="non visible"><i class="fa fa-eye-slash"></i></span>
+                                {% endif %}
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a class="btn btn-xs btn-info"  href="{{ path('visibility_wilder_project', {'id':projectWilder.id}) }}" title="Afficher ou cacher la participation du wilder sur ce projet">Changer la visibilité</a>
+                                    {{ render(controller('BookBundle:Project:removeWilder', {'id':projectWilder.id} )) }}
                                 {% endif %}
                             </li>
+                            {% else %}
+                            Il n'y a pas encore de wilder associés à ce projet
                         {% endfor %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProjectWilder">
+                                Ajouter un wilder au projet
+                            </button>
+                        {% endif %}
                     </ul>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="well project-pictures">
+                    <h2>Images du projet :</h2>
+                    <!-- Button trigger modal -->
+                    {% for picture in project.pictures %}
+                            <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imgEditProjet "/>
+                            {% if picture.isPrincipal %}
+                                <span title="Image principale" class="label label-warning"><i class="fa fa-star"></i></span>
+                             {% endif %}
+                            <a class="btn btn-danger btn-xs" href="{{ path('picture_delete', { 'id': picture.id }) }}"><i class="fa fa-trash"></i></a>
+                    {% endfor %}
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                            Charger une image
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,116 +74,36 @@
 
             <div class="container">
 
-                <div class="form-group">
-                    {{ form_label(edit_form.title,'Titre') }}
-                    {{ form_widget(edit_form.title) }}
-                    {{ form_errors(edit_form.title) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_label(edit_form.customer,'Client') }}
-                    {{ form_widget(edit_form.customer) }}
-                    {{ form_errors(edit_form.customer) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(edit_form.date,'Date') }}
-                    {{ form_widget(edit_form.date) }}
-                    {{ form_errors(edit_form.date) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(edit_form.status,'Statut') }}
-                    {{ form_widget(edit_form.status) }}
-                    {{ form_errors(edit_form.status) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(edit_form.description,'Description') }}
-                    {{ form_widget(edit_form.description) }}
-                    {{ form_errors(edit_form.description) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(edit_form.path,'Url') }}
-                    {{ form_widget(edit_form.path) }}
-                    {{ form_errors(edit_form.path) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_label(edit_form.tags,'Tags') }}
-                    {{ form_widget(edit_form.tags) }}
-                    {{ form_errors(edit_form.tags) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_label(edit_form.summary,'Résumé') }}
-                    {{ form_widget(edit_form.summary) }}
-                    {{ form_errors(edit_form.summary) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_label(edit_form.category,'Catégorie') }}
-                    {{ form_widget(edit_form.category) }}
-                    {{ form_errors(edit_form.category) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_label(edit_form.technologies,'Technologies') }}
-                    {{ form_widget(edit_form.technologies) }}
-                    {{ form_errors(edit_form.technologies) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_label(edit_form.languages,'Langages') }}
-                    {{ form_widget(edit_form.languages) }}
-                    {{ form_errors(edit_form.languages) }}
-                </div>
+                {{ form_row(edit_form.title) }}
+                {{ form_row(edit_form.customer) }}
                 {% if is_granted('ROLE_ADMIN') %}
-                <div class="form-group">
-                    {{ form_label(edit_form.school,'École') }}
-                    {{ form_widget(edit_form.school) }}
-                    {{ form_errors(edit_form.school) }}
-                </div>
-                {% endif %}
-            </div>
-
-            <div class="container">
-                <h4>Ecole : {{ project.school.school}} </h4>
-                <h4>Wilders ayant réalisé ce projet : </h4>
-
-                {% if is_granted('ROLE_ADMIN') %}
-                    <div>
-                        {{ form_label(edit_form.projectWilders, 'Wilders ayant participé au projet') }}
-                        {{ form_widget(edit_form.projectWilders) }}
-                        {{ form_errors(edit_form.projectWilders) }}
+                    <div class="form-group">
+                        {{ form_label(edit_form.school,'École') }}
+                        {{ form_widget(edit_form.school) }}
+                        {{ form_errors(edit_form.school) }}
                     </div>
                 {% endif %}
+                {{ form_row(edit_form.date) }}
+                {{ form_row(edit_form.status) }}
+                {{ form_row(edit_form.category) }}
+                {{ form_row(edit_form.summary) }}
+                {{ form_row(edit_form.description) }}
+                {{ form_row(edit_form.path) }}
+                {{ form_row(edit_form.tags) }}
+                {{ form_row(edit_form.technologies) }}
+                {{ form_row(edit_form.languages) }}
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        {% for picture in project.pictures %}
-                            <div class="image_projet">
-                                <img src="{{ asset('uploads/'~ picture.path|basename ) }}" class="imgEditProjet"/>
-                                <span class="label label-info">{{ picture.isPrincipal ? 'Image principale' : 'Image secondaire' }}</span>
-                                <p><a href="{{ path('picture_delete', { 'id': picture.id }) }}">supprimer l'image</a>
-                                </p>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                {{ form_widget(edit_form._token) }}
             </div>
+
 
             <div class="form-group">
                 <input type="submit" class="btn btn-success" value="Valider"/>
             </div>
 
-            </form>
+           {{ form_end(edit_form) }}
 
         </div>
-        <!-- Button trigger modal -->
-        <div class="form-group">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-                Charger une image
-            </button>
-        </div>
+
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
@@ -185,6 +136,29 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                         <input type="submit" class="btn btn-success" value="Sauvegarder"/>
+                    </div>
+                    {{ form_end(picture_form) }}
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="addProjectWilder" tabindex="-1" role="dialog"
+             aria-labelledby="addProjectWilder" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter un wilder au projet</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        {{ render(controller('BookBundle:Project:addWilder', {'id':project.id})) }}
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                     </div>
                     {{ form_end(picture_form) }}
 

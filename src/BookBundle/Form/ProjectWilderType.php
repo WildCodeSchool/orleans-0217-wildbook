@@ -19,7 +19,6 @@ class ProjectWilderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('visibility')
             ->add('wilder', EntityType::class, [
                 'class'=> Wilder::class,
                 'choice_label'=>'fullName',
@@ -29,11 +28,6 @@ class ProjectWilderType extends AbstractType
                         ->orderBy('w.firstname', 'ASC')
                         ->addOrderBy('w.lastname', 'ASC');
                 },
-            ])
-            -> add ( 'position' , HiddenType :: class , [
-                    'attr' => [
-                        'class' => 'my-wilder' ,
-                ],
             ]);
     }
     

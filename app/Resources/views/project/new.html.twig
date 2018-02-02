@@ -1,6 +1,6 @@
 {% extends 'layout_admin.html.twig' %}
 
-{% form_theme form 'bootstrap_3_layout.html.twig' 'jquery.collection.html.twig'%}
+{% form_theme form 'bootstrap_3_layout.html.twig' 'jquery.collection.html.twig' %}
 
 
 {% block content %}
@@ -9,64 +9,25 @@
         <h1>Project creation</h1>
 
         {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.customer) }}
+        {{ form_row(form.school) }}
+        {{ form_row(form.date) }}
+        {{ form_row(form.status) }}
+        {{ form_row(form.category) }}
+        {{ form_row(form.summary) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.path) }}
+        {{ form_row(form.tags) }}
+        {{ form_row(form.technologies) }}
+        {{ form_row(form.languages) }}
 
-        {{ form_label(form.title,'Titre') }}
-        {{ form_widget(form.title) }}
-        {{ form_errors(form.title) }}
+        Se rendre dans l'edition pour ajouter des wilders et images
 
-        {{ form_label(form.customer,'Client') }}
-        {{ form_widget(form.customer) }}
-        {{ form_errors(form.customer) }}
 
-        {{ form_label(form.date,'Date') }}
-        {{ form_widget(form.date) }}
-        {{ form_errors(form.date) }}
-
-        {{ form_label(form.status,'Statut') }}
-        {{ form_widget(form.status) }}
-        {{ form_errors(form.status) }}
-
-        {{ form_label(form.description,'Description') }}
-        {{ form_widget(form.description) }}
-        {{ form_errors(form.description) }}
-
-        {{ form_label(form.path,'Url') }}
-        {{ form_widget(form.path) }}
-        {{ form_errors(form.path) }}
-
-        {{ form_label(form.tags,'Tags') }}
-        {{ form_widget(form.tags) }}
-        {{ form_errors(form.tags) }}
-
-        {{ form_label(form.summary,'Résumé') }}
-        {{ form_widget(form.summary) }}
-        {{ form_errors(form.summary) }}
-
-        {{ form_label(form.category,'Catégorie') }}
-        {{ form_widget(form.category) }}
-        {{ form_errors(form.category) }}
-
-        {{ form_label(form.technologies,'Technologies') }}
-        {{ form_widget(form.technologies) }}
-        {{ form_errors(form.technologies) }}
-
-        {{ form_label(form.languages,'Langages') }}
-        {{ form_widget(form.languages) }}
-        {{ form_errors(form.languages) }}
-
-        {{ form_label(form.school,'École') }}
-        {{ form_widget(form.school) }}
-        {{ form_errors(form.school) }}
-
-        {%  if is_granted('ROLE_ADMIN') %}
-        <div>
-            {{ form_label(form.projectWilders, 'Wilders ayant participé au projet') }}
-            {{ form_widget(form.projectWilders) }}
-            {{ form_errors(form.projectWilders) }}
+        <div class="form-group">
+            <input class="btn btn-success btn-block" type="submit" value="Create"/>
         </div>
-        {% endif %}
-
-        <input class="btn btn-success" type="submit" value="Create" />
         {{ form_end(form) }}
 
         <a href="{{ path('project_index') }}" class="btn btn-primary">Retour à la liste</a>
@@ -75,17 +36,3 @@
 
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('js/jquery.collection.js') }}"></script>
-
-    <script type="text/javascript">
-        $('.wilders_project_collection').collection ({
-            add: ' <a class="btn btn-sm btn-warning href="#">Ajouter un wilder</a>',
-            remove: '<a href="#">Delete wilder</a>',
-            allow_up: false,
-            allow_down: false,
-            add_at_the_end: true,
-        });
-    </script>
-{% endblock javascripts %}
